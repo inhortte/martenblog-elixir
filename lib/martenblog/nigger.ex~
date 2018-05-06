@@ -1,0 +1,8 @@
+defmodule Martenblog.Nigger do
+  def init(opts), do: opts
+
+  def call(conn, _opts) do
+    Logger.info "DEATH to #{_opts[:name]}"
+    conn
+  end
+end

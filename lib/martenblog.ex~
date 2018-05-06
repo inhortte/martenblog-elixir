@@ -1,0 +1,18 @@
+defmodule Martenblog do
+  @moduledoc """
+  Documentation for Martenblog.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Martenblog.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
