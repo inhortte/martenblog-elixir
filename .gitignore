@@ -22,3 +22,11 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 martenblog-*.tar
 
+*~
+
+/web/node_modules
+/web/public/images/blog
+/web/public/vendor
+/web/public/css
+/web/public/js
+

@@ -1,28 +1,23 @@
 defmodule Martenblog.Router do
   use Plug.Router
   require Logger
-  
+
   plug Plug.Logger
+
+  plug CORSPlug, origin: ["*"]
+  
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
     json_decoder: Poison
 
   plug Plug.Static,
-    at: "/public",
-    from: :martenblog
+    at: "/",
+    from: "./web/public",
+    # from: {:martenblog, "./web/public"},
+    only: ~w(css js images vendor favicon.ico)
 
   plug :match
   plug :dispatch
-  #  plug :not_found
-  plug Martenblog.Nigger, [name: "Christián"]
-
-  get "/" do
-    conn |> send_resp(200, "you die!")
-  end
-
-  get "/thurk" do
-    conn |> send_resp(200, "death!")
-  end
 
   forward "/gql", to: Absinthe.Plug,
     schema: Martenblog.Schema
@@ -33,13 +28,12 @@ defmodule Martenblog.Router do
       interface: :playground
     ]
 
+  get "/*_rest" do
+    send_file(conn, 200, "./web/public/index.html")
+  end
 
-#  def not_found(conn, _) do
-#    send_resp(conn, 404, "not found")
-#  end
-
-#  def start_link do
-#    Plug.Adapters.Cowboy.http(Martenblog.Router, [])
-#  end
+  match _ do
+    send_resp(conn, 404, "thurk?")
+  end
 end
 

@@ -30,6 +30,7 @@ defmodule Martenblog.MixProject do
       {:mongodb, ">= 0.0.0"},
       {:poolboy, ">= 0.0.0"},
       {:absinthe_plug, "~> 1.4.0"},
+      {:cors_plug, "~> 1.5"},      
       {:poison, "~> 1.3.0"}
     ]
   end

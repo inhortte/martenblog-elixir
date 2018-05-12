@@ -1,0 +1,48 @@
+body, html {
+    font-family: 'Vollkorn', Courier, serif, monospace;
+    overflow: visible;
+}
+
+@media all and (max-width 991px) {
+    #martenblog-sidebar {
+	font-size: 1em;
+    }
+    #entries {
+	font-size: 2em;
+	padding-left: 15px;
+	line-height: 18px;
+    }
+}
+@media all and (min-width 992px) {
+    #martenblog-sidebar {
+	font-size: 1em;
+    }
+    #entries {
+	font-size: 1.5em;
+	padding-left: 15px;
+	line-height: 22px;
+    }
+}
+
+a {
+    color: #1e9090;
+}
+
+h2 {
+    color: #442099;
+}
+
+.entry img {
+    width: 100%;
+}
+
+.entry blockquote {
+    /* font-size: smaller; */
+}
+
+img {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
