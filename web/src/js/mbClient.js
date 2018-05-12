@@ -15,6 +15,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import VTopicPane from './containers/VTopicPane';
 import VEntryPane from './containers/VEntryPane';
 import VPoemThorax from './containers/VPoemThorax';
+import VMusicThorax from './containers/VMusicThorax';
 import VHome from './containers/VHome';
 import { mbApp } from './reducers';
 import { setEFormat, toggleSidebar, showSidebar, hideSidebar, fetchPageCount, fetchTopics, fetchPoems, fetchEntries, fetchDateEntry, fetchSurroundingDates, changePage } from './actions';
@@ -149,6 +150,7 @@ class Martenblog extends React.Component {
 	      <Route exact path="/" component={VHome} />
 	      <Route path="/poems" component={VPoemThorax} />
 	      <Route path="/blog" component={VBlogThorax} />
+	      <Route path="/music" component={VMusicThorax} />
 	    </Switch>
 	    <Abdomen />
 	  </div>
