@@ -13,16 +13,6 @@ import { EFormats } from '../config';
 import { fetchEntries, fetchPageCount } from '../actions';
 
 class EntryPane extends React.Component {
-  componentDidMount() {
-    let { dispatch, currentPage } = this.props;
-    /*
-      console.log(`EntryPane - fetching entries`);
-      dispatch(fetchPageCount(currentPage));
-      dispatch(fetchEntries());
-      dispatch(push("/blog/1"));
-      setTimeout(() => this.forceUpdate(), 1000);
-    */
-  }
   render() {
     return (
       <div>

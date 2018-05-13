@@ -121,8 +121,8 @@ class Martenblog extends React.Component {
     sbInit();
     dispatch(fetchTopics(true));
     dispatch(fetchPoems());
-    dispatch(fetchPageCount(1));
-    dispatch(fetchEntries());
+    // dispatch(fetchPageCount(1));
+    // dispatch(fetchEntries());
     setTimeout(() => {
       dispatch(hideSidebar());
       sbHide();

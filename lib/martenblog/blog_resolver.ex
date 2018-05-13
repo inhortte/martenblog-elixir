@@ -82,6 +82,7 @@ defmodule Martenblog.BlogResolver do
                     utc_offset: 0, std_offset: 0, time_zone: "Europe/London"}
     begin_time = DateTime.to_unix(dt) * 1000
     end_time = begin_time + 1000 * 3600 * 24
+    Logger.info "year: #{y}, month: #{m}, day: #{d}, begin_time: #{begin_time}, end_time: #{end_time}"
     entries = Enum.to_list(Mongo.find(:mongo, "entry", %{"$and": [
 							    %{"created_at": %{"$gte": begin_time}}, %{"created_at": %{"$lte": end_time}}
 							  ]}, sort: %{"created_at": -1}));

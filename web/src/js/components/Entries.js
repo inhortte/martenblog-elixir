@@ -11,7 +11,7 @@ class Entries extends React.Component {
     if(prevDate || nextDate) {
       setTimeout(() => {
 	dispatch(setSurroundingDates({ prevDate: null, nextDate: null }));
-	dispatch(fetchEntries());
+	// dispatch(fetchEntries());
       }, 2000);
     }
   }
