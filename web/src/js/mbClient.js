@@ -23,7 +23,7 @@ import { sbInit, sbHide, sbShow, sbToggle, setScrollable } from './external/side
 import { entriesId, sidebarId, EFormats } from './config';
 
 const bodyColors = [
-  '#8fbc8f', '#66cdaa', '#cd5555', '#220040'
+  '#687C87'
 ];
 const Head = ({ sbOpen, openSidebar, toBlog }) => {
   let mStyles = {

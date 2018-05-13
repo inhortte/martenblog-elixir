@@ -35,8 +35,23 @@ defmodule Martenblog.BlogResolver do
     {:ok, topic}
   end
 
+  def normalise_topic_id(topic_id) do
+    if is_nil(topic_id) do
+      nil
+    else
+      case Integer.parse(topic_id) do
+	:error ->
+	  nil
+	{t_id, _} ->
+	  t_id
+      end
+    end
+  end
+
   def p_count(_root, args, _info) do
-    topic_ids = args.topic_ids || []
+    topic_ids = args.topic_ids && (
+      args.topic_ids |> Enum.map(&normalise_topic_id/1) |> Enum.reject(&is_nil/1)
+    ) || []
     search = args.search || nil
     Mongo.count(:mongo, "entry", mk_find_opts(topic_ids, search))
   end
@@ -49,7 +64,9 @@ defmodule Martenblog.BlogResolver do
   def entries_paged(_root, args, _info) do
     page = args.page || 1
     limit = args.limit || 11
-    topic_ids = args.topic_ids || []
+    topic_ids = args.topic_ids && (
+      args.topic_ids |> Enum.map(&normalise_topic_id/1) |> Enum.reject(&is_nil/1)
+    ) || []    
     search = args.search || nil
     entries = Enum.to_list(Mongo.find(:mongo, "entry", mk_find_opts(topic_ids, search), skip: (page - 1) * 11, sort: %{"created_at": -1}, limit: limit))
     entries_with_topics = Enum.map(entries, &add_topics_to_entry/1)

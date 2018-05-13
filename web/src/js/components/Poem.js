@@ -15,7 +15,13 @@ class Poem extends Component {
     };
     const poemStyle = {
       fontSize: "1.5em",
-      color: "#ddbbcc"
+      margin: '0 0 0.5em 0',
+      padding: '0.5em 1em 0.5em 1em',
+      backgroundColor: '#b0c4de',
+      'WebkitBorderRadius': 10,
+      'MozBorderRadius': 10,
+      'borderRadius': 10,
+      color: "#5A5C3E"
     };
     // console.log(JSON.stringify(this.props.poem));
     let title = this.props.poem && this.props.poem.title || "Nic";

@@ -10,6 +10,15 @@ import { poemListCompressed } from '../config';
 
 class PoemThorax extends Component {
   render() {
+    let poemTitlesStyle = {
+      fontSize: "1.5em",
+      margin: '0 0 0.5em 0',
+      padding: '0.5em 1em 0.5em 1em',
+      backgroundColor: '#b0c4de',
+      'WebkitBorderRadius': 10,
+      'MozBorderRadius': 10,
+      'borderRadius': 10
+    };
     let titleLinks = R.addIndex(R.map)((poem, idx) => {
       return (
 	<div key={idx}>
@@ -17,25 +26,22 @@ class PoemThorax extends Component {
 	</div>
       );
     }, this.props.poems);
-    let poemLinksStyle = {
-      fontSize: "1.5em"
-    };
     if(poemListCompressed) {
-      poemLinksStyle = R.merge(poemLinksStyle, {
+      poemTitlesStyle = R.merge(poemTitlesStyle, {
 	overflow: 'auto',
 	height: "5em"
       });
     }
     return (
       <div>
-	<div className="col-md-3">
+	<div className="col-md-2">
 	  <h2>Poems -</h2>
 	  <hr />
-	  <div style={poemLinksStyle}>
+	  <div style={poemTitlesStyle}>
 	    {titleLinks}
 	  </div>
 	</div>
-	<div className="col-md-6 push-md-3">
+	<div className="col-md-4">
 	  <Route path="/poems/:poem" component={VPoem} />
 	</div>
       </div>
