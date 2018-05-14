@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import VPoem from '../containers/VPoem';
 import { poemListCompressed } from '../config';
+import { poemDate } from '../utils';
 
 class PoemThorax extends Component {
   render() {
@@ -19,10 +20,14 @@ class PoemThorax extends Component {
       'MozBorderRadius': 10,
       'borderRadius': 10
     };
+    let poemDateStyle = {
+      fontSize: "0.7em"
+    };
     let titleLinks = R.addIndex(R.map)((poem, idx) => {
+      let fecha = poemDate(poem.fecha) ? poemDate(poem.fecha) : '';
       return (
 	<div key={idx}>
-	  <Link to={`/poems/${poem.normalisedTitle}`}>{poem.title}</Link>
+	  <Link to={`/poems/${poem.normalisedTitle}`}>{poem.title}</Link> <span style={poemDateStyle}>{fecha}</span>
 	</div>
       );
     }, this.props.poems);

@@ -52,3 +52,17 @@ export const getFormattedDate = (timestamp, dateOpts) => {
     d: _date.getDate()
   };
 };
+
+const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+export const poemDate = fecha => {
+  const re = /(\d+)[-\/](\d+)[-\/](\d+)/;
+  let m = re.exec(fecha);
+  if(m) {
+    let bastard = new Date(m[1], m[2] - 1, m[3]);
+    // return `${bastard.getUTCFullYear()}-${bastard.getUTCMonth() + 1}-${bastard.getUTCDate() + 1} (${dayOfWeek[bastard.getDay()]})`;
+    return `${fecha} (${dayOfWeek[bastard.getDay()]})`;    
+  } else {
+    return null;
+  }
+};

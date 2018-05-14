@@ -25,7 +25,7 @@ defmodule Martenblog.BlogResolver do
   
   def all_topics(_root, _args, _info) do
     topics_ = Mongo.find(:mongo, "topic", %{}) |> Enum.to_list
-    IO.inspect topics_
+    # IO.inspect topics_
     topics =  topics_ |> Enum.map(fn(t) -> Map.merge(t, %{"count" => Enum.count(Map.get(t, "entry_ids"))}) end)    
     {:ok, topics}
   end

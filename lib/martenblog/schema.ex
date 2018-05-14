@@ -25,6 +25,7 @@ defmodule Martenblog.Schema do
     field :_id, :id
     field :filename, non_null(:string)
     field :title, non_null(:string)
+    field :fecha, non_null(:string)
     field :normalised_title, non_null(:string)
     field :poem, non_null(:string)
   end

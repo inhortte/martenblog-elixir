@@ -131,6 +131,7 @@ query allPoems {
   allPoems {
     filename
     title
+    fecha
     normalisedTitle
     poem
   }
