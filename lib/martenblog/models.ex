@@ -75,7 +75,41 @@ defmodule Martenblog.Entry do
   @header_res [id: @id_re, subject: @subject_re, created_at: @date_re]
 
   defstruct id: 0, created_at: DateTime.to_unix(DateTime.utc_now) * 1000, entry: "", subject: "", topic_ids: [], user_id: 1
-  @oddities %{:id => "_id"}  
+  @oddities %{:id => "_id"}
+
+  def format_mb_date(dt) do
+    year = dt.year
+    month = if dt.month < 10, do: "0#{dt.month}", else: "#{dt.month}"
+    day = if dt.day < 10, do: "0#{dt.day}", else: "#{dt.day}"
+    hour = if dt.hour < 10, do: "0#{dt.hour}", else: "#{dt.hour}"
+    minute = if dt.minute < 10, do: "0#{dt.minute}", else: "#{dt.minute}"
+    "#{year}#{month}#{day}#{hour}#{minute}"
+  end
+
+  def make_mb_timestamp(ts) do
+    dt = case DateTime.from_unix(ts) do
+	   {:error, _} ->
+	     case DateTime.from_unix(trunc(ts / 1000)) do
+	       {:error, _} ->
+		 DateTime.utc_now
+	       {:ok, dt} ->
+		 format_mb_date(dt)
+	     end
+	   {:ok, dt} ->
+	     format_mb_date(dt)
+	 end
+    dt
+  end
+
+  def parse_mb_timestamp(mbts) do
+    case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, mbts) do
+      [_, year, month, day, hour, minute] ->
+	DateTime.from_naive(NaiveDateTime.new(year, month, day, hour, minute, 0), "Etc/UTC")
+      [_, year, month, day] ->
+	DateTime.from_naive(NaiveDateTime.new(year, month, day, 0, 0, 0), "Etc/UTC")
+      _ -> DateTime.utc_now
+    end
+  end
 
   def to_mongoable(entry) do
     Map.keys(entry) |> Enum.reduce(%{}, fn(key, acc) ->
@@ -113,14 +147,18 @@ defmodule Martenblog.Entry do
       arr_of_tuples = Enum.map(Keyword.keys(@header_res), fn(key) -> {key, Regex.run(@header_res[key], line)} end) |> Enum.reject(fn({_, capture}) -> is_nil(capture) end)
       case arr_of_tuples do
 	[{key, [_, capture]}] ->
-	  cap = if key == :id do
+	  cap = cond do
+	    key == :id ->
 	      case Float.parse(capture) do
 		:error ->
 		  next_entry_id()
 		{id_float, _} ->
 		  trunc id_float
 	      end
-	    else
+	    key == :created_at ->
+	      Logger.info "key: #{key} - capture: #{capture}"
+	      parse_mb_timestamp(capture)
+	    true ->
 	      capture
 	    end
 	  Map.merge(acc, %{key => cap})
@@ -160,5 +198,17 @@ defmodule Martenblog.Entry do
 	write_processed_file(filename, entry)
 	entry
     end
+  end
+
+  def check_entry_files(dir, re) do
+    File.ls!(dir) |> Enum.reject(fn(file) -> is_nil(Regex.run(re, file)) end) |> Enum.each(fn(file) ->
+      path = Path.join(dir, file)
+      f = File.read!(path)
+      entry = parse_entry_file f
+      mentry = Mongo.find(:mongo, "entry", %{"subject" => String.trim(entry.subject)})
+      if mentry do
+
+      end
+    end)
   end
 end
