@@ -74,7 +74,7 @@ defmodule Martenblog.Entry do
 
   @header_res [id: @id_re, subject: @subject_re, created_at: @date_re]
 
-  defstruct id: 0, created_at: DateTime.to_unix(DateTime.utc_now) * 1000, entry: "", subject: "", topic_ids: [], user_id: 1
+  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1
   @oddities %{:id => "_id"}  
 
   def to_mongoable(entry) do
@@ -107,6 +107,20 @@ defmodule Martenblog.Entry do
     Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |> Map.get("_id") |> (fn(id) -> id + 1 end).()
   end
 
+  def new_or_old_id(entry), do: if e.id == 0, do: Map.merge(e, %{:id => next_entry_id()}), else: e 
+  def dating(entry) do
+    if is_number entry.created_at do
+      if entry.created_at == 0 do
+	Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
+      else
+	entry
+      end
+    else
+      # Parse numerical date string - ie 201807211537
+      Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
+    end
+  end
+
   def parse_entry_file(file_as_string) do
     [header | entry] = String.split(file_as_string, ~r/\n{2,}/)
     String.split(header, ~r/\n/) |> Enum.reduce(%Martenblog.Entry{}, fn(line, acc) ->
@@ -133,7 +147,7 @@ defmodule Martenblog.Entry do
 	    Map.merge(acc, %{:topic_ids => topic_ids_from_topics_string(capture)})
 	  end
       end
-    end) |> Map.merge(%{:entry => Enum.join(entry, "\n\n")}) |> (fn(e) -> if e.id == 0, do: Map.merge(e, %{:id => next_entry_id()}), else: e end).()
+    end) |> Map.merge(%{:entry => Enum.join(entry, "\n\n")}) |> new_or_old_id |> dating 
   end
 
   def write_processed_file(filename, entry) do
