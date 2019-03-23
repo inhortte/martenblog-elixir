@@ -74,8 +74,42 @@ defmodule Martenblog.Entry do
 
   @header_res [id: @id_re, subject: @subject_re, created_at: @date_re]
 
-  defstruct id: 0, created_at: DateTime.to_unix(DateTime.utc_now) * 1000, entry: "", subject: "", topic_ids: [], user_id: 1
-  @oddities %{:id => "_id"}  
+  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1
+  @oddities %{:id => "_id"}
+
+  def format_mb_date(dt) do
+    year = dt.year
+    month = if dt.month < 10, do: "0#{dt.month}", else: "#{dt.month}"
+    day = if dt.day < 10, do: "0#{dt.day}", else: "#{dt.day}"
+    hour = if dt.hour < 10, do: "0#{dt.hour}", else: "#{dt.hour}"
+    minute = if dt.minute < 10, do: "0#{dt.minute}", else: "#{dt.minute}"
+    "#{year}#{month}#{day}#{hour}#{minute}"
+  end
+
+  def make_mb_timestamp(ts) do
+    dt = case DateTime.from_unix(ts) do
+	   {:error, _} ->
+	     case DateTime.from_unix(trunc(ts / 1000)) do
+	       {:error, _} ->
+		 DateTime.utc_now
+	       {:ok, dt} ->
+		 format_mb_date(dt)
+	     end
+	   {:ok, dt} ->
+	     format_mb_date(dt)
+	 end
+    dt
+  end
+
+  def parse_mb_timestamp(mbts) do
+    case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, mbts) do
+      [_, year, month, day, hour, minute] ->
+	DateTime.from_naive(NaiveDateTime.new(year, month, day, hour, minute, 0), "Etc/UTC")
+      [_, year, month, day] ->
+	DateTime.from_naive(NaiveDateTime.new(year, month, day, 0, 0, 0), "Etc/UTC")
+      _ -> DateTime.utc_now
+    end
+  end
 
   def to_mongoable(entry) do
     Map.keys(entry) |> Enum.reduce(%{}, fn(key, acc) ->
@@ -107,20 +141,38 @@ defmodule Martenblog.Entry do
     Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |> Map.get("_id") |> (fn(id) -> id + 1 end).()
   end
 
+  def new_or_old_id(entry), do: if e.id == 0, do: Map.merge(e, %{:id => next_entry_id()}), else: e 
+  def dating(entry) do
+    if is_number entry.created_at do
+      if entry.created_at == 0 do
+	Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
+      else
+	entry
+      end
+    else
+      # Parse numerical date string - ie 201807211537
+      Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
+    end
+  end
+
   def parse_entry_file(file_as_string) do
     [header | entry] = String.split(file_as_string, ~r/\n{2,}/)
     String.split(header, ~r/\n/) |> Enum.reduce(%Martenblog.Entry{}, fn(line, acc) ->
       arr_of_tuples = Enum.map(Keyword.keys(@header_res), fn(key) -> {key, Regex.run(@header_res[key], line)} end) |> Enum.reject(fn({_, capture}) -> is_nil(capture) end)
       case arr_of_tuples do
 	[{key, [_, capture]}] ->
-	  cap = if key == :id do
+	  cap = cond do
+	    key == :id ->
 	      case Float.parse(capture) do
 		:error ->
 		  next_entry_id()
 		{id_float, _} ->
 		  trunc id_float
 	      end
-	    else
+	    key == :created_at ->
+	      Logger.info "key: #{key} - capture: #{capture}"
+	      parse_mb_timestamp(capture)
+	    true ->
 	      capture
 	    end
 	  Map.merge(acc, %{key => cap})
@@ -133,7 +185,7 @@ defmodule Martenblog.Entry do
 	    Map.merge(acc, %{:topic_ids => topic_ids_from_topics_string(capture)})
 	  end
       end
-    end) |> Map.merge(%{:entry => Enum.join(entry, "\n\n")}) |> (fn(e) -> if e.id == 0, do: Map.merge(e, %{:id => next_entry_id()}), else: e end).()
+    end) |> Map.merge(%{:entry => Enum.join(entry, "\n\n")}) |> new_or_old_id |> dating 
   end
 
   def write_processed_file(filename, entry) do
@@ -160,5 +212,17 @@ defmodule Martenblog.Entry do
 	write_processed_file(filename, entry)
 	entry
     end
+  end
+
+  def check_entry_files(dir, re) do
+    File.ls!(dir) |> Enum.reject(fn(file) -> is_nil(Regex.run(re, file)) end) |> Enum.each(fn(file) ->
+      path = Path.join(dir, file)
+      f = File.read!(path)
+      entry = parse_entry_file f
+      mentry = Mongo.find(:mongo, "entry", %{"subject" => String.trim(entry.subject)})
+      if mentry do
+
+      end
+    end)
   end
 end
