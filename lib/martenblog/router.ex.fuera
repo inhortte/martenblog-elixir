@@ -1,0 +1,27 @@
+defmodule Martenblog.Router do
+  use Poison.Encoder
+  use Plug.Router
+  require Logger
+
+  plug Plug.Logger
+
+  plug CORSPlug, origin: ["*"]
+  
+  plug Plug.Static,
+    at: "/",
+    from: "./web/public",
+    # from: {:martenblog, "./web/public"},
+    only: ~w(css js images vendor favicon.ico)
+
+  plug :match
+  plug :dispatch
+
+  get "/*_rest" do
+    send_file(conn, 200, "./web/public/index.html")
+  end
+
+  match _ do
+    send_resp(conn, 404, "thurk?")
+  end
+end
+

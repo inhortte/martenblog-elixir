@@ -29,4 +29,9 @@ martenblog-*.tar
 /web/public/vendor
 /web/public/css
 /web/public/js
+/web-old/node_modules
+/web-old/public/images/blog
+/web-old/public/vendor
+/web-old/public/css
+/web-old/public/js
 

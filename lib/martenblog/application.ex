@@ -4,7 +4,8 @@ defmodule Martenblog.Application do
   def start(_type, _args) do
     import Supervisor.Spec
     children = [
-      Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: Martenblog.Router, options: [port: 4001]),
+      {Plug.Cowboy, scheme: :http, plug: Martenblog.Router, options: [port: 8777]},
+      # Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: Martenblog.Router, options: [port: 4001]),
       worker(Mongo, [[database:
 		      Application.get_env(:martenblog, :db)[:name], name: :mongo]])
     ]

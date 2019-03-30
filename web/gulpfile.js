@@ -1,35 +1,48 @@
-'use strict';
-
-require('babel-core/register');
+require('@babel/register');
 
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
 const browserify = require('gulp-browserify');
+// const buffer = require('vinyl-buffer');
 const del = require('del');
 const uglify = require('gulp-uglify');
 const streamify = require('gulp-streamify');
 const wrap = require('gulp-wrap');
-
+const browserify2 = require('browserify');
+const vueify = require('vueify');
+const uglifyify = require('uglifyify');
+const source = require('vinyl-source-stream');
+const babelify = require('babelify');
+const envify = require('envify/custom');
 const path = require('path');
-const srcDir = 'src';
 
 const paths = {
+  serverSrc: 'src/server/**/*.js',
+  serverDest: 'dist',
   jsSrc: 'src/js/**/*.js',
-  jsDest: 'public/js',
+  vueSrc: 'src/js/**/*.vue',
   cssSrc: 'src/css/**/*.css',
-  cssDest: 'public/css'
+  jsDest: 'dist',
+  bundleDest: 'public/js/bundle',
+  cssDest: 'public/css',
+  fontAwesomeSrc: 'src/font-awesome/**',
+  fontAwesomeDest: 'public/font-awesome'
 };
-
-/*
- * CLIENT
- */
 
 const clean = cb => {
   console.log('starting clean');
-  const subDirs = ['external', 'watches', 'config', 'components', 'containers', 'actions', 'reducers', 'utils', 'json', 'bundle', 'middleware'];
-  const expunge = [path.join(paths.jsDest, '**/*.js'), path.join(paths.jsDest, '**/*.map'), path.join(paths.cssDest, '**/*.css')];
-  const toBeExpunged = expunge;
+  const subDirs = ['external', 'watches', 'components', 'store'];
+  const expunge = [path.join(paths.jsDest, '**/*.js'), path.join(paths.jsDest, '**/*.map'),
+		   path.join(paths.jsDest, '**/*.vue'),
+		   path.join(paths.bundleDest, 'vdna-menu.js'), path.join(paths.cssDest, '**/**.css')];
+  const keep = [`!${path.join(paths.cssDest, 'font-awesome')}`,
+                `!${path.join(paths.cssDest, 'font-awesome/**/*.css')}`,
+		`!${path.join(paths.cssDest, 'bootstrap.min.css')}`,
+		`!${path.join(paths.cssDest, 'bootstrap-vue.min.css')}`];
+  const toBeExpunged = expunge.concat(subDirs.map(sd => {
+    return path.join(paths.jsDest, sd);
+  })).concat(keep);
   del(toBeExpunged).then(ps => {
     console.log(`Expunged: ${ps.length} files`);
     cb();
@@ -38,55 +51,61 @@ const clean = cb => {
   });
 };
 
-const babelify = () => {
-  return gulp.src(paths.jsSrc)
-    .pipe(sourcemaps.init())
+const vueifyDev = () => {
+  let b = browserify2({
+    entries: 'src/js/celestialGoat.js',
+    debug: true,
+    transform: [babelify, vueify]
+  });
+  return b.bundle()
+    .pipe(source('celestialGoat.js'))
+    .pipe(gulp.dest(paths.bundleDest));
+};
+const vueifyProd = () => {
+  let b = browserify2({
+    entries: 'src/js/celestialGoat.js',
+  })
+      .transform(vueify)
+      .transform(babelify)
+      .transform(uglifyify, { global: true })
+      .transform(
+	{ global: true },
+	envify({ NODE_ENV: 'production' })
+      );
+  return b.bundle()
+    .pipe(source('celestialGoat.js'))
+    .pipe(streamify(uglify()))
+    .pipe(wrap('(function (){ var define = undefined; window.PRODUCTION = 0;<%=contents%> })();'))
+    .pipe(gulp.dest(paths.bundleDest));
+};
+const cssDev = () => {
+  return gulp.src(paths.cssSrc)
+    .pipe(gulp.dest(paths.cssDest));
+};
+const fontAwesome = () => {
+  return gulp.src(paths.fontAwesomeSrc)
+    .pipe(gulp.dest(paths.fontAwesomeDest));
+};
+
+const buildDev = gulp.series(clean, gulp.parallel(vueifyDev, cssDev, fontAwesome));
+const buildProd = gulp.series(clean, gulp.parallel(vueifyProd, cssDev, fontAwesome));
+
+const watchVue = () => {
+  gulp.watch([paths.jsSrc, paths.vueSrc, paths.cssSrc], buildDev);
+};
+
+const server = () => {
+  return gulp.src(paths.serverSrc)
     .pipe(babel({
-      presets: ['env', 'react'],
-      plugins: ['transform-object-assign']
+      presets: ['@babel/preset-env'],
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.jsDest));
-};
-const css = () => {
-  return gulp.src(paths.cssSrc).pipe(gulp.dest(paths.cssDest));
-};
-const browserifyDev = () => {
-  return gulp.src(path.join(paths.jsDest, 'mbClient.js'))
-    .pipe(browserify({
-      "browserify-css": {
-        autoInject: true
-      },
-      insertGlobals: true,
-      debug: true
-    }))
-    .pipe(wrap('(function (){ var define = undefined; <%=contents%> })()'))
-    .pipe(gulp.dest(path.join(paths.jsDest, 'bundle')));
-};
-const browserifyProd = () => {
-  return gulp.src(path.join(paths.jsDest, 'mbClient.js'))
-    .pipe(browserify({
-      global: true,
-      transform: ['uglifyify']
-    }))
-    .pipe(streamify(uglify()))
-    .pipe(wrap('(function (){ var define = undefined; <%=contents%> })();'))
-    .pipe(gulp.dest(path.join(paths.clientDest, 'bundle')));
+    .pipe(gulp.dest(paths.serverDest));
 };
 
-const buildDev = gulp.series(clean, gulp.parallel(babelify, css), browserifyDev);
-const buildProd = gulp.series(clean, gulp.parallel(babelify, css), browserifyProd);
-const cwatch = () => {
-  gulp.watch([paths.jsSrc, paths.cssSrc], buildDev);
-};
-
-/*
- * TASKS
- */
-
-gulp.task('cclean', clean);
-gulp.task('buildClient', buildDev);
-gulp.task('buildClientProd', buildProd);
-gulp.task('cwatch', cwatch);
-
-gulp.task('default', cwatch);
+gulp.task('server', server);
+gulp.task('clean', clean);
+gulp.task('buildDev', buildDev);
+gulp.task('buildProd', buildProd);
+gulp.task('watch', watchVue);
+gulp.task('default', watchVue);

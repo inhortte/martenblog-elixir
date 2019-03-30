@@ -10,4 +10,8 @@ defmodule Martenblog.Utils do
       end
     end)
   end
+
+  def to_json(map) do
+    Poison.Encoder.encode(map, %{}) |> IO.iodata_to_binary
+  end
 end

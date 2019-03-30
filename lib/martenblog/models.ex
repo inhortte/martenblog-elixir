@@ -50,7 +50,7 @@ defmodule Martenblog.Topic do
   end
 
   def add_entry_id_to_topic(topic_id, entry_id) do
-    case Mongo.update_one(:mongo, "topic", %{"_id" => topic_id}, %{"$addToSet": %{"entry_ids": entry_id}}) do
+    case Mongo.update_one(:mongo, "topic", %{"_id" => topic_id}, %{"$addToSet": %{entry_ids: entry_id}}) do
       {:ok, _} ->
 	Logger.info "added entry #{entry_id} to topic #{topic_id}"
       _ ->
@@ -59,13 +59,14 @@ defmodule Martenblog.Topic do
   end
 
   def topic_ids_to_topics_string(topic_ids) do
-    Mongo.find(:mongo, "topic", %{"_id" => %{"$in" => topic_ids}}) |> Enum.map(fn(topic) -> topic["topic"] end) |> Enum.join(",")
+    Mongo.find(:mongo, "topic", %{"_id" => %{"$in" => topic_ids}}) |> Enum.map(fn(topic) -> topic["topic"] end)
   end
 end
 
 defmodule Martenblog.Entry do
   require Logger
   alias Martenblog.Topic
+  alias Martenblog.Utils
 
   @id_re ~r/^_id:\s+(\d+)\s*$/
   @subject_re ~r/^[Ss]ubject:\s+(.+)$/
@@ -76,6 +77,11 @@ defmodule Martenblog.Entry do
 
   defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1
   @oddities %{:id => "_id"}
+
+  def get_entry_by_id(id) do
+    entry = Mongo.find_one(:mongo, "entry", %{"_id" => id}) |> Utils.normalise_keys
+    Kernel.struct(%Martenblog.Entry{}, entry)
+  end
 
   def format_mb_date(dt) do
     year = dt.year
@@ -102,13 +108,26 @@ defmodule Martenblog.Entry do
   end
 
   def parse_mb_timestamp(mbts) do
-    case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, mbts) do
+    {:ok, dt} = case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, mbts) do
       [_, year, month, day, hour, minute] ->
-	DateTime.from_naive(NaiveDateTime.new(year, month, day, hour, minute, 0), "Etc/UTC")
+	NaiveDateTime.new(year, month, day, hour, minute, 0) |> 
+	  case do
+	    {:ok, ndt} ->
+	      DateTime.from_naive(ndt, "Etc/UTC")
+	    {:error, _} ->
+	      {:ok, DateTime.utc_now }
+	  end
       [_, year, month, day] ->
-	DateTime.from_naive(NaiveDateTime.new(year, month, day, 0, 0, 0), "Etc/UTC")
+	NaiveDateTime.new(year, month, day, 0, 0, 0) |> 
+	  case do
+	    {:ok, ndt} ->
+	      DateTime.from_naive(ndt, "Etc/UTC")
+	    {:error, _} ->
+	      {:ok, DateTime.utc_now }
+	  end
       _ -> DateTime.utc_now
     end
+    dt |> DateTime.to_unix |> (fn i -> i * 1000 end).()
   end
 
   def to_mongoable(entry) do
@@ -141,7 +160,7 @@ defmodule Martenblog.Entry do
     Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |> Map.get("_id") |> (fn(id) -> id + 1 end).()
   end
 
-  def new_or_old_id(entry), do: if e.id == 0, do: Map.merge(e, %{:id => next_entry_id()}), else: e 
+  def new_or_old_id(entry), do: if entry.id == 0, do: Map.merge(entry, %{:id => next_entry_id()}), else: entry
   def dating(entry) do
     if is_number entry.created_at do
       if entry.created_at == 0 do

@@ -1,0 +1,45 @@
+{
+  "name": "martenblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./public/js/bundle/mbClient.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bob Murry Shelton",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-wrap": "^0.13.0"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.2.1",
+    "apollo-client": "^2.3.1",
+    "apollo-link-http": "^1.5.4",
+    "bootstrap-layout": "^1.0.0-alpha.10",
+    "enumify": "^1.0.4",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "history": "^4.7.2",
+    "marked": "^0.3.19",
+    "ramda": "^0.25.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0"
+  }
+}

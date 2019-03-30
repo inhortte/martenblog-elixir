@@ -2,12 +2,12 @@ defmodule Martenblog.BlogResolver do
   require Logger
 
   defp topic_ids_arr(topic_ids) do
-    %{"$or": Enum.map(topic_ids, fn(id) -> %{topic_ids: %{"$elemMatch": %{"$eq": id}}} end)}
+    %{"$or": Enum.map(topic_ids, fn(id) -> %{"topic_ids": %{"$elemMatch": %{"$eq": id}}} end)}
   end
 
   defp search_opts(search) do
-    %{"$or": [%{subject: %{"$regex": String.trim(search), "$options": "i"}},
-	      %{entry: %{"$regex": String.trim(search), "$options": "i"}}]}
+    %{"$or": [%{"subject": %{"$regex": String.trim(search), "$options": "i"}},
+	      %{"entry": %{"$regex": String.trim(search), "$options": "i"}}]}
   end
 
   def mk_find_opts(topic_ids \\ [], search \\ nil) do
@@ -23,7 +23,7 @@ defmodule Martenblog.BlogResolver do
     end
   end
   
-  def all_topics do
+  def all_topics(_root, _args, _info) do
     topics_ = Mongo.find(:mongo, "topic", %{}) |> Enum.to_list
     # IO.inspect topics_
     topics =  topics_ |> Enum.map(fn(t) -> Map.merge(t, %{"count" => Enum.count(Map.get(t, "entry_ids"))}) end)    
@@ -48,15 +48,12 @@ defmodule Martenblog.BlogResolver do
     end
   end
 
-  def p_count(topic_ids \\ [], search \\ nil) do
-    topic_ids_ =  topic_ids && (
-      topic_ids |> Enum.map(&normalise_topic_id/1) |> Enum.reject(&is_nil/1)
+  def p_count(_root, args, _info) do
+    topic_ids = args.topic_ids && (
+      args.topic_ids |> Enum.map(&normalise_topic_id/1) |> Enum.reject(&is_nil/1)
     ) || []
-    search_ = search || nil
-    case Mongo.count(:mongo, "entry", mk_find_opts(topic_ids_, search)) do
-      {:ok, count} -> count
-      _ -> 0
-    end
+    search = args.search || nil
+    Mongo.count(:mongo, "entry", mk_find_opts(topic_ids, search))
   end
 
   def add_topics_to_entry(entry) do
@@ -71,7 +68,7 @@ defmodule Martenblog.BlogResolver do
       args.topic_ids |> Enum.map(&normalise_topic_id/1) |> Enum.reject(&is_nil/1)
     ) || []    
     search = args.search || nil
-    entries = Enum.to_list(Mongo.find(:mongo, "entry", mk_find_opts(topic_ids, search), skip: (page - 1) * 11, sort: %{created_at: -1}, limit: limit))
+    entries = Enum.to_list(Mongo.find(:mongo, "entry", mk_find_opts(topic_ids, search), skip: (page - 1) * 11, sort: %{"created_at": -1}, limit: limit))
     entries_with_topics = Enum.map(entries, &add_topics_to_entry/1)
     {:ok, entries_with_topics}
   end
@@ -87,8 +84,8 @@ defmodule Martenblog.BlogResolver do
     end_time = begin_time + 1000 * 3600 * 24
     Logger.info "year: #{y}, month: #{m}, day: #{d}, begin_time: #{begin_time}, end_time: #{end_time}"
     entries = Enum.to_list(Mongo.find(:mongo, "entry", %{"$and": [
-							    %{created_at: %{"$gte": begin_time}}, %{created_at: %{"$lte": end_time}}
-							  ]}, sort: %{created_at: -1}));
+							    %{"created_at": %{"$gte": begin_time}}, %{"created_at": %{"$lte": end_time}}
+							  ]}, sort: %{"created_at": -1}));
     entries_with_topics = Enum.map(entries, &add_topics_to_entry/1)    
     {:ok, entries_with_topics}
   end
@@ -108,8 +105,8 @@ defmodule Martenblog.BlogResolver do
     nd = %DateTime{year: d.year, month: d.month, day: d.day, zone_abbr: "UTC", hour: 0, minute: 0, second: 0, microsecond: {0, 0}, utc_offset: 0, std_offset: 0, time_zone: "Europe/London"}
     dayBegins = DateTime.to_unix(nd) * 1000
     dayEnds = dayBegins + 1000 * 3600 * 24 - 1
-    prevEntry = Mongo.find(:mongo, "entry", %{:created_at => %{"$lt": dayBegins}}, sort: %{created_at: -1}, limit: 1) |> Enum.to_list |> List.first
-    nextEntry = Mongo.find(:mongo, "entry", %{:created_at => %{"$gt": dayEnds}}, sort: %{created_at: 1}, limit: 1) |> Enum.to_list |> List.first
+    prevEntry = Mongo.find(:mongo, "entry", %{"created_at" => %{"$lt": dayBegins}}, sort: %{"created_at": -1}, limit: 1) |> Enum.to_list |> List.first
+    nextEntry = Mongo.find(:mongo, "entry", %{"created_at" => %{"$gt": dayEnds}}, sort: %{"created_at": 1}, limit: 1) |> Enum.to_list |> List.first
     prevDate = if is_nil(prevEntry) do
       nil
     else

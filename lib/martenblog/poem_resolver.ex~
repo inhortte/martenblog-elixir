@@ -1,8 +1,0 @@
-defmodule Martenblog.PoemResolver do
-  require Logger
-
-  def all_poems(_root, _args, _info) do
-    path = Path.expand(Application.get_env(:martenblog, :poem_dir))
-    poem_filnames = File.ls!(Path.expand(path)) |> Enum.filter(fn(f) -> Regex.match?(~r/\.txt$/, f) end)
-  end
-end
