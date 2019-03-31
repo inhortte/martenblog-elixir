@@ -53,17 +53,17 @@ const clean = cb => {
 
 const vueifyDev = () => {
   let b = browserify2({
-    entries: 'src/js/celestialGoat.js',
+    entries: 'src/js/martenblog.js',
     debug: true,
     transform: [babelify, vueify]
   });
   return b.bundle()
-    .pipe(source('celestialGoat.js'))
+    .pipe(source('martenblog.js'))
     .pipe(gulp.dest(paths.bundleDest));
 };
 const vueifyProd = () => {
   let b = browserify2({
-    entries: 'src/js/celestialGoat.js',
+    entries: 'src/js/martenblog.js',
   })
       .transform(vueify)
       .transform(babelify)
@@ -73,7 +73,7 @@ const vueifyProd = () => {
 	envify({ NODE_ENV: 'production' })
       );
   return b.bundle()
-    .pipe(source('celestialGoat.js'))
+    .pipe(source('martenblog.js'))
     .pipe(streamify(uglify()))
     .pipe(wrap('(function (){ var define = undefined; window.PRODUCTION = 0;<%=contents%> })();'))
     .pipe(gulp.dest(paths.bundleDest));
@@ -94,16 +94,6 @@ const watchVue = () => {
   gulp.watch([paths.jsSrc, paths.vueSrc, paths.cssSrc], buildDev);
 };
 
-const server = () => {
-  return gulp.src(paths.serverSrc)
-    .pipe(babel({
-      presets: ['@babel/preset-env'],
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.serverDest));
-};
-
-gulp.task('server', server);
 gulp.task('clean', clean);
 gulp.task('buildDev', buildDev);
 gulp.task('buildProd', buildProd);

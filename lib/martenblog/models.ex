@@ -37,7 +37,13 @@ defmodule Martenblog.Topic do
   end
 
   def next_topic_id() do
-    Mongo.find(:mongo, "topic", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |> Map.get("_id") |> (fn(id) -> id + 1 end).()
+    Mongo.find(:mongo, "topic", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |>
+    (fn first_topic -> 
+      IO.inspect first_topic
+      first_topic || %{"_id" => 0}
+    end).() |>
+    Map.get("_id") |> 
+    (fn id -> id + 1 end).()
   end  
 
   def new_topic(topic_string) do
@@ -157,7 +163,13 @@ defmodule Martenblog.Entry do
   end
 
   def next_entry_id() do
-    Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |> Map.get("_id") |> (fn(id) -> id + 1 end).()
+    Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |>
+    (fn first_entry -> 
+      IO.inspect first_entry
+      first_entry || %{"_id" => 0}
+    end).() |>
+      Map.get("_id") |>
+    (fn(id) -> id + 1 end).()
   end
 
   def new_or_old_id(entry), do: if entry.id == 0, do: Map.merge(entry, %{:id => next_entry_id()}), else: entry
