@@ -8,6 +8,14 @@ defmodule Martenblog.Router do
 
   plug Plug.Logger
   plug CORSPlug, origin: ["*"]
+  plug Plug.Static,
+    at: "/",
+    # cache_control_for_etags: "no-cache",
+    from: "./web/public"
+    # from: {:martenblog, "./web/public"},
+    # only_matching: ["index.html", "css", "js", "js/bundle", "images", "blog"]
+    # only: ~w(css js images vendor favicon.ico)
+
   plug :match
   plug Plug.Parsers,
     parsers: [:json],
@@ -44,19 +52,13 @@ defmodule Martenblog.Router do
 			Utils.to_json)
   end
   
-  plug Plug.Static,
-    at: "/",
-    from: "./web/public",
-    # from: {:martenblog, "./web/public"},
-    only: ~w(css js images vendor favicon.ico)
 
-
-  get "/*_rest" do
-    send_file(conn, 200, "./web/public/index.html")
-  end
+  # get "/*_rest" do
+    # send_file(conn, 200, "./web/public/index.html")
+  # end
 
   match _ do
-    send_resp(conn, 404, "thurk?")
+    send_resp(conn, 404, "Nothing found, vole.")
   end
 end
 

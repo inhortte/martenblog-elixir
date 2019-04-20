@@ -2,18 +2,19 @@
 
 <template>
 <b-card no-body>
-  <head />
+  <cabeza />
+  <router-view></router-view>
   <abdomen />
 </b-card>
 </template>
 
 <script>
-import Head from './components/Head.vue';
+import Cabeza from './components/Cabeza.vue';
 import Abdomen from './components/Abdomen.vue';
 export default {
   name: 'hlavni',
   components: {
-    Head, Abdomen
+    Cabeza, Abdomen
   },
   computed: {
   },
@@ -22,6 +23,7 @@ export default {
   mounted() {
   },
   data() {
+    return {};
   }
 }
 </script>

@@ -1,13 +1,16 @@
 'use strict';
 
 <template>
-<b-card>
-  <b-card-text>
-    Along with martens, goulish goats and the rippling fen - these writings
-    and any accompanying multimedia Copyright
-    <span class="glyphicon glyphicon-copyright-mark"></span>
-  </b-card-text>
-</b-card>
+<b-card-group deck>
+  <b-card>
+    <b-card-text>
+      Along with martens, goulish goats and the rippling fen - these writings
+      and any accompanying multimedia Copyright
+      <i class="far fa-copyright"></i> 1999-2019 Bob Murry Shelton
+    </b-card-text>
+  </b-card>
+  <b-card>Thurk?</b-card>
+</b-card-group>
 </template>
 
 <script>

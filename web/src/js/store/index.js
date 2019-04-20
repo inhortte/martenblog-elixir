@@ -7,7 +7,7 @@ import R from 'ramda';
 
 Vue.use(Vuex);
 
-export default new Vuex.store({
+export default new Vuex.Store({
   state: {
   }
 });

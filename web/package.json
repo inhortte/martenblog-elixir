@@ -33,6 +33,7 @@
     "vinyl-source-stream": "^2.0.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
+    "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.6.10",
     "vueify": "git://github.com/inhortte/vueify.git",
     "vuex": "^3.1.0"
