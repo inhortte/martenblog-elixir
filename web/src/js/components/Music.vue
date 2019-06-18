@@ -9,13 +9,13 @@
       <br />
       The <a href="https://flavigula.bandcamp.com" target="_blank">bandcamp page</a>.
       <br />
-      The venerable <a href="https://peertracks.com/album/flavigula-a-cube-beneath-the-sand">Peertracks</a>.
+      The venerable <a href="https://peertracks.com/album/flavigula-a-cube-beneath-the-sand" target="_blank">Peertracks</a>.
       <br />
-      El rincón de <a href="https://choon.co/artists/flavigula/">Choon</a>
+      El rincón de <a href="https://choon.co/artists/flavigula/" target="_blank">Choon</a>
       <br />
-      Our <a href="https://open.spotify.com/artist/6hHcK3iE7Yc58gekrURJez">lucrative Spotify</a> home.
+      Our <a href="https://open.spotify.com/artist/6hHcK3iE7Yc58gekrURJez" target="_blank">lucrative Spotify</a> home.
       <br />
-      A humble <a href="https://www.deezer.com/en/artist/64909162">hovel on Deezer</a>.
+      A humble <a href="https://www.deezer.com/en/artist/64909162" target="_blank">hovel on Deezer</a>.
     </div>
   </b-card-text>
 </b-card>
