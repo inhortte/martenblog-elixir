@@ -1,7 +1,7 @@
 'use strict';
 
 <template>
-<b-card no-body>
+<b-card no-body style="width: 926px; margin-left: auto; margin-right: auto;">
   <cabeza />
   <router-view></router-view>
   <abdomen />
@@ -17,10 +17,16 @@ export default {
     Cabeza, Abdomen
   },
   computed: {
+    cardStyle() {
+      return {
+	width: 10
+      };
+    }
   },
   methods: {
   },
   mounted() {
+    this.$store.dispatch('setPoemsThunk');
   },
   data() {
     return {};

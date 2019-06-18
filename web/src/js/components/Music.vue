@@ -1,13 +1,11 @@
 'use strict';
 
 <template>
-<b-card>
+<b-card  title="Musics -">
   <b-card-text>
-    <h2>Musics -</h2>
-    <hr />
     <div>
       This space intentionally left for the <strong>void</strong>.<br /><br />
-      Were you not compressed by the singularity, please visit <a href="https://flavigula.bandcamp.com" target="_blank">the <strong>Flavigula</strong> bandcamp</a> page.
+      Were you not compressed by the singularity, you'd visit <a href="https://flavigula.bandcamp.com" target="_blank">the <strong>Flavigula</strong> bandcamp</a> page.
     </div>
   </b-card-text>
 </b-card>
@@ -15,6 +13,11 @@
 
 <script>
 export default {
-  name: 'music'
+  name: 'music',
+  data: {
+    cardStyle: {
+      padding: '20px'
+    }
+  }
 }
 </script>

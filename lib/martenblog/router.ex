@@ -4,6 +4,7 @@ defmodule Martenblog.Router do
   alias Martenblog.Entry
   alias Martenblog.Topic
   alias Martenblog.BlogResolver
+  alias Martenblog.PoemResolver
   require Logger
 
   plug Plug.Logger
@@ -51,8 +52,16 @@ defmodule Martenblog.Router do
       send_resp(200, %{:pcount => BlogResolver.p_count(conn.body_params["topic_ids"], conn.body_params["search"])} |>
 			Utils.to_json)
   end
-  
 
+  get "/poems" do
+    {:ok, poems } = PoemResolver.all_poems
+    conn |> put_resp_content_type("application/json") |>
+      send_resp(200, poems |> Utils.to_json)
+  end
+
+  get "/" do
+    send_file(conn, 200, "./web/public/index.html")
+  end
   # get "/*_rest" do
     # send_file(conn, 200, "./web/public/index.html")
   # end

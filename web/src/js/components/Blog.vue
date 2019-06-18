@@ -1,8 +1,8 @@
 'use strict';
 
 <template>
-<b-card>
-  <b-card-text>Blog</b-card-text>
+<b-card title="Blog -">
+  <b-card-text>This space to be occupied by marginally more interesting content soon.</b-card-text>
 </b-card>
 </template>
 

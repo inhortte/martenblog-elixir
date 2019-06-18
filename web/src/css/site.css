@@ -1,6 +1,5 @@
 body, html {
     font-family: 'Vollkorn', Courier, serif, monospace;
-    overflow: visible;
 }
 
 @media all and (max-width 991px) {
