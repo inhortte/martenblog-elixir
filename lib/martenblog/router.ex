@@ -24,6 +24,17 @@ defmodule Martenblog.Router do
     json_decoder: Poison
   plug :dispatch
 
+
+  get "/entry/page/:page" do
+    inter_conn = conn |> put_resp_content_type("application/json")
+    case Integer.parse(conn.params["page"]) do
+      {page, _} ->
+	send_resp(inter_conn, 200, BlogResolver.entries_paged(%{page: page}) |> Utils.to_json)
+      :error ->
+	send_resp(inter_conn, 200, BlogResolver.entries_paged(%{page: 1}) |> Utils.to_json)
+    end
+  end
+
   get "/entry/:id" do
     inter_conn = conn |> put_resp_content_type("application/json")
     case Integer.parse(conn.params["id"]) do

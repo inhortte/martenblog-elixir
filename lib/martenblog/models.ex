@@ -89,6 +89,11 @@ defmodule Martenblog.Entry do
     Kernel.struct(%Martenblog.Entry{}, entry)
   end
 
+  def get_entries_by_page(page) do
+    entries = Mongo.find(:mongo, "entry", %{}, skip: (page - 1) * 11, limit: 11, sort: %{created_at: -1}) |> Enum.to_list
+    Enum.map(entries, fn e -> Kernel.struct(%Martenblog.Entry{}, e |> Utils.normalise_keys) end)
+  end
+
   def format_mb_date(dt) do
     year = dt.year
     month = if dt.month < 10, do: "0#{dt.month}", else: "#{dt.month}"

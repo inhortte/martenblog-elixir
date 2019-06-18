@@ -64,16 +64,17 @@ defmodule Martenblog.BlogResolver do
     Map.merge(entry, %{"topics" => topics})
   end
 
-  def entries_paged(_root, args, _info) do
-    page = args.page || 1
-    limit = args.limit || 11
-    topic_ids = args.topic_ids && (
+  def entries_paged(args) do
+    page = if Map.has_key?(args, :page), do: args.page, else: 1
+    limit = if Map.has_key?(args, :limit), do: args.limit, else: 11
+    topic_ids = if Map.has_key?(args, :topic_ids) do
       args.topic_ids |> Enum.map(&normalise_topic_id/1) |> Enum.reject(&is_nil/1)
-    ) || []    
-    search = args.search || nil
-    entries = Enum.to_list(Mongo.find(:mongo, "entry", mk_find_opts(topic_ids, search), skip: (page - 1) * 11, sort: %{created_at: -1}, limit: limit))
-    entries_with_topics = Enum.map(entries, &add_topics_to_entry/1)
-    {:ok, entries_with_topics}
+    else
+      []
+    end
+    search = if Map.has_key?(args, :search), do: args.search, else: nil
+    entries = Enum.to_list(Mongo.find(:mongo, "entry", mk_find_opts(topic_ids, search), skip: (page - 1) * limit, sort: %{created_at: -1}, limit: limit))
+    Enum.map(entries, &add_topics_to_entry/1)
   end
 
   def entries_by_date(_root, args, _info) do
