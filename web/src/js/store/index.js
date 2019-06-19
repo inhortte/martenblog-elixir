@@ -14,7 +14,7 @@ export default new Vuex.Store({
     currentPoem: {},
     entries: [],
     expanded: {},
-    trigger: 0
+    pCount: 1
   },
   getters: {
     poems: state => {
@@ -25,6 +25,9 @@ export default new Vuex.Store({
     },
     isEntryExpanded: state => id => {
       return !!state.expanded[id];
+    },
+    pCount: state => {
+      return state.pCount;
     }
   },
   mutations: {
@@ -37,6 +40,9 @@ export default new Vuex.Store({
     toggleExpand: (state, id) => {
       let expanded = Object.assign({}, state.expanded);
       Vue.set(state.expanded, id, !expanded[id]);
+    },
+    setPCount: (state, pCount) => {
+      state.pCount = pCount.pcount;
     }
   },
   actions: {
@@ -74,6 +80,25 @@ export default new Vuex.Store({
 	  return true;
 	} else {
 	  console.log(`couldn't fetch entries`);
+	  return false;
+	}
+      })();
+    },
+    pCountThunk: ({ commit }) => {
+      (async () => {
+	let res = await fetch(`${server()}/pcount`, {
+	  method: 'post',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+	});
+	if(res.status === 200) {
+	  let json = await res.json();
+	  commit('setPCount', json);
+	  return true;
+	} else {
+	  console.log(`couldn't fetch page count`);
 	  return false;
 	}
       })();

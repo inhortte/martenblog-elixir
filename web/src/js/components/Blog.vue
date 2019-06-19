@@ -2,7 +2,18 @@
 
 <template>
 <b-card title="Blog -">
-  <entry v-for="entry in pagedEntries" :entry="entry" />
+  <b-container>
+    <b-row>
+      <b-col>
+	<b-pagination-nav use-router :link-gen="linkGen" :number-of-pages="pCount" @change="loadEntries" />
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+	<entry v-for="entry in pagedEntries" :entry="entry" />
+      </b-col>
+    </b-row>
+  </b-container>
 </b-card>
 </template>
 
@@ -16,12 +27,25 @@ export default {
   computed: {
     pagedEntries() {
       return this.$store.getters['entries'];
+    },
+    pCount() {
+      return this.$store.getters['pCount'];
     }
   },
   methods: {
+    linkGen(pNum) {
+      return {
+	name: 'blog',
+	params: { page: pNum }
+      }
+    },
+    loadEntries(page) {
+      this.$store.dispatch('setEntriesThunk', page);
+    }
   },
   created() {
     this.$store.dispatch('setEntriesThunk', this.$route.params.page);
+    this.$store.dispatch('pCountThunk');
   }
 }
 </script>

@@ -12,7 +12,7 @@ import Music from './components/Music.vue';
 const router = new VueRouter({
   routes: [
     { path: '/', component: Music },
-    { path: '/blog/:page', component: Blog },
+    { path: '/blog/:page', name: 'blog', component: Blog },
     { path: '/poems', component: Poems },
     { path: '/music', component: Music }
   ]
