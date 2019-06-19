@@ -1,0 +1,948 @@
+[
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "conformity",
+        "entry_ids": [
+          156,
+          157,
+          162,
+          277,
+          369,
+          401,
+          419,
+          422
+        ],
+        "_id": 94
+      },
+      {
+        "topic": "ritual",
+        "entry_ids": [
+          296,
+          411,
+          416,
+          419,
+          422
+        ],
+        "_id": 223
+      },
+      {
+        "topic": "music",
+        "entry_ids": [
+          5,
+          20,
+          21,
+          22,
+          43,
+          47,
+          71,
+          72,
+          74,
+          77,
+          79,
+          81,
+          86,
+          87,
+          88,
+          91,
+          92,
+          93,
+          96,
+          97,
+          98,
+          100,
+          107,
+          110,
+          112,
+          114,
+          118,
+          123,
+          134,
+          199,
+          202,
+          null,
+          234,
+          242,
+          255,
+          280,
+          288,
+          289,
+          290,
+          291,
+          292,
+          293,
+          297,
+          309,
+          311,
+          337,
+          342,
+          348,
+          355,
+          360,
+          361,
+          367,
+          379,
+          381,
+          382,
+          390,
+          391,
+          410,
+          414,
+          419,
+          422
+        ],
+        "_id": 2
+      }
+    ],
+    "topic_ids": [
+      94,
+      223,
+      2
+    ],
+    "subject": "Take the bool by its greyhorn",
+    "entry": "Ritual appeals to conformists and conformists perpetuate ritual. The idea that *everything goes as planned* and *everyone behaves in a predictable manner* is another facet of familiarity. It is tied with safety. Within a cultural bubble, a *safe* form of art is a form of art that stays within boundaries predefined by years of repitition. The art itself is a ritual. All improvisation must remain within the boundaries. Whilst arbitrary boundaries themselves can be used to help an artist approach material with a fresh perspective, boundaries set by endless *ritual* are far more restrictive. They create opacity in the membrane of the bubble. \n\nThe inhabitants of the bubble become an isolated village. Their artistic ritual is a cult where any outsider who wants to be a part must conform rigidly to strictures or be rejected, or at least endlessly corrected. There is only one way and it is the right way. It reminds me frighteningly of dogmatic religion, another bubble cult formed from ritual.\n\nI've seen this phenomena especially in folk musics, though it's certainly alive in other arenas. The ritual, over time, defines what is *puro* for the music. Deviation creates tarnished bastardizations. Hybrids are smirked at. Of course, the village inhabitants are brought closer by this *puro*. In fact, it enforces the sense of community. When the comet wipes out the rest of the species, this village will be happy alone with their *puro*. On different levels of abstraction, every village is prone to this **centricism**. Those that manifest **centricism** in art have an opportunity to preach their version of *puro* to those outside the bubble, to those willing to be indoctrinated. I view this as a manner of releasing said *puro* into the wild so it can be hybridized with other forms. In the case of music, it can by hybridized with other rhythms, melodic ideas, and harmonic structures. The village elders will not be pleased.\n\nArtistic egoism?\n\nPurists are ridiculous just from the fact that every connotation of *puro* both the same (abstractly) and different (specifically), and the majority of village inhabitants either don't realize it or simply reject it.\n\nThe same idea is to never learn a word of a foreign tongue though the world is populated with them. Hybridizations in all things are seeds of evolution.\n\n",
+    "created_at": 1553334516000,
+    "_id": 422
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "blog",
+        "entry_ids": [
+          2,
+          71,
+          73,
+          74,
+          81,
+          88,
+          89,
+          101,
+          147,
+          150,
+          154,
+          198,
+          199,
+          200,
+          207,
+          214,
+          215,
+          218,
+          220,
+          226,
+          228,
+          336,
+          339,
+          346,
+          364,
+          400,
+          419,
+          420,
+          421
+        ],
+        "_id": 10
+      },
+      {
+        "topic": "absurdity",
+        "entry_ids": [
+          23,
+          27,
+          34,
+          48,
+          70,
+          105,
+          109,
+          110,
+          145,
+          246,
+          266,
+          286,
+          295,
+          301,
+          336,
+          344,
+          348,
+          378,
+          384,
+          418,
+          419,
+          421
+        ],
+        "_id": 19
+      }
+    ],
+    "topic_ids": [
+      10,
+      19
+    ],
+    "subject": "The chemical of my hallucination",
+    "entry": "When one touches the fizzing contents of his own hara, a sense of falling away from the abyss permeates the remainer of existence. In other words, one dies.\n\n> Christián will not feel his own death. Nor will others feel his death. \n",
+    "created_at": 1526914915000,
+    "_id": 421
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "blog",
+        "entry_ids": [
+          2,
+          71,
+          73,
+          74,
+          81,
+          88,
+          89,
+          101,
+          147,
+          150,
+          154,
+          198,
+          199,
+          200,
+          207,
+          214,
+          215,
+          218,
+          220,
+          226,
+          228,
+          336,
+          339,
+          346,
+          364,
+          400,
+          419,
+          420,
+          421
+        ],
+        "_id": 10
+      }
+    ],
+    "topic_ids": [
+      10
+    ],
+    "subject": "A test for the betterment of obelisks",
+    "entry": "Sometimes I do not know what to feel about the current dearth of obelisks in my life. Perhaps flippancy is the solution.\n\n> Christián Newman may **DIE**.\n\n",
+    "created_at": 1526913146000,
+    "_id": 420
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "psychology",
+        "entry_ids": [
+          49,
+          72,
+          73,
+          74,
+          75,
+          83,
+          85,
+          90,
+          93,
+          95,
+          103,
+          112,
+          136,
+          141,
+          170,
+          171,
+          173,
+          215,
+          null,
+          230,
+          268,
+          333,
+          352,
+          353,
+          362,
+          366,
+          397,
+          401,
+          406,
+          403,
+          419
+        ],
+        "_id": 1
+      },
+      {
+        "topic": "dreams",
+        "entry_ids": [
+          108,
+          222,
+          299,
+          319,
+          325,
+          350,
+          409,
+          419
+        ],
+        "_id": 56
+      },
+      {
+        "topic": "vengence",
+        "entry_ids": [
+          419
+        ],
+        "_id": 336
+      }
+    ],
+    "topic_ids": [
+      1,
+      56,
+      336
+    ],
+    "subject": "Soy un Pesado",
+    "entry": "I should mention, since the subject may not be very clear, that *yo soy un pesado*, or at least that's what people tell me. Roughly translated, this means that I am a type of small, tropical fish that lives off one of those so-called *beautiful* islets west of Galicia, the playground of stunted men. I woke up as this *pesado*, or small, tropical fish, one morting after an unrelenting dream about an old, fat ex-friend named Hana. \n\nHanička had lost her corporeal being. I'll mention once again that she was weighty, so the act of dissolving her body surely did the universe no harm. Was she just a floating entity afterwards? Maybe she became the *preta* that waits to haunt Christián Newman's pleasure room for eternity. What happened in the quantum universe of my dream was much more just for Hanička. Obviously, as her name is Hanička, she was a *cotilla* of enormous proportions. I suppose the enormity paralleled her corporeal proportions. From the moment I met her until the moment I deleted her from Facebook *friends*, she was the delta of a raging river of gossip. That river was fed by innumerable tributaries. She sat the goddess on a plinth, watching every current scurry around her, and indeed examining every one in detail as it did, rushing to the sea. The overtly salty Mediterranean is surely fed by *riachuelos* of dense *cotilla* vomit. I just know it.\n\nIn the quantum universe of my dream, as lucid and brief as it was, Hanička's retribution was to have her personality imprisoned in an espresso machine in a *cabaña* in the woods. I smile thinking of it! I laugh out loud! My eyes stream tears of joy! Her disembodied voice filled the kitchenette. Her job was to create tasty beverages. In fact, I could use one now. I repeat - her *job* was to create tasty beverages. But, like all *cotillas*, her self-assigned role was to enrich her personal database of information about the outside world. Well - outside world. I'm using the term *outside world* much too broadly. Better to say that her self-assigned role was to enrich her personal database of information about individuals with whom she had relations and their particular networks of interaction with other individuals.\n\nOne might imagine that Hanička's fate was not so desperate as to warrent self-immolation. The *cabaña* was frequented less and less as weeks, months and years went by. The disembodied mind of Hanička lived on, unsleeping, forever making coffee for the mice and spiders. I was one of the last visitors before the incident. Before the fire. I was there with a companion. Who that companion was, I can say only that it was not a goat, as I would have liked. Therefore, my spirits were not as high as they could have been. \n\nThe preta of the espresso machine accosted me time and again as she prepared my morning beverage. I shared my stories, but to her dismay, they were not stories about webs of intrigue between individuals. I had no morbid tales of cheating spouses at hand. I could not speak of ruined professional lives or once brillant poets lying naked and homeless under the bridge at Táborská in Nusle.\n\nDay after day, her anima weakened. I could not feed her restless soul. On my final evening, before I crawled under the covers with the rats and mites, she requested a favour. Were I to unscrew a stained panel on the back of the machine, insects would nest. The buildup over days, weeks, months and perhaps years would short the system. She would be released. As I lay with the critters of the night, I thought about her request. I decided I could rationalize this sort of passive murder and not let in weigh on my soul. Come the morning, I did as she asked.\n\nI heard about the fire months later. It had taken out over twenty hectares.\n\nWhere is Hanička now? She is awaiting the pleasure room that Christián will construct. I will have to find a new way to murder her, possibly one less subtle.\n\n\n",
+    "created_at": 1509096720000.0,
+    "_id": 419
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "alcohol",
+        "entry_ids": [
+          207,
+          224,
+          240,
+          249,
+          272,
+          295,
+          302,
+          330,
+          418,
+          419
+        ],
+        "_id": 156
+      },
+      {
+        "topic": "absurdity",
+        "entry_ids": [
+          23,
+          27,
+          34,
+          48,
+          70,
+          105,
+          109,
+          110,
+          145,
+          246,
+          266,
+          286,
+          295,
+          301,
+          336,
+          344,
+          348,
+          378,
+          384,
+          418,
+          419,
+          421
+        ],
+        "_id": 19
+      },
+      {
+        "topic": "sexism",
+        "entry_ids": [
+          365,
+          418,
+          419
+        ],
+        "_id": 282
+      },
+      {
+        "topic": "writing",
+        "entry_ids": [
+          80,
+          119,
+          163,
+          206,
+          243,
+          277,
+          288,
+          331,
+          349,
+          350,
+          418,
+          419
+        ],
+        "_id": 44
+      }
+    ],
+    "topic_ids": [
+      156,
+      19,
+      282,
+      44
+    ],
+    "subject": "A weary magnetic lax",
+    "entry": "> I would imagine that the evolution of your ancestors involved some sort of microbe that feasted on fermented material, extracting sugar from it that other microbes could not, such as a high alcohol tolerant yeast. I could see your great great grandparents being single celled organisms that evolved around petroleum geysers at the bottom of the sea. It would also account for your hatred of sunlight, and your sexual preference for albino brine shrimp.\n\nAccording to my [Promethease report](http://thinklikeamink.net/genome/promethease.html), my living corpse is not in possession of the gene that spawned Christián's comments. However, I am overly fond of drinking. A paradox flops in the background. Consuming alcohol makes me feel awful. I'd suggest overindulgence during many years has led to the point where the *high* lasts for only a few drinks. This *apex* begins more or less after my third drink and begins a logarhythmic decline at around the sixth. By the time my sixth plummets like a rivulet of melancholy through my rotted, oesophogal passage, I am psychologically lost. Two paths stretch forward from that point. The first is the more difficult, and since more difficult *challenges* are more worthy, and make one more of a *man* or *beast* or *erotic monstrosity*, I'll play along with the *massive* popular fetish and detail it before its *weaker*, *less attractive* and *meeker* partner, of which I shall elaborate afterwards. The more difficult route, and again I'll mention that because of its difficulty, it is the course any **TRUE, BROAD CHESTED, MUSCULAR, ALPHA MALE** would choose, is that of cessation. Reread the previous sentence, you **SCUM**. I didn't type *cesspool*, but *cessation*. I am primly aware that **TRUE, BROAD CHESTED, MUSCULAR, ALPHA MALES** are wont to dip themselves into the local slime lodge / cesspool / septic pond in order to portray the impression of wonton virility and although I did not type the word *cesspool* two sentences prior, because of this *fact*, **TRUE, BROAD CHESTED, MUSCULAR, ALPHA MALES** will, as studies have proven, interpret any string of characters that resemble the word *cesspool* as  the actual word *cesspool*. For example, any given writer could be going about his / her / its daily business, hammering away on a prestine, shiny, new laptop in the corner coffee barracks, or even scribbling contently on sheaves of former trees whilst sitting ironically on a park bench in [Donostia](https://www.google.es/maps/place/Parque+Cristina-Enea+%2F+Cristina-Enea+Parkea/@43.3128915,-1.9780406,17z/data=!3m1!4b1!4m5!3m4!1s0xd51a55887bc98b1:0x3d0c506796fb630e!8m2!3d43.3128915!4d-1.9758519?hl=en), and eruct the word *cessation*, *cerebellum* or *cenotaph*. Hypothetically, the aspiring or even already established artist would publish the brilliant poem, short story, novella or technical manual detailing the schematics of the [Boss CE 1](http://www.thegearpage.net/board/index.php?threads/there-are-effects-and-then-theres-the-boss-ce-1.1050141/), allowing even a peasant from the outskirts of aforementioned Donostia or of any and all other Spanish semi-cities to construct the apparatus using items found around a hovel and crushed to powder in the ubiquitous *mortar and pestle* found in Spanish hovels on the outskirts of semi-cities. I use the term *semi-cities* to describe places similar to the one in which I currently live. I currently rest my weary ankles in [Logroño](https://www.google.es/maps/place/Logro%C3%B1o,+La+Rioja/@42.4744459,-2.4767023,13z/data=!3m1!4b1!4m5!3m4!1s0xd5aab3d6bfe8ea7:0x404f58273cacd90!8m2!3d42.4653496!4d-2.4801989?hl=en), for all readers of diminished intellectual stature, or those who claim their badge of **TRUE, BROAD CHESTED, MUSCULAR, ALPHA MALE**, or either, since they can be practically identical, and do use all three of the aformentioned words often enough. I cannot say how often **TRUE, BROAD CHESTED, MUSCULAR, ALPHA MALES** mistake *cessation*, *cerebellum* and / or *cenotaph* for *cesspool*. Some statisticians, such as my excellent friend **Michal** claim the correlation is between 78.4% and 92.1%. Most people who trust **Michal** have been fed to various rodents over the ages, so I suggest my readers of slightly greater intellectual stature go with the figure of **97.7%**.\n\nFuck um.\n",
+    "created_at": 1480413300000.0,
+    "_id": 418
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "music",
+        "entry_ids": [
+          5,
+          20,
+          21,
+          22,
+          43,
+          47,
+          71,
+          72,
+          74,
+          77,
+          79,
+          81,
+          86,
+          87,
+          88,
+          91,
+          92,
+          93,
+          96,
+          97,
+          98,
+          100,
+          107,
+          110,
+          112,
+          114,
+          118,
+          123,
+          134,
+          199,
+          202,
+          null,
+          234,
+          242,
+          255,
+          280,
+          288,
+          289,
+          290,
+          291,
+          292,
+          293,
+          297,
+          309,
+          311,
+          337,
+          342,
+          348,
+          355,
+          360,
+          361,
+          367,
+          379,
+          381,
+          382,
+          390,
+          391,
+          410,
+          414,
+          419,
+          422
+        ],
+        "_id": 2
+      },
+      {
+        "topic": "sentiment",
+        "entry_ids": [
+          415,
+          419
+        ],
+        "_id": 327
+      },
+      {
+        "topic": "bureaucracy",
+        "entry_ids": [
+          417,
+          419
+        ],
+        "_id": 328
+      },
+      {
+        "topic": "materialism",
+        "entry_ids": [
+          417,
+          419
+        ],
+        "_id": 329
+      },
+      {
+        "topic": "art",
+        "entry_ids": [
+          390,
+          417,
+          419
+        ],
+        "_id": 306
+      },
+      {
+        "topic": "creativity",
+        "entry_ids": [
+          278,
+          288,
+          291,
+          292,
+          295,
+          296,
+          367,
+          391,
+          417,
+          419
+        ],
+        "_id": 208
+      }
+    ],
+    "topic_ids": [
+      2,
+      327,
+      328,
+      329,
+      306,
+      208
+    ],
+    "subject": "Remember that a melody slides over a shifting rhythm leaving only a thin residue",
+    "entry": "I told Miki earlier via *Facebook Chat* (a bane, itself, to existence). And we have just now decided to instead use either Whatsapp or Viber or, confusingly, both simultaneously since *Facebook Chat* is a bane to anyone's existence. In fact, the existence of one who uses *Facebook Chat* is mottled with decay. These fraught souls wither before others. I, too, am afflicted, obviously, but am stronger in *hara* and *spirit* than social wallowing ilk.\n\nAnyone reading even slightly closely has noticed that I used *told* intransitively in the previous paragraph. The shitstain pedants of the English tongue'd like to spike me to the wall of my grammatic insensitivity. Fuck um. I envision all pedants together as a family, twisted together in a pit, entwined. Their wails rise in unison. It is a perfect fourth between the sexes. My compatriots and I begin to pour the petrol. Michal is laughing as he sparks up a reefer.\n\nAnyone reading even slightly closely has noticed that I used *told* untransitively in the previous paragraph. The lowly pedants are a shimmering conflagration now, and can no longer murmur hateful stupidities. I told Miki earlier via *Facebook Chat* (a tool used  by the stricken of spirit) of his destiny as a **goat** farmer. It was a metaphor, actually, as I have been caught up lately in complexities of modern life and once again wish to walk away from them. How possible is it to lead a *simple* life, in contrast? What is a simple life? I've had numerous conversations with Mr Christián M Newman concerning this subject. Idealism usually pervades these conversations. I'm not sure if that is unfortunate, not, or somewhere suffering in the curl of the eleventh dimension. \n\nA hovel in Andalucia? What complications come along with such a simple life?\n\n- Integration into the village\n- Property taxes\n- Property maintenence\n- Land owning bureaucracy in general\n- Goats consuming one's infant spawn\n- Infant spawn in general\n- The tendency to become attached to local women when hanging out in one location too long\n- I'm sure Shambal (the proud non-pedant) can think of others\n\nClimate predictions do not fancy Andalucia doing well. The *location* is just an example. Such complications would have to be taken care of in **any**.\n\nOne conclusion that patters about my consciousness is just renting for the remainder of my days. Everything is, after all, transient. I don't have any reason to leave a *cottage* / *hovel* / *mansion* / *cave* / *milk carton* to any progeny. In fact, hasn't one of the primary philosophies of my life been to be rootless?\n\n#### Live rootless\n\n#### Die rootless\n\n#### Fade (or decompose) away\n\nIn contrast to more or less everyone else who is not either homeless, an urchin, a coddled child or dead, my ways are already unpunctured by stabbing societal complexity. What I really need is a finer filter to rid my daily motion of particulate matter - material fecal heaps that do not facilitate creativity. Sentiment has no place in the simple life. Remember that time and again.\n\nA bookmark function for *Martenblog* is a future fruitful idea. As the point of *Martenblog* is to be reread in intervals to remind my brain dappled with decay of lessons I have learned and ideas I have spawned. I'll get on it.\n\n-------------------------------------\n\n> You pick up threads and clues, searching for a pattern that explains the whole, forgetting that a great deal of life (and art) depends on chance events.\n\nI just purchased *Music for Silenced Voices* and perused the first few pages. Thus, the quote. My first thought regarding it is that *resultant art* is not necessarily dependent on chance events, but its impetus is. I sit down and deliberately work out a piece of music, or write in this blog, or strangle Chritián's infant spawn. These acts are just the resolution of ideas sparked in my day-to-day consciousness by exterior forces. Inspiration *always* comes from the outside. Flotsam from the possibly imaginary world's ocean around me washes up in a rocky inlet. Most is washed back out. I inspect others. I keep fewer. Sometimes I take those few, sit around with a guitar, keyboard, pen or garrotte and fashion them into tangibilities.\n",
+    "created_at": 1479298080000.0,
+    "_id": 417
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "ritual",
+        "entry_ids": [
+          296,
+          411,
+          416,
+          419,
+          422
+        ],
+        "_id": 223
+      },
+      {
+        "topic": "shambal",
+        "entry_ids": [
+          223,
+          273,
+          274,
+          276,
+          278,
+          294,
+          298,
+          313,
+          341,
+          344,
+          349,
+          351,
+          352,
+          354,
+          353,
+          359,
+          360,
+          367,
+          370,
+          376,
+          384,
+          385,
+          386,
+          392,
+          395,
+          393,
+          405,
+          412,
+          416,
+          419
+        ],
+        "_id": 174
+      }
+    ],
+    "topic_ids": [
+      223,
+      174
+    ],
+    "subject": "My shoulders were crushed by perished social climbers",
+    "entry": "The current music singing in my ears is *Dogshit on the Shoulders of Giants* by **Upsilon Acrux**. It's not first date music. Perhaps it could be second date music. My guess is that it'd be music more suited to a dismembering party. That being ascertained, I remind everyone for the first time that *Shambal Brambel* actually conducted a dismembering party once upon a time.\n\nUnfortunately, the foci of the entertainment were already deceased. Shambal had grown tired of one peculiar *arm* of his Spanish family. Peculiarity, in Shambal's eyes, is strict adherence to any tradition or ritual without any hint of creative variation. From the *Book of Shambal's Quaint but Violently Enforced Laws*, I quote:\n\n> If one is so bland to slog time and again through traditional forms passed either by writing or orally generation to generation, one must inject a modern and slightly fantastical wedge into each proceeding. Something as simple as a disfigured child in an oratory role or a cohort donning a mask made from one's aunt's kidney will do. Just mix and muck it all up a bit. Don't be a preprogrammed drone without a mental space of one's own.\n\nSaid *arm* of his Spanish family ignored this and several other of Shambal's sacred scripts, directly resulting in their demise. The benevolence of Shambal could only be carried so far. I continue to quote:\n\n> Continual breaches of this (admittedly vague) *rule* will be punished. The meters remotely attached to my living corpse clearly indicate the local average of my *irritation level*. The readings are on display in the dank basement of my illusory yesteryear for all to fetishise over. Thus, caution can be taken when caution is of importance, meaning when my *irritation level*, easily determined by one of the multitudinous aforementioned meters esconced in the tenebrous oubliette of my opaque history, exceeds a score marked out and elaborated in another of my bestial dialogues. \n\n> Culprits will be forced to drink mercury until their stomachs and intestines are filled. Before the actual poison sets in, they will surely perish of exploded inner linings. Furthermore, their bodies will then be disgraced in front of the remainder of the *family*, if any remain. Otherwise, their now not-so-living corpses will be disgraced in front of the *extended family*.\n\nAll this talk of family makes me want to retch. Excuse me for a moment while the contents of my hara are ejected forcefully into my porcelain compatriot.\n\nThe hotel staff kindly provided me with three porcelain compatriots. I chose to soil the bidet. Fuck um.\n\n\n",
+    "created_at": 1479027780000.0,
+    "_id": 416
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "food",
+        "entry_ids": [
+          109,
+          200,
+          239,
+          245,
+          250,
+          287,
+          298,
+          334,
+          347,
+          367,
+          411,
+          419
+        ],
+        "_id": 57
+      },
+      {
+        "topic": "sentiment",
+        "entry_ids": [
+          415,
+          419
+        ],
+        "_id": 327
+      },
+      {
+        "topic": "livejournal",
+        "entry_ids": [
+          233,
+          234,
+          236,
+          237,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267,
+          238,
+          282,
+          283,
+          284,
+          285,
+          286,
+          287,
+          415,
+          419
+        ],
+        "_id": 183
+      }
+    ],
+    "topic_ids": [
+      57,
+      327,
+      183
+    ],
+    "subject": "Filling the spaces between notes, where silence floats, is not obligatory",
+    "entry": "I'm slightly surprised that my livejournal still exists. Its last entry is from 2008 and it is incredibly generic. I posted a photo of myself by recommendation of Aimee Estes, a person best left to push up the poppies. Furthering a fruition of opium is something beneficial that her useless bag of flesh could do for humanity. Anyhow, I began going through an entry from *Christmas Day* 2005 entitled *100 Things About Me* a month or so ago. This evening, I am on number **13**, which reads\n\n> In general, I like cooking better than I like socializing.\n\nTo be slightly more abstract, I am quite fond of activities that require both creativity and concentration. For this reason, I also enjoy my **job**, which is insemenating circuit boards with my prehensile forebrain. Also for this reason, I enjoy composing music. The piece *Albahaca* is coming along nicely, thank you.\n\nTo be slighly more specific, I am more fond of activities that require both creativity and concentration **more** than I am of *socializing* when the latter is in an unwelcome context. My definition of *unwelcome* here is quite broad. Any social event that consists of forced niceties is *right out*. I am certainly fond of *socializing* with my mates and I take to it with gusto. \n\nA limp wench might tell me that *socializing* can also be a creative sport. One can find the cracks in conversations, the narrows in which to slip. One can dart around others' presentations like one eluding slow motion missiles. One can also be a cunt. One can be a creative cunt. Manipulation is not my aim. Perhaps I went through and discarded that phase during my teens and early twenties. I could be a cunt. I was a cunt. I was a creative cunt. I lost some friends.\n\nEffortless *socialization* is fastastic and it abounds with my mates. Sadly, I my *matie* time is limited. It sparsely dapples yearly wax and wane. Of course, my mates are completely to blame and I am innocent. Fuck um. They, too, can benefit mankind by pushing up the poppies. I yearn to be adrift in a haze of opium spawned from the nitrogen-rich flesh of my compatriots.\n\nAs far as cooking goes, tomorrow I am on my own. No compatriot will be in my sight-line, nor will my flared nostrils taste the scent of their putrefacation, nor will my ears lap up their wails, nor will my skin sand away their scabs, nor will my sense of balance bother to hurl my unwilling living corpse at their unguarded thorax. I shall cook quinoa with garbanzos and dine alone.\n\nI'll toast my future poppies.\n\n",
+    "created_at": 1478727000000.0,
+    "_id": 415
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "music",
+        "entry_ids": [
+          5,
+          20,
+          21,
+          22,
+          43,
+          47,
+          71,
+          72,
+          74,
+          77,
+          79,
+          81,
+          86,
+          87,
+          88,
+          91,
+          92,
+          93,
+          96,
+          97,
+          98,
+          100,
+          107,
+          110,
+          112,
+          114,
+          118,
+          123,
+          134,
+          199,
+          202,
+          null,
+          234,
+          242,
+          255,
+          280,
+          288,
+          289,
+          290,
+          291,
+          292,
+          293,
+          297,
+          309,
+          311,
+          337,
+          342,
+          348,
+          355,
+          360,
+          361,
+          367,
+          379,
+          381,
+          382,
+          390,
+          391,
+          410,
+          414,
+          419,
+          422
+        ],
+        "_id": 2
+      },
+      {
+        "topic": "flavigula",
+        "entry_ids": [
+          280,
+          293,
+          297,
+          414,
+          419
+        ],
+        "_id": 213
+      },
+      {
+        "topic": "bureaucracy",
+        "entry_ids": [
+          417,
+          419
+        ],
+        "_id": 328
+      }
+    ],
+    "topic_ids": [
+      2,
+      213,
+      328
+    ],
+    "subject": "Fronds littered the garden, masking her unruly tongue",
+    "entry": "I began the *specifications* of a new piece of music a few days ago\nand it crept into my dreams during the subsequent nights. Out of these\nsomnambulant encounters came a clear structure. This one will be under\nfour minutes, I promise, dear Demi-God of musical composition who\nforms a dome over me of inquiet, resonant, conscious chambers.\n\nAs I have been wont to do since my distant past, out from my hara\nsprang a sort of chord progression. Initially, it was simple, but then\nmorphed. I am considering now to let that *morph* happen during the\nprocess of the piece. I don't want to actually play the chord\nprogression deliberately, but let it be subtly pronounced by a\nsnaking, fractured, mostly continuous guitar figure. It will be a\nsemi-arpeggiated line with plenty of *passing* tones to confuse the\nlistener. Inspiring the bass, rumbling underneath, will be **Sunn\no)))**, lengthy and droning, cut apart by quick, syncopated runs\nat fashionable intervals. There is nothing fashionable about this\nmusic. I correct myself. Bass, rumbling beneath, and inspired by\n**Sunn o)))**, in lengthy and droning phrases, will be punctuated by\nsyncopated runs at arbitrary intervals.\n\nI'll ditch the mellotron for this one. In its place, I'll remind any\ncreature tied to a plinth and forced to listen to the album at an\nintolerable volume that the synth echoes ideas from *The Six*, though\nonly distantly. The square wave pulse will beat an insistent 1 - 2 - 3\n- 4 over the other instruments' triplety groove, a magical strategem\nemployed by Christian Vander from time to time (listen to Hhaï when\nyou get a break from your toilet training, ingrade).\n\nAs for percussion, I am going to start with its part. Again, this\nechoes my *compositional* (I laughingly use the word) methods of old,\nprogramming my now deceased drum machine, *Marcus*, to the structure\nof an upcoming *piece* (I laughingly use the word) of musical\nregurgitation. To note, however, is that *Tidal Cycles* is not a mere\ndrum machine, but a form of programming patterns in real time. I have\nto inject aleatoric means in some manner and morphing patterns on the\nfly is as good a way as lynching your brother's wife with a length of\npiano wire, to keep things *musical* (I laughingly use the word). I\nplan the patterns to overlap the flat four count and the triplety\nbounce in certain situations, but primarily concentrate on one or the\nother.\n\nI **STARE** back at the second paragraph of the **Martenblog**\nentry. Join me on your mandolin, ukulele, autoharp or goat bladder as\nI cycle a progression twice or thrice.\n\n> F F/b5 Cmaj7 Csus2 F# Bm7/11 Asus4 E7/bb\n\nAs I played with the sequence the other day, I thought it might be\nwise to destroy some of the tonality by creating the following:\n\n> Fmaj7/b5 Cmaj7/9 F#sus4 Gadd9 Bm/G Aaug/#9\n\nAs an **INTERJECTION** between phrases in the piece, I shall opt for\nthese two chords: [f c f# b] and [a bb f c] chugged on the ukulele,\nperhaps with reverb enough to send them to the absolute backdrop of\nthe sound stage. An air of obscurity will encroach from the ill-lit\ndepths. The growling bass will paint the heavens.\n\n\n",
+    "created_at": 1477753320000.0,
+    "_id": 414
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "literature",
+        "entry_ids": [
+          371,
+          413,
+          419
+        ],
+        "_id": 289
+      },
+      {
+        "topic": "bureaucracy",
+        "entry_ids": [
+          417,
+          419
+        ],
+        "_id": 328
+      },
+      {
+        "topic": "materialism",
+        "entry_ids": [
+          417,
+          419
+        ],
+        "_id": 329
+      },
+      {
+        "topic": "destiny",
+        "entry_ids": [
+          216,
+          217,
+          283,
+          383,
+          408,
+          413,
+          419
+        ],
+        "_id": 167
+      },
+      {
+        "topic": "fate",
+        "entry_ids": [
+          413,
+          419
+        ],
+        "_id": 330
+      }
+    ],
+    "topic_ids": [
+      289,
+      328,
+      329,
+      167,
+      330
+    ],
+    "subject": "Monophonic, crepuscular and half-glimpsed",
+    "entry": "I decided to *re-read* the *Foundation* books by Isaac Asimov. I half jokingly write *re-read* because I don't believe I have ever read even the initial trilogy in its entirety. Following a suggestion by Isaac himself somewhere near the aorta of the internet, I begun *Prelude to Foundation* a few days back. It's puttering along quite nicely. Psychohistory is it its infancy. Or, rather, psychohistory has been *conceived* and its gestation will crescend during the curve of the story. Or that is what I predict. Another book bridges this one and the *original* series.\n\n> Many a prophecy, by the mere force of its being believed, is transmuted to fact.\n\nHere is a succinct way to state something that even Shambal, swaying strangely, half erect in his slumber in his sessile spot, could believe. The force of rumour is a hurricane. It leaves scorched earth in its wake. Well, at least it leaves *modified* earth in its wake. It leaves a swath of humans with changed opinions concerning the purpose of life in its wake. \n\nThe context in the novel is a conversation Heri Seldon has with the Emperor, whose name I have forgotten. Hari is *required* by the *elite* to predict the future with mathematics by employing a system he calls *psychohistory*. Being a abstract approach, he finds the request impossible to follow. I suppose that will change as the story progresses, but I hope with reasoned steps. \n\nAs an aside, I do appreciate Asimov's style. He takes science very seriously. He is meticulous and I can imagine he revised his work time and again until anything that could be cross-referenced was consistent. Another author of his ilk is Larry Niven. I suppose the appropriated name for this *genre* is *hard science fiction*. I'll harden you, baby. \n\nThe *self-fulfilling prophecy*, to me is like *semantic drift*. A equally very clever or very daft human begins using a word or phrase in a manner at an angle to it original meaning. His, her or its use spreads to his, her or its local peer group, then exponentially from there. Mostly these *turns of phrases* stay localised and confound newcomers. They are shibboleths, in a sense. Spreading further abroad in space and time, a whole segment of a dialect can change, however.\n\nIf Hari predicts a fecund future and as he does so, possesses sufficient valuation for his message, half-astrology or not, to be believed, the future will come. Humans will work towards it collectively, even unconsciously. The power of hidden desire is a force to be grated up and fed to your cyborg ocelot on a Tuesday evening after guzzling brandy and rubbing the skin of your buttocks raw on your expensive rug bought specifically to impress loose chicks but now serves as the home for countless microscopic insects and dead portions of the aforementioned buttocks.\n\n> To know what the future holds, in even the most general and probabilistic way, would serve as a new and marvelous guide for our actions, one that humanity has never before had.\n\nIsaac sums it up with that sentence again a bit more succinctly that I may have in my previous paragraph.\n\n*Black Swans* that uncurl their necks and open their fetid beaks to yowl are stumbling blocks. As the rush of humanity striving for a singular, even utopian future bounds downhill at a frightening pace, the possibility of strange crevasses wrecking momentum grows. The blunder towards the singularity is mostly unconscious. Our species is the steed and a dream holds us by reins. Dreams shift unpredictably. Mr *Black Swan* swallows some of us. Those devoured are shat out to stagnate forever on the slopes. Insular cultures sprout from the dung.\n\nHari will leave certain worlds behind. I am sure of it. These worlds will be the backwaters. They'll be the Fort Stocktons and Cold Brooks. The shitholes bereft of *expansive culture*. Mr *Black Swan*, why have you kicked humanity in the larynx once more?\n\nFuck the backwaters. I'm sitting on the multi-dimensional head.\n",
+    "created_at": 1477344240000.0,
+    "_id": 413
+  },
+  {
+    "user_id": 1,
+    "topics": [
+      {
+        "topic": "shambal",
+        "entry_ids": [
+          223,
+          273,
+          274,
+          276,
+          278,
+          294,
+          298,
+          313,
+          341,
+          344,
+          349,
+          351,
+          352,
+          354,
+          353,
+          359,
+          360,
+          367,
+          370,
+          376,
+          384,
+          385,
+          386,
+          392,
+          395,
+          393,
+          405,
+          412,
+          416,
+          419
+        ],
+        "_id": 174
+      },
+      {
+        "topic": "spain",
+        "entry_ids": [
+          202,
+          203,
+          205,
+          207,
+          248,
+          249,
+          254,
+          256,
+          257,
+          313,
+          318,
+          320,
+          323,
+          326,
+          328,
+          330,
+          331,
+          332,
+          412,
+          419
+        ],
+        "_id": 145
+      },
+      {
+        "topic": "culture",
+        "entry_ids": [
+          381,
+          412,
+          419
+        ],
+        "_id": 299
+      },
+      {
+        "topic": "stagnation",
+        "entry_ids": [
+          131,
+          157,
+          170,
+          296,
+          358,
+          362,
+          363,
+          397,
+          402,
+          412,
+          419
+        ],
+        "_id": 71
+      },
+      {
+        "topic": "tradition",
+        "entry_ids": [
+          188,
+          310,
+          399,
+          411,
+          412,
+          419
+        ],
+        "_id": 132
+      }
+    ],
+    "topic_ids": [
+      174,
+      145,
+      299,
+      71,
+      132
+    ],
+    "subject": "Worry not, child, for your line will be cut",
+    "entry": "Before Shambal knew with any clarity he'd be sessile for centuries, he was a man of ephemera. He'd still be were it not for the condition keeping him tied to a hovel in a wasted land. His own waste continues to churn beneath him to create power and a superficial luxury. Robotic apparati scuttle, clunking here and there, often even tidying up and bringing him required quantities of comestibles. The quantity is immense. In order to excrete enough to power his small hovel, including the ancient batteries on which his mechanical company feed every late evening, he must consume constantly. His gastrointestinal system has evolved quickly over centuries to create dense, fibrous feces full of nitrates. Tubes routed to engines rattle in mock digestion. Shambal himself is a tube. During waking hours, he is acutely aware, even with myriad intellectual distractions, that he is simply a processing plant.\n\nIn one infinity of quantum universes, Shambal is from Tanzania. In the one of which I write now, he is a Spaniard. In every quantum universe, he ends in his hovel, sessile. Thank the rings of Neptune for convergence. Like in the Tanzania branch, he was born into a sordid aristrocracy. The vast family spread its tentacles from the nucleus of *Almogía*, a white and brown *pueblo*. Their feelers poisoned Malaga and even as far as Sevilla and Cadiz. \n\nA dynasty is similar to a religion. A dynasty is similar to a *fundamentalist* religion. Shambal's family indoctrinated him. Shambal's family burned their legacy into his brain. Any deviation from it was heresy. Devations were blasphemy against the perpetuation of an idea, no matter how ludicrous. And, after time, after his pampered childhood and his elitist adolescence, Shambal saw the whole pattern of life ludicrous. Ludicrous was painted on every path behind him, on the entrace to every corrador backwards, back into the shell.\n\nPerpetuating a dynasty constructs the shell. In parts, it is thinner, in others, thicker. Relations outside of the shell are less or more tenuous, but always tenuous. Even the thickest of cords connecting Shambal to the exterior were easily severed from denizens of the interior. Lasting bonds only resulted by bringing others inside, and never letting them escape. Shambal saw this again and again and the horror and despair from both sides. He finally fled through a crack in the shell that would have eventually sealed him from the outside forever. After a certain point, usually a certain age, the denizens only nurtured those of the interior. Their world was small, but coherent to them.\n\nThe traditions of Spain struck Shambal as antiquated and stagnant. The world was moving on. That is to say, human culture was moving on. It never could quite regress to a state of *olden times*, *good old days* or *rural greatness*. Those times were the past. They were etched into the past. No matter how humans tried to recapture them, the recreations were fake, as the species' expansive *culture* had outgrown them. Shambal knew dynasties were regressive, or at least sessile, ironically enough. They become more and more hefty until their movement both intellectually and creatively could no longer be set adrift.\n\n#### In his vast lifetime, Shambal never uttered the word *adrift* with negative connotations.\n\nHe mumbled to himself once, during the end of his adolescence in Almogía:\n\n> I see the shell of my dynasty like gauze. Time and again, it tightens, or perhaps it is just my perception as my mind grows increasingly curious of the outside. The gauze filters outside stimulation increasingly granular until I catch only smatterings of fragmented scents. The denizens do it unconsciously. I am like the beloved son still connected umbilically to a possessive mother.\n\n#### He cut the cord.\n\nFrom the outside, Shambal saw his life before as a stone in an endless ocean. The stone rose magnificently from the waves and was even nearly impervious of them. To the brief lives of most on the *outside*, it was unchangeable. The ocean's contrast was stark. As liquid is to solid, the pace on the outside was immense.\n\nMany centuries later, Shambal wrote:\n\n> Spain is both alive and dead with dynasties. They pervade and separate, unite and spurn. We were encouraged subliminally, almost hypnotized, certainly brainwashed to create our own. A stone is a cottage or villa or apartment you purchase. A vast ocean of liquid is going from one rent to another, never *settling down* like in *olden times*. I wanted to outpace my retrogressive environment. The denizens held me as long as they could, but when I finally broke, I severed the cord for good. My mother shrieked from her grave, as if she'd felt the knife.\n\n\n\n",
+    "created_at": 1477143180000.0,
+    "_id": 412
+  }
+]

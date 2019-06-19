@@ -1,11 +1,11 @@
 'use strict';
 
 <template>
-<b-card no-body style="width: 926px; margin-left: auto; margin-right: auto;">
+<b-container class="hlavni">
   <cabeza />
   <router-view></router-view>
-  <abdomen />
-</b-card>
+  <abdomen class="abdomen" />
+</b-container>
 </template>
 
 <script>

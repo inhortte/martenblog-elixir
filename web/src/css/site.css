@@ -2,17 +2,14 @@ body, html {
     font-family: 'Vollkorn', Courier, serif, monospace;
 }
 
-@media all and (max-width 991px) {
-    #martenblog-sidebar {
-	font-size: 1em;
-    }
-    #entries {
-	font-size: 2em;
-	padding-left: 15px;
-	line-height: 18px;
-    }
-}
 @media all and (min-width 992px) {
+    /*
+    .hlavni {
+	width: 900px;
+	margin-left:auto;
+	margin-right: auto;
+    }
+   */
     #martenblog-sidebar {
 	font-size: 1em;
     }
@@ -20,6 +17,21 @@ body, html {
 	font-size: 1.5em;
 	padding-left: 15px;
 	line-height: 22px;
+    }
+}
+@media all and (max-width 991px) {
+    /*
+    .hlavni {
+	width: 100%;
+    }
+   */
+    #martenblog-sidebar {
+	font-size: 1em;
+    }
+    #entries {
+	font-size: 2em;
+	padding-left: 15px;
+	line-height: 18px;
     }
 }
 
@@ -45,3 +57,14 @@ img {
     border-radius: 10px;
 }
 
+.entry-topic {
+    font-size: small;
+    padding: 5px;
+}
+.expand-collapse {
+    font-size: small;
+    text-align: right;
+}
+.abdomen {
+    margin-top: 32px;
+}

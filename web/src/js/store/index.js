@@ -4,6 +4,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { mapGetters } from 'vuex';
 import R from 'ramda';
+import { server } from '../config';
 
 Vue.use(Vuex);
 
@@ -11,7 +12,9 @@ export default new Vuex.Store({
   state: {
     poems: [],
     currentPoem: {},
-    entries: []
+    entries: [],
+    expanded: {},
+    trigger: 0
   },
   getters: {
     poems: state => {
@@ -19,6 +22,9 @@ export default new Vuex.Store({
     },
     entries: state => {
       return state.entries;
+    },
+    isEntryExpanded: state => id => {
+      return !!state.expanded[id];
     }
   },
   mutations: {
@@ -27,12 +33,16 @@ export default new Vuex.Store({
     },
     setEntries: (state, entries) => {
       state.entries = entries;
+    },
+    toggleExpand: (state, id) => {
+      let expanded = Object.assign({}, state.expanded);
+      Vue.set(state.expanded, id, !expanded[id]);
     }
   },
   actions: {
     setPoemsThunk: ({ commit }) => {
       (async() => {
-	let res = await fetch('http://localhost:8777/poems', {
+	let res = await fetch(`${server()}/poems`, {
 	  method: 'get',
           headers: {
             'Accept': 'application/json',
@@ -51,7 +61,7 @@ export default new Vuex.Store({
     },
     setEntriesThunk: ({ commit }, page) => {
       (async() => {
-	let res = await fetch(`http://localhost:8777/entry/page/${page}`, {
+	let res = await fetch(`${server()}/entry/page/${page}`, {
 	  method: 'get',
           headers: {
             'Accept': 'application/json',
