@@ -29,7 +29,7 @@ export default {
       return this.$store.getters['entries'];
     },
     pCount() {
-      return this.$store.getters['pCount'];
+      return Math.ceil(this.$store.getters['pCount'] / 11);
     }
   },
   methods: {
