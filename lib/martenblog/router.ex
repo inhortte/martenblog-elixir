@@ -35,6 +35,24 @@ defmodule Martenblog.Router do
     end
   end
 
+  get "/entry/by-date/:y/:m/:d" do
+    inter_conn = conn |> put_resp_content_type("application/json")
+    {y, _} = if Map.has_key?(conn.params, "y"), do: Integer.parse(conn.params["y"]), else: {nil, ""}
+    {m, _} = if Map.has_key?(conn.params, "m"), do: Integer.parse(conn.params["m"]), else: {nil, ""}
+    {d, _} = if Map.has_key?(conn.params, "d"), do: Integer.parse(conn.params["d"]), else: {nil, ""}
+    send_resp(inter_conn, 200, BlogResolver.entries_by_date(%{ y: y, m: m, d: d }) |> Utils.to_json)
+  end
+
+  get "/alrededores/:ts" do
+    inter_conn = conn |> put_resp_content_type("application/json")
+    case Integer.parse(conn.params["ts"]) do
+      { ts, _ } ->
+	send_resp(inter_conn, 200, BlogResolver.alrededores(ts) |> Utils.to_json)
+      :error ->
+	send_resp(inter_conn, 200, [nil, nil] |> Utils.to_json)
+    end
+  end
+
   get "/entry/:id" do
     inter_conn = conn |> put_resp_content_type("application/json")
     case Integer.parse(conn.params["id"]) do

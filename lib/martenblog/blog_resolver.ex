@@ -77,21 +77,20 @@ defmodule Martenblog.BlogResolver do
     Enum.map(entries, &add_topics_to_entry/1)
   end
 
-  def entries_by_date(_root, args, _info) do
-    y = args.y || 1991
-    m = args.m || 10
-    d = args.d || 23
+  def entries_by_date(args) do
+    y = if Map.has_key?(args, :y), do: args.y, else: 2019
+    m = if Map.has_key?(args, :m), do: args.m, else: 3
+    d = if Map.has_key?(args, :d), do: args.d, else: 22
     dt = %DateTime{year: y, month: m, day: d, zone_abbr: "UTC",
-                    hour: 0, minute: 0, second: 0, microsecond: {0, 0},
-                    utc_offset: 0, std_offset: 0, time_zone: "Europe/London"}
+                   hour: 0, minute: 0, second: 0, microsecond: {0, 0},
+                   utc_offset: 0, std_offset: 0, time_zone: "Europe/London"}
     begin_time = DateTime.to_unix(dt) * 1000
     end_time = begin_time + 1000 * 3600 * 24
     Logger.info "year: #{y}, month: #{m}, day: #{d}, begin_time: #{begin_time}, end_time: #{end_time}"
     entries = Enum.to_list(Mongo.find(:mongo, "entry", %{"$and": [
 							    %{created_at: %{"$gte": begin_time}}, %{created_at: %{"$lte": end_time}}
 							  ]}, sort: %{created_at: -1}));
-    entries_with_topics = Enum.map(entries, &add_topics_to_entry/1)    
-    {:ok, entries_with_topics}
+    Enum.map(entries, &add_topics_to_entry/1)    
   end
 
   def entry_by_id(_root, %{id: id}, _info) do
@@ -104,7 +103,7 @@ defmodule Martenblog.BlogResolver do
     {:ok, topics}
   end
 
-  def alrededores(_root, %{timestamp: timestamp}, _info) do
+  def alrededores(timestamp) do
     d = DateTime.from_unix!(Kernel.trunc(timestamp / 1000))
     nd = %DateTime{year: d.year, month: d.month, day: d.day, zone_abbr: "UTC", hour: 0, minute: 0, second: 0, microsecond: {0, 0}, utc_offset: 0, std_offset: 0, time_zone: "Europe/London"}
     dayBegins = DateTime.to_unix(nd) * 1000
@@ -121,6 +120,6 @@ defmodule Martenblog.BlogResolver do
     else
       Map.get(nextEntry, "created_at")
     end
-    {:ok, [prevDate, nextDate]}
+    [prevDate, nextDate]
   end
 end

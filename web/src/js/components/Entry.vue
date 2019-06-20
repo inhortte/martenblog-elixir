@@ -6,7 +6,7 @@
     <b-container>
       <b-row>
 	<b-col md="12">
-	  <em>{{ entry.subject }}</em>
+	  <em><router-link :to="dateLink">{{ entry.subject }}</router-link></em>
 	</b-col>
       </b-row>
       <b-row>
@@ -48,6 +48,10 @@ export default {
       } else {
 	return R.compose(R.flip(R.concat)('...'), R.slice(0, 144), htmlToText.fromString)(this.entry.entry);
       }
+    },
+    dateLink() {
+      let d = new Date(this.entry.created_at);
+      return `/blog/${d.getUTCFullYear()}/${d.getUTCMonth() + 1}/${d.getUTCDate()}`;
     }
   },
   methods: {

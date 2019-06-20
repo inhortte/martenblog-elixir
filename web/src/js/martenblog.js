@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 import Hlavni from './Hlavni.vue';
 import store from './store';
 import Blog from './components/Blog.vue';
+import BlogByDate from './components/BlogByDate.vue';
 import Poems from './components/Poems.vue';
 import Music from './components/Music.vue';
 
@@ -13,6 +14,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: Music },
     { path: '/blog/:page', name: 'blog', component: Blog },
+    { path: '/blog/:y/:m/:d', name: 'blog-by-date', component: BlogByDate },
     { path: '/poems', component: Poems },
     { path: '/music', component: Music }
   ]
