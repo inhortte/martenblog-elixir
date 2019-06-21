@@ -1,7 +1,8 @@
 'use strict';
 
 <template>
-<b-card title="Poems -">
+<b-card title="Poems -" no-body>
+  <h4 slot="header">Poems -</h4>
   <b-card-group deck v-for="poemGroup in poemGroups" style="margin-bottom: 20px;">
     <b-card v-for="poem in poemGroup" :title="poem.title">
       <b-card-text><pre>{{ poem.poem }}</pre></b-card-text>

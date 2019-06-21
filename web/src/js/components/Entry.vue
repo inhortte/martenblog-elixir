@@ -1,7 +1,7 @@
 'use strict';
 
 <template>
-<b-card style="margin-bottom: 20px;">
+<b-card class="entry-card" >
   <div slot="header">
     <b-container>
       <b-row>
@@ -24,7 +24,7 @@
       </b-row>
     </b-container>
   </div>
-  <b-card-text v-html="formattedEntry"></b-card-text>
+  <b-card-text class="entry" v-html="formattedEntry"></b-card-text>
   <em slot="footer">{{ formatDate(entry.created_at) }}</em>
 </b-card>
 </template>

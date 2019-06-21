@@ -2,39 +2,6 @@ body, html {
     font-family: 'Vollkorn', Courier, serif, monospace;
 }
 
-@media all and (min-width 992px) {
-    /*
-    .hlavni {
-	width: 900px;
-	margin-left:auto;
-	margin-right: auto;
-    }
-   */
-    #martenblog-sidebar {
-	font-size: 1em;
-    }
-    #entries {
-	font-size: 1.5em;
-	padding-left: 15px;
-	line-height: 22px;
-    }
-}
-@media all and (max-width 991px) {
-    /*
-    .hlavni {
-	width: 100%;
-    }
-   */
-    #martenblog-sidebar {
-	font-size: 1em;
-    }
-    #entries {
-	font-size: 2em;
-	padding-left: 15px;
-	line-height: 18px;
-    }
-}
-
 a {
     color: #1e9090;
 }
@@ -67,4 +34,15 @@ img {
 }
 .abdomen {
     margin-top: 32px;
+}
+
+.entry-card {
+    margin-bottom: 20px;
+    no-body: true;
+}
+.entry-card .entry {
+}
+
+@media only screen and (max-device-width: 640px) {
+    
 }

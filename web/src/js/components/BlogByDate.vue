@@ -1,7 +1,8 @@
 'use strict';
 
 <template>
-<b-card title="Blog -">
+<b-card title="Blog -" no-body>
+  <h4 slot="header">Blog -</h4>
   <b-container>
     <b-row style="font-size: smaller; font-weight: bold;">
       <b-col sm="12" md="3" style="text-align: left;" @click="loadPrev">

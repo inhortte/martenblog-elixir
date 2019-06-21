@@ -1,9 +1,10 @@
 'use strict';
 
 <template>
-<b-card title="Blog -">
+<b-card title="Blog -" no-body>
+  <h4 slot="header">Blog -</h4>
   <b-container>
-    <b-row>
+    <b-row style="margin-top: 20px;">
       <b-col>
 	<b-pagination-nav use-router :link-gen="linkGen" :number-of-pages="pCount" @change="loadEntries" />
       </b-col>
