@@ -1,0 +1,17 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+
+  "id": "https://flavigula.net/create-you-die",
+  "type": "Create",
+  "actor": "https://flavigula.net/flavigula",
+
+  "object": {
+    "id": "https://flavigula.net/you-die",
+    "type": "Note",
+    "published": "2019-06-22T10:15:55.219Z",
+    "attributedTo": "https://flavigula.net/flavigula",
+    "content": "<p>Hello world</p>",
+    "to": ["https://sonomu.club/@flavigula/inbox"]
+  },
+  "to": ["https://sonomu.club/@flavigula/inbox"]
+}

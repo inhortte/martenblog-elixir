@@ -28,7 +28,9 @@ defmodule Martenblog.MixProject do
       {:mongodb, "~> 0.4.7"},
       {:poolboy, "~> 1.5"},
       {:cors_plug, "~> 2.0"},      
-      {:poison, "~> 4.0"}
+      {:poison, "~> 4.0"},
+      {:mint, "~> 0.3.0"},
+      {:castore, "~> 0.1.2"}
     ]
   end
 end

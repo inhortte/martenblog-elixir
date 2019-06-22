@@ -52,4 +52,19 @@ VQIDAQAB
       ]
     }
   end
+
+  def you_die do
+    document = File.read!("etc/you-die.json")
+    date = DateTime.to_string(DateTime.utc_now)
+    signed_string = "(request-target): post /inbox\nhost: altaica.cloud\ndate: #{date}"
+    priv_key = File.read!('etc/private.pem')
+    [ decoded_priv_key | _ ] = :public_key.pem_decode(priv_key)
+    entry_key = :public_key.pem_entry_decode(decoded_priv_key)
+    sign_me = :public_key.sign(signed_string, :sha256, entry_key)
+    signature = :base64.encode(sign_me)
+    header = "keyId=\"https://flavigula.net/flavigula\",headers=\"(request-target) host date\",signature=\"#{signature}\""
+
+    # headers = %{ "Host" => "altaica.cloud", "Date" => date, "Signature" => header }
+    headers = %{ "Host" => "altaica.cloud", "Date" => date, "Signature" => header }
+  end
 end
