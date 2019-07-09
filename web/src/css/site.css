@@ -12,6 +12,7 @@ h2 {
 
 .entry img {
     width: 100%;
+    max-width: 100%;
 }
 
 .entry blockquote {
