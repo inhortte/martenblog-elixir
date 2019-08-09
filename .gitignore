@@ -35,3 +35,5 @@ martenblog-*.tar
 /web-old/public/css
 /web-old/public/js
 
+.elixir_ls
+*.swp
