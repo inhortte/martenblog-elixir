@@ -35,7 +35,7 @@ export default {
       ogMTag.setAttribute('data-vue-router-controlled', '');
       mTag.setAttribute('name', 'description');
       mTag.setAttribute('content', entry.slice(0, 512));
-      ogMTag.setAttribute('name', 'description');
+      ogMTag.setAttribute('name', 'og:description');
       ogMTag.setAttribute('content', entry.slice(0, 512));
       document.head.appendChild(mTag);
       document.head.appendChild(ogMTag);
