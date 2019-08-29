@@ -1,0 +1,63 @@
+parse error: Unfinished JSON term at EOF at line 2, column 0
+  {
+    "path": "/blog/:page",
+    "regex": {
+      "keys": [
+        {
+          "name": "page",
+          "prefix": "/",
+          "delimiter": "/",
+          "optional": false,
+          "repeat": false,
+          "partial": false,
+          "asterisk": false,
+          "pattern": "[^\\/]+?"
+        }
+      ]
+    },
+    "components": {
+      "default": {
+        "name": "blog",
+        "components": {
+          "Entry": {
+            "name": "entry",
+            "props": [
+              "entry"
+            ],
+            "components": {
+              "EntryTopic": {
+                "name": "entry-topic",
+                "props": [
+                  "topic"
+                ],
+                "computed": {},
+                "staticRenderFns": []
+              }
+            },
+            "computed": {},
+            "methods": {},
+            "staticRenderFns": []
+          }
+        },
+        "computed": {},
+        "methods": {},
+        "staticRenderFns": []
+      }
+    },
+    "instances": {},
+    "name": "blog",
+    "meta": {
+      "metaTags": [
+        {
+          "name": "description",
+          "content": "The mustelids of the earth (and possibly other nitrogen and oxygen rich planetoids) will rise up and destroy you"
+        },
+        {
+          "name": "description",
+          "content": "The mustelids of the earth (and possibly other nitrogen and oxygen rich planetoids) will rise up and destroy you"
+        }
+      ]
+    },
+    "props": {}
+  }
+]

@@ -15,10 +15,10 @@ defmodule Martenblog.Actor do
     name: "Bobbus Mustelidus",
     preferredUsername: "flavigula",
     summary: "A mustelid",
-    inbox: "https://flavigula.net/flavigula/inbox",
-    outbox: "https://flavigula.net/flavigula/outbox",
-    followers: "https://flavigula.net/flavigula/followers",
-    following: "https://flavigula.net/flavigula/following",
+    inbox: "https://flavigula.net/inbox",
+    outbox: "https://flavigula.net/outbox",
+    followers: "https://flavigula.net/followers",
+    following: "https://flavigula.net/following",
     liked: "https://flavigula.net/flavigula/liked",
     ]
 

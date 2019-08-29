@@ -11,7 +11,7 @@
       </b-row>
       <b-row>
 	<b-col sm="10">
-	  <b-list-group horizontal>
+	  <b-list-group horizontal="md">
 	    <entry-topic v-for="topic in entry.topics" :topic="topic" />
 	  </b-list-group>
 	</b-col>

@@ -9,7 +9,7 @@
       <entry-topic v-for="topic in dateEntry.topics" :topic="topic" />
     </b-list-group>
   </div>
-  <b-card-text v-html="formattedEntry" />
+  <b-card-text class="entry" v-html="formattedEntry" />
 </b-card>
 </template>
 

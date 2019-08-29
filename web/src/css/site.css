@@ -10,10 +10,6 @@ h2 {
     color: #442099;
 }
 
-.entry img {
-    width: 100%;
-}
-
 .entry blockquote {
     /* font-size: smaller; */
 }
@@ -22,6 +18,11 @@ img {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+}
+
+.entry img {
+    width: 100%;
+    max-width: 100%;
 }
 
 .entry-topic {

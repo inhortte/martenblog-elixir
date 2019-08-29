@@ -1,0 +1,16 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+
+  "id": "https://flavigula.net/create-you-die",
+  "type": "Create",
+  "actor": "https://flavigula.net/flavigula",
+
+  "object": {
+    "id": "https://flavigula.net/you-die",
+    "type": "Note",
+    "published": "2019-06-22T08:00:00.944",
+    "attributedTo": "https://flavigula.net/flavigula",
+    "content": "<p>You Die</p>",
+    "to": "https://www.w3.org/ns/activitystreams#Public"
+  }
+}
