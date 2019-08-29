@@ -25,6 +25,20 @@ export default {
       return new Date(this.dateEntry.created_at).toUTCString();
     },
     formattedEntry() {
+      let entry = this.dateEntry.entry;
+      Array.from(document.querySelectorAll("[data-vue-router-controlled]")).map(
+        el => el.parentNode.removeChild(el)
+      );
+      const mTag = document.createElement("meta");
+      const ogMTag = document.createElement("meta");
+      mTag.setAttribute('data-vue-router-controlled', '');
+      ogMTag.setAttribute('data-vue-router-controlled', '');
+      mTag.setAttribute('name', 'description');
+      mTag.setAttribute('content', entry.slice(0, 512));
+      ogMTag.setAttribute('name', 'description');
+      ogMTag.setAttribute('content', entry.slice(0, 512));
+      document.head.appendChild(mTag);
+      document.head.appendChild(ogMTag);
       return md(this.dateEntry.entry);
     }
   }
