@@ -11,7 +11,11 @@
       </b-row>
       <b-row>
 	<b-col sm="10">
+<<<<<<< HEAD
 	  <b-list-group horizontal="md">
+=======
+	  <b-list-group horizontal="sm">
+>>>>>>> fe3593d72eda8e65ca57a366a924e1ad64494a38
 	    <entry-topic v-for="topic in entry.topics" :topic="topic" />
 	  </b-list-group>
 	</b-col>

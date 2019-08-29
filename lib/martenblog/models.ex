@@ -39,7 +39,7 @@ defmodule Martenblog.Topic do
   def next_topic_id() do
     Mongo.find(:mongo, "topic", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |>
     (fn first_topic -> 
-      IO.inspect first_topic
+      # IO.inspect first_topic
       first_topic || %{"_id" => 0}
     end).() |>
     Map.get("_id") |> 
@@ -154,23 +154,27 @@ defmodule Martenblog.Entry do
     end)
   end
 
-  def topic_ids_from_topics_string(ts) do
-    String.split(ts, ~r/\s*,\s*/) |> Enum.map(fn(s) ->
+  def topic_ids_from_topics_array(ta) do
+    topics = Topic.all
+    Enum.map(ta, fn(s) ->
       topic_string = String.trim(s) |> String.downcase
-      topics = Topic.all
       topic = Enum.find(topics, fn(t) -> t.topic == topic_string end)
       if is_nil(topic) do
-	Topic.new_topic(topic_string)
+        Topic.new_topic(topic_string)
       else
-	topic.id
+        topic.id
       end
     end)
+  end
+
+  def topic_ids_from_topics_string(ts) do
+    String.split(ts, ~r/\s*,\s*/) |> topic_ids_from_topics_array
   end
 
   def next_entry_id() do
     Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |>
     (fn first_entry -> 
-      IO.inspect first_entry
+      # IO.inspect first_entry
       first_entry || %{"_id" => 0}
     end).() |>
       Map.get("_id") |>
@@ -181,72 +185,82 @@ defmodule Martenblog.Entry do
   def dating(entry) do
     if is_number entry.created_at do
       if entry.created_at == 0 do
-	Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
+        Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
       else
-	entry
+          entry
       end
     else
-      # Parse numerical date string - ie 201807211537
-      Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
+          # Parse numerical date string - ie 201807211537
+          Map.merge(entry, %{:created_at => DateTime.to_unix(DateTime.utc_now) * 1000})
     end
   end
 
   def parse_entry_file(file_as_string) do
     [header | entry] = String.split(file_as_string, ~r/\n{2,}/)
-    String.split(header, ~r/\n/) |> Enum.reduce(%Martenblog.Entry{}, fn(line, acc) ->
+    header_map = String.split(header, ~r/\n/) |> Enum.reduce(%Martenblog.Entry{}, fn(line, acc) ->
       arr_of_tuples = Enum.map(Keyword.keys(@header_res), fn(key) -> {key, Regex.run(@header_res[key], line)} end) |> Enum.reject(fn({_, capture}) -> is_nil(capture) end)
       case arr_of_tuples do
-	[{key, [_, capture]}] ->
-	  cap = cond do
-	    key == :id ->
-	      case Float.parse(capture) do
-		:error ->
-		  next_entry_id()
-		{id_float, _} ->
-		  trunc id_float
-	      end
-	    key == :created_at ->
-	      Logger.info "key: #{key} - capture: #{capture}"
-	      parse_mb_timestamp(capture)
-	    true ->
-	      capture
-	    end
-	  Map.merge(acc, %{key => cap})
-	_ ->
-	  topic_match = Regex.run(@topic_re, line)
-	  if is_nil(topic_match) do
-	    acc
-	  else
-	    [_, capture] = topic_match
-	    Map.merge(acc, %{:topic_ids => topic_ids_from_topics_string(capture)})
-	  end
+        [{key, [_, capture]}] ->
+          cap = cond do
+            key == :id ->
+              case Float.parse(capture) do
+                :error ->
+                  next_entry_id()
+                {id_float, _} ->
+                  trunc id_float
+              end
+            key == :created_at ->
+              Logger.info "key: #{key} - capture: #{capture}"
+              parse_mb_timestamp(capture)
+            true ->
+              capture
+          end
+          Map.merge(acc, %{key => cap})
+        _ ->
+          topic_match = Regex.run(@topic_re, line)
+          if is_nil(topic_match) do
+            acc
+          else
+            [_, capture] = topic_match
+            Map.merge(acc, %{:topic_ids => topic_ids_from_topics_string(capture)})
+          end
       end
-    end) |> Map.merge(%{:entry => Enum.join(entry, "\n\n")}) |> new_or_old_id |> dating 
+    end) 
+    hashtag_topics = Enum.flat_map(entry, fn(line) -> 
+      Regex.scan(~r/#(\w+)\b/, line) |> Enum.map(fn(m) -> Enum.drop(m, 1) |> List.first |> String.downcase end) 
+    end) |> Enum.uniq
+    IO.inspect hashtag_topics
+    topic_ids = Enum.concat(header_map.topic_ids, if !Enum.empty?(hashtag_topics) do
+      topic_ids_from_topics_array(hashtag_topics)
+    else
+      []
+    end)
+    Map.merge(header_map, %{:topic_ids => topic_ids, :entry => Enum.join(entry, "\n\n")}) |> new_or_old_id |> dating 
   end
 
   def write_processed_file(filename, entry) do
     case Regex.run(~r<^([-\w/]+)/([-\w]+)\.(\w+)$>, filename) do
       nil ->
-	Logger.info "#{filename} could not be parsed to write processed file"
+        Logger.info "#{filename} could not be parsed to write processed file"
       [_, path, buttock, extension] ->
-	Logger.info "path: #{path}, buttock: #{buttock}, extension: #{extension}"
-	processed_filename = "#{path}/#{buttock}_processed.#{extension}"
-	contents = "_id: #{entry.id}\nDate: #{entry.created_at}\nSubject: #{entry.subject}\nTopic: #{Topic.topic_ids_to_topics_string(entry.topic_ids)}\n\n#{entry.entry}"
-	File.write(processed_filename, contents)
+        Logger.info "path: #{path}, buttock: #{buttock}, extension: #{extension}"
+        processed_filename = "#{path}/#{buttock}_processed.#{extension}"
+        contents = "_id: #{entry.id}\nDate: #{entry.created_at}\nSubject: #{entry.subject}\nTopic: #{Topic.topic_ids_to_topics_string(entry.topic_ids)}\n\n#{entry.entry}"
+        File.write(processed_filename, contents)
     end
   end
 
   def new_entry(filename) do
     case File.read(filename) do
       {:error, error} ->
-	Logger.info "#{filename} not found, or somesuch"
-	Logger.info error
+        Logger.info "#{filename} not found, or somesuch"
+        Logger.info error
       {:ok, f} ->
-	entry = parse_entry_file f
-	Enum.each(entry.topic_ids, fn(topic_id) -> Topic.add_entry_id_to_topic(topic_id, entry.id) end)
-	Mongo.insert_one(:mongo, "entry", to_mongoable(entry))
-	write_processed_file(filename, entry)
-	entry
+        entry = parse_entry_file f
+        Enum.each(entry.topic_ids, fn(topic_id) -> Topic.add_entry_id_to_topic(topic_id, entry.id) end)
+        Mongo.insert_one(:mongo, "entry", to_mongoable(entry))
+        write_processed_file(filename, entry)
+        entry
     end
   end
 

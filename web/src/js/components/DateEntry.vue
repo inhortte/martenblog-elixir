@@ -5,7 +5,7 @@
   <div slot="header">
     <div><em>{{ dateEntry.subject }}</em></div>
     <div><em>{{ formattedDate }}</em></div>
-    <b-list-group horizontal>
+    <b-list-group horizontal="sm">
       <entry-topic v-for="topic in dateEntry.topics" :topic="topic" />
     </b-list-group>
   </div>

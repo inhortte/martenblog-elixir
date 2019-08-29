@@ -1,49 +1,49 @@
-body, html {
-    font-family: 'Vollkorn', Courier, serif, monospace;
+body,
+html {
+  font-family: "Vollkorn", Courier, serif, monospace;
 }
 
 a {
-    color: #1e9090;
+  color: #1e9090;
 }
 
 h2 {
-    color: #442099;
+  color: #442099;
 }
 
 .entry blockquote {
-    /* font-size: smaller; */
+  /* font-size: smaller; */
 }
 
 img {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .entry img {
-    width: 100%;
-    max-width: 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 .entry-topic {
-    font-size: small;
-    padding: 5px;
+  font-size: small;
+  padding: 5px;
 }
 .expand-collapse {
-    font-size: small;
-    text-align: right;
+  font-size: small;
+  text-align: right;
 }
 .abdomen {
-    margin-top: 32px;
+  margin-top: 32px;
 }
 
 .entry-card {
-    margin-bottom: 20px;
-    no-body: true;
+  margin-bottom: 20px;
+  no-body: true;
 }
 .entry-card .entry {
 }
 
 @media only screen and (max-device-width: 640px) {
-    
 }
