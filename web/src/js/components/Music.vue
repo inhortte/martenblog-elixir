@@ -21,7 +21,7 @@
 	      <p>
 		The <a href="https://flavigula.bandcamp.com" target="_blank">bandcamp page</a>.
 		<br />
-		The venerable <a href="https://peertracks.com/album/flavigula-a-cube-beneath-the-sand" target="_blank">Peertracks</a>.
+		The venerable <a href="https://audius.co/flavigula" target="_blank">Audius</a>.
 		<br />
 		El rincón de <a href="https://choon.co/artists/flavigula/" target="_blank">Choon</a>
 		<br />
