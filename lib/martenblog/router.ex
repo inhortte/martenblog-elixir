@@ -97,12 +97,18 @@ defmodule Martenblog.Router do
 
   get "/ap/actor" do
     conn |> put_resp_content_type("application/json") |>
-      send_resp(200, Activitypub.get_actor)
+      send_resp(200, Activitypub.local_actor)
   end
 
-  get "/ap/inbox" do
+  post "/ap/inbox" do
+    Logger.info "Co?"
     IO.inspect conn.body_params
-    send_resp(conn, 200, "The mustelid is come")
+    conn.body_params |> Activitypub.incoming |> (fn({status, message}) ->
+      case status do
+        :success -> send_resp(conn, 200, message)
+        _ -> send_resp(conn, 500, message)
+      end
+    end).()
   end
 
   get "/" do

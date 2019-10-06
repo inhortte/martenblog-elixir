@@ -1,5 +1,6 @@
 defmodule Martenblog.Activitypub do
   require Logger
+  alias Martenblog.APResolver
   use Application
   @domain Application.get_env(:martenblog, :domain)
 
@@ -18,7 +19,7 @@ defmodule Martenblog.Activitypub do
     }
   end
 
-  def get_actor do
+  def local_actor do
     {:ok, pub_key} = File.read("./etc/public.pem");
     # Logger.info "pub_key: #{pub_key}"
     actor = %{
@@ -28,7 +29,7 @@ defmodule Martenblog.Activitypub do
             ],
       type: "Person",
       id: "https://#{@domain}/ap/actor",
-      preferredUsername: "flavigula",
+      preferredUsername: "martenblog",
       name: "Martenblog",
       icon: %{
               type: "Image",
@@ -45,6 +46,38 @@ defmodule Martenblog.Activitypub do
     }
     {:ok, actor_json} = Poison.encode actor
     actor_json
+  end
+
+  def remote_actor(uri) do
+    case APResolver.find_actor(uri) do
+      false -> 
+        case :hackney.get(uri, [ Accept: "application/activity+json" ]) do
+          {:ok, 200, _, ref} -> 
+            case :hackney.body(ref) do
+              {:ok, json} -> 
+                json = APResolver.add_actor(uri, json)
+                Poison.decode! json
+              error -> error
+            end
+          error -> error
+        end
+      json ->
+        case Poison.decode(json) do
+          {:ok, obj} -> obj
+          _ -> false
+        end 
+    end 
+  end
+
+  def accept(obj) do
+    accept_object = %{
+      "@context": "https://www.w3.org/ns/activitystreams",
+      id: "https://#{@domain}/ap/#{UUID.uuid4}",
+      type: "Accept",
+      actor: "https://#{@domain}/ap/actor",
+      object: obj
+    }
+    accept_object
   end
 
   def webfinger do
@@ -77,6 +110,16 @@ defmodule Martenblog.Activitypub do
         end
       error -> error
     end 
+  end
+
+  def incoming(%{ type: "Follow", object: "https://#{@domain}/ap/actor" } = activity) do
+    Logger.info activity
+    
+    { :success,  accept(activity) }
+  end
+  def incoming(activity) do
+    Logger.info "problems: #{activity}"
+    { :error, "Problems: #{activity.type}" }
   end
 end
 
