@@ -1,0 +1,11 @@
+{
+	"subject": "acct:flavigula@vrasek.thurk.org",
+
+	"links": [
+		{
+			"rel": "self",
+			"type": "application/activity+json",
+			"href": "https://vrasek.thurk.org/actor"
+		}
+	]
+}

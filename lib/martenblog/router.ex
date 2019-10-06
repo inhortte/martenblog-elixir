@@ -5,7 +5,7 @@ defmodule Martenblog.Router do
   alias Martenblog.Topic
   alias Martenblog.BlogResolver
   alias Martenblog.PoemResolver
-  alias Martenblog.Actor
+  alias Martenblog.Activitypub
   require Logger
 
   plug Plug.Logger
@@ -92,7 +92,17 @@ defmodule Martenblog.Router do
   # Activitypub leper
   get "/.well-known/webfinger" do
     conn |> put_resp_content_type("application/json") |>
-      send_resp(200, Actor.webfinger |> Utils.to_json)
+      send_resp(200, Activitypub.webfinger)
+  end
+
+  get "/ap/actor" do
+    conn |> put_resp_content_type("application/json") |>
+      send_resp(200, Activitypub.get_actor)
+  end
+
+  get "/ap/inbox" do
+    IO.inspect conn.body_params
+    send_resp(conn, 200, "The mustelid is come")
   end
 
   get "/" do

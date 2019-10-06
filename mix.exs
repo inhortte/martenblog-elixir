@@ -30,7 +30,10 @@ defmodule Martenblog.MixProject do
       {:cors_plug, "~> 2.0"},      
       {:poison, "~> 4.0"},
       {:mint, "~> 0.3.0"},
-      {:castore, "~> 0.1.2"}
+      {:castore, "~> 0.1.2"},
+      {:uuid, "~> 1.1.8"},
+      {:hackney, "1.15.1"},
+      {:fuzzyurl, "~> 0.9.0"}
     ]
   end
 end
