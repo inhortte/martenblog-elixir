@@ -48,25 +48,37 @@ defmodule Martenblog.Activitypub do
     actor_json
   end
 
-  def remote_actor(uri) do
-    case APResolver.find_actor(uri) do
-      false -> 
-        case :hackney.get(uri, [ Accept: "application/activity+json" ]) do
-          {:ok, 200, _, ref} -> 
-            case :hackney.body(ref) do
-              {:ok, json} -> 
-                json = APResolver.add_actor(uri, json)
-                Poison.decode! json
-              error -> error
-            end
-          error -> error
+  def fetch_actor(uri) do
+    res = case :hackney.get(uri, [ Accept: "application/activity+json" ]) do
+      {:ok, 200, _, ref} -> :hackney.body(ref)
+      error -> error
+    end
+    case res do
+      {:ok, body} ->
+        case Poison.decode body do
+          {:ok, json} -> json
+          error ->
+            Logger.error "Poison error: json was not returned (wrong actor url)"
+            error
         end
-      json ->
-        case Poison.decode(json) do
-          {:ok, obj} -> obj
-          _ -> false
-        end 
-    end 
+      error -> 
+        Logger.error "Hackney error: #{error}"
+        error
+    end
+  end
+
+  def remote_actor(uri, force \\ false) do
+    actor = APResolver.find_actor(uri)
+    if force or is_nil(actor) do
+      case fetch_actor(uri) do
+        {:error, _} -> nil
+        json -> APResolver.add_actor uri, json
+      end
+    else
+        # Poison.decode! actor
+      Logger.info "Cached in mongo"
+      actor
+    end
   end
 
   def accept(obj) do
@@ -78,6 +90,10 @@ defmodule Martenblog.Activitypub do
       object: obj
     }
     accept_object
+  end
+
+  def reject(obj) do
+    Map.merge(accept(obj), %{ type: "Reject" })
   end
 
   def webfinger do
@@ -112,14 +128,50 @@ defmodule Martenblog.Activitypub do
     end 
   end
 
-  def incoming(%{ type: "Follow", object: "https://#{@domain}/ap/actor" } = activity) do
-    Logger.info activity
-    
-    { :success,  accept(activity) }
+  def unfollow(activity) do
+    Logger.info("Undo Follow")
+    uri = Map.get(activity, "actor")
+    Logger.info "uri: #{uri}"
+    if is_nil(uri) do
+      Logger.error "Activity doesn't have \"actor\""
+    else
+      actor = APResolver.remove_actor(uri)
+      if is_nil(actor) do
+        Logger.error("Actor not found")
+      else
+        sign_and_send(accept(activity), Map.get(actor, "inbox"))
+      end 
+    end 
   end
+
+  def incoming(%{ "type" => "Follow", "object" => "https://#{@domain}/ap/actor" } = activity) do
+    Logger.info "Follow"
+    uri = Map.get(activity, "actor")
+    Logger.info "uri: #{uri}"
+    if is_nil(uri) do
+      Logger.error "Activity doesn't have \"actor\""
+    else
+      actor = remote_actor(uri)
+      if is_nil(actor) do
+        Logger.error("Actor not found")
+      else
+        sign_and_send(accept(activity), Map.get(actor, "inbox"))
+      end 
+    end 
+  end
+
+  def incoming(%{ "type" => "Undo" } = activity) do
+    object = Map.get(activity, "object")
+    case Map.get(object, "type") do
+      "Follow" -> unfollow(activity)
+      t ->
+        Logger.error "Unknown type of \"Undo\": #{t}"
+    end
+  end
+
   def incoming(activity) do
-    Logger.info "problems: #{activity}"
-    { :error, "Problems: #{activity.type}" }
+    Logger.info "problems: unknown activity"
+    { :error, "Problems: #{Map.get(activity, "type")}" }
   end
 end
 
