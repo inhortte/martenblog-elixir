@@ -26,7 +26,7 @@ defmodule Martenblog.APResolver do
   def follow(uri) do
     actor = find_actor(uri)
     if !is_nil(actor) do
-      Mongo.update_one(:mongo, "actor", %{ uri: uri }, %{ follower: true })
+      Mongo.update_one(:mongo, "actor", %{ uri: uri }, %{ "$set": %{ follower: true }})
       %{ actor | follower: true }
     else
       nil
@@ -36,10 +36,14 @@ defmodule Martenblog.APResolver do
   def unfollow(uri) do
     actor = find_actor(uri)
     if !is_nil(actor) do
-      Mongo.update_one(:mongo, "actor", %{ uri: uri }, %{ follower: false })
+      Mongo.update_one(:mongo, "actor", %{ uri: uri }, %{ "$set": %{ follower: false }})
       %{ actor | follower: false }
     else
       nil
     end
+  end
+
+  def followers do
+    Mongo.find(:mongo, "actor", %{ follower: true }) |> Enum.map(fn actor -> Map.get(actor, "json") |> Map.get("id") end)
   end
 end

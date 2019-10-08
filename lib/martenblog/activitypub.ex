@@ -179,7 +179,17 @@ defmodule Martenblog.Activitypub do
   end
 
   def followers do
-    
+    ids = APResolver.followers
+    res = %{
+      "@context": [
+        "https://www.w3.org/ns/activitystreams"
+      ],
+      "type": "OrderedCollection",
+      "id": "https://#{@domain}/ap/actor/followers",
+      "totalItems": Enum.count(ids),
+      "items": ids
+    }
+    Poison.encode! res
   end
 end
 
