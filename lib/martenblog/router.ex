@@ -114,6 +114,11 @@ defmodule Martenblog.Router do
     #end).()
   end
 
+  get "/ap/actor/followers" do
+    conn |> put_resp_content_type("application/json") |>
+      send_resp(200, Activitypub.followers)
+  end
+
   get "/" do
     send_file(conn, 200, "./web/public/index.html")
   end

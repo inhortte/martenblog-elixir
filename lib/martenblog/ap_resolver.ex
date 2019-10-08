@@ -10,8 +10,8 @@ defmodule Martenblog.APResolver do
     end
   end
 
-  def add_actor(uri, json) do
-    Mongo.insert_one(:mongo, "actor", %{ uri: uri, json: json })
+  def add_actor(uri, json, make_follower \\ false) do
+    Mongo.insert_one(:mongo, "actor", %{ uri: uri, json: json, follower: make_follower })
     json
   end
 
@@ -21,5 +21,25 @@ defmodule Martenblog.APResolver do
       Mongo.delete_one(:mongo, "actor", %{ uri: uri })
     end
     actor
+  end
+
+  def follow(uri) do
+    actor = find_actor(uri)
+    if !is_nil(actor) do
+      Mongo.update_one(:mongo, "actor", %{ uri: uri }, %{ follower: true })
+      %{ actor | follower: true }
+    else
+      nil
+    end
+  end
+
+  def unfollow(uri) do
+    actor = find_actor(uri)
+    if !is_nil(actor) do
+      Mongo.update_one(:mongo, "actor", %{ uri: uri }, %{ follower: false })
+      %{ actor | follower: false }
+    else
+      nil
+    end
   end
 end

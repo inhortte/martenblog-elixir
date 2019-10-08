@@ -67,17 +67,21 @@ defmodule Martenblog.Activitypub do
     end
   end
 
-  def remote_actor(uri, force \\ false) do
+  def remote_actor(uri, make_follower \\ false, force \\ false) do
     actor = APResolver.find_actor(uri)
     if force or is_nil(actor) do
       case fetch_actor(uri) do
         {:error, _} -> nil
-        json -> APResolver.add_actor uri, json
+        json -> APResolver.add_actor uri, json, make_follower
       end
     else
         # Poison.decode! actor
       Logger.info "Cached in mongo"
-      actor
+      if make_follower do
+        APResolver.follow(uri);
+      else
+        actor
+      end
     end
   end
 
@@ -135,7 +139,7 @@ defmodule Martenblog.Activitypub do
     if is_nil(uri) do
       Logger.error "Activity doesn't have \"actor\""
     else
-      actor = APResolver.remove_actor(uri)
+      actor = APResolver.unfollow(uri)
       if is_nil(actor) do
         Logger.error("Actor not found")
       else
@@ -151,7 +155,7 @@ defmodule Martenblog.Activitypub do
     if is_nil(uri) do
       Logger.error "Activity doesn't have \"actor\""
     else
-      actor = remote_actor(uri)
+      actor = remote_actor(uri, true, true)
       if is_nil(actor) do
         Logger.error("Actor not found")
       else
@@ -172,6 +176,10 @@ defmodule Martenblog.Activitypub do
   def incoming(activity) do
     Logger.info "problems: unknown activity"
     { :error, "Problems: #{Map.get(activity, "type")}" }
+  end
+
+  def followers do
+    
   end
 end
 
