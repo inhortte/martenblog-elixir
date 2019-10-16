@@ -1,8 +1,33 @@
 defmodule Martenblog.Activitypub do
   require Logger
   alias Martenblog.APResolver
+  alias Martenblog.Entry
   use Application
   @domain Application.get_env(:martenblog, :domain)
+
+  def article(id) do
+    article = %{
+      "@context": [
+        "https://www.w3.org/ns/activitystreams",
+      ],
+      type: "Article",
+      id: "https://#{@domain}#{Entry.permalink(id)}",
+      published: Entry.published(id),
+      inReplyTo: nil,
+      conversation: "https://#{@domain}/ap/conversation/#{UUID.uuid4}",
+      url: "https://#{@domain}#{Entry.date_link(id)}",
+      attributedTo: "https://#{@domain}/ap/actor",
+      to: [
+        "https://www.w3.org/ns/activitystreams#Public"
+      ],
+      cc: [
+        "https://#{@domain}/ap/actor/followers"
+      ],
+      name: Entry.subject(id),
+      content: Entry.entry(id)
+    }
+    article
+  end
 
   def create_activity(object) do
     uuid = UUID.uuid4

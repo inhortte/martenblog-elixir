@@ -275,4 +275,45 @@ defmodule Martenblog.Entry do
       end
     end)
   end
+
+  def published(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil mentry do
+      nil
+    else  
+      DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000)) |> DateTime.to_string 
+    end
+  end
+
+  def date_link(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil(mentry) do
+      nil
+    else
+      d = DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000))
+      "/entry/by-date/#{d.year}/#{d.month}/#{d.day}"
+    end
+  end
+
+  def permalink(id) do
+    "/entry/by-id/#{id}"
+  end
+
+  def entry(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil mentry do
+      nil
+    else
+      Map.get(mentry, "entry")
+    end
+  end
+
+  def subject(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil mentry do
+      nil
+    else
+      Map.get(mentry, "subject")
+    end
+  end
 end
