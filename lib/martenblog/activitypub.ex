@@ -135,7 +135,7 @@ defmodule Martenblog.Activitypub do
     inbox_fragment = String.replace(inbox, "https://#{target_domain}", "")
     date_str = DateTime.to_string(DateTime.utc_now)
     Logger.info "Reading private key..."
-    {:ok, priv_key} = File.read("./etc/private.pem")
+    {:ok, priv_key} = File.read("/home/polaris/keys/martenblog.pem")
     Logger.info "priv_key: #{priv_key}"
     string_to_sign = "(request-target): post #{inbox_fragment}\nhost: #{target_domain}\ndate: #{date_str}"
     [ rsa_entry | _ ] = :public_key.pem_decode(priv_key)
@@ -209,10 +209,10 @@ defmodule Martenblog.Activitypub do
       "@context": [
         "https://www.w3.org/ns/activitystreams"
       ],
-      "type": "OrderedCollection",
-      "id": "https://#{@domain}/ap/actor/followers",
-      "totalItems": Enum.count(ids),
-      "items": ids
+      type: "OrderedCollection",
+      id: "https://#{@domain}/ap/actor/followers",
+      totalItems: Enum.count(ids),
+      items: ids
     }
     Poison.encode! res
   end
