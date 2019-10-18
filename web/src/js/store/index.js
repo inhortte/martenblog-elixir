@@ -8,6 +8,10 @@ import { server } from "../config";
 
 Vue.use(Vuex);
 
+console.log(
+  `let's look at slezina-token: ${localStorage.getItem("slezina-token")}`
+);
+
 export default new Vuex.Store({
   state: {
     poems: [],
@@ -18,7 +22,7 @@ export default new Vuex.Store({
     next: null,
     expanded: {},
     pCount: 1,
-    token: localStorage.getItem("slezina-token") || "",
+    token: localStorage.getItem("slezina-token") || null,
     authStatus: ""
   },
   getters: {
@@ -62,46 +66,58 @@ export default new Vuex.Store({
       state.next = next;
     },
     authRequest: state => {
-      state.authStatus = "loading";
+      state.authStatus = "the thurk is pulsing";
     },
     authSuccess: (state, token) => {
-      state.authStatus = "success";
+      state.authStatus = "the thurk has succeeded";
       state.token = token;
     },
     authError: state => {
-      state.authStatus = "error";
+      state.authStatus = "the thurk has plummeted to the depths";
     },
     authLogout: state => {
       state.authStatus = "";
+      state.token = null;
     }
   },
   actions: {
-    authRequestThunk: ({ commit, dispatch }, user) => {
+    authRequestThunk: ({ commit, dispatch }, heslo) => {
       return new Promise((resolve, reject) => {
         // The Promise used for router redirect in login
         commit("authRequest");
+        let body = { heslo };
+        console.log(`authRequestThunk -> body -> ${JSON.stringify(body)}`);
         fetch(`${server()}/login`, {
-          method: 'post",
+          method: "post",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(user)
-        }).then(resp => {
-          const token = resp.data.token;
-          localStorage.setItem("slezina-token", token); // store the token in localstorage
-          commit("authSuccess", token);
-          // you have your token, now log in your user :)
-          // dispatch("userRequest");
-          resolve(resp);
-        }).catch(err => {
-          commit("authError", err);
-          localStorage.removeItem("slezina-token"); // if the request fails, remove any possible user token if possible
-          reject(err);
-        });
+          body: JSON.stringify(body)
+        })
+          .then(resp => resp.json())
+          .then(json => {
+            console.log(`what are we receiving? ${JSON.stringify(json)}`);
+            if (json.error) {
+              commit("authError");
+              localStorage.removeItem("slezina-token");
+            } else {
+              const token = json.token;
+              localStorage.setItem("slezina-token", token); // store the token in localstorage
+              commit("authSuccess", token);
+              // you have your token, now log in your user :)
+              // dispatch("userRequest");
+            }
+            resolve(json);
+          })
+          .catch(err => {
+            commit("authError", err);
+            localStorage.removeItem("slezina-token"); // if the request fails, remove any possible user token if possible
+            reject(err);
+          });
       });
     },
-    authLogoutThunk: ({ commit, dispatch }) => {
+    authLogoutThunk: ({ commit, dispatch, state }) => {
       return new Promise((resolve, reject) => {
         fetch(`${server()}/logout`, {
           method: "post",
@@ -110,14 +126,16 @@ export default new Vuex.Store({
             "Content-Type": "application/json"
           },
           body: JSON.stringify({ token: state.token })
-        }).then(resp => {
-          commit('authLogout'); 
-          localStorage.removeItem("slezina-token"); // clear your user's token from localstorage
-          resolve();
-        }).catch(err => {
-          console.log(`logout error: ${err}`);
-          reject();
-        });
+        })
+          .then(resp => {
+            commit("authLogout");
+            localStorage.removeItem("slezina-token"); // clear your user's token from localstorage
+            resolve();
+          })
+          .catch(err => {
+            console.log(`logout error: ${err}`);
+            reject();
+          });
       });
     },
     setPoemsThunk: ({ commit }) => {

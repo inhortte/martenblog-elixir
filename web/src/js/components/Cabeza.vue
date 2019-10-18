@@ -7,8 +7,11 @@
   <hr class="my-4" />
   <p>
     <router-link to="/blog/1">blog</router-link> | <router-link to="/music">music</router-link> | <router-link to="/poems">poems</router-link> |
-    <router-link v-if="loggedIn" to="/login">log in</router-link>
-    <b-link v-if="loggedOut" @click="logout">log out</b-link>
+    <router-link v-show="loggedOut" to="/login">log in</router-link>
+    <b-link v-show="loggedIn" @click="logout">log out</b-link>
+  </p>
+  <p class="sd text-muted" text-muted v-show="authStatusRelevant">
+    {{ authStatus }}
   </p>
 </b-jumbotron>
 </template>
@@ -19,14 +22,23 @@ export default {
   name: 'cabeza',
   computed: {
     loggedIn() {
-      this.$store.getters['isAuthenticated'];
+      let thurk = this.$store.getters['isAuthenticated'];
+      console.log(`loggedIn -> ${thurk}`);
+      return thurk;
     },
     loggedOut() {
-      !this.$store.getters['isAuthenticated'];
+      return !this.$store.getters['isAuthenticated'];
+    },
+    authStatusRelevant() {
+      return this.$store.getters['authStatus'] !== '';
+    },
+    authStatus() {
+      let status = this.$store.getters['authStatus'];
+      return status;
     }
   },
   methods: {
-    logout: () => {
+    logout() {
       this.$store.dispatch('authLogoutThunk');
     }
   }
