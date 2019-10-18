@@ -5,7 +5,7 @@ defmodule Martenblog.Activitypub do
   use Application
   @domain Application.get_env(:martenblog, :domain)
 
-  def article(id) do
+  def article(id, _inbox) do
     article = %{
       "@context": [
         "https://www.w3.org/ns/activitystreams",
@@ -180,7 +180,7 @@ defmodule Martenblog.Activitypub do
     if is_nil(uri) do
       Logger.error "Activity doesn't have \"actor\""
     else
-      actor = remote_actor(uri, true, true)
+      actor = remote_actor(uri, true)
       if is_nil(actor) do
         Logger.error("Actor not found")
       else
@@ -215,6 +215,20 @@ defmodule Martenblog.Activitypub do
       items: ids
     }
     Poison.encode! res
+  end
+
+  def federate(entry_id, federated_to) do
+    para_federar = MapSet.difference(MapSet.new(APResolver.followers), MapSet.new(federated_to)) |> MapSet.to_list
+    res = if Enum.count(para_federar) > 0 do
+      IO.puts "Federating"
+      IO.puts "Entry #{entry_id} - #{Entry.subject(entry_id)}"
+      IO.puts Poison.encode!(para_federar)
+      para_federar |> APResolver.inboxes |> Enum.each(fn inbox ->
+        article(entry_id, inbox) |> sign_and_send(inbox)
+      end)
+    else
+      IO.puts "No one to federate to"
+    end
   end
 end
 

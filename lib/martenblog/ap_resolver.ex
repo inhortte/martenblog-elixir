@@ -46,4 +46,15 @@ defmodule Martenblog.APResolver do
   def followers do
     Mongo.find(:mongo, "actor", %{ follower: true }) |> Enum.map(fn actor -> Map.get(actor, "json") |> Map.get("id") end)
   end
+
+  def inboxes(uris) do
+    uris |> Enum.map(fn uri -> 
+      actor = Mongo.find_one(:mongo, "actor", %{ uri: uri })
+      if is_nil(actor) do
+        nil
+      else
+        actor |> Map.get("json") |> Map.get("inbox")
+      end
+    end) |> Enum.reject(&is_nil/1)
+  end
 end

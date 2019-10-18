@@ -6,6 +6,7 @@ defmodule Martenblog.Router do
   alias Martenblog.BlogResolver
   alias Martenblog.PoemResolver
   alias Martenblog.Activitypub
+  alias Martenblog.AuthResolver
   require Logger
 
   plug Plug.Logger
@@ -64,6 +65,19 @@ defmodule Martenblog.Router do
     end
   end
 
+  post "/federate" do
+    token = Map.get(conn.params, "token")
+    entry_id = Map.get(conn.params, "id")
+    federated_to = Map.get(conn.params, "federatedTo")
+    res = if AuthResolver.verify_token(token) do
+      los_federado = Activitypub.federate(entry_id, federated_to)
+      %{ federatedTo: los_federado }
+    else
+      %{ error: "unauthorized" }
+    end
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode! res)
+  end
+
   get "/topics" do
     conn |> put_resp_content_type("application/json") |> send_resp(200, %{:topics => Topic.all} |> Utils.to_json)
   end
@@ -117,6 +131,25 @@ defmodule Martenblog.Router do
   get "/ap/actor/followers" do
     conn |> put_resp_content_type("application/json") |>
       send_resp(200, Activitypub.followers)
+  end
+
+  # Authentication
+  post "/login" do
+    IO.inspect conn.body_params
+    res = if AuthResolver.verify_password(Map.get(conn.body_params, "heslo")) do
+      token = AuthResolver.new_token
+      %{ token: token }
+    else
+      %{ error: "invalid thurk" }
+    end
+    conn |> put_resp_content_type("application/json") |>
+      send_resp(200, Poison.encode! res)
+  end
+
+  post "/logout" do
+    IO.inspect conn.body_params
+    AuthResolver.expire_token(Map.get(conn.body_params, "token"))
+    conn |> send_resp(200, Poison.encode! %{ success: true })
   end
 
   get "/" do

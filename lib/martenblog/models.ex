@@ -81,7 +81,7 @@ defmodule Martenblog.Entry do
 
   @header_res [id: @id_re, subject: @subject_re, created_at: @date_re]
 
-  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1
+  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1, federated_to: []
   @oddities %{:id => "_id"}
 
   def get_entry_by_id(id) do
@@ -274,6 +274,15 @@ defmodule Martenblog.Entry do
 
       end
     end)
+  end
+
+  def set_federated_to(entry_id, federated_to) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => entry_id})
+    if is_nil mentry do
+      nil
+    else
+      Mongo.update_one(:mongo, "entry", %{"_id" => entry_id}, %{ federated_to: federated_to })
+    end
   end
 
   def published(id) do
