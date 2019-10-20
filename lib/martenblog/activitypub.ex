@@ -5,6 +5,36 @@ defmodule Martenblog.Activitypub do
   use Application
   @domain Application.get_env(:martenblog, :domain)
 
+
+  def nodeinfo(ver) do
+    json = %{
+      version: ver,
+      protocols: ["activitypub"],
+      services: %{
+        inbound: [],
+        outbound: []
+      },
+      openRegistrations: false,
+      usage: %{
+        users: %{
+          total: 1,
+          activeHalfyear: 1,
+          activeMonth: 1
+        },
+        localPosts: Entry.entry_count
+      }
+    }
+    software = Map.merge(%{
+      name: "Martenblog",
+      version: "1.0.0"
+    }, if String.equivalent?(ver, "2.1") do
+      %{ repository: "https://github.com/inhortte/martenblog-elixir.git" }
+    else
+      %{}
+    end)
+    Map.merge(json, %{ software: software })
+  end
+
   def article(id, _inbox) do
     article = %{
       "@context": [

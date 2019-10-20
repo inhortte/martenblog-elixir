@@ -325,4 +325,11 @@ defmodule Martenblog.Entry do
       Map.get(mentry, "subject")
     end
   end
+
+  def entry_count do
+    case Mongo.count(:mongo, "entry", %{}) do
+      {:ok, count} -> count
+      _ -> 0
+    end
+  end
 end

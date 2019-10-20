@@ -109,6 +109,28 @@ defmodule Martenblog.Router do
       send_resp(200, Activitypub.webfinger)
   end
 
+  get "/.well-known/nodeinfo" do
+    json = %{
+      links: [
+        %{
+          href: "https://#{@domain}/nodeinfo/2.0.json",
+          rel: "https://nodeinfo.diaspora.software/ns/schema/2.0"
+        },
+        %{
+          href: "https://#{@domain}/nodeinfo/2.1.json",
+          rel: "https://nodeinfo.diaspora.software/ns/schema/2.1"
+        }
+      ]
+    }
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode! json)
+  end
+  get "/.well-known/nodeinfo/2.0.json" do
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode!(Activitypub.nodeinfo("2.0")))
+  end
+  get "/.well-known/nodeinfo/2.1.json" do
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode!(Activitypub.nodeinfo("2.1")))
+  end
+
   get "/ap/actor" do
     conn |> put_resp_content_type("application/json") |>
       send_resp(200, Activitypub.local_actor)
