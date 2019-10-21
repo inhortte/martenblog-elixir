@@ -137,7 +137,10 @@ defmodule Martenblog.Router do
   end
 
   post "/ap/inbox" do
-    Logger.info "Co?"
+    # String.split(leper, ",") |> Enum.map(fn s -> String.split(s, "=", parts: 2) end) |> Enum.map(fn l -> {String.to_atom(List.first(l)), String.replace(List.last(l), ~r/\A"/, "") |> String.replace(~r/"\z/, "")} end)
+    IO.puts "INCOMING HEADERS"
+    IO.inspect conn.req_headers
+    IO.puts "INCOMING BODY PARAMS"
     IO.inspect conn.body_params
     conn.body_params |> Activitypub.incoming
     send_resp(conn, 200, "")

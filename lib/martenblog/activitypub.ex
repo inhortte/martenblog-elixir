@@ -91,12 +91,12 @@ defmodule Martenblog.Activitypub do
               mediaType: "image/png",
               url: "https://#{@domain}/images/gretel-125x125.jpg"
             },
-      inbox: "https://#{@domain}/ap/inbox",
+      inbox: "https://#{@domain}/ap/actor/inbox",
       followers: "https://#{@domain}/ap/actor/followers",
       publicKey: %{
               id: "https://#{@domain}/ap/actor#main-key",
               owner: "https://#{@domain}/ap/actor",
-              publicKeyPem: pub_key
+              publicKeyPem: "#{pub_key}\n"
             }
     }
     {:ok, actor_json} = Poison.encode actor
@@ -172,14 +172,19 @@ defmodule Martenblog.Activitypub do
     decoded_key = :public_key.pem_entry_decode(rsa_entry)
     sign_me = :public_key.sign(string_to_sign, :sha256, decoded_key)
     signature = :base64.encode(sign_me)
-    sig_header = "keyId=\"https://#{@domain}/ap/actor#main-key\",headers=\"(request-target) host date\",signature=\"#{signature}\""
+    sig_header = "keyId=\"https://#{@domain}/ap/actor#main-key\",headers=\"(request-target) host date digest content-type\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
     case Poison.encode activity do
       {:ok, json_activity} -> 
         Logger.info "activity: #{json_activity}"
         Logger.info "string_to_sign: #{string_to_sign}"
         Logger.info "signature header: #{sig_header}"
-        case :hackney.post(inbox, [ Host: target_domain, Date: date_str, Signature: sig_header, Accept: "application/activity+json, application/json" ],
-          json_activity) do
+        case :hackney.post(inbox, [
+            Host: target_domain, 
+            Date: date_str, 
+            Signature: sig_header, 
+            "Content-Type": "application/ld+json; profile=\"https://www.w3.org/ns/activitystreams\"",
+            Accept: "application/activity+json, application/json" 
+          ], json_activity) do
           {:ok, res} -> res
           error -> error
         end
