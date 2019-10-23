@@ -172,7 +172,7 @@ defmodule Martenblog.Activitypub do
     decoded_key = :public_key.pem_entry_decode(rsa_entry)
     sign_me = :public_key.sign(string_to_sign, :sha256, decoded_key)
     signature = :base64.encode(sign_me)
-    sig_header = "keyId=\"https://#{@domain}/ap/actor#main-key\",headers=\"(request-target) host date digest content-type\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
+    sig_header = "keyId=\"https://#{@domain}/ap/actor#main-key\",headers=\"(request-target) host date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
     case Poison.encode activity do
       {:ok, json_activity} -> 
         Logger.info "activity: #{json_activity}"

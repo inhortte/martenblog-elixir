@@ -132,7 +132,7 @@ defmodule Martenblog.Router do
   end
 
   get "/ap/actor" do
-    conn |> put_resp_content_type("application/json") |>
+    conn |> put_resp_content_type("application/activity+json") |>
       send_resp(200, Activitypub.local_actor)
   end
 
@@ -154,7 +154,7 @@ defmodule Martenblog.Router do
   end
 
   get "/ap/actor/followers" do
-    conn |> put_resp_content_type("application/json") |>
+    conn |> put_resp_content_type("application/activity+json") |>
       send_resp(200, Activitypub.followers)
   end
 
