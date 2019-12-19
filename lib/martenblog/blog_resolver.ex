@@ -122,4 +122,9 @@ defmodule Martenblog.BlogResolver do
     end
     [prevDate, nextDate]
   end
+
+  def yearMonthDay(entry) do
+    d = DateTime.from_unix!(Kernel.trunc(Map.get(entry, "created_at") / 1000))
+    %{ year: d.year, month: d.month, day: d.day }
+  end 
 end
