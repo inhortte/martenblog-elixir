@@ -5,7 +5,8 @@ defmodule Martenblog.Router do
   alias Martenblog.Topic
   alias Martenblog.BlogResolver
   alias Martenblog.PoemResolver
-  alias Martenblog.Actor
+  alias Martenblog.Activitypub
+  alias Martenblog.AuthResolver
   require Logger
 
   plug Plug.Logger
@@ -64,6 +65,19 @@ defmodule Martenblog.Router do
     end
   end
 
+  post "/federate" do
+    token = Map.get(conn.params, "token")
+    entry_id = Map.get(conn.params, "id")
+    federated_to = Map.get(conn.params, "federatedTo")
+    res = if AuthResolver.verify_token(token) do
+      los_federado = Activitypub.federate(entry_id, federated_to)
+      %{ federatedTo: los_federado }
+    else
+      %{ error: "unauthorized" }
+    end
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode! res)
+  end
+
   get "/topics" do
     conn |> put_resp_content_type("application/json") |> send_resp(200, %{:topics => Topic.all} |> Utils.to_json)
   end
@@ -97,7 +111,75 @@ defmodule Martenblog.Router do
   # Activitypub leper
   get "/.well-known/webfinger" do
     conn |> put_resp_content_type("application/json") |>
-      send_resp(200, Actor.webfinger |> Utils.to_json)
+      send_resp(200, Activitypub.webfinger)
+  end
+
+  get "/.well-known/nodeinfo" do
+    json = %{
+      links: [
+        %{
+          href: "https://#{@domain}/nodeinfo/2.0.json",
+          rel: "https://nodeinfo.diaspora.software/ns/schema/2.0"
+        },
+        %{
+          href: "https://#{@domain}/nodeinfo/2.1.json",
+          rel: "https://nodeinfo.diaspora.software/ns/schema/2.1"
+        }
+      ]
+    }
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode! json)
+  end
+  get "/.well-known/nodeinfo/2.0.json" do
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode!(Activitypub.nodeinfo("2.0")))
+  end
+  get "/.well-known/nodeinfo/2.1.json" do
+    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode!(Activitypub.nodeinfo("2.1")))
+  end
+
+  get "/ap/actor" do
+    conn |> put_resp_content_type("application/activity+json") |>
+      send_resp(200, Activitypub.local_actor)
+  end
+
+  post "/ap/inbox" do
+    # String.split(leper, ",") |> Enum.map(fn s -> String.split(s, "=", parts: 2) end) |> Enum.map(fn l -> {String.to_atom(List.first(l)), String.replace(List.last(l), ~r/\A"/, "") |> String.replace(~r/"\z/, "")} end)
+    IO.puts "INCOMING HEADERS"
+    IO.inspect conn.req_headers
+    IO.puts "INCOMING BODY PARAMS"
+    IO.inspect conn.body_params
+    conn.body_params |> Activitypub.incoming
+    send_resp(conn, 200, "")
+    # halt(conn)
+    # conn.body_params |> Activitypub.incoming |> (fn({status, message}) ->
+    # case status do
+    #   :success -> send_resp(conn, 200, message)
+    #    _ -> send_resp(conn, 500, message)
+    #  end
+    #end).()
+  end
+
+  get "/ap/actor/followers" do
+    conn |> put_resp_content_type("application/activity+json") |>
+      send_resp(200, Activitypub.followers)
+  end
+
+  # Authentication
+  post "/login" do
+    IO.inspect conn.body_params
+    res = if AuthResolver.verify_password(Map.get(conn.body_params, "heslo")) do
+      token = AuthResolver.new_token
+      %{ token: token }
+    else
+      %{ error: "invalid thurk" }
+    end
+    conn |> put_resp_content_type("application/json") |>
+      send_resp(200, Poison.encode! res)
+  end
+
+  post "/logout" do
+    IO.inspect conn.body_params
+    AuthResolver.expire_token(Map.get(conn.body_params, "token"))
+    conn |> send_resp(200, Poison.encode! %{ success: true })
   end
 
   get "/" do

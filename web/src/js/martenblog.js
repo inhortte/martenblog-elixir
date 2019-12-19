@@ -9,6 +9,7 @@ import Blog from "./components/Blog.vue";
 import BlogByDate from "./components/BlogByDate.vue";
 import Poems from "./components/Poems.vue";
 import Music from "./components/Music.vue";
+import Login from "./components/Login.vue";
 
 const router = new VueRouter({
   routes: [
@@ -29,6 +30,14 @@ const router = new VueRouter({
               "Flavigula is a respository for music, poetry and writing.  Flavigula has released albums such as Bons Mots, Music Inspired by Dobbs' Cowboys, Polymorfóza, Unkle Barkestle and A Cube Beneath the Sand.  The poetry is influenced by the imagist and modernist movements."
           }
         ]
+      }
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
+      meta: {
+        title: "Polož slezinu na podložku"
       }
     },
     {

@@ -1,0 +1,85 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1",
+    {
+      "IdentityProof": "toot:IdentityProof",
+      "PropertyValue": "schema:PropertyValue",
+      "alsoKnownAs": {
+        "@id": "as:alsoKnownAs",
+        "@type": "@id"
+      },
+      "discoverable": "toot:discoverable",
+      "featured": {
+        "@id": "toot:featured",
+        "@type": "@id"
+      },
+      "focalPoint": {
+        "@container": "@list",
+        "@id": "toot:focalPoint"
+      },
+      "manuallyApprovesFollowers": "as:manuallyApprovesFollowers",
+      "movedTo": {
+        "@id": "as:movedTo",
+        "@type": "@id"
+      },
+      "schema": "http://schema.org#",
+      "toot": "http://joinmastodon.org/ns#",
+      "value": "schema:value"
+    }
+  ],
+  "attachment": [
+    {
+      "name": "web",
+      "type": "PropertyValue",
+      "value": "<a href=\"https://flavigula.net\" rel=\"me nofollow noopener\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"\">flavigula.net</span><span class=\"invisible\"></span></a>"
+    },
+    {
+      "name": "bandcamp",
+      "type": "PropertyValue",
+      "value": "<a href=\"https://flavigula.bandcamp.com\" rel=\"me nofollow noopener\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"\">flavigula.bandcamp.com</span><span class=\"invisible\"></span></a>"
+    },
+    {
+      "name": "peertracks",
+      "type": "PropertyValue",
+      "value": "<a href=\"https://peertracks.com/profile/flavigula\" rel=\"me nofollow noopener\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">peertracks.com/profile/flavigu</span><span class=\"invisible\">la</span></a>"
+    },
+    {
+      "name": "choon",
+      "type": "PropertyValue",
+      "value": "<a href=\"https://choon.co/artists/flavigula/\" rel=\"me nofollow noopener\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"\">choon.co/artists/flavigula/</span><span class=\"invisible\"></span></a>"
+    }
+  ],
+  "discoverable": true,
+  "endpoints": {
+    "sharedInbox": "https://sonomu.club/inbox"
+  },
+  "featured": "https://sonomu.club/users/flavigula/collections/featured",
+  "followers": "https://sonomu.club/users/flavigula/followers",
+  "following": "https://sonomu.club/users/flavigula/following",
+  "icon": {
+    "mediaType": "image/jpeg",
+    "type": "Image",
+    "url": "https://cf.mastohost.com/v1/AUTH_91eb37814936490c95da7b85993cc2ff/sonomuclub/accounts/avatars/000/002/288/original/8710IMG_20190423_185240.jpg"
+  },
+  "id": "https://sonomu.club/users/flavigula",
+  "image": {
+    "mediaType": "image/jpeg",
+    "type": "Image",
+    "url": "https://cf.mastohost.com/v1/AUTH_91eb37814936490c95da7b85993cc2ff/sonomuclub/accounts/headers/000/002/288/original/5224IMG_20190311_172244_789.jpg"
+  },
+  "inbox": "https://sonomu.club/users/flavigula/inbox",
+  "manuallyApprovesFollowers": false,
+  "name": "Flavigula",
+  "outbox": "https://sonomu.club/users/flavigula/outbox",
+  "preferredUsername": "flavigula",
+  "publicKey": {
+    "id": "https://sonomu.club/users/flavigula#main-key",
+    "owner": "https://sonomu.club/users/flavigula",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxwck8fpQKNfbvZAcV0uR\n4QpNOsvZKpB/TuNccRQrP+0XXzgbfmITGgv/yPwwCl0PKPNGlrINJFJo4do0ZYvA\nwg7vuHbaE7jBwRigx7tkMFs0SCPX4A0gyefWxykYzaZCIav+/WVAZgB/uclhND7K\nj6/d3ZUiNm0oB2ZheQunJM0OIX+rQagir7PE723BaNqUASagUSq7AN3X8fV2i3Ng\nIyY7TI2SWeHmvND8Fq9FxgnvqkxSzosbN3acK8Yw3sGZMafHMsZmnLbPgC5AtgLE\nnH5QHTbFJQjqxeUBwABRR7OzxyvdYm0pKr+8TKA+CG9d3Wb9ZkoKnuUSHPpZQOo1\nDwIDAQAB\n-----END PUBLIC KEY-----\n"
+  },
+  "summary": "<p>A mustelid and sound sculptor.</p>",
+  "tag": [],
+  "type": "Person",
+  "url": "https://sonomu.club/@flavigula"
+}

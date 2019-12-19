@@ -10,6 +10,7 @@ defmodule Martenblog.Application do
 		      Application.get_env(:martenblog, :db)[:name], name: :mongo]])
     ]
 
+    Application.ensure_all_started(:hackney)
     opts = [strategy: :one_for_one, name: MyApp.Supervisor]
     Supervisor.start_link(children, opts)
     # Martenblog.Router.start_link

@@ -1,0 +1,13 @@
+{
+  "type": "Accept",
+  "object": {
+    "type": "Follow",
+    "object": "https://vrasek.thurk.org/ap/actor",
+    "id": "https://sonomu.club/94904728-1d32-4a51-b422-0373323ec61c",
+    "actor": "https://sonomu.club/users/flavigula",
+    "@context": "https://www.w3.org/ns/activitystreams"
+  },
+  "id": "https://vrasek.thurk.org/ap/48394fc9-114a-4849-86e4-3b78226915d9",
+  "actor": "https://vrasek.thurk.org/ap/actor",
+  "@context": "https://www.w3.org/ns/activitystreams"
+}

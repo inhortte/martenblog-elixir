@@ -81,7 +81,7 @@ defmodule Martenblog.Entry do
 
   @header_res [id: @id_re, subject: @subject_re, created_at: @date_re]
 
-  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1
+  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1, federated_to: []
   @oddities %{:id => "_id"}
 
   def get_entry_by_id(id) do
@@ -274,6 +274,56 @@ defmodule Martenblog.Entry do
 
       end
     end)
+  end
+
+  def set_federated_to(entry_id, federated_to) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => entry_id})
+    if is_nil mentry do
+      nil
+    else
+      Mongo.update_one(:mongo, "entry", %{"_id" => entry_id}, %{ federated_to: federated_to })
+    end
+  end
+
+  def published(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil mentry do
+      nil
+    else  
+      DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000)) |> DateTime.to_string 
+    end
+  end
+
+  def date_link(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil(mentry) do
+      nil
+    else
+      d = DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000))
+      "/entry/by-date/#{d.year}/#{d.month}/#{d.day}"
+    end
+  end
+
+  def permalink(id) do
+    "/entry/by-id/#{id}"
+  end
+
+  def entry(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil mentry do
+      nil
+    else
+      Map.get(mentry, "entry")
+    end
+  end
+
+  def subject(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if is_nil mentry do
+      nil
+    else
+      Map.get(mentry, "subject")
+    end
   end
 
   def entry_count do

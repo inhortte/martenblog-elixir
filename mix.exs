@@ -31,7 +31,10 @@ defmodule Martenblog.MixProject do
       {:poison, "~> 4.0"},
       {:mint, "~> 0.3.0"},
       {:castore, "~> 0.1.2"},
-      {:xml_builder, "~> 2.1.1"}  
+      {:xml_builder, "~> 2.1.1"},
+      {:uuid, "~> 1.1.8"},
+      {:hackney, "1.15.1"},
+      {:fuzzyurl, "~> 0.9.0"}
     ]
   end
 end

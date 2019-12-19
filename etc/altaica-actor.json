@@ -1,0 +1,31 @@
+%{
+    "@context" => ["https://www.w3.org/ns/activitystreams",
+         "https://altaica.cloud/schemas/litepub-0.1.jsonld"],
+           "endpoints" => %{"sharedInbox" => "https://altaica.cloud/inbox"},
+             "followers" => "https://altaica.cloud/users/flavigula/followers",
+               "following" => "https://altaica.cloud/users/flavigula/following",
+                 "icon" => %{
+                       "type" => "Image",
+                           "url" => "https://altaica.cloud/media/45de6d94-bf7c-4d68-9e87-2af9ffb6b8ab/f32ff8fa33b15973e3accc2c86b20e506d4c5ad4195e62ebe9d36bae134ff29b.png"
+                             },
+                               "id" => "https://altaica.cloud/users/flavigula",
+                                 "image" => %{
+                                       "type" => "Image",
+                                           "url" => "https://altaica.cloud/media/4603b850-c593-47e3-b33a-cd0ef1782695/82976712502f68fe09d38f1f77e9b63b2e4f28cb007f19f3402a23da1f788b9c.png"
+                                             },
+                                               "inbox" => "https://altaica.cloud/users/flavigula/inbox",
+                                                 "manuallyApprovesFollowers" => false,
+                                                   "name" => "Flavigula",
+                                                     "outbox" => "https://altaica.cloud/users/flavigula/outbox",
+                                                       "preferredUsername" => "flavigula",
+                                                         "publicKey" => %{
+                                                               "id" => "https://altaica.cloud/users/flavigula#main-key",
+                                                                   "owner" => "https://altaica.cloud/users/flavigula",
+                                                                       "publicKeyPem" => "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArDQ2Xmsd6BOyNDiqbuAO\n7JCE94hZuDkioEAFNmEdVDI85ItMASC6Xi31ctFktVoEt0ifPz70Jgxm56Jk0gTf\nuQEgXYskJ/coLZoTZ8D7uTeUWdNbsIwZrF1mLIV8GDAyFxgh5As6Sm4re9qmGdhE\nq/6r9l5UIvtodMmERuVG7TwN1+AIf5eLECku9BFdp35v05Lp+FKyyR4Td5UKw9Vr\nzMWPzhlzzdSXzIbC9f8OmU/thS8MyZ0RH023fz8rcXQD2tL97dALvNo4QNI3B9rI\nAzkIFRTMaGYdmK1A8+U/oNxRAmu/glne7xKuqBme3G3o2aGFBmXqvMNQi2SURG8u\nkQIDAQAB\n-----END PUBLIC KEY-----\n\n"
+                                                                         },
+                                                                           "summary" => "Ambient and psychedelic sound structures with <a class='hashtag' data-tag='floss' href='https://altaica.cloud/tag/floss' rel='tag'>#FLOSS</a>, <a class='hashtag' data-tag='linux' href='https://altaica.cloud/tag/linux' rel='tag'>#linux</a>, <a class='hashtag' data-tag='guitar' href='https://altaica.cloud/tag/guitar' rel='tag'>#guitar</a> and <a class='hashtag' data-tag='modularsynth' href='https://altaica.cloud/tag/modularsynth' rel='tag'>#modularsynth</a>. I&#39;m also a mustelid.",
+                                                                             "tag" => [],
+                                                                               "type" => "Person",
+                                                                                 "url" => "https://altaica.cloud/users/flavigula"
+
+

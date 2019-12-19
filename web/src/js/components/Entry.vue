@@ -39,6 +39,9 @@ export default {
   props: ['entry'],
   components: { EntryTopic },
   computed: {
+    canFederate() {
+      return this.$store.getters['isAuthenticated'];
+    },
     expanded() {
       return this.$store.getters['isEntryExpanded'](this.entry._id);
     },
