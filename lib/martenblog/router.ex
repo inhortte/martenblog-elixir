@@ -10,6 +10,7 @@ defmodule Martenblog.Router do
   require Logger
 
   plug Plug.Logger
+  # plug Plug.SSL
   plug CORSPlug, origin: ["*"]
   plug Plug.Static,
     at: "/",
@@ -106,7 +107,7 @@ defmodule Martenblog.Router do
   # Activitypub leper
   get "/.well-known/webfinger" do
     conn |> put_resp_content_type("application/json") |>
-      send_resp(200, Activitypub.webfinger)
+      send_resp(200, Poison.encode! Activitypub.webfinger)
   end
 
   get "/.well-known/nodeinfo" do
@@ -134,6 +135,11 @@ defmodule Martenblog.Router do
   get "/ap/actor" do
     conn |> put_resp_content_type("application/activity+json") |>
       send_resp(200, Activitypub.local_actor)
+  end
+
+  get "/ap/actor/outbox" do
+    conn |> put_resp_content_type("application/activity+json") |>
+      send_resp(200, Poison.encode! Activitypub.outbox)
   end
 
   post "/ap/inbox" do

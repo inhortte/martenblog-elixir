@@ -24,7 +24,7 @@ defmodule Martenblog.MixProject do
   defp deps do
     [
       {:plug_cowboy, "~> 1.0.0"},
-      {:plug, "~> 1.7"},
+      {:plug, "~> 1.8.3"},
       {:mongodb, "~> 0.4.7"},
       {:poolboy, "~> 1.5"},
       {:cors_plug, "~> 2.0"},      

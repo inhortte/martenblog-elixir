@@ -73,6 +73,7 @@ defmodule Martenblog.Entry do
   require Logger
   alias Martenblog.Topic
   alias Martenblog.Utils
+  alias Martenblog.APResolver
 
   @id_re ~r/^_id:\s+(\d+)\s*$/
   @subject_re ~r/^[Ss]ubject:\s+(.+)$/
@@ -120,22 +121,16 @@ defmodule Martenblog.Entry do
 
   def parse_mb_timestamp(mbts) do
     {:ok, dt} = case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, mbts) do
-      [_, year, month, day, hour, minute] ->
-	NaiveDateTime.new(year, month, day, hour, minute, 0) |> 
-	  case do
-	    {:ok, ndt} ->
-	      DateTime.from_naive(ndt, "Etc/UTC")
-	    {:error, _} ->
-	      {:ok, DateTime.utc_now }
-	  end
-      [_, year, month, day] ->
-	NaiveDateTime.new(year, month, day, 0, 0, 0) |> 
-	  case do
-	    {:ok, ndt} ->
-	      DateTime.from_naive(ndt, "Etc/UTC")
-	    {:error, _} ->
-	      {:ok, DateTime.utc_now }
-	  end
+      [_, year, month, day, hour, minute] -> NaiveDateTime.new(year, month, day, hour, minute, 0) |> 
+        case do
+          {:ok, ndt} -> DateTime.from_naive(ndt, "Etc/UTC")
+          {:error, _} -> {:ok, DateTime.utc_now }
+        end
+      [_, year, month, day] -> NaiveDateTime.new(year, month, day, 0, 0, 0) |> 
+	      case do
+	        {:ok, ndt} -> DateTime.from_naive(ndt, "Etc/UTC")
+	        {:error, _} -> {:ok, DateTime.utc_now }
+	      end
       _ -> DateTime.utc_now
     end
     dt |> DateTime.to_unix |> (fn i -> i * 1000 end).()
@@ -276,15 +271,6 @@ defmodule Martenblog.Entry do
     end)
   end
 
-  def set_federated_to(entry_id, federated_to) do
-    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => entry_id})
-    if is_nil mentry do
-      nil
-    else
-      Mongo.update_one(:mongo, "entry", %{"_id" => entry_id}, %{ federated_to: federated_to })
-    end
-  end
-
   def published(id) do
     mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
     if is_nil mentry do
@@ -330,6 +316,37 @@ defmodule Martenblog.Entry do
     case Mongo.count(:mongo, "entry", %{}) do
       {:ok, count} -> count
       _ -> 0
+    end
+  end
+
+  def count_federated_entries do
+    case Mongo.count(:mongo, "entry", %{ federated: true }) do
+      {:ok, count} -> count
+      _ -> 0
+    end
+  end
+
+  def federated_entry_ids, do: Mongo.find(:mongo, "entry", %{federated: true}) |> Enum.to_list |> Enum.map(fn e -> Map.get(e, "_id") end)
+
+  def mark_federated(id, federated_to \\ []) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if !is_nil(mentry) do
+      to_federate = if Enum.empty? federated_to do
+        APResolver.followers
+      else
+        federated_to
+      end |> MapSet.new |> MapSet.union((fn () -> 
+        mentry_federated_to = Map.get(mentry, "federated_to")
+        if is_nil mentry_federated_to do
+          MapSet.new
+        else
+          MapSet.new(mentry_federated_to)
+        end
+      end).()) |> MapSet.to_list 
+      IO.puts "to_federate"
+      IO.inspect to_federate
+      now = DateTime.utc_now |> DateTime.to_unix |> (fn ts -> ts * 1000 end).()
+      Mongo.update_one(:mongo, "entry",  %{"_id" => id}, %{"$set" => %{ "federated" => true, "federated_ts" => now, "federated_to" => to_federate }})
     end
   end
 end

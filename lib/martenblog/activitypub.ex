@@ -35,7 +35,7 @@ defmodule Martenblog.Activitypub do
     Map.merge(json, %{ software: software })
   end
 
-  def article(id, _inbox) do
+  def article(id) do
     article = %{
       "@context": [
         "https://www.w3.org/ns/activitystreams",
@@ -86,17 +86,25 @@ defmodule Martenblog.Activitypub do
       id: "https://#{@domain}/ap/actor",
       preferredUsername: "martenblog",
       name: "Martenblog",
+      attachment: [
+        %{
+          name: "Pronouns",
+          type: "PropertyValue",
+          value: "it"
+        }
+      ],
       icon: %{
               type: "Image",
               mediaType: "image/png",
               url: "https://#{@domain}/images/gretel-125x125.jpg"
             },
       inbox: "https://#{@domain}/ap/actor/inbox",
+      outbox: "https://#{@domain}/ap/actor/outbox",
       followers: "https://#{@domain}/ap/actor/followers",
       publicKey: %{
               id: "https://#{@domain}/ap/actor#main-key",
               owner: "https://#{@domain}/ap/actor",
-              publicKeyPem: "#{pub_key}\n"
+              publicKeyPem: pub_key
             }
     }
     {:ok, actor_json} = Poison.encode actor
@@ -140,6 +148,17 @@ defmodule Martenblog.Activitypub do
     end
   end
 
+  def outbox do
+    federated_articles = Entry.federated_entry_ids |> Enum.map(&Martenblog.Activitypub.article/1) |> Enum.map(&Martenblog.Activitypub.create_activity/1)
+    %{
+      "@context": "https://www.w3.org/ns/activitystreams",
+      id: "https://honk.tedunangst.com/u/tedu/outbox",
+      orderedItems: federated_articles,
+      totalItems: Entry.count_federated_entries,
+      type: "OrderedCollection"
+    }
+  end
+
   def accept(obj) do
     accept_object = %{
       "@context": "https://www.w3.org/ns/activitystreams",
@@ -156,7 +175,17 @@ defmodule Martenblog.Activitypub do
   end
 
   def webfinger do
-    {:ok, json} = File.read("./etc/webfinger.json")
+    json = %{
+      aliases: [
+        "https://vrasek.thurk.org/ap/actor"
+      ],
+      links: %{
+        href: "https://vrasek.thurk.org/ap/actor",
+        rel: "self",
+        type: "application/activity+json"
+      },
+      subject: "acct:martenblog@vrasek.thurk.org"
+    }
     json
   end
   
@@ -259,7 +288,7 @@ defmodule Martenblog.Activitypub do
       IO.puts "Entry #{entry_id} - #{Entry.subject(entry_id)}"
       IO.puts Poison.encode!(para_federar)
       para_federar |> APResolver.inboxes |> Enum.each(fn inbox ->
-        article(entry_id, inbox) |> sign_and_send(inbox)
+        article(entry_id) |> sign_and_send(inbox)
       end)
     else
       IO.puts "No one to federate to"
