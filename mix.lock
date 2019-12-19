@@ -15,4 +15,5 @@
   "poison": {:hex, :poison, "4.0.1", "bcb755a16fac91cad79bfe9fc3585bb07b9331e50cfe3420a24bcc2d735709ae", [:mix], [], "hexpm"},
   "poolboy": {:hex, :poolboy, "1.5.2", "392b007a1693a64540cead79830443abf5762f5d30cf50bc95cb2c1aaafa006b", [:rebar3], [], "hexpm"},
   "ranch": {:hex, :ranch, "1.3.2", "e4965a144dc9fbe70e5c077c65e73c57165416a901bd02ea899cfd95aa890986", [:rebar3], [], "hexpm"},
+  "xml_builder": {:hex, :xml_builder, "2.1.2", "90cb9ad382958934c78c6ddfbe6d385a8ce147d84b61cbfa83ec93a169d0feab", [:mix], [], "hexpm"},
 }

@@ -89,6 +89,11 @@ defmodule Martenblog.Router do
       send_resp(200, poems |> Utils.to_json)
   end
 
+  get "/rss" do
+    conn |> put_resp_content_type("text/xml") |>
+    send_resp(200, Martenblog.Rss.rss)
+  end
+
   # Activitypub leper
   get "/.well-known/webfinger" do
     conn |> put_resp_content_type("application/json") |>

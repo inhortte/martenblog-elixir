@@ -275,4 +275,11 @@ defmodule Martenblog.Entry do
       end
     end)
   end
+
+  def entry_count do
+    case Mongo.count_documents(:mongo, "entry", %{}) do
+      {:ok, count} -> count
+      _ -> 0
+    end
+  end
 end

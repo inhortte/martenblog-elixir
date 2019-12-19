@@ -30,7 +30,8 @@ defmodule Martenblog.MixProject do
       {:cors_plug, "~> 2.0"},      
       {:poison, "~> 4.0"},
       {:mint, "~> 0.3.0"},
-      {:castore, "~> 0.1.2"}
+      {:castore, "~> 0.1.2"},
+      {:xml_builder, "~> 2.1.1"}  
     ]
   end
 end
