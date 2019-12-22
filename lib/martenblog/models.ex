@@ -286,7 +286,7 @@ defmodule Martenblog.Entry do
       nil
     else
       d = DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000))
-      "/entry/by-date/#{d.year}/#{d.month}/#{d.day}"
+      "/#/blog/#{d.year}/#{d.month}/#{d.day}"
     end
   end
 

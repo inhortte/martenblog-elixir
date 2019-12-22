@@ -42,19 +42,17 @@ defmodule Martenblog.Activitypub do
       ],
       type: "Article",
       id: "https://#{@domain}#{Entry.permalink(id)}",
-      published: Entry.published(id),
-      inReplyTo: nil,
-      conversation: "https://#{@domain}/ap/conversation/#{UUID.uuid4}",
+      published: DateTime.utc_now |> DateTime.to_iso8601,
+      # published: Entry.published(id),
+      # conversation: "https://#{@domain}/ap/conversation/#{UUID.uuid4}",
       url: "https://#{@domain}#{Entry.date_link(id)}",
       attributedTo: "https://#{@domain}/ap/actor",
-      to: [
-        "https://www.w3.org/ns/activitystreams#Public"
-      ],
+      # to: [ # "https://#{@domain}/ap/actor/followers" ],
+      to: APResolver.followers,
       cc: [
-        "https://#{@domain}/ap/actor/followers"
       ],
       name: Entry.subject(id),
-      content: Entry.entry(id)
+      content: Entry.entry(id) 
     }
     article
   end
@@ -99,6 +97,7 @@ defmodule Martenblog.Activitypub do
       "@context": "https://www.w3.org/ns/activitystreams",
       type: "Create",
       id: "https://#{@domain}/ap/#{uuid}",
+      published: DateTime.utc_now |> DateTime.to_iso8601,
       actor: "https://#{@domain}/ap/actor",
       to: object[:to],
       cc: object[:cc],
@@ -322,7 +321,7 @@ defmodule Martenblog.Activitypub do
       "@context": [
         "https://www.w3.org/ns/activitystreams"
       ],
-      type: "OrderedCollection",
+      type: "Collection",
       id: "https://#{@domain}/ap/actor/followers",
       totalItems: Enum.count(ids),
       items: ids
