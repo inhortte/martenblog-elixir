@@ -1,0 +1,49 @@
+{
+  "type": "Create",
+  "to": [
+    "https://www.w3.org/ns/activitystreams#Public"
+  ],
+  "object": {
+    "url": "https://vrasek.thurk.org/entry/by-date/2006/12/5",
+    "type": "Article",
+    "to": [
+      "https://www.w3.org/ns/activitystreams#Public"
+    ],
+    "published": "2006-12-05 08:48:22Z",
+    "name": "Tuesday morning with the shades drawn",
+    "inReplyTo": null,
+    "id": "https://vrasek.thurk.org/entry/by-id/1",
+    "conversation": "https://vrasek.thurk.org/ap/conversation/818db2b5-cafe-4c8e-ae44-71ce2fa7b522",
+    "content": "<p>I have just finished a rather large plate of millet, dates, honey and pears. My stomach is relatively happy. I shall most probably be late to work again since I am procrastinating that diabolical shower thing, but no-one will say a word when I arrive. They will only place aggrivated glances on my back at poisoned times during the day.</p><p>This appears to be the first entry in the brand new, fantastic, orgasmic Fucksheep Blog. May more come with regularity. Ooouh, baby.</p>",
+    "cc": [
+      "https://vrasek.thurk.org/ap/actor/followers"
+    ],
+    "attributedTo": "https://vrasek.thurk.org/ap/actor",
+    "@context": [
+      "https://www.w3.org/ns/activitystreams"
+    ]
+  },
+  "id": "https://vrasek.thurk.org/ap/875bd65e-d579-4836-b94d-428c326f1baf",
+  "cc": [
+    "https://vrasek.thurk.org/ap/actor/followers"
+  ],
+  "actor": "https://vrasek.thurk.org/ap/actor",
+  "@context": [
+    "https://www.w3.org/ns/activitystreams"
+  ]
+}
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://my-example.com/create-hello-world",
+  "type": "Create",
+  "actor": "https://my-example.com/actor",
+  "object": {
+    "id": "https://my-example.com/hello-world",
+    "type": "Note",
+    "published": "2018-06-23T17:17:11Z",
+    "attributedTo": "https://my-example.com/actor",
+    "inReplyTo": "https://mastodon.social/@Gargron/100254678717223630",
+    "content": "<p>Hello world</p>",
+    "to": "https://www.w3.org/ns/activitystreams#Public"
+  }
+}

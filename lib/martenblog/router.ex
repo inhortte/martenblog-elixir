@@ -8,6 +8,7 @@ defmodule Martenblog.Router do
   alias Martenblog.Activitypub
   alias Martenblog.AuthResolver
   require Logger
+  @domain Application.get_env(:martenblog, :domain)
 
   plug Plug.Logger
   # plug Plug.SSL
@@ -71,7 +72,7 @@ defmodule Martenblog.Router do
     entry_id = Map.get(conn.params, "id")
     federated_to = Map.get(conn.params, "federatedTo")
     res = if AuthResolver.verify_token(token) do
-      los_federado = Activitypub.federate(entry_id, federated_to)
+      los_federado = Activitypub.federate_entry(entry_id, federated_to)
       %{ federatedTo: los_federado }
     else
       %{ error: "unauthorized" }
@@ -115,15 +116,29 @@ defmodule Martenblog.Router do
       send_resp(200, Poison.encode! Activitypub.webfinger)
   end
 
+  get "/.well-known/host-meta" do
+    xml = XmlBuilder.document([
+      XmlBuilder.element(:XRD, %{xmlns: "http://docs.oasis-open.org/ns/xri/xrd-1.0"}, [
+        XmlBuilder.element(:Link, %{
+          rel: "lrdd",
+          type: "application/xrd+xml",
+          template: "https://#{@domain}/.well-known/webfinger?resource={uri}"
+        })
+      ])
+    ]) |> XmlBuilder.generate
+    conn |> put_resp_content_type("application/xrd+xml") |>
+      send_resp(200, xml)
+  end
+
   get "/.well-known/nodeinfo" do
     json = %{
       links: [
         %{
-          href: "https://#{@domain}/nodeinfo/2.0.json",
+          href: "https://#{@domain}/.well-known/nodeinfo/2.0.json",
           rel: "https://nodeinfo.diaspora.software/ns/schema/2.0"
         },
         %{
-          href: "https://#{@domain}/nodeinfo/2.1.json",
+          href: "https://#{@domain}/.well-known/nodeinfo/2.1.json",
           rel: "https://nodeinfo.diaspora.software/ns/schema/2.1"
         }
       ]
@@ -147,7 +162,7 @@ defmodule Martenblog.Router do
       send_resp(200, Poison.encode! Activitypub.outbox)
   end
 
-  post "/ap/inbox" do
+  post "/ap/actor/inbox" do
     # String.split(leper, ",") |> Enum.map(fn s -> String.split(s, "=", parts: 2) end) |> Enum.map(fn l -> {String.to_atom(List.first(l)), String.replace(List.last(l), ~r/\A"/, "") |> String.replace(~r/"\z/, "")} end)
     IO.puts "INCOMING HEADERS"
     IO.inspect conn.req_headers

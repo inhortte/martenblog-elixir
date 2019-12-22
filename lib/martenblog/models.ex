@@ -276,7 +276,7 @@ defmodule Martenblog.Entry do
     if is_nil mentry do
       nil
     else  
-      DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000)) |> DateTime.to_string 
+      DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000)) |> DateTime.to_iso8601
     end
   end
 
