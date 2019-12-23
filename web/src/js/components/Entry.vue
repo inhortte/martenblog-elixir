@@ -5,22 +5,22 @@
   <div slot="header">
     <b-container>
       <b-row>
-	<b-col md="12">
-	  <em><router-link :to="dateLink">{{ entry.subject }}</router-link></em>
-	</b-col>
+        <b-col md="12">
+          <em><router-link :to="dateLink">{{ entry.subject }}</router-link></em>
+        </b-col>
       </b-row>
       <b-row>
-	<b-col sm="10">
-	  <b-list-group horizontal="md">
-	    <entry-topic v-for="topic in entry.topics" :topic="topic" />
-	  </b-list-group>
-	</b-col>
-	<b-col sm="2" class="expand-collapse">
-	  <a @click="toggleExpand(entry._id)" style="cursor: pointer;">
-	    <span v-if="expanded">collapse</span>
-	    <span v-if="!expanded">expand</span>
-	  </a>
-	</b-col>
+        <b-col sm="10">
+          <b-list-group horizontal="md">
+            <entry-topic v-for="topic in entry.topics" :topic="topic" />
+          </b-list-group>
+        </b-col>
+        <b-col sm="2" class="expand-collapse">
+          <a @click="toggleExpand(entry._id)" style="cursor: pointer;">
+            <span v-if="expanded">collapse</span>
+            <span v-if="!expanded">expand</span>
+          </a>
+        </b-col>
       </b-row>
     </b-container>
   </div>

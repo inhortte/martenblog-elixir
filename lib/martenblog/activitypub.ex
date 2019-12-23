@@ -338,6 +338,7 @@ defmodule Martenblog.Activitypub do
       para_federar |> APResolver.inboxes |> Enum.each(fn inbox ->
         article(entry_id) |> create_activity |> sign_and_send(inbox)
       end)
+      Entry.mark_federated(entry_id, para_federar)
     else
       IO.puts "No one to federate to"
     end

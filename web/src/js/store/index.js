@@ -78,6 +78,20 @@ export default new Vuex.Store({
     authLogout: state => {
       state.authStatus = "";
       state.token = null;
+    },
+    federateEntry: (state, id) => {
+      state.dateEntries = state.dateEntries.map(e => {
+        if (e.id === id) {
+          e.federated = true;
+        }
+        return e;
+      });
+      state.entries = state.entries.map(e => {
+        if (e.id === id) {
+          e.federated = true;
+        }
+        re;
+      });
     }
   },
   actions: {
@@ -233,6 +247,30 @@ export default new Vuex.Store({
           return true;
         } else {
           console.log(`couldn't fetch page count`);
+          return false;
+        }
+      })();
+    },
+    federateEntryThunk: ({ commit }, id) => {
+      (async () => {
+        let body = {
+          id,
+          federatedTo: []
+        };
+        let res = await fetch(`${server()}/federate`, {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
+        });
+        if (res.status === 200) {
+          let json = await res.json();
+          commit("federateEntry", id);
+          return true;
+        } else {
+          console.log(`couldn't federate entry id ${id}`);
           return false;
         }
       })();

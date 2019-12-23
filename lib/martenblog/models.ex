@@ -82,7 +82,7 @@ defmodule Martenblog.Entry do
 
   @header_res [id: @id_re, subject: @subject_re, created_at: @date_re]
 
-  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1, federated_to: []
+  defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1, federated_to: [], federated: false, federated_ts: nil
   @oddities %{:id => "_id"}
 
   def get_entry_by_id(id) do
@@ -347,6 +347,13 @@ defmodule Martenblog.Entry do
       IO.inspect to_federate
       now = DateTime.utc_now |> DateTime.to_unix |> (fn ts -> ts * 1000 end).()
       Mongo.update_one(:mongo, "entry",  %{"_id" => id}, %{"$set" => %{ "federated" => true, "federated_ts" => now, "federated_to" => to_federate }})
+    end
+  end
+
+  def clear_federated(id) do
+    mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
+    if !is_nil(mentry) do
+      Mongo.update_one(:mongo, "entry", %{"_id" => id}, %{"$set" => %{ "federated" => false, "federated_ts" => nil, "federated_to" => [] }})
     end
   end
 end
