@@ -42,7 +42,8 @@ export default new Vuex.Store({
     prev: state => state.prev,
     next: state => state.next,
     isAuthenticated: state => !!state.token,
-    authStatus: state => state.authStatus
+    authStatus: state => state.authStatus,
+    token: state => state.token
   },
   mutations: {
     setPoems: (state, poems) => {
@@ -251,12 +252,14 @@ export default new Vuex.Store({
         }
       })();
     },
-    federateEntryThunk: ({ commit }, id) => {
+    federateEntryThunk: ({ commit, getters }, id) => {
       (async () => {
         let body = {
           id,
-          federatedTo: []
+          federatedTo: [],
+          token: getters["token"]
         };
+        console.log(`federateEntryThunk:  body -> ${JSON.stringify(body)}`);
         let res = await fetch(`${server()}/federate`, {
           method: "post",
           headers: {
@@ -267,6 +270,9 @@ export default new Vuex.Store({
         });
         if (res.status === 200) {
           let json = await res.json();
+          console.log(
+            `federateEntryThunk: the server returned -> ${JSON.stringify(json)}`
+          );
           commit("federateEntry", id);
           return true;
         } else {

@@ -72,7 +72,8 @@ export default {
   },
   methods: {
     federate(e) {
-      this.$store.dispatch("federateEntryThunk", this.dateEntry.id);
+      console.log(`DateEntry: federate -> dateEntry: ${JSON.stringify(this.dateEntry)}`);
+      this.$store.dispatch("federateEntryThunk", this.dateEntry["_id"]);
     }
   }
 }
