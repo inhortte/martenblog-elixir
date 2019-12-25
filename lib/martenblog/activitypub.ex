@@ -36,6 +36,11 @@ defmodule Martenblog.Activitypub do
   end
 
   def article(id) do
+    eContent = Entry.entry(id)
+    content = case Earmark.as_html(eContent) do
+      {:ok, html, _} -> html
+      _ -> eContent
+    end
     article = %{
       "@context": [
         "https://www.w3.org/ns/activitystreams",
@@ -52,7 +57,7 @@ defmodule Martenblog.Activitypub do
       cc: [
       ],
       name: Entry.subject(id),
-      content: Entry.entry(id) 
+      content: content
     }
     article
   end
@@ -339,8 +344,10 @@ defmodule Martenblog.Activitypub do
         article(entry_id) |> create_activity |> sign_and_send(inbox)
       end)
       Entry.mark_federated(entry_id, para_federar)
+      para_federar
     else
       IO.puts "No one to federate to"
+      []
     end
   end
 

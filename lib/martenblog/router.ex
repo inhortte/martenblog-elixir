@@ -72,12 +72,14 @@ defmodule Martenblog.Router do
     entry_id = Map.get(conn.params, "id")
     federated_to = Map.get(conn.params, "federatedTo")
     res = if AuthResolver.verify_token(token) do
+      Logger.info "Authorized to federate"
       los_federado = Activitypub.federate_entry(entry_id, federated_to)
       %{ federatedTo: los_federado }
     else
+      Logger.info "Not authorized to federate"
       %{ error: "unauthorized" }
     end
-    conn |> put_resp_content_type("application/json") |> send_resp(200, Poison.encode! res)
+    conn |> put_resp_content_type("application/json") |> send_resp(200, res |> Utils.to_json)
   end
 
   get "/topics" do

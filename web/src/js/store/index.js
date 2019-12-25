@@ -91,7 +91,7 @@ export default new Vuex.Store({
         if (e.id === id) {
           e.federated = true;
         }
-        re;
+        return e;
       });
     }
   },

@@ -16,10 +16,16 @@
           </b-list-group>
         </b-col>
         <b-col sm="2" class="expand-collapse">
-          <a @click="toggleExpand(entry._id)" style="cursor: pointer;">
-            <span v-if="expanded">collapse</span>
-            <span v-if="!expanded">expand</span>
-          </a>
+          <div>
+            <a @click="toggleExpand(entry._id)" style="cursor: pointer;">
+              <span v-if="expanded">collapse</span>
+              <span v-if="!expanded">expand</span>
+            </a>
+          </div>
+          <div><em style="font: smaller">{{ isFederated }}</em></div>
+          <div>
+            <a href="#" @click="federate">{{ toFederate }}</a>
+          </div>
         </b-col>
       </b-row>
     </b-container>
@@ -55,6 +61,20 @@ export default {
     dateLink() {
       let d = new Date(this.entry.created_at);
       return `/blog/${d.getUTCFullYear()}/${d.getUTCMonth() + 1}/${d.getUTCDate()}`;
+    },
+    isFederated() {
+      if(this.$store.getters['isAuthenticated']) {
+        return this.entry.federated ? "Federated" : "Not federated";
+      } else {
+        return '';
+      }
+    },
+    toFederate() {
+      if(this.$store.getters['isAuthenticated']) {
+        return this.entry.federated ? "refederate" : "federate";
+      } else {
+        return '';
+      }
     }
   },
   methods: {
@@ -63,6 +83,10 @@ export default {
     },
     toggleExpand(id) {
       this.$store.commit('toggleExpand', id);
+    },
+    federate(e) {
+      console.log(`Entry: federate -> entry: ${JSON.stringify(this.entry)}`);
+      this.$store.dispatch("federateEntryThunk", this.entry["_id"]);
     }
   }
 }

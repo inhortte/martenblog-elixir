@@ -34,7 +34,8 @@ defmodule Martenblog.MixProject do
       {:xml_builder, "~> 2.1.1"},
       {:uuid, "~> 1.1.8"},
       {:hackney, "1.15.1"},
-      {:fuzzyurl, "~> 0.9.0"}
+      {:fuzzyurl, "~> 0.9.0"},
+      { :earmark, "~> 1.4.3" }
     ]
   end
 end
