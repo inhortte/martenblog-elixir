@@ -188,7 +188,7 @@ defmodule Martenblog.Activitypub do
     federated_articles = Entry.federated_entry_ids |> Enum.map(&Martenblog.Activitypub.article/1) |> Enum.map(&Martenblog.Activitypub.create_activity/1)
     %{
       "@context": "https://www.w3.org/ns/activitystreams",
-      id: "https://vrasek.thurk.org/ap/actor/outbox",
+      id: "https://#{@domain}/ap/actor/outbox",
       orderedItems: federated_articles,
       totalItems: Entry.count_federated_entries,
       type: "OrderedCollection"
@@ -220,16 +220,16 @@ defmodule Martenblog.Activitypub do
   def webfinger do
     json = %{
       aliases: [
-        "https://vrasek.thurk.org/ap/actor"
+        "https://#{@domain}/ap/actor"
       ],
       links: [
         %{
-          href: "https://vrasek.thurk.org/ap/actor",
+          href: "https://#{@domain}/ap/actor",
           rel: "self",
           type: "application/activity+json"
         }
       ],
-      subject: "acct:martenblog@vrasek.thurk.org"
+      subject: "acct:martenblog@#{@domain}"
     }
     json
   end
