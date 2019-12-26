@@ -14,4 +14,12 @@ defmodule Martenblog.Utils do
   def to_json(map) do
     Poison.Encoder.encode(map, %{}) |> IO.iodata_to_binary
   end
+
+  def rfc2616_now do
+    d = DateTime.utc_now
+    case Timex.format(d, "%a, %d %b %Y %H:%M:%S GMT", :strftime) do
+      {:ok, rfc2616_date} -> rfc2616_date
+      _ -> DateTime.to_iso8601(d)
+    end
+  end
 end

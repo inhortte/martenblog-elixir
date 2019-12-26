@@ -2,6 +2,7 @@ defmodule Martenblog.Activitypub do
   require Logger
   alias Martenblog.APResolver
   alias Martenblog.Entry
+  alias Martenblog.Utils
   use Application
   @domain Application.get_env(:martenblog, :domain)
 
@@ -47,8 +48,8 @@ defmodule Martenblog.Activitypub do
       ],
       type: "Article",
       id: "https://#{@domain}#{Entry.permalink(id)}",
-      published: DateTime.utc_now |> DateTime.to_iso8601,
-      # published: Entry.published(id),
+      published: Utils.rfc2616_now,
+      # published: DateTime.utc_now |> DateTime.to_iso8601,
       # conversation: "https://#{@domain}/ap/conversation/#{UUID.uuid4}",
       url: "https://#{@domain}#{Entry.date_link(id)}",
       attributedTo: "https://#{@domain}/ap/actor",
@@ -62,7 +63,7 @@ defmodule Martenblog.Activitypub do
     article
   end
 
-  def note(text, ib \\ nil) do
+  def note(text, ib) do
     inbox = if is_nil(ib) do
       "https://#{@domain}/ap/actor/followers"
     else
@@ -72,7 +73,8 @@ defmodule Martenblog.Activitypub do
       "@context": "https://www.w3.org/ns/activitystreams",
       type: "Note",
       id: "https://#{@domain}/ap/note/#{UUID.uuid4}",
-      published: DateTime.utc_now |> DateTime.to_iso8601,
+      published: Utils.rfc2616_now,
+      # published: DateTime.utc_now |> DateTime.to_iso8601,
       attributedTo: "https://#{@domain}/ap/actor",
       to: [
         inbox
@@ -102,7 +104,8 @@ defmodule Martenblog.Activitypub do
       "@context": "https://www.w3.org/ns/activitystreams",
       type: "Create",
       id: "https://#{@domain}/ap/#{uuid}",
-      published: DateTime.utc_now |> DateTime.to_iso8601,
+      published: Utils.rfc2616_now,
+      # published: DateTime.utc_now |> DateTime.to_iso8601,
       actor: "https://#{@domain}/ap/actor",
       to: object[:to],
       cc: object[:cc],
@@ -166,7 +169,7 @@ defmodule Martenblog.Activitypub do
     end
   end
 
-  def remote_actor(uri, make_follower \\ false, force \\ false) do
+  def remote_actor(uri, make_follower, force) do
     actor = APResolver.find_actor(uri)
     if force or is_nil(actor) do
       case fetch_actor(uri) do
@@ -201,7 +204,8 @@ defmodule Martenblog.Activitypub do
       "@context": "https://www.w3.org/ns/activitystreams",
       id: "https://#{@domain}/ap/accept/#{UUID.uuid4}",
       type: "Accept",
-      published: DateTime.utc_now |> DateTime.to_iso8601,
+      published: Utils.rfc2616_now,
+      # published: DateTime.utc_now |> DateTime.to_iso8601,
       to: [
         to
       ],
@@ -237,7 +241,7 @@ defmodule Martenblog.Activitypub do
   def sign_and_send(activity, inbox) do
     target_domain = Fuzzyurl.from_string(inbox).hostname
     inbox_fragment = String.replace(inbox, "https://#{target_domain}", "")
-    date_str = DateTime.to_iso8601(DateTime.utc_now)
+    date_str = Utils.rfc2616_now 
     Logger.info "Reading private key..."
     {:ok, priv_key} = File.read("/home/polaris/keys/martenblog.pem")
     Logger.info "priv_key: #{priv_key}"
@@ -252,6 +256,7 @@ defmodule Martenblog.Activitypub do
         Logger.info "sign_and_send -> activity: #{json_activity}"
         Logger.info "string_to_sign: #{string_to_sign}"
         Logger.info "signature header: #{sig_header}"
+        Logger.info "date_str: #{date_str}"
         case :hackney.post(inbox, [
             Host: target_domain, 
             Date: date_str, 
@@ -289,11 +294,14 @@ defmodule Martenblog.Activitypub do
     if is_nil(uri) do
       Logger.error "Activity doesn't have \"actor\""
     else
-      actor = remote_actor(uri, true)
+      actor = remote_actor(uri, true, false)
       if is_nil(actor) do
         Logger.error("Actor not found")
       else
-        sign_and_send(accept(activity), Map.get(actor, "inbox"))
+        # I want to see what happens here!
+        {:ok, _, _, res} = sign_and_send(accept(activity), Map.get(actor, "inbox"))
+        Logger.info "What comes back from an Accept Activity?"
+        IO.inspect :hackney.body(res)
       end 
     end 
   end

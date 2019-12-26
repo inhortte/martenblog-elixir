@@ -10,7 +10,7 @@ defmodule Martenblog.APResolver do
     end
   end
 
-  def add_actor(uri, json, make_follower \\ false) do
+  def add_actor(uri, json, make_follower) do
     Mongo.insert_one(:mongo, "actor", %{ uri: uri, json: json, follower: make_follower })
     json
   end

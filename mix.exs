@@ -35,7 +35,8 @@ defmodule Martenblog.MixProject do
       {:uuid, "~> 1.1.8"},
       {:hackney, "1.15.1"},
       {:fuzzyurl, "~> 0.9.0"},
-      { :earmark, "~> 1.4.3" }
+      { :earmark, "~> 1.4.3" },
+      { :timex, "~> 3.6.1" }
     ]
   end
 end
