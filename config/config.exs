@@ -31,4 +31,4 @@ use Mix.Config
 
 config :martenblog, :db, name: "martenblog"
 config :martenblog, poem_dir: "~/Dropbox/archiv/poems"
-config :martenblog, domain: "vrasek.thurk.org"
+config :martenblog, domain: "flavigula.net"

@@ -36,7 +36,8 @@ defmodule Martenblog.MixProject do
       {:hackney, "1.15.1"},
       {:fuzzyurl, "~> 0.9.0"},
       { :earmark, "~> 1.4.3" },
-      { :timex, "~> 3.6.1" }
+      { :timex, "~> 3.6.1" },
+      {:html_sanitize_ex, "~> 1.3.0-rc3"}
     ]
   end
 end
