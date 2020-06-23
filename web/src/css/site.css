@@ -13,6 +13,8 @@ h2 {
 
 .entry blockquote {
   /* font-size: smaller; */
+  padding: 12px 12px 4px 12px;
+  background-color: #eee;
 }
 
 img {

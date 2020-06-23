@@ -7,7 +7,7 @@
       <div slot="header">
         <div><em>{{ dateEntry.subject }}</em></div>
         <div><em>{{ formattedDate }}</em></div>
-        <b-list-group horizontal="sm">
+        <b-list-group horizontal="sm" v-bind:style="topicsStyle">
           <entry-topic v-for="topic in dateEntry.topics" :topic="topic" />
         </b-list-group>
       </div>
@@ -37,6 +37,11 @@ export default {
   computed: {
     formattedDate() {
       return new Date(this.dateEntry.created_at).toUTCString();
+    },
+    topicsStyle() {
+      return {
+        padding: '10px 0 10px 0'
+      };
     },
     formattedEntry() {
       let entry = this.dateEntry.entry;

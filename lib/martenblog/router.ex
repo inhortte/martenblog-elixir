@@ -112,6 +112,24 @@ defmodule Martenblog.Router do
     send_resp(200, Martenblog.Rss.rss)
   end
 
+  get "/piece-of-shit" do
+    pieces_of_shit = File.read!('/home/polaris/various-leprosies/draining-the-pond/piece-of-shit.txt') 
+                     |> String.split(~r{\n}) 
+                     |> Enum.map(&String.trim/1) 
+                     |> Enum.filter(fn s -> String.length(s) > 0 end)
+                     |> Enum.shuffle
+    conn |> put_resp_content_type("application/json") |> send_resp(200, pieces_of_shit |> Utils.to_json)
+  end
+
+  get "/high-voltage-power-supply" do
+    pieces_of_shit = File.read!('/home/polaris/various-leprosies/draining-the-pond/HIGH.VOLTAGE.POWER.SUPPLY') 
+                     |> String.split(~r{\n}) 
+                     |> Enum.map(&String.trim/1) 
+                     |> Enum.filter(fn s -> String.length(s) > 0 end)
+                     |> Enum.shuffle
+    conn |> put_resp_content_type("application/json") |> send_resp(200, pieces_of_shit |> Utils.to_json)
+  end
+
   # Activitypub leper
   get "/.well-known/webfinger" do
     conn |> put_resp_content_type("application/json") |>

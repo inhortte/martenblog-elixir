@@ -23,27 +23,31 @@ export default new Vuex.Store({
     expanded: {},
     pCount: 1,
     token: localStorage.getItem("slezina-token") || null,
-    authStatus: ""
+    authStatus: "",
+    piecesOfShit: [],
+    highVoltagePowerSupplies: [],
   },
   getters: {
-    poems: state => {
+    poems: (state) => {
       return state.poems;
     },
-    entries: state => {
+    entries: (state) => {
       return state.entries;
     },
-    dateEntries: state => state.dateEntries,
-    isEntryExpanded: state => id => {
+    dateEntries: (state) => state.dateEntries,
+    isEntryExpanded: (state) => (id) => {
       return !!state.expanded[id];
     },
-    pCount: state => {
+    pCount: (state) => {
       return state.pCount;
     },
-    prev: state => state.prev,
-    next: state => state.next,
-    isAuthenticated: state => !!state.token,
-    authStatus: state => state.authStatus,
-    token: state => state.token
+    prev: (state) => state.prev,
+    next: (state) => state.next,
+    isAuthenticated: (state) => !!state.token,
+    authStatus: (state) => state.authStatus,
+    token: (state) => state.token,
+    piecesOfShit: (state) => state.piecesOfShit,
+    highVoltagePowerSupplies: (state) => state.highVoltagePowerSupplies,
   },
   mutations: {
     setPoems: (state, poems) => {
@@ -66,34 +70,40 @@ export default new Vuex.Store({
       state.prev = prev;
       state.next = next;
     },
-    authRequest: state => {
+    authRequest: (state) => {
       state.authStatus = "the thurk is pulsing";
     },
     authSuccess: (state, token) => {
       state.authStatus = "the thurk has succeeded";
       state.token = token;
     },
-    authError: state => {
+    authError: (state) => {
       state.authStatus = "the thurk has plummeted to the depths";
     },
-    authLogout: state => {
+    authLogout: (state) => {
       state.authStatus = "";
       state.token = null;
     },
     federateEntry: (state, id) => {
-      state.dateEntries = state.dateEntries.map(e => {
+      state.dateEntries = state.dateEntries.map((e) => {
         if (e.id === id) {
           e.federated = true;
         }
         return e;
       });
-      state.entries = state.entries.map(e => {
+      state.entries = state.entries.map((e) => {
         if (e.id === id) {
           e.federated = true;
         }
         return e;
       });
-    }
+    },
+    setPiecesOfShit: (state, pos) => {
+      state.piecesOfShit = pos;
+    },
+    setHighVoltagePowerSupplies: (state, hvps) => {
+      state.highVoltagePowerSupplies = hvps;
+    },
   },
   actions: {
     authRequestThunk: ({ commit, dispatch }, heslo) => {
@@ -106,12 +116,12 @@ export default new Vuex.Store({
           method: "post",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(body)
+          body: JSON.stringify(body),
         })
-          .then(resp => resp.json())
-          .then(json => {
+          .then((resp) => resp.json())
+          .then((json) => {
             console.log(`what are we receiving? ${JSON.stringify(json)}`);
             if (json.error) {
               commit("authError");
@@ -125,7 +135,7 @@ export default new Vuex.Store({
             }
             resolve(json);
           })
-          .catch(err => {
+          .catch((err) => {
             commit("authError", err);
             localStorage.removeItem("slezina-token"); // if the request fails, remove any possible user token if possible
             reject(err);
@@ -138,16 +148,16 @@ export default new Vuex.Store({
           method: "post",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ token: state.token })
+          body: JSON.stringify({ token: state.token }),
         })
-          .then(resp => {
+          .then((resp) => {
             commit("authLogout");
             localStorage.removeItem("slezina-token"); // clear your user's token from localstorage
             resolve();
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(`logout error: ${err}`);
             reject();
           });
@@ -159,8 +169,8 @@ export default new Vuex.Store({
           method: "get",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         });
         if (res.status === 200) {
           let json = await res.json();
@@ -178,8 +188,8 @@ export default new Vuex.Store({
           method: "get",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         });
         if (res.status === 200) {
           let json = await res.json();
@@ -197,8 +207,8 @@ export default new Vuex.Store({
           method: "get",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         });
         if (res.status === 200) {
           let json = await res.json();
@@ -217,8 +227,8 @@ export default new Vuex.Store({
           method: "get",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         });
         if (res.status === 200) {
           let json = await res.json();
@@ -239,8 +249,8 @@ export default new Vuex.Store({
           method: "post",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         });
         if (res.status === 200) {
           let json = await res.json();
@@ -257,16 +267,16 @@ export default new Vuex.Store({
         let body = {
           id,
           federatedTo: [],
-          token: getters["token"]
+          token: getters["token"],
         };
         console.log(`federateEntryThunk:  body -> ${JSON.stringify(body)}`);
         let res = await fetch(`${server()}/federate`, {
           method: "post",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(body)
+          body: JSON.stringify(body),
         });
         if (res.status === 200) {
           let json = await res.json();
@@ -280,6 +290,56 @@ export default new Vuex.Store({
           return false;
         }
       })();
-    }
-  }
+    },
+    fetchPiecesOfShit: ({ commit }) => {
+      (async () => {
+        let res = await fetch(`${server()}/piece-of-shit`, {
+          method: "get",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+        if (res.status === 200) {
+          let json = await res.json();
+          /*
+          console.log(
+            `fetchPiecesOfShit: the server returned -> ${JSON.stringify(json)}`
+          );
+          */
+          commit("setPiecesOfShit", json);
+          return json;
+        } else {
+          console.log(`couldn't fetch piecesOfShit`);
+          return false;
+        }
+      })();
+    },
+    fetchHighVoltagePowerSupplies: ({ commit }) => {
+      (async () => {
+        let res = await fetch(`${server()}/high-voltage-power-supply`, {
+          method: "get",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+        if (res.status === 200) {
+          let json = await res.json();
+          /*
+          console.log(
+            `fetchHighVoltagePowerSupplies: the server returned -> ${JSON.stringify(
+              json
+            )}`
+          );
+          */
+          commit("setHighVoltagePowerSupplies", json);
+          return json;
+        } else {
+          console.log(`couldn't fetch highVoltagePowerSupplies`);
+          return false;
+        }
+      })();
+    },
+  },
 });
