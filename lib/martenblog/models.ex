@@ -121,7 +121,14 @@ defmodule Martenblog.Entry do
 
   def parse_mb_timestamp(mbts) do
     {:ok, dt} = case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, mbts) do
-      [_, year, month, day, hour, minute] -> NaiveDateTime.new(year, month, day, hour, minute, 0) |> 
+      [_, year_string, month_string, day_string, hour_string, minute_string] -> 
+        { year, _ } = Integer.parse(year_string)
+        { month, _ } = Integer.parse(month_string)
+        { day, _ } = Integer.parse(day_string)
+        { hour, _ } = Integer.parse(hour_string)
+        { minute, _ } = Integer.parse(minute_string)
+        Logger.info("year: #{year}, month: #{month}, day: #{day}, hour: #{hour}, minute: #{minute}")
+        NaiveDateTime.new(year, month, day, hour, minute, 0) |> 
         case do
           {:ok, ndt} -> DateTime.from_naive(ndt, "Etc/UTC")
           {:error, _} -> {:ok, DateTime.utc_now }
