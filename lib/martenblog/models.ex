@@ -77,7 +77,7 @@ defmodule Martenblog.Entry do
 
   @id_re ~r/^_id:\s+(\d+)\s*$/
   @subject_re ~r/^[Ss]ubject:\s+(.+)$/
-  @date_re ~r/^(\d+)\s*$/
+  @date_re ~r/^[Dd]ate:\s+(\d+)\s*$/
   @topic_re ~r/^[Tt]opics?:\s+(.+)$/
 
   @header_res [id: @id_re, subject: @subject_re, created_at: @date_re]
