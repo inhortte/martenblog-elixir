@@ -11,7 +11,7 @@ defmodule Martenblog.Application do
     ]
 
     Application.ensure_all_started(:hackney)
-    opts = [strategy: :one_for_one, name: MyApp.Supervisor]
+    opts = [strategy: :one_for_one, name: Martenblog.Supervisor]
     Supervisor.start_link(children, opts)
     # Martenblog.Router.start_link
   end

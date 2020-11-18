@@ -14,7 +14,6 @@ defmodule Martenblog.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:cowboy, :mongodb, :poolboy],
       extra_applications: [:logger],
       mod: {Martenblog.Application, []}
     ]
@@ -25,7 +24,7 @@ defmodule Martenblog.MixProject do
     [
       {:plug_cowboy, "~> 1.0.0"},
       {:plug, "~> 1.8.3"},
-      {:mongodb, "~> 0.4.7"},
+      {:mongodb, "~> 0.5.0"},
       {:poolboy, "~> 1.5"},
       {:cors_plug, "~> 2.0"},      
       {:poison, "~> 4.0"},
@@ -37,7 +36,8 @@ defmodule Martenblog.MixProject do
       {:fuzzyurl, "~> 0.9.0"},
       { :earmark, "~> 1.4.3" },
       { :timex, "~> 3.6.1" },
-      {:html_sanitize_ex, "~> 1.3.0-rc3"}
+      {:html_sanitize_ex, "~> 1.3.0-rc3"},
+      {:postgrex, "~> 0.14.3"}
     ]
   end
 end

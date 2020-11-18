@@ -3,10 +3,10 @@ defmodule Martenblog.Utils do
   
   def normalise_keys(map) do
     map |> Map.keys |> Enum.reduce(%{}, fn(key, acc) -> cond do
-	Enum.member?(Map.keys(@anomalous_keys), key) ->
-	  Map.merge(acc, %{@anomalous_keys[key] => map[key]})
-	true ->
-	  Map.merge(acc, %{String.to_atom(key) => map[key]})
+      Enum.member?(Map.keys(@anomalous_keys), key) ->
+        Map.merge(acc, %{@anomalous_keys[key] => map[key]})
+      true ->
+        Map.merge(acc, %{String.to_atom(key) => map[key]})
       end
     end)
   end
@@ -21,5 +21,10 @@ defmodule Martenblog.Utils do
       {:ok, rfc2616_date} -> rfc2616_date
       _ -> DateTime.to_iso8601(d)
     end
+  end
+
+  def randomFilename do
+    bubble = ?a..?z
+    Enum.map(1..10, fn _-> Enum.random(bubble) end)
   end
 end

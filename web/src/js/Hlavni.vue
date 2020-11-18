@@ -25,8 +25,14 @@ export default {
   },
   methods: {
   },
-  mounted() {
+  async mounted() {
     this.$store.dispatch('setPoemsThunk');
+    await this.$store.dispatch('fetchLakifeVocabulary');
+    this.$store.dispatch('setFilteredVocabularyThunk', '');
+    await this.$store.dispatch('fetchLakifePhrases');
+    this.$store.dispatch('setFilteredPhrasesThunk', '');
+    this.$store.dispatch('fetchGrammarThunk');
+    this.$store.dispatch('fetchMihupolaThunk');
   },
   data() {
     return {};

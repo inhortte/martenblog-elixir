@@ -11,6 +11,14 @@ import Poems from "./components/Poems.vue";
 import Music from "./components/Music.vue";
 import Login from "./components/Login.vue";
 import Curiosities from "./components/Curiosities.vue";
+import Lakife from "./components/Lakife.vue";
+import Phonology from "./components/Phonology.vue";
+import BabelText from "./components/BabelText.vue";
+import Pronouns from "./components/Pronouns.vue";
+import Vocabulary from "./components/Vocabulary.vue";
+import Phrases from "./components/Phrases.vue";
+import Grammar from "./components/Grammar.vue";
+import Mihupola from "./components/Mihupola.vue";
 
 const router = new VueRouter({
   routes: [
@@ -45,6 +53,48 @@ const router = new VueRouter({
       path: "/curiosities",
       name: "curiosities",
       component: Curiosities,
+    },
+    {
+      path: "/lakife",
+      name: "lakife",
+      component: Lakife,
+      children: [
+        {
+          path: "phonology",
+          name: "phonology",
+          component: Phonology,
+        },
+        {
+          path: "babeltext",
+          name: "babeltext",
+          component: BabelText,
+        },
+        {
+          path: "pronouns",
+          name: "pronouns",
+          component: Pronouns,
+        },
+        {
+          path: "grammar",
+          name: "grammar",
+          component: Grammar,
+        },
+        {
+          path: "mihupola",
+          name: "mihupola",
+          component: Mihupola,
+        },
+        {
+          path: "vocabulary",
+          name: "vocabulary",
+          component: Vocabulary,
+        },
+        {
+          path: "phrases",
+          name: "phrases",
+          component: Phrases,
+        },
+      ],
     },
     {
       path: "/blog/:page",

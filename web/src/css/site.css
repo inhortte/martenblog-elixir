@@ -1,6 +1,40 @@
+@font-face {
+  font-family: "Atkinson-Hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-Regular-102a.woff2") format("woff2"),
+    url("../fonts/Atkinson-Hyperlegible-Regular-102.woff") format("woff"),
+    url("../fonts/Atkinson-Hypelegible-Regular-102.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Atkinson-Hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-Italic-102a.woff2") format("woff2"),
+    url("../fonts/Atkinson-Hyperlegible-Italic-102.woff") format("woff"),
+    url("../fonts/Atkinson-Hypelegible-Italic-102.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Atkinson-Hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-Bold-102a.woff2") format("woff2"),
+    url("../fonts/Atkinson-Hyperlegible-Bold-102.woff") format("woff"),
+    url("../fonts/Atkinson-Hypelegible-Bold-102.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Atkinson-Hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2")
+      format("woff2"),
+    url("../fonts/Atkinson-Hyperlegible-BoldItalic-102.woff") format("woff"),
+    url("../fonts/Atkinson-Hypelegible-BoldItalic-102.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 700;
+}
+
 body,
 html {
-  font-family: "Vollkorn", Courier, serif, monospace;
+  font-family: "Atkinson-Hyperlegible", "Vollkorn", Courier, serif, monospace;
 }
 
 a {
@@ -18,9 +52,9 @@ h2 {
 }
 
 img {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 
 .entry img {

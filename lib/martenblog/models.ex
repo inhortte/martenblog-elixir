@@ -36,6 +36,11 @@ defmodule Martenblog.Topic do
     end)
   end
 
+  def topics_by_ids(ids) do
+    topics = Enum.map(ids, fn(id) -> Mongo.find_one(:mongo, "topic", %{_id: id}) end)
+    topics
+  end
+
   def next_topic_id() do
     Mongo.find(:mongo, "topic", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |>
     (fn first_topic -> 
@@ -276,6 +281,10 @@ defmodule Martenblog.Entry do
 
       end
     end)
+  end
+
+  def subjects(count) do
+    Mongo.find(:mongo, "entry", %{}, sort: %{"created_at" => -1}, limit: count) |> Enum.to_list |> Enum.map(&Utils.normalise_keys/1)
   end
 
   def published(id) do

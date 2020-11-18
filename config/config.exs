@@ -30,5 +30,5 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 
 config :martenblog, :db, name: "martenblog"
-config :martenblog, poem_dir: "~/Dropbox/archiv/poems"
+config :martenblog, poem_dir: "~/arch-my-hive/poems"
 config :martenblog, domain: "flavigula.net"

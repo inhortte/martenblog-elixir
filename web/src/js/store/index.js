@@ -26,6 +26,12 @@ export default new Vuex.Store({
     authStatus: "",
     piecesOfShit: [],
     highVoltagePowerSupplies: [],
+    lakifeVocabulary: [],
+    filteredVocabulary: [],
+    lakifePhrases: [],
+    filteredPhrases: [],
+    mihupola: "",
+    grammar: "",
   },
   getters: {
     poems: (state) => {
@@ -48,6 +54,14 @@ export default new Vuex.Store({
     token: (state) => state.token,
     piecesOfShit: (state) => state.piecesOfShit,
     highVoltagePowerSupplies: (state) => state.highVoltagePowerSupplies,
+    filteredVocabulary: (state) => {
+      return state.filteredVocabulary;
+    },
+    vocabCount: (state) => state.filteredVocabulary.length,
+    filteredPhrases: (state) => state.filteredPhrases,
+    phraseCount: (state) => state.filteredPhrases.length,
+    grammar: (state) => state.grammar,
+    mihupola: (state) => state.mihupola,
   },
   mutations: {
     setPoems: (state, poems) => {
@@ -103,6 +117,24 @@ export default new Vuex.Store({
     },
     setHighVoltagePowerSupplies: (state, hvps) => {
       state.highVoltagePowerSupplies = hvps;
+    },
+    setLakifeVocabulary: (state, vocab) => {
+      state.lakifeVocabulary = Object.freeze(vocab);
+    },
+    setFilteredVocabulary: (state, vocab) => {
+      state.filteredVocabulary = vocab;
+    },
+    setLakifePhrases: (state, phrases) => {
+      state.lakifePhrases = Object.freeze(phrases);
+    },
+    setFilteredPhrases: (state, phrases) => {
+      state.filteredPhrases = phrases;
+    },
+    setGrammar: (state, text) => {
+      state.grammar = text;
+    },
+    setMihupola: (state, text) => {
+      state.mihupola = text;
     },
   },
   actions: {
@@ -340,6 +372,98 @@ export default new Vuex.Store({
           return false;
         }
       })();
+    },
+    async fetchLakifeVocabulary({ commit }) {
+      let res = await fetch(`${server()}/lakife-vocabulary`, {
+        method: "get",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status == 200) {
+        let json = await res.json();
+        if (json.rows && json.rows.length > 0) {
+          commit("setLakifeVocabulary", json.rows);
+        }
+      } else {
+        console.log(`couldn't fetch lakife vocabulary`);
+        return {};
+      }
+    },
+    setFilteredVocabularyThunk({ state, commit }, f) {
+      let vocabFilter = R.trim(f);
+      let filteredVocabulary;
+      if (R.isEmpty(vocabFilter)) {
+        filteredVocabulary = state.lakifeVocabulary;
+      } else {
+        filteredVocabulary = R.filter((entry) => {
+          let re = new RegExp(vocabFilter, "i");
+          let _m1 = re.exec(entry[1]);
+          let _m2 = re.exec(entry[2]);
+          return _m1 || _m2;
+        }, state.lakifeVocabulary);
+      }
+      // console.log(`filtered vocab -> ${JSON.stringify(filteredVocabulary)}`);
+      commit("setFilteredVocabulary", filteredVocabulary);
+    },
+    async fetchLakifePhrases({ commit }) {
+      let res = await fetch(`${server()}/lakife-phrases`, {
+        method: "get",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status == 200) {
+        let json = await res.json();
+        if (json.rows && json.rows.length > 0) {
+          commit("setLakifePhrases", json.rows);
+        }
+      } else {
+        console.log(`couldn't fetch lakife phrases`);
+        return {};
+      }
+    },
+    setFilteredPhrasesThunk({ state, commit }, f) {
+      let phraseFilter = R.trim(f);
+      let filteredPhrases;
+      if (R.isEmpty(phraseFilter)) {
+        filteredPhrases = state.lakifePhrases;
+      } else {
+        filteredPhrases = R.filter((entry) => {
+          let re = new RegExp(phraseFilter, "i");
+          let _m1 = re.exec(entry[1]);
+          let _m2 = re.exec(entry[2]);
+          return _m1 || _m2;
+        }, state.lakifePhrases);
+      }
+      // console.log(`filtered phrases -> ${JSON.stringify(filteredPhrases)}`);
+      commit("setFilteredPhrases", filteredPhrases);
+    },
+    async fetchGrammarThunk({ commit }) {
+      let res = await fetch(`${server()}/lakife-grammar`);
+      let text;
+      if (res.status === 200) {
+        text = await res.text();
+      } else {
+        console.log(`couldn't fetch lakife grammar: ${res.status}`);
+        text = "### NULU";
+      }
+      commit("setGrammar", text);
+      return text;
+    },
+    async fetchMihupolaThunk({ commit }) {
+      let res = await fetch(`${server()}/lakife-mihupola`);
+      let text;
+      if (res.status === 200) {
+        text = await res.text();
+      } else {
+        console.log(`couldn't fetch lakife mihupola: ${res.status}`);
+        text = "### NULU";
+      }
+      commit("setMihupola", text);
+      return text;
     },
   },
 });

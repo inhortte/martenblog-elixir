@@ -130,6 +130,44 @@ defmodule Martenblog.Router do
     conn |> put_resp_content_type("application/json") |> send_resp(200, pieces_of_shit |> Utils.to_json)
   end
 
+  get "/lakife-vocabulary" do
+    conn |> put_resp_content_type("application/json") |>
+    send_resp(
+      200,
+      case Postgrex.start_link(database: "lakife", username: "polaris") do
+        {:ok, pid} -> Postgrex.query!(pid, "select * from vocabulary", [])
+        _ -> %{rows: []}
+      end |> Utils.to_json
+    )
+  end
+
+  get "/lakife-phrases" do
+    conn |> put_resp_content_type("application/json") |>
+    send_resp(
+      200,
+      case Postgrex.start_link(database: "lakife", username: "polaris") do
+        {:ok, pid} -> Postgrex.query!(pid, "select * from phrases", [])
+        _ -> %{rows: []}
+      end |> Utils.to_json
+    )
+  end
+
+  get "/lakife-grammar" do
+    conn |> put_resp_content_type("text/plain") |>
+    send_resp(
+      200,
+      File.read!("/home/polaris/various-leprosies/draining-the-pond/lakife-grammar.md")
+    )
+  end
+
+  get "/lakife-mihupola" do
+    conn |> put_resp_content_type("text/plain") |>
+    send_resp(
+      200,
+      File.read!("/home/polaris/various-leprosies/draining-the-pond/lakife-mihupola.md")
+    )
+  end
+
   # Activitypub leper
   get "/.well-known/webfinger" do
     conn |> put_resp_content_type("application/json") |>

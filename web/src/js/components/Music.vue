@@ -8,10 +8,10 @@
       <b-row no-gutters>
         <b-col md="4" sm="12" style="padding-right: 146px;">
           <a href="https://flavigula.bandcamp.com" target="_blank">
-            <b-card-img src="images/flavigula-white-logo-square.png" width="200" height="200" top left></b-card-img>
+            <b-card-img src="images/flavigula-white-logo-square.png" width="200" height="200" top center></b-card-img>
           </a>
-          <a href="https://flavigula.bandcamp.com/album/ll">
-            <b-card-img src="images/allai.jpg" height="200" width="200" bottom left></b-card-img>
+          <a href="https://submarinebroadcastingco.bandcamp.com/album/j-maraz">
+            <b-card-img src="images/jemaraz.png"  width="200" bottom center></b-card-img>
           </a>
         </b-col>
         <b-col md="8" sm="12">
@@ -19,7 +19,17 @@
             <div>
               <p>
                 This space is intentionally a part of the <strong>void</strong>.<br /><br />
-                That being said, our new album <a href="https://flavigula.bandcamp.com/album/ll">Älläï</a>, as of 16 December, has been released. Please give it a listen!<br /><br />
+
+                Now that the credo of this site has been stated, I'll mention that our new album
+                <a href="https://submarinebroadcastingco.bandcamp.com/album/j-maraz">Jēmaraz</a> 
+                was released by the 
+                <a href="https://submarinebroadcastingco.bandcamp.com/">Submarine Broadcasting Company</a> 
+                on 15 September. It's a delicate balance between weirdness and psychedelia, or so I am told. 
+                One can also hear it on 
+                <a href="https://funkwhale.thurk.org">Funkwhale</a> 
+                <a href="https://funkwhale.thurk.org/library/albums/21/">here</a>.
+                <br /><br /><hr />
+
                 Were you not compressed by the singularity, you'd visit the myriad places well suited to Flavigula listening, some of which are listed below.
               </p>
               <p>
@@ -29,6 +39,9 @@
                 <br />
                 Speaking of Tim Rowe, his music can be found <a href="https://timrowe.bandcamp.com/">aquí on bandcamp.</a> 
                 <br />
+                And Kris Boudreau, who contributes electric bass guitar to our recent recordings, has a number of fantastic atmospheric releases <a href="https://kynduum.bandcamp.com">here</a>.
+                <br />
+                Furthermore -<br />
                 Upon the venerable <a href="https://audius.co/flavigula" target="_blank">Audius</a> floats Flavigula albums.
                 <br />
                 Our <a href="https://open.spotify.com/artist/6hHcK3iE7Yc58gekrURJez" target="_blank">lucrative Spotify</a> home is aching for a few streams.
