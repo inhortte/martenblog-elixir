@@ -8,10 +8,13 @@
       <b-row no-gutters>
         <b-col md="4" sm="12" style="padding-right: 146px;">
           <a href="https://flavigula.bandcamp.com" target="_blank">
-            <b-card-img src="images/flavigula-white-logo-square.png" width="200" height="200" top center></b-card-img>
+            <b-card-img src="images/flavigula-white-logo-square.png" width="200" height="200" style="border: 1px #999999;" border-variant="secondary" top center></b-card-img>
+          </a>
+          <a href="https://flavigula.bandcamp.com/album/za-ru-en" target="_blank">
+            <b-card-img src="images/za-ruzeni.png" width="200" height="200" style="border: 1px #999999;" border-variant="secondary" left center></b-card-img>
           </a>
           <a href="https://submarinebroadcastingco.bandcamp.com/album/j-maraz">
-            <b-card-img src="images/jemaraz.png"  width="200" bottom center></b-card-img>
+            <b-card-img src="images/jemaraz.png"  width="200" style="border: 1px #999999;" border-variant="secondary" bottom center></b-card-img>
           </a>
         </b-col>
         <b-col md="8" sm="12">
@@ -20,15 +23,23 @@
               <p>
                 This space is intentionally a part of the <strong>void</strong>.<br /><br />
 
-                Now that the credo of this site has been stated, I'll mention that our new album
-                <a href="https://submarinebroadcastingco.bandcamp.com/album/j-maraz">Jēmaraz</a> 
-                was released by the 
-                <a href="https://submarinebroadcastingco.bandcamp.com/">Submarine Broadcasting Company</a> 
-                on 15 September. It's a delicate balance between weirdness and psychedelia, or so I am told. 
-                One can also hear it on 
-                <a href="https://funkwhale.thurk.org">Funkwhale</a> 
-                <a href="https://funkwhale.thurk.org/library/albums/21/">here</a>.
-                <br /><br /><hr />
+                <p>
+                  Now that the credo of this site and our lives has been stated, 
+                  I'll point that a new album, appropriately titled 
+                  <a href="https://flavigula.bandcamp.com/album/za-ru-en" target="_blank">Za Rušení</a> 
+                  is available as of 7 December of the current epoch.
+                </p>
+                <p>
+                  Our previous album, a so-called <em>main-sequence</em> album,
+                  <a href="https://submarinebroadcastingco.bandcamp.com/album/j-maraz">Jēmaraz</a>,
+                  was released by the 
+                  <a href="https://submarinebroadcastingco.bandcamp.com/">Submarine Broadcasting Company</a> 
+                  on 15 September. It's a delicate balance between weirdness and psychedelia, or so I am told. 
+                  One can also hear it on 
+                  <a href="https://funkwhale.thurk.org">Funkwhale</a> 
+                  <a href="https://funkwhale.thurk.org/library/albums/21/">here</a>.
+                </p>
+                <hr />
 
                 Were you not compressed by the singularity, you'd visit the myriad places well suited to Flavigula listening, some of which are listed below.
               </p>

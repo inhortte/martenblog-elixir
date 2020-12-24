@@ -112,6 +112,10 @@ defmodule Martenblog.Router do
     send_resp(200, Martenblog.Rss.rss)
   end
 
+  get "/atom" do
+    conn |> put_resp_content_type("text/xml") |> send_resp(200, Martenblog.Atom.atom)
+  end
+
   get "/piece-of-shit" do
     pieces_of_shit = File.read!('/home/polaris/various-leprosies/draining-the-pond/piece-of-shit.txt') 
                      |> String.split(~r{\n}) 
@@ -135,8 +139,13 @@ defmodule Martenblog.Router do
     send_resp(
       200,
       case Postgrex.start_link(database: "lakife", username: "polaris") do
-        {:ok, pid} -> Postgrex.query!(pid, "select * from vocabulary", [])
-        _ -> %{rows: []}
+      # case Postgrex.child_spec([]) do
+        {:ok, pid} -> 
+          Postgrex.query!(pid, "select * from vocabulary", [])
+        # %{id: pid} -> Postgrex.query!(pid, "select * from vocabulary", [])
+        _ -> 
+          Logger.info("Vocabulary query didn't run, vole")
+          %{rows: []}
       end |> Utils.to_json
     )
   end

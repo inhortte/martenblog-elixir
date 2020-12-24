@@ -1,4 +1,5 @@
 defmodule Martenblog.Utils do
+  require Logger
   @anomalous_keys %{"_id" => :id}
   
   def normalise_keys(map) do
@@ -27,4 +28,18 @@ defmodule Martenblog.Utils do
     bubble = ?a..?z
     Enum.map(1..10, fn _-> Enum.random(bubble) end)
   end
+
+  def created_at_to_date(created_at) do
+    Logger.info created_at
+    case created_at do
+      nil -> "unknown"
+      _ -> 
+        d = DateTime.from_unix!(Kernel.trunc(created_at / 1000))
+        year = Integer.to_string(d.year) |> String.pad_leading(4, "0")
+        month = Integer.to_string(d.month) |> String.pad_leading(2, "0")
+        day = Integer.to_string(d.day) |> String.pad_leading(2, "0")
+        "#{year}-#{month}-#{day}"
+    end
+  end
+
 end

@@ -8,6 +8,7 @@ defmodule Martenblog.Application do
       # Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: Martenblog.Router, options: [port: 4001]),
       worker(Mongo, [[database:
 		      Application.get_env(:martenblog, :db)[:name], name: :mongo]])
+      # worker(Postgrex, [[database: "lakife", username: "polaris"]]) # doesn't work
     ]
 
     Application.ensure_all_started(:hackney)

@@ -31,7 +31,11 @@ export default {
   components: { DateEntry },
   computed: {
     dateEntries() {
-      return this.$store.getters['dateEntries'];
+      let des = this.$store.getters['dateEntries'];
+      if(des.length > 0) {
+        document.title = des[0].subject;
+      }
+      return  des;
     },
     prev() {
       let ts = this.$store.getters['prev'];

@@ -178,6 +178,10 @@ defmodule Martenblog.Entry do
     String.split(ts, ~r/\s*,\s*/) |> topic_ids_from_topics_array
   end
 
+  def latest_entry do
+    Mongo.find(:mongo, "entry", %{}, sort: %{"created_at" => -1}, limit: 1) |> Enum.to_list |> List.first
+  end
+
   def next_entry_id() do
     Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => -1}, limit: 1) |> Enum.to_list |> List.first |>
     (fn first_entry -> 
