@@ -14,8 +14,8 @@ defmodule Martenblog.Atom do
       modified = Map.get(entry, "created_at") |> (fn dt ->
         dt / 1000 |> Kernel.trunc |> DateTime.from_unix! |> DateTime.to_iso8601()
       end).()
-      id = "gemini://thurk.org/blog/#{Map.get(entry, "_id") |> Kernel.trunc}.gemini"
-      link = "gemini://thurk.org/blog/#{Kernel.trunc(Map.get(entry, "_id"))}.gemini"
+      id = "gemini://thurk.org/blog/#{Map.get(entry, "_id") |> Kernel.trunc}.gmi"
+      link = "gemini://thurk.org/blog/#{Kernel.trunc(Map.get(entry, "_id"))}.gmi"
       element(:entry, [
         element(:title, title),
         element(:id, id),
@@ -36,7 +36,7 @@ defmodule Martenblog.Atom do
 
   def atom do
     title = "Martenblog"
-    link1 = "gemini://thurk.org/blog/index.gemini"
+    link1 = "gemini://thurk.org/blog/index.gmi"
     link2 = "https://flavigula.net/#/blog/1"
     modified = Entry.latest_entry |> Map.get("created_at") |> (fn dt ->
       dt / 1000 |> Kernel.trunc |> DateTime.from_unix! |> DateTime.to_iso8601()

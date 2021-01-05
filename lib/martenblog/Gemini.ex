@@ -10,37 +10,45 @@ defmodule Martenblog.Gemini do
   def blog_entry_to_gemini(id) do
     Entry.get_entry_by_id(id) |>
     (fn(entry) ->
-      filename = "/tmp/#{Utils.randomFilename}"
-      File.write!(filename, Map.get(entry, :entry))
-      thurk = Port.open(
-        {:spawn, "md2gemini -l at-end #{filename}"},
-        [:binary]
-      )
-      topics = Topic.topics_by_ids(Map.get(entry, :topic_ids)) |> 
-      Enum.map(fn t -> Map.get(t, "topic") end) |> 
-      Enum.join(", ")
-      receive do
-        {^thurk, {:data, result}} ->
-          """
-          # #{Map.get(entry, :subject)}
-          ## Topics: #{topics}
-          ## #{Utils.created_at_to_date(Map.get(entry, :created_at))}
+      if !is_nil(entry) do
+        filename = "/tmp/#{Utils.randomFilename}"
+        File.write!(filename, Map.get(entry, :entry))
+        thurk = Port.open(
+          {:spawn, "md2gemini -l at-end #{filename}"},
+          [:binary]
+        )
+        topics = Topic.topics_by_ids(Map.get(entry, :topic_ids)) |> 
+        Enum.map(fn t -> 
+          if !is_nil(t) do
+            Map.get(t, "topic", "nulu") 
+          else
+            "nulu"
+          end
+        end) |> 
+        Enum.join(", ")
+        receive do
+          {^thurk, {:data, result}} ->
+            """
+            # #{Map.get(entry, :subject)}
+            ## Topics: #{topics}
+            ## #{Utils.created_at_to_date(Map.get(entry, :created_at))}
 
-          #{result}
+            #{result}
 
-          => gemini://thurk.org/blog/index.gmi tzifur
-          => gemini://thurk.org/index.gmi jenju
+            => gemini://thurk.org/blog/index.gmi tzifur
+            => gemini://thurk.org/index.gmi jenju
 
-          @flavigula@sonomu.club
-          CC BY-NC-SA 4.0
-          """
-      end |> (fn text -> File.write!(Path.join(@gemini_public, "blog/#{floor(id)}.gmi"), text) end).()
+            @flavigula@sonomu.club
+            CC BY-NC-SA 4.0
+            """
+        end |> (fn text -> File.write!(Path.join(@gemini_public, "blog/#{floor(id)}.gmi"), text) end).()
+      end
     end).()
   end
 
-  def make_index(count) do
-    Entry.subjects(count) |> Enum.map(fn e ->
-      "=> #{Map.get(e, :id)}.gmi #{Map.get(e, :subject)} ( #{Utils.created_at_to_date(Map.get(e, :created_at))} )\n"
+  def make_index(limit) do
+    Entry.subjects() |> Enum.take(limit) |> Enum.map(fn e ->
+      "=> #{Map.get(e, :id)}.gmi #{Utils.created_at_to_date(Map.get(e, :created_at))} - #{Map.get(e, :subject)}\n"
     end) |> (fn subject_list ->
       affirmation = """
       # Here lies Martes Flavigula, eternally beneath the splintered earth
@@ -62,9 +70,8 @@ defmodule Martenblog.Gemini do
     end).()
   end
 
-  def make_gemini_feed(count) do
-    if(count > 53, do: 53, else: count)|>
-    Entry.subjects |> Enum.map(fn e ->
+  def make_gemini_feed do
+    Entry.subjects |> Enum.take(53) |> Enum.map(fn e ->
       "=> #{Map.get(e, :id)}.gmi #{Utils.created_at_to_date(Map.get(e, :created_at))} - #{Map.get(e, :subject)}\n"
     end) |> (fn subject_list ->
       affirmation = """
@@ -73,7 +80,7 @@ defmodule Martenblog.Gemini do
 
       #{subject_list}
 
-      => gemini://thurk.org/index.html jenju
+      => gemini://thurk.org/index.gmi jenju
 
       @flavigula@sonomu.club
 
@@ -81,12 +88,13 @@ defmodule Martenblog.Gemini do
       ### these writings 1999-2021 by Bob Murry Shelton are licensed under CC BY-NC-SA 4.0
       """
       File.write!(Path.join(@gemini_public, "blog/feed.gmi"), affirmation)
+      File.write!(Path.join(@gemini_public, "blog/atom.xml"), Martenblog.Atom.atom)
     end).()
   end
 
-  def slap_um_in(count) do
-    make_index(count)
-    Entry.subjects(count) |> Enum.each(fn e -> blog_entry_to_gemini(Map.get(e, :id)) end)
+  def slap_um_in(limit) do
+    make_index(limit)
+    Entry.subjects() |> Enum.take(limit) |> Enum.each(fn e -> blog_entry_to_gemini(Map.get(e, :id)) end)
   end
 
   defp join_to_release_dir(thurk) do

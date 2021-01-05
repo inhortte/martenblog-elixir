@@ -30,7 +30,7 @@ defmodule Martenblog.Utils do
   end
 
   def created_at_to_date(created_at) do
-    Logger.info created_at
+    # Logger.info created_at
     case created_at do
       nil -> "unknown"
       _ -> 

@@ -287,8 +287,17 @@ defmodule Martenblog.Entry do
     end)
   end
 
-  def subjects(count) do
-    Mongo.find(:mongo, "entry", %{}, sort: %{"created_at" => -1}, limit: count) |> Enum.to_list |> Enum.map(&Utils.normalise_keys/1)
+  def count do
+    case Mongo.count(:mongo, "entry", %{}) do
+      {:ok, c} -> c
+      _ ->
+        Logger.info "Entry.count returned something erratic"
+        0
+    end
+  end
+
+  def subjects do
+    Mongo.find(:mongo, "entry", %{}, sort: %{"created_at" => -1}) |> Enum.to_list |> Enum.map(&Utils.normalise_keys/1)
   end
 
   def published(id) do
@@ -301,12 +310,26 @@ defmodule Martenblog.Entry do
   end
 
   def date_link(id) do
+    case date_path(id) do
+      :error -> "/#/blog/1"
+      {:ok, dp} -> "/#/blog/#{dp}"
+    end
+  end
+
+  def date_link_static(id) do
+    case date_path(id) do
+      :error -> "/blog/1"
+      {:ok, dp} -> "/blog/#{dp}"
+    end
+  end
+
+  def date_path(id) do
     mentry = Mongo.find_one(:mongo, "entry", %{"_id" => id})
     if is_nil(mentry) do
-      nil
+      :error
     else
       d = DateTime.from_unix!(Kernel.trunc(Map.get(mentry, "created_at") / 1000))
-      "/#/blog/#{d.year}/#{d.month}/#{d.day}"
+      {:ok, "#{d.year}/#{d.month}/#{d.day}"}
     end
   end
 
