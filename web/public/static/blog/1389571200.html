@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="Content-language" content="en">
+	<meta name="author" content="Bob Murry Shelton">
+    <title>Martenblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/site.css" />
+  </head>
+  <body style="background: #a8a8a8;">
+    <div class="hlavni container">
+      <div class="jumbotron">
+        <!----><!---->
+        <h1>Flavigula</h1> 
+        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+        <hr class="my-4"> 
+        <p>
+          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+          <a href="#/music" class="">music</a> |
+          <a href="#/poems" class="">poems</a> |
+          <a href="#/lakife" class="">lakife</a> |
+          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
+        </p> 
+        <p text-muted="" class="sd text-muted" style="display: none;">
+
+        </p>
+      </div>
+
+<div class="card">
+  <div class="card-header"><h4>Blog -</h4></div>
+  <div class="container">
+    <div class="row" style="font-size: smaller; font-weight: bold;">
+      <div class="col-sm-12 col-md-3" style="text-align: left;">
+        
+          <a href="/static/blog/1389484800.html" class="">« Sun, 12 Jan, 2014</a>
+        
+      </div> 
+      <div class="col-sm-12 col-md-6" style="text-align: center;">
+        <a href="/static/blog/page_1.html" class="">jenju</a>
+      </div> 
+      <div class="col-sm-12 col-md-3" style="text-align: right;">
+        
+          <a href="/static/blog/1389744000.html" class="">Wed, 15 Jan, 2014 »</a>
+        
+      </div>
+    </div>
+    
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-9">
+                  <div slot="header">
+                    <div><em>When Sylvie opens a discussion, we all become translucent</em></div>
+                    <div><em>Mon, 13 Jan, 2014 16:24</em></div>
+                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
+                      
+                        <div class="list-group-item entry-topic">Music</div>
+                      
+                        <div class="list-group-item entry-topic">Thinklikeamink</div>
+                      
+                        <div class="list-group-item entry-topic">Programming</div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card-text entry">
+                    <p>
+Today’s special writing music is <em>Open</em> by <strong>The Necks</strong>. I am pretty sure that
+my parents will interrupt me during the piece, as it is approximately one hour
+long.</p>
+<p>
+Yesterday, I spent most of my productive time grinding my molars on the bones
+of a Palm Civet. That is, I was getting authentication to function on the
+previously named <em>Radiotracking</em> site. The new moniker is, of course, <em>Think
+Like A Mink</em>. Though my <em>journal</em> is currently also hosted here, the main point
+of purchasing the domain name was to have a stable place to host all things
+related to <a href="http://lutreola.eu">Project Lutreola</a> and whatever I decide to call
+Madis’s pursuits in the Ebro valley.</p>
+<h4>
+My fingernails are encrusted with blue.</h4>
+<p>
+I finally, after trying the <em>roll yer own</em> method and ember-auth, I went with
+<a href="https://github.com/simplabs/ember-simple-auth">ember-simple-auth</a>, as it is
+complient to openid hovno and I suspect I should have learned that standard (by
+standard, I mean <em>hovno</em>) long ago. After allowing myself to be authenticated,
+I pushed the repository and became lackadaisical for the remainder of the
+evening. I even ate some potato chips. I purged afterwards.</p>
+<p>
+Today, I need to finally put together some sort of roles / permissions per
+user. This moment is meant as a brainstorming session.</p>
+<ul>
+  <li>
+Users are associated with a project.  </li>
+  <li>
+Users can be associated with multiple projects.  </li>
+  <li>
+Projects are associated with organization.  </li>
+</ul>
+<p>
+Tiit wrote the other day:</p>
+<blockquote>
+  <p>
+YES, UNDER ONE ORGANIZATION SEVERAL PROJECTS. I WONDERS IS THERE SOME SORT
+OF SITUATION WHEN TWO ORGANISATIONS ARE JOINTLY RUNNING A PROJECT, THEN ONE
+IS LEAD-ORGANISATION.  </p>
+</blockquote>
+<p>
+If I go with this method, however, then my current hierarchy (though not fully
+realized programmatically) will be reversed. Projects will be the peak carving
+on the totem pole. Organizations will point to them. Users will be associated
+with both, independently.</p>
+<p>
+<em>Ugh.</em></p>
+<p>
+Furthermore, animals could be associated with various projects. I don’t see as
+much of a problem with achieving this, however. Right now, when an animal is
+returned from the database, one gets the following json:</p>
+<pre><code class="javascript">{
+  &quot;animal_id&quot;: 2675,
+  &quot;frequency&quot;: 442,
+  &quot;nickname&quot;: &quot;Magda&quot;,
+  &quot;sex&quot;: &quot;Female&quot;,
+  &quot;birthdate&quot;: &quot;2012-05-18 00:00:00&quot;,
+  &quot;release_date&quot;: &quot;2012-08-25 00:00:00&quot;,
+  &quot;microchip&quot;: &quot;233388&quot;,
+  &quot;enclosure_type&quot;: &quot;&quot;,
+  &quot;release_site&quot;: &quot;&quot;,
+  &quot;remarks&quot;: &quot;&quot;,
+  &quot;release_location_N&quot;: 0,
+  &quot;release_location_E&quot;: 0,
+  &quot;deathdate&quot;: &quot;2113-05-10 00:00:00&quot;,
+  &quot;cause_of_death&quot;: &quot;&quot;,
+  &quot;species_id&quot;: 1,
+  &quot;project_id&quot;: 1,
+  &quot;id&quot;: &quot;5&quot;,
+  &quot;species&quot;: {
+    &quot;name&quot;: &quot;mustela lutreola&quot;,
+    &quot;id&quot;: &quot;1&quot;
+  },
+  &quot;project&quot;: {
+    &quot;name&quot;: &quot;saaremaa 2012&quot;,
+    &quot;abbr&quot;: &quot;s2&quot;,
+    &quot;organization_id&quot;: 1,
+    &quot;createdAt&quot;: &quot;2014-01-06T02:47:31.610Z&quot;,
+    &quot;updatedAt&quot;: &quot;2014-01-06T02:47:31.610Z&quot;,
+    &quot;id&quot;: &quot;1&quot;,
+    &quot;organization&quot;: {
+      &quot;name&quot;: &quot;project lutreola&quot;,
+      &quot;abbr&quot;: &quot;pl&quot;,
+      &quot;createdAt&quot;: &quot;2014-01-06T02:44:51.935Z&quot;,
+      &quot;updatedAt&quot;: &quot;2014-01-06T02:44:51.935Z&quot;,
+      &quot;id&quot;: &quot;1&quot;
+    }
+  }
+}</code></pre>
+<p>
+This butters my muffin dandily. If the animal is associated with more than one
+project, then I can turn “project” into “projects” and dump an array. That’s
+about as cute as the Palm Civet I just flayed, boned and chewed.</p>
+<p>
+Users can be associated with animals, also. I’ll create a “keepers” (or just
+“users”) key that holds an array of them. Following Tiit’s comment, however,
+one <em>user</em> will most likely be the <em>leader</em>. </p>
+<p>
+When I hit the url /projects, I get something like the following…</p>
+<pre><code class="javascript">{
+  &quot;projects&quot;: [
+    {
+      &quot;name&quot;: &quot;saaremaa 2012&quot;,
+      &quot;abbr&quot;: &quot;s2&quot;,
+      &quot;organization_id&quot;: 1,
+      &quot;createdAt&quot;: &quot;2014-01-06T02:47:31.610Z&quot;,
+      &quot;updatedAt&quot;: &quot;2014-01-06T02:47:31.610Z&quot;,
+      &quot;id&quot;: &quot;1&quot;,
+      &quot;organization&quot;: {
+        &quot;name&quot;: &quot;project lutreola&quot;,
+        &quot;abbr&quot;: &quot;pl&quot;,
+        &quot;createdAt&quot;: &quot;2014-01-06T02:44:51.935Z&quot;,
+        &quot;updatedAt&quot;: &quot;2014-01-06T02:44:51.935Z&quot;,
+        &quot;id&quot;: &quot;1&quot;
+      },
+      &quot;animals&quot;: [ ... ]
+    }, ...
+  ]
+}</code></pre>
+<p>
+I’ll replace “organization” with “organizations” and shove an array in there,
+supplanting the dastardly object or hash or whatever it’s called these days in
+the fecund land of javascript naming conventions. I should just call it <em>Tasty
+Palm Civet Marrow</em>. So, the array I’ll <strong>shove</strong> in there will be full of
+<em>tasty palm civet marrow</em>. </p>
+<p>
+Organizations will result in a similar layout.</p>
+<hr class="thin" />
+<p>
+Looking and listening back on my realization of <a href="https://soundcloud.com/flavigula/the-fen">The
+Fen</a> a few days back, I’d like that
+plucked violin to be replaced with an actual instrument. My avid reader may
+recall that I mentioned a <em>mandolin</em> was originally intended there.</p>
+<p>
+I’ll approach Christián or Ryan about it today. There will be a few rules
+they’d have to follow, however, in doing the deed. It must be a note by note
+rendition, of course, and no flourishes or improvisation is allowed. They’d be
+free to choose timbre, though, as long as it complimented (and certainly did
+not interfere with) the rhodes part. </p>
+<p>
+The screechy bit at the end could also call for a maniacal distorted guitar
+over the bass and harmonium. I’ll approach Ryan with that one, as I do not
+think Christián has an electric with him. In fact, I don’t even know if he has
+a guitar with him at all in the foul pit that calls itself Myrtle Beach.</p>
+<p>
+I shall inquire.</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+      <div class="abdomen card-group">
+        <div class="card">
+          <!---->
+          <!---->
+          <div class="card-body">
+            <!---->
+            <!---->
+            <p class="card-text">
+                <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
+                  Along with martens, goulish goats and the rippling fen - <br />
+                  <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
+                    these writings 1999-2021
+                  </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://flavigula.net">Bob Murry Shelton</a> are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">
+                  CC BY-NC-SA 4.0
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  </a>
+                </p> 
+                <small><a rel="me" href="https://sonomu.club/@flavigula">Mastodon</a></small> 
+                <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
+                <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
+                <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
+            </p>
+          </div>
+          <!---->
+          <!---->
+        </div>
+      </div>
+    </div>
+    <script data-goatcounter="https://goatcounter.zivter.net/count" async src="//goatcounter.zivter.net/count.js"></script>
+  </body>
+</html>
+

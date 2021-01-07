@@ -1,0 +1,31 @@
+<%= EEx.eval_file("./web/static/head-schema.eex", []) %>
+<div class="panel panel-primary">
+  <div class="panel-title">
+    <h4>Music -</h4>
+  </div> 
+  <div class="panel-body">
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="col3">
+            <a href="https://flavigula.bandcamp.com" target="_blank">
+              <img src="/images/flavigula-white-logo-square.png" style="border: 1px none rgb(153, 153, 153);" width="200" height="200">
+            </a> 
+            <a href="https://flavigula.bandcamp.com/album/za-ru-en" target="_blank">
+              <img src="/images/za-ruzeni.png" style="border: 1px none rgb(153, 153, 153);" width="200" height="200">
+            </a> 
+            <a href="https://submarinebroadcastingco.bandcamp.com/album/j-maraz">
+              <img src="/images/jemaraz.png" style="border: 1px none rgb(153, 153, 153);" width="200">
+            </a>
+          </div> 
+          <div class="col8">
+            <div style="margin-top: 20px; margin-bottom: 20px; margin-left: 20px;">
+              <%= content %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= EEx.eval_file("./web/static/foot-schema.eex", []) %>

@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-12">
             <em>
-              <a class="" href="blog#{Entry.date_link_static(e.id)}"><%= subject %></a>
+              <a class="" href="<%= link %>"><%= subject %></a>
             </em>
           </div>
         </div>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="Content-language" content="en">
+	<meta name="author" content="Bob Murry Shelton">
+    <title>Martenblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/site.css" />
+  </head>
+  <body style="background: #a8a8a8;">
+    <div class="hlavni container">
+      <div class="jumbotron">
+        <!----><!---->
+        <h1>Flavigula</h1> 
+        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+        <hr class="my-4"> 
+        <p>
+          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+          <a href="#/music" class="">music</a> |
+          <a href="#/poems" class="">poems</a> |
+          <a href="#/lakife" class="">lakife</a> |
+          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
+        </p> 
+        <p text-muted="" class="sd text-muted" style="display: none;">
+
+        </p>
+      </div>
+
+<div class="card">
+  <div class="card-header"><h4>Blog -</h4></div>
+  <div class="container">
+    <div class="row" style="font-size: smaller; font-weight: bold;">
+      <div class="col-sm-12 col-md-3" style="text-align: left;">
+        
+          <a href="/static/blog/1386115200.html" class="">« Wed, 04 Dec, 2013</a>
+        
+      </div> 
+      <div class="col-sm-12 col-md-6" style="text-align: center;">
+        <a href="/static/blog/page_1.html" class="">jenju</a>
+      </div> 
+      <div class="col-sm-12 col-md-3" style="text-align: right;">
+        
+          <a href="/static/blog/1386547200.html" class="">Mon, 09 Dec, 2013 »</a>
+        
+      </div>
+    </div>
+    
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-9">
+                  <div slot="header">
+                    <div><em>If it is small, it deserves torture</em></div>
+                    <div><em>Thu, 05 Dec, 2013 16:25</em></div>
+                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
+                      
+                        <div class="list-group-item entry-topic">Emberjs</div>
+                      
+                        <div class="list-group-item entry-topic">Tasks</div>
+                      
+                        <div class="list-group-item entry-topic">Nashville</div>
+                      
+                        <div class="list-group-item entry-topic">Blog</div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card-text entry">
+                    <p>
+Last night, my lethargy broke at some point after 19.00, birthing a bit of
+creative thought concerning the <strong>martenblog</strong> and my problem with
+<strong>promises</strong>. At first, I believed the solution would be in the <em>View</em>. This
+turned out, eventually, as I bitterly experienced, to be incorrect, as I still
+could not access (much less <em>manipulate</em>) the data that arrived from mongo in
+the form of a <strong>PromiseArray</strong>. Ie, I still only got a blank array. Many
+solutions are proposed on <em>stackoverflow</em>, but none worked. I just <em>installed</em>
+a (questionably) <em>new</em> version of <em>ember-data</em>, so, initially, I’ll see where
+that goes.</p>
+<ul>
+  <li>
+&lt;del&gt;Understand promises and promise arrays.&lt;/del&gt;  </li>
+  <li>
+Manipulate pagelist from the client side (ember).  </li>
+  <li>
+Filter by topic.  </li>
+  <li>
+&lt;del&gt;Make breakfast (with Lisa’s exceedingly expired eggs).&lt;/del&gt;  </li>
+  <li>
+Don’t die from above task.  </li>
+</ul>
+<p>
+I found a tidbit of very useful information just now:
+<a href="http://emberjs.com/api/classes/Ember.PromiseProxyMixin.html">PromiseProxyMixin</a>.
+The page has informed me that promises (and, I suppose, promise arrays) can be
+pending, settled, rejected and fulfilled. If the raw promise array is returned
+from the controller to the view, I can test whether it is pending, etc. Now, I
+must be able to <em>modify</em> the template dynamically when the promise is
+fulfilled. Oouh, <em>baby</em>.</p>
+<p>
+And I need to retrieve my laundry.</p>
+<p>
+I discovered that I did not add soap the previous time I did laundry
+(yesterday), so I am redoing it. Fine, eh?</p>
+<p>
+So, I have managed to access the promise array and create the pagination links
+on the client side. The next step is to make sure it refreshes every time the
+page is actually <strong>changed</strong>. Yes, sir.</p>
+<p>
+Now for a shower.</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+      <div class="abdomen card-group">
+        <div class="card">
+          <!---->
+          <!---->
+          <div class="card-body">
+            <!---->
+            <!---->
+            <p class="card-text">
+                <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
+                  Along with martens, goulish goats and the rippling fen - <br />
+                  <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
+                    these writings 1999-2021
+                  </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://flavigula.net">Bob Murry Shelton</a> are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">
+                  CC BY-NC-SA 4.0
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  </a>
+                </p> 
+                <small><a rel="me" href="https://sonomu.club/@flavigula">Mastodon</a></small> 
+                <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
+                <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
+                <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
+            </p>
+          </div>
+          <!---->
+          <!---->
+        </div>
+      </div>
+    </div>
+    <script data-goatcounter="https://goatcounter.zivter.net/count" async src="//goatcounter.zivter.net/count.js"></script>
+  </body>
+</html>
+

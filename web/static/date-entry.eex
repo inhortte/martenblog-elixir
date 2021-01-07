@@ -1,0 +1,52 @@
+<%= EEx.eval_file("./web/static/head.eex", []) %>
+<div class="card">
+  <div class="card-header"><h4>Blog -</h4></div>
+  <div class="container">
+    <div class="row" style="font-size: smaller; font-weight: bold;">
+      <div class="col-sm-12 col-md-3" style="text-align: left;">
+        <%= if Map.has_key?(meta, :previous) && !is_nil(meta.previous) do %>
+          <a href="<%= meta.previous_link %>" class="">« <%= meta.previous %></a>
+        <% end %>
+      </div> 
+      <div class="col-sm-12 col-md-6" style="text-align: center;">
+        <a href="/static/blog/page_1.html" class="">jenju</a>
+      </div> 
+      <div class="col-sm-12 col-md-3" style="text-align: right;">
+        <%= if Map.has_key?(meta, :next) && !is_nil(meta.next) do %>
+          <a href="<%= meta.next_link %>" class=""><%= meta.next %> »</a>
+        <% end %>
+      </div>
+    </div>
+    <%= for entry <- entries do %>
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-9">
+                  <div slot="header">
+                    <div><em><%= entry.subject %></em></div>
+                    <div><em><%= entry.date %></em></div>
+                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
+                      <%= for topic <- entry.topics do %>
+                        <div class="list-group-item entry-topic"><%= String.capitalize(topic, :default) %></div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card-text entry">
+                    <%= entry.entry %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= EEx.eval_file("./web/static/foot.eex", []) %>

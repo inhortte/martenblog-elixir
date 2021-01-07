@@ -7,36 +7,23 @@
       <div class="col">
         <nav aria-hidden="false" aria-label="Pagination">
           <ul aria-disabled="false" class="pagination b-pagination">
-            <li aria-hidden="true" class="page-item disabled">
-              <span aria-label="Go to first page" aria-disabled="true" class="page-link">«</span>
-            </li>
-            <li aria-hidden="true" class="page-item disabled">
-              <span aria-label="Go to previous page" aria-disabled="true" class="page-link">‹</span>
-            </li>
-            <!---->
-            <!---->
-            <li class="page-item active">
-              <a href="#/blog/1" class="page-link router-link-exact-active router-link-active" aria-label="Go to page 1" target="_self" aria-current="page">1</a>
-            </li>
-            <li class="page-item">
-              <a href="#/blog/2" class="page-link" aria-label="Go to page 2" target="_self">2</a>
-            </li>
-            <li class="page-item">
-              <a href="#/blog/3" class="page-link" aria-label="Go to page 3" target="_self">3</a>
-            </li>
-            <li class="page-item bv-d-xs-down-none">
-              <a href="#/blog/4" class="page-link" aria-label="Go to page 4" target="_self">4</a>
-            </li>
-            <li role="separator" class="page-item disabled bv-d-xs-down-none">
-              <span class="page-link">…</span>
-            </li>
-            <!---->
-            <li class="page-item">
-              <a href="#/blog/2" class="page-link" aria-label="Go to next page" target="_self">›</a>
-            </li>
-            <li class="page-item">
-              <a href="#/blog/43" class="page-link" aria-label="Go to last page" target="_self">»</a>
-            </li>
+            <%= for page <- pages do %>
+              <%= if Map.has_key?(page, :separator) do %>
+                <li role="separator" class="page-item disabled bv-d-xs-down-none">
+                  <span class="page-link">…</span>
+                </li>
+              <% else %>
+                <%= if page.disabled do %>
+                  <li aria-hidden="true" class="page-item disabled">
+                    <span aria-label="<%= page.aria_label %>" aria-disabled="true" class="page-link"><%= page.label %></span>
+                  </li>
+                <% else %>
+                  <li class="page-item">
+                    <a href="<%= page.link %>" class="page-link" aria-label="<%= page.aria_label %>" target="_self" aria-current="page"><%= page.label %></a>
+                  </li>
+                <% end %>
+              <% end %>
+            <% end %>
           </ul>
         </nav>
       </div>

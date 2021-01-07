@@ -34,10 +34,12 @@ defmodule Martenblog.MixProject do
       {:uuid, "~> 1.1.8"},
       {:hackney, "1.15.1"},
       {:fuzzyurl, "~> 1.0.1"},
-      { :earmark, "~> 1.4.3" },
       { :timex, "~> 3.6.3" },
       {:html_sanitize_ex, "~> 1.3.0-rc3"},
       {:postgrex, "~> 0.14.3"},
+      { :earmark, "~> 1.4.13" }
     ]
   end
 end
+
+

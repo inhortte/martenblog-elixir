@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="Content-language" content="en">
+	<meta name="author" content="Bob Murry Shelton">
+    <title>Martenblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/site.css" />
+  </head>
+  <body style="background: #a8a8a8;">
+    <div class="hlavni container">
+      <div class="jumbotron">
+        <!----><!---->
+        <h1>Flavigula</h1> 
+        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+        <hr class="my-4"> 
+        <p>
+          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+          <a href="#/music" class="">music</a> |
+          <a href="#/poems" class="">poems</a> |
+          <a href="#/lakife" class="">lakife</a> |
+          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
+        </p> 
+        <p text-muted="" class="sd text-muted" style="display: none;">
+
+        </p>
+      </div>
+
+<div class="card">
+  <div class="card-header"><h4>Blog -</h4></div>
+  <div class="container">
+    <div class="row" style="font-size: smaller; font-weight: bold;">
+      <div class="col-sm-12 col-md-3" style="text-align: left;">
+        
+          <a href="/static/blog/1292544000.html" class="">« Fri, 17 Dec, 2010</a>
+        
+      </div> 
+      <div class="col-sm-12 col-md-6" style="text-align: center;">
+        <a href="/static/blog/page_1.html" class="">jenju</a>
+      </div> 
+      <div class="col-sm-12 col-md-3" style="text-align: right;">
+        
+          <a href="/static/blog/1292803200.html" class="">Mon, 20 Dec, 2010 »</a>
+        
+      </div>
+    </div>
+    
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-9">
+                  <div slot="header">
+                    <div><em>I Dislike You</em></div>
+                    <div><em>Sun, 19 Dec, 2010 20:48</em></div>
+                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
+                      
+                        <div class="list-group-item entry-topic">Absurdity</div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card-text entry">
+                    <p>
+My name is the evil one and I dislike <em>you</em>. I fear you’ll have to deal with this in a congenial manner because the fact will not change. Thank you very much.</p>
+<p>
+And now back to our regular scheduled absurdity. Three of them, actually:</p>
+<ul>
+  <li>
+Nuggets  </li>
+  <li>
+Plastic  </li>
+  <li>
+Origami  </li>
+</ul>
+<h3>
+Die NOW</h3>
+<p>
+Or go look at the <a href="http://dailyotter.org" title="">Daily Otter</a>.</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-9">
+                  <div slot="header">
+                    <div><em>Staggering deafly</em></div>
+                    <div><em>Sun, 19 Dec, 2010 20:58</em></div>
+                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
+                      
+                        <div class="list-group-item entry-topic">Music</div>
+                      
+                        <div class="list-group-item entry-topic">Blog</div>
+                      
+                        <div class="list-group-item entry-topic">Seminole</div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card-text entry">
+                    <p>
+I seem to have not written yesterday. The reason for this heinous crime is the extreme productivity of yesterday. The Sheep Blog is practically finished. All that remains are parsing of new messages to create proper markup (I’m thinking of using RedCloth or BlueCloth for this, though I know absolutely nothing about them and have not even bothered thinking about Markdown or whatever it is called before) and to add an Edit page. This latter bit should be a cinch. </p>
+<p>
+After waking up blearily yesterday morning, I showered and proceeded to immediately begin work on the Sheep Blog. I must admit that I breezed through the Ajax implementations with very little problem. The only small snag was that when sections of a page are reloaded via Ajax and themselves contain calls to javascript, they do not function. That is, The content section of the Sheep Blog has one or more Entries. Beneath each entry are two links, one pointing backwards to the previous day of Entries and the other pointing forward to the following day of Entries. These links would not work when the section was reloaded (though they did initially when the whole page was loaded at once). The solution was to place all of the Ajax code in a function, which I called ajax_hovno, and to simply call the function once more from the loaded content. I admit I had to google around a bit before I realized this was the proper solution.</p>
+<p>
+I did an approximately an hour’s worth of this coding at Java Jitterz, the only ‘coffee shop’ in Seminole. I quite like it there, actually. And, it is a place to go to get away from the house (besides my daily walks), and getting away temporarily (or even permanently!) always improves productivity. Well, as I wrote in my ‘100 Things About Me’ five years ago: Small changes, no matter how rudimentary or subtle, always invigorate me. I must admit that my biggest fear is stagnation. Yus. Which brings me to the next topic and the biggest bit of productivity for the day.</p>
+<p>
+I stayed up until about three in the morning working on Reprise. The night before I had written the Rhodes and String parts in Lilypond and was pretty satisfied. So, yesterday, I whipped out LMMS and programmed in the parts. It took longer than I thought it would even though there are many, many repeating phrases. It is, after all, a very repetitious song, though in a shifty, sliding manner. The repeating phrases slide over one another, some changing subtly each iteration, others remaining static. I enjoy the effect, which is fortunate since I wrote it. Heh. The original (and still current) intention was to pan each part hard to one side and throw a deep reverb on the combined result. All mixed together, I had hoped it would give the Rhodes and Strings a distant feel. It did not exactly do that, but instead made them more ambient and blurry. I have not worked out the exact mix parameters yet, but the demo I mixed down before I actually attempted to go to sleep sounds mediocre. I’ll reuse the word ‘blurry’ and call it appropriate.</p>
+<p>
+The sequenced parts are three in number. Part two is nearly, but not quite, part one sliced in two. The third part is a melody of sorts which accompanies the chord progression and weird backwards/forwards guitar part which repeats and fades at the end of the piece. In the center, I created a bastardization of the vocal melody in ‘Union’. It seemed like a good thing to do at the time, somehow tying the ‘album’ together. The Rhodes part will in a way be featured during the extended instrumental section in Union, making another tie. Possibly it will show up somewhere in the Loopy Unnamed Song, also. Anyhow, this part three is mixed badly. I’ll bring the rhodes up an octive and maybe cut its bass frequencies a bit for better results. I may not actually do another mix or any modifications tonight, however, because I have plans for Intersection, which is the first piece in the sequence. </p>
+<p>
+As a brainstorm before I fell asleep (which was long coming), I thought it may be good to add another song to the ‘album’, that being the ‘Acy Bob’ piece I wrote in the hotel whilst first in London back in February. I know I worked it out a bit later on and that Tony wrote some lyrics. The plan is to create something very simple and repetitive with a groovy beat. Yeah. A dance track! A hit! That’d be the cute little day.</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+      <div class="abdomen card-group">
+        <div class="card">
+          <!---->
+          <!---->
+          <div class="card-body">
+            <!---->
+            <!---->
+            <p class="card-text">
+                <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
+                  Along with martens, goulish goats and the rippling fen - <br />
+                  <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
+                    these writings 1999-2021
+                  </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://flavigula.net">Bob Murry Shelton</a> are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">
+                  CC BY-NC-SA 4.0
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  </a>
+                </p> 
+                <small><a rel="me" href="https://sonomu.club/@flavigula">Mastodon</a></small> 
+                <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
+                <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
+                <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
+            </p>
+          </div>
+          <!---->
+          <!---->
+        </div>
+      </div>
+    </div>
+    <script data-goatcounter="https://goatcounter.zivter.net/count" async src="//goatcounter.zivter.net/count.js"></script>
+  </body>
+</html>
+

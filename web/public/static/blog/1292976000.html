@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="Content-language" content="en">
+	<meta name="author" content="Bob Murry Shelton">
+    <title>Martenblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/site.css" />
+  </head>
+  <body style="background: #a8a8a8;">
+    <div class="hlavni container">
+      <div class="jumbotron">
+        <!----><!---->
+        <h1>Flavigula</h1> 
+        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+        <hr class="my-4"> 
+        <p>
+          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+          <a href="#/music" class="">music</a> |
+          <a href="#/poems" class="">poems</a> |
+          <a href="#/lakife" class="">lakife</a> |
+          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
+        </p> 
+        <p text-muted="" class="sd text-muted" style="display: none;">
+
+        </p>
+      </div>
+
+<div class="card">
+  <div class="card-header"><h4>Blog -</h4></div>
+  <div class="container">
+    <div class="row" style="font-size: smaller; font-weight: bold;">
+      <div class="col-sm-12 col-md-3" style="text-align: left;">
+        
+          <a href="/static/blog/1292889600.html" class="">« Tue, 21 Dec, 2010</a>
+        
+      </div> 
+      <div class="col-sm-12 col-md-6" style="text-align: center;">
+        <a href="/static/blog/page_1.html" class="">jenju</a>
+      </div> 
+      <div class="col-sm-12 col-md-3" style="text-align: right;">
+        
+          <a href="/static/blog/1293062400.html" class="">Thu, 23 Dec, 2010 »</a>
+        
+      </div>
+    </div>
+    
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-9">
+                  <div slot="header">
+                    <div><em>More Project fucking Euler</em></div>
+                    <div><em>Wed, 22 Dec, 2010 13:54</em></div>
+                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
+                      
+                        <div class="list-group-item entry-topic">Project euler</div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card-text entry">
+                    <p>
+I am proceeding with my attempt at <a href="http://projecteuler.net/index.php?section=problems&id=254" title="Lemur?">Project Euler Problem #254</a>. It revolves around reversing functions. <em>g(i)</em> is basically the reverse of <em>sf(n)</em>. What I am doing is taking an Integer (<em>i</em>) and returning every number <em>k</em> with the following property: If one adds up the digits in <em>k</em>, one comes up with <em>i</em>. Here is my code so far (see if you can spot the obvious error before I continue!):</p>
+<pre><code>listToInteger :: [Integer] -&gt; Integer
+listToInteger xs = listToInteger&#39; $ reverse xs
+    where listToInteger&#39; [] = 0
+          listToInteger&#39; (x:xs) = x + 10 * listToInteger&#39; xs
+
+integersAddToInteger :: Int -&gt; [Integer]
+integersAddToInteger i = sort . map listToInteger . digitsAddTo . take i $ cycle [1]
+
+digitsAddTo :: [Integer] -&gt; [[Integer]]
+digitsAddTo [] = []
+digitsAddTo [x] = [[x]]
+digitsAddTo xs = thirdSet xs ++ secondSet xs
+    where secondSet xs    = digitsAddTo $ [first xs] ++ rest xs
+          thirdSet (x:xs) = map (x:) . digitsAddTo $ xs
+          first (a:b:xs)  = a + b
+          rest (a:b:xs)   = xs</code></pre>
+<p>
+When I call, for example, <code class="inline">integersAddToInteger 5</code>, I get this:</p>
+<pre><code>[5,14,23,32,41,113,122,131,212,221,311,1112,1121,1211,2111,11111]</code></pre>
+<p>
+Now, the obvious error is that if I want to find all <em>k</em> for an <em>i</em> greater than 9, the function <code class="inline">digitsAddTo</code> will begin using double digit numbers. I shall now attempt to fix this problem.</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-9">
+                  <div slot="header">
+                    <div><em>I was the primer for the first universe</em></div>
+                    <div><em>Wed, 22 Dec, 2010 21:54</em></div>
+                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
+                      
+                        <div class="list-group-item entry-topic">Music</div>
+                      
+                        <div class="list-group-item entry-topic">Goals</div>
+                      
+                        <div class="list-group-item entry-topic">Math</div>
+                      
+                        <div class="list-group-item entry-topic">Project euler</div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card-text entry">
+                    <p>
+I am incredibly fucking frustrated concerting Project Euler #254. I am befuddled. Flummoxed. And overall - irritated. The problem is an irritant. I posted some things about it in the Sheep Blog earlier and have since learned that none of that matters at all. Of course, this will be soon merged with the Sheep Blog, so the last sentence is half superfluous. But, anyway, creating a list of every number which has digits which add up to <em>i</em> was big fun, though ultimately pointless. Having the values of <em>f(n)</em> does nothing for me because with each of them I’d have to calculate the <em>n</em>. The sheer amount of computation involved is staggering. Furthermore, to get each <em>f(n)</em> for <code class="inline">i = 150</code> takes longer than it would to pull a tugboat full of raving mustelids from here to South Africa without encountering any water or poisonous snakes.</p>
+<h3>
+So!</h3>
+<p>
+<em>I hope you have noticed that I have begun writing these entries (starting today) with markdown since the Sheep Blog uses BlueCloth to create the fucking html from fucking text. Yeah.</em></p>
+<h2>
+So!</h2>
+<p>
+My next strategy was to make a map of <em>sf(n) -&gt; n</em>. The code I have just come up with is this:</p>
+<pre><code>sfMap z = sfMap&#39; (IntMap.fromList []) [1..z]
+    where sfMap&#39; theMap [] = theMap
+          sfMap&#39; theMap (x:xs) = sfMap&#39; (if (IntMap.lookup sfx theMap) == Nothing
+                                         then IntMap.insert sfx x theMap
+                                         else theMap) xs
+              where sfx = sf x</code></pre>
+<p>
+I’m using <em>IntMap</em> because I read in the glorious ghc library reference that it is exceedingly quick (maybe even quicker than a marten). Now, this creates a map with only one entry for each <em>i</em> (which is <em>sf(x)</em>). Since I am being sequential in my <em>x</em>s (note the <code class="inline">[1..z]</code>), the first time a <em>x</em> results in an <em>i</em> (<em>sf(x)</em>), it is recorded. Any further duplicate <em>sf(x)</em>s are ignored. I think this is the correct step forward (as opposed to the false stagger in a random direction earlier) even though when attempting to find <em>i</em>s up to 1 000 000, it was taking so long I had to interrupt the process. I need to create a more efficient way of making this map. I have some shades of ideas, but they are still murky.</p>
+<p>
+I shall continue after returning from an excursion to ‘Southern Rose’ with my parents for dinner. Yum…. I suppose.</p>
+<p>
+I have returned. Actually I returned over two hours ago. What have I done since then? Well, unfortunately, I have not forgotten about Project Euler and my little problem (cue the song, though it has little to do with mathematics). I played Hand and Foot with my parents (I came out on bottom and do not mind in the least), consumed some oatmeal cookies (much to my tummy’s chagrin) and wrote a program.</p>
+<p>
+I had this brainstorm whilst at the restaurant, actually. There was a book I espied in Luxor in Praha back in, um, most likely 2007. It was about sharpening discursive skills or some rot of the like. I enjoyed thumbing through it and desperately wanted to purchase it because I felt my quickness of mind has been dulling like a blade scraped repeatedly on porous rock. Yeah. Like that. Unfortunately, when I next returned to the bookstore, I could no longer locate the tome. I did remember a point from it which stuck with me and has taken me over three years to implement. <em>insert smiley</em>. The book suggested doing a number of simple arithmetic problems quickly every morning consistently. I always liked the idea, but have, as I just wrote, and you know I love repeating myself, procrastinated until about 30 minutes ago in employing the method in any sort of tangible manner.</p>
+<p>
+So I wrote the program. It is called <code class="inline">daily_arithmetic.rb</code>. Any fool can see that I wrote it in Ruby. I really should have done it in Haskell, instead, but IO in Haskell flummoxes me terribly, as very few of you know. Possibly none of you knew that until the very moment you read the last sentence. Just for fun, I’ll post the whole program here. 750words.com would probably call this cheating, but it is an original work, after all, and I’ll attempt to vomit up another 100 or so words afterwards to appease the spirit of fair prose play.</p>
+<pre><code>require &#39;rubygems&#39;
+require &#39;datamapper&#39;
+require &#39;dm-mysql-adapter&#39;
+
+DataMapper.setup(:default, &#39;mysql://localhost/morning_quiz&#39;)
+
+class Arithmetic
+  include DataMapper::Resource
+
+  property :id, Serial
+  property :question_count, Integer
+  property :score, Float
+  property :time, Integer
+  property :type, String
+  property :created_at, DateTime
+  property :updated_at, DateTime
+end
+
+choices = { 1 =&gt; :+, 2 =&gt; :* }
+
+puts &quot;Good morning, Schweinehund.&quot;
+puts &quot;1) Addition&quot;
+puts &quot;2) Multiplication&quot;
+while !choices.keys.include?(choice = gets.chomp.to_i)
+  puts &quot;Don&#39;t fuck with me, sunshine!&quot;
+end
+
+puts &quot;How many questions, you dullard?&quot;
+while (count = gets.chomp.to_i) &lt; 1
+  puts &quot;You are straining our relationship, cabbage-boy.&quot;
+end
+
+puts &quot;Ready?&quot;
+gets
+start = Time.now
+correct = 0
+
+count.downto(1).each do |i|
+  fst = rand(9) * 10 + rand(9)
+  snd = rand(9) * 10 + rand(9)
+  ans = fst.send(choices[choice], snd)
+  puts &quot;Question ##{count - i + 1}: #{fst} #{choices[choice].to_s} #{snd}&quot;
+  if gets.chomp.to_i == ans
+    correct = correct + 1
+    puts &quot;Very good, vole.&quot;
+  else
+    puts &quot;Nope!&quot;
+  end
+end
+
+finish = Time.now
+score = correct.to_f / count.to_f * 100
+
+puts &quot;From #{count}, you answered #{correct} correctly.&quot;
+puts &quot;Your score is %.02f%%&quot; % score
+puts &quot;It took you #{finish.tv_sec - start.tv_sec} seconds.&quot;
+
+Arithmetic.create(:question_count =&gt; count,
+                  :score =&gt; score,
+                  :time =&gt; finish.tv_sec - start.tv_sec,
+                  :type =&gt; choices[choice].to_s)</code></pre>
+<p>
+Isn’t that fantastic? DataMapper is an especially cool gem. I recall the days of struggling with mysql (or postgres, or whichever). Now, well, existence is made more beautiful by the simplicity of DataMapper.</p>
+<p>
+Ok, the next task of the evening is to begin working on the Loopy piece. I wish to flesh it out and shall exude mellifluous energy from my beta-brain into LMMS and Audacity. I think I will not even bother with Lilypond. The spirit of the original ‘composition’ was one of spontaneity. Jesus Christ Mother Of Satan And His Holy Bedfolk, I do not even recall what key (if any) it is in. Perhaps that 7/8 5/8 ostinato was an A and a…. well… I am not sure, actually. Doesn’t this ‘unknowing’ make it more exciting, however? I am babbling away. So have nice evening.</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+      <div class="abdomen card-group">
+        <div class="card">
+          <!---->
+          <!---->
+          <div class="card-body">
+            <!---->
+            <!---->
+            <p class="card-text">
+                <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
+                  Along with martens, goulish goats and the rippling fen - <br />
+                  <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
+                    these writings 1999-2021
+                  </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://flavigula.net">Bob Murry Shelton</a> are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">
+                  CC BY-NC-SA 4.0
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                  </a>
+                </p> 
+                <small><a rel="me" href="https://sonomu.club/@flavigula">Mastodon</a></small> 
+                <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
+                <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
+                <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
+            </p>
+          </div>
+          <!---->
+          <!---->
+        </div>
+      </div>
+    </div>
+    <script data-goatcounter="https://goatcounter.zivter.net/count" async src="//goatcounter.zivter.net/count.js"></script>
+  </body>
+</html>
+
