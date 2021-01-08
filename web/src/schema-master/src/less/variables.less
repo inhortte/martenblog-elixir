@@ -39,7 +39,7 @@
 // right above these. ^
 @primary-color: 							          @base-blue;
 @success-color: 							          @base-green;
-@info-color: 								            @base-teal;
+@info-color: 								            #249a8c;
 @warning-color: 							          @base-warning;
 @danger-color: 								          @base-danger;
  
@@ -159,9 +159,13 @@
 
 // Padding                                        
 @base-padding-vertical:                 (@baseline-size / 2); 
+@base-padding-top:                      (@baseline-size / 3);
+@base-padding-bottom:                   (@baseline-size / 2);
 @base-padding-horizontal:               (@baseline-size * 0.875);
 
 @base-padding-lg-vertical:              (@baseline-size * 0.875);
+@base-padding-lg-top:                   (@baseline-size * 0.7);
+@base-padding-lg-bottom:                @base-padding-lg-vertical;
 @base-padding-lg-horizontal:            (@baseline-size * 1.5);
 
 @base-padding-sm-vertical:              (@baseline-size * 0.4);
@@ -384,7 +388,7 @@
 // Info Panel
 @info-text:                             darken(@info-color, 5%);
 @info-border-bottom-color:              lighten(@info-color, 25%);
-@info-color-bg:                         lighten(@info-color, 39.5%);
+@info-color-bg:                         lighten(@info-color, 70%);
 
 //Primary
 @primary-text:                          darken(@primary-color, 10%);

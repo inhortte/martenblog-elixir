@@ -1,38 +1,41 @@
-<%= EEx.eval_file("./web/static/head.eex", []) %>
-<div class="card">
-  <!---->
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="margin-top: 20px;">
-      <div class="col">
-        <nav aria-hidden="false" aria-label="Pagination">
+<%= EEx.eval_file("./web/static/head-schema.eex", []) %>
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid">
+      <div class="col6 margin-bottom">
+        <div class="pagination" aria-hidden="false" aria-label="Pagination">
           <ul aria-disabled="false" class="pagination b-pagination">
             <%= for page <- pages do %>
               <%= if Map.has_key?(page, :separator) do %>
-                <li role="separator" class="page-item disabled bv-d-xs-down-none">
-                  <span class="page-link">…</span>
+                <li role="separator" >
+                  <span class="btn btn-default">…</span>
                 </li>
               <% else %>
                 <%= if page.disabled do %>
-                  <li aria-hidden="true" class="page-item disabled">
-                    <span aria-label="<%= page.aria_label %>" aria-disabled="true" class="page-link"><%= page.label %></span>
+                  <li aria-hidden="true">
+                    <%= if Map.has_key?(page, :active) && page.active do %>
+                      <span aria-label="<%= page.aria_label %>" class="btn btn-default active" aria-disabled="true"><%= page.label %></span>
+                    <% else %>
+                      <span aria-label="<%= page.aria_label %>" class="btn btn-default" aria-disabled="true"><%= page.label %></span>
+                    <% end %>
                   </li>
                 <% else %>
-                  <li class="page-item">
-                    <a href="<%= page.link %>" class="page-link" aria-label="<%= page.aria_label %>" target="_self" aria-current="page"><%= page.label %></a>
+                  <li>
+                    <a href="<%= page.link %>" class="btn btn-default" aria-label="<%= page.aria_label %>" target="_self" aria-current="page"><%= page.label %></a>
                   </li>
                 <% end %>
               <% end %>
             <% end %>
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
+    <div class="row-fluid">
+      <div class="col10 offset1">
         <%= content %>
       </div>
     </div>
   </div>
 </div>
-<%= EEx.eval_file("./web/static/foot.eex", []) %>
+<%= EEx.eval_file("./web/static/foot-schema.eex", []) %>

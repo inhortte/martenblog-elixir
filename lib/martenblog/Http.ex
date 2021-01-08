@@ -7,6 +7,8 @@ defmodule Martenblog.Http do
   @eex "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/static/"
   @dest "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/public/static/"
   @gemini_base "/usr/share/molly/"
+  @reference_re ~r/\[([a-z])\]/g
+  @footnote_re ~r/^=>\s+([^\s]+)\s+([a-z])\.\s+(.+)$/
 
   def pagination(page) do
     page_count = div(Entry.count, 11) + (if rem(Entry.count, 11) > 0, do: 1, else: 0)
@@ -43,6 +45,7 @@ defmodule Martenblog.Http do
       %{
         label: n,
         disabled: page == n,
+        active: page == n,
         link: "/static/blog/page_#{n}.html",
         aria_label: "Go to page #{page}"
       }
@@ -133,6 +136,24 @@ defmodule Martenblog.Http do
       html = EEx.eval_file(Path.join([@eex, "date-entry.eex"]), [meta: meta, entries: entries])
       File.write!(Path.join(@dest, "blog/#{Map.get(date_array, idx)}.html"), html)
     end)
+  end
+
+  def footnotify(lines_map, footnotes_map) do
+    footnotify(lines_map, footnotes_map, 0)
+  end
+  def footnotify(lines_map, _, pointer) when pointer == length(lines_map) do
+    Map.keys(lines_map) |> Enum.sort |> Enum.map(fn key -> Map.get(lines_map, key) end)
+  end
+  def footnotify(lines_map, footnotes_map, pointer) do
+    new_footnotes_map = Map.merge(footnotes_map,
+      Regex.scan(@reference_re, head) |> Enum.reduce(%{}, fn [_, letter], acc ->
+        Map.merge(acc, %{letter => %{line: Map.get(lines_map, pointer), pointer: pointer}})       
+      end)
+  end
+
+  def footnotes_to_links(lines_of_gemini) do
+    Enum.zip(0..length(lines_of_gemini), lines_of_gemini) |> Enum.into(%{}) |>
+    footnotify(%{})
   end
 
   def tag(tag_type) do
@@ -260,10 +281,15 @@ defmodule Martenblog.Http do
     end
   end
 
+  def process_gemini({lines_of_gemini, options}, html_list, status) do
+    process_gemini(lines_of_gemini, html_list, status) |> (fn res ->
+      {res, options}
+    end).()
+  end
   def process_gemini([], html_list, status) do
     case process_gemini_line("", status) do
-      {:ok, line, _status} -> Enum.reverse([line|html_list]) |> Enum.join("\n")
-      _ -> Enum.reverse(html_list) |> Enum.join("\n")
+      {:ok, line, _status} -> Enum.reverse([line|html_list])
+      _ -> Enum.reverse(html_list)
     end
   end
   def process_gemini([head|tail], html_list, status) do
@@ -273,15 +299,36 @@ defmodule Martenblog.Http do
     end
   end
 
+  def pre_optioner({lines_of_gemini, options}) do
+    case options do
+      %{head_lop: head_lop} -> 
+        lines_of_gemini |> Enum.drop(head_lop) |> (fn lines ->
+          {lines, Map.delete(options, :head_lop)}
+        end).() |> pre_optioner
+      %{footnote_links: _} ->
+        lines_of_gemini |> footnotes_to_links |> (fn lines ->
+          {lines, Map.delete(options, :footnote_links)}
+        end).() |> pre_optioner
+      _ -> {lines_of_gemini, options}
+    end
+  end
+
+  def post_optioner({lines_of_html, options}) do
+    case options do
+      _ -> {lines_of_html, options}
+    end
+  end
+
   def gemini_to_html(path, options) do
     case File.read(path) do
       {:ok, file} ->
-        lined = String.split(file, ~r/\n/)
-        modified = case options do
-          %{head_lop: head_lop} -> lined |> Enum.drop(head_lop)
-          _ -> lined
-        end
-        {:ok, process_gemini(modified, [], :nulu)}
+        {String.split(file, ~r/\n/), options} |> 
+        pre_optioner |> 
+        process_gemini([], :nulu) |> 
+        post_optioner |> 
+        (fn res ->
+          {:ok, Enum.join(res, "\n")}
+        end).()
       {:error, error} -> {:error, error}
     end
   end

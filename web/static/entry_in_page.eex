@@ -1,35 +1,32 @@
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="<%= link %>"><%= subject %></a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               <%= for topic <- topics do %>
-                <div class="list-group-item entry-topic"><%= String.capitalize(topic, :default) %></div>
+                <div class="list-group-element entry-topic"><%= String.capitalize(topic, :default) %></div>
               <% end %>
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em><%= ostensible_date %></em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       <%= entry_trunctated %>
     </p>
-  </div>
-  <div class="card-footer">
-    <em><%= ostensible_date %></em>
   </div>
 </div>

@@ -1,144 +1,146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/music/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <!---->
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="margin-top: 20px;">
-      <div class="col">
-        <nav aria-hidden="false" aria-label="Pagination">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid">
+      <div class="col6 margin-bottom">
+        <div class="pagination" aria-hidden="false" aria-label="Pagination">
           <ul aria-disabled="false" class="pagination b-pagination">
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_1.html" class="page-link" aria-label="Go to first page" target="_self" aria-current="page">«</a>
+                  <li>
+                    <a href="/static/blog/page_1.html" class="btn btn-default" aria-label="Go to first page" target="_self" aria-current="page">«</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_25.html" class="page-link" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
+                  <li>
+                    <a href="/static/blog/page_25.html" class="btn btn-default" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_25.html" class="page-link" aria-label="Go to page 26" target="_self" aria-current="page">25</a>
+                  <li>
+                    <a href="/static/blog/page_25.html" class="btn btn-default" aria-label="Go to page 26" target="_self" aria-current="page">25</a>
                   </li>
                 
               
             
               
                 
-                  <li aria-hidden="true" class="page-item disabled">
-                    <span aria-label="Go to page 26" aria-disabled="true" class="page-link">26</span>
+                  <li aria-hidden="true">
+                    
+                      <span aria-label="Go to page 26" class="btn btn-default active" aria-disabled="true">26</span>
+                    
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_27.html" class="page-link" aria-label="Go to page 26" target="_self" aria-current="page">27</a>
+                  <li>
+                    <a href="/static/blog/page_27.html" class="btn btn-default" aria-label="Go to page 26" target="_self" aria-current="page">27</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_28.html" class="page-link" aria-label="Go to page 26" target="_self" aria-current="page">28</a>
+                  <li>
+                    <a href="/static/blog/page_28.html" class="btn btn-default" aria-label="Go to page 26" target="_self" aria-current="page">28</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_27.html" class="page-link" aria-label="Go to next page" target="_self" aria-current="page">›</a>
+                  <li>
+                    <a href="/static/blog/page_27.html" class="btn btn-default" aria-label="Go to next page" target="_self" aria-current="page">›</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_44.html" class="page-link" aria-label="Go to last page" target="_self" aria-current="page">»</a>
+                  <li>
+                    <a href="/static/blog/page_44.html" class="btn btn-default" aria-label="Go to last page" target="_self" aria-current="page">»</a>
                   </li>
                 
               
             
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        <div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1316044800.html">Correspondence with Christopher Part III</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Solitude</div>
+                <div class="list-group-element entry-topic">Solitude</div>
               
-                <div class="list-group-item entry-topic">Stagnation</div>
+                <div class="list-group-element entry-topic">Stagnation</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Thu, 15 Sep, 2011 11.02 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Christopher wrote:
 
 > It will be nice for you to spend the time there, I imagine.  Do you associate with anyone else while you are there?  I find myself quite isolated here, which is a drag.  I have Anne of course, which is great...I would be lost without her, but it would be good to have others I can relate to.  My coworkers are aliens to me.  Or I suppose I am the alien...
@@ -146,77 +148,71 @@
 He's speaking of my time in Nova Scotia, of course. Had I been there alone, I surely would have associated with others more. I find m...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Thu, 15 Sep, 2011 11.02 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1313539200.html">Authentication systems</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Programming</div>
+                <div class="list-group-element entry-topic">Programming</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Wed, 17 Aug, 2011 11.37 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Who needs them, really?...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Wed, 17 Aug, 2011 11.37 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1313366400.html">Correspondence with Christopher Part II</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Procrastination</div>
+                <div class="list-group-element entry-topic">Procrastination</div>
               
-                <div class="list-group-item entry-topic">Routine</div>
+                <div class="list-group-element entry-topic">Routine</div>
               
-                <div class="list-group-item entry-topic">Serendipity</div>
+                <div class="list-group-element entry-topic">Serendipity</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Mon, 15 Aug, 2011 19.22 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I wrote to Christopher:
 
 > I always hear talk and read words about accepting others for who they are, and I'm all for it, but how about also accepting yourself for who you are?
@@ -224,85 +220,79 @@ He's speaking of my time in Nova Scotia, of course. Had I been there alone, I su
 I was raised in an environment where I was guilty until proven innocent. Not just my parents treated me this way, but every authority figure in the whole decrepit town. If any one of them spoke out against me, even in my minute youth, my parents took their word over mine. I learned to expect it to be this way and, instead, learned t...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Mon, 15 Aug, 2011 19.22 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1313280000.html">Correspondence with Christopher Part I</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Rootlessness</div>
+                <div class="list-group-element entry-topic">Rootlessness</div>
               
-                <div class="list-group-item entry-topic">Seaforth</div>
+                <div class="list-group-element entry-topic">Seaforth</div>
               
-                <div class="list-group-item entry-topic">Stability</div>
+                <div class="list-group-element entry-topic">Stability</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Sun, 14 Aug, 2011 19.01 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I write to Christopher:
 
 > What was the impetus for wanting to return to Antarctica? Was it only the loss of the new job opportunity or something deeper? I know that both of us have and always have had inside a turbulence which ia never exactly quiet, but always fidgets at different intensities. I know that in my case it never allows me to be COMPLETELY happy when in a "stable" situation, though a high percentage of satisfaction or contentment in daily life quashes it to an extent. How is it for you? Of cou...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Sun, 14 Aug, 2011 19.01 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1310860800.html">Horizontal horizon</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Time</div>
+                <div class="list-group-element entry-topic">Time</div>
               
-                <div class="list-group-item entry-topic">Health</div>
+                <div class="list-group-element entry-topic">Health</div>
               
-                <div class="list-group-item entry-topic">Hopeforwildlife</div>
+                <div class="list-group-element entry-topic">Hopeforwildlife</div>
               
-                <div class="list-group-item entry-topic">Praha</div>
+                <div class="list-group-element entry-topic">Praha</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Sun, 17 Jul, 2011 17.22 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I'm sitting on a couch in Seaforth, Nova Scotia. The back porch is divided from the house by sliding door and sliding screen. The mosquitos and wasps would otherwise invade and **bite**. Well, they would not bite *me*, but the *smaller one*.
 
 It is the third full day of the vacation. All is calm. All is tranquil. Yet, there seems little time to do the things I want to do, such as write. I feel hurried when I shouldn't at all. 
@@ -310,38 +300,35 @@ It is the third full day of the vacation. All is calm. All is tranquil. Yet, the
 The *jet lag*, a factor I never consider, has drug me down for days now. I suspe...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Sun, 17 Jul, 2011 17.22 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1310515200.html">Perhaps Chris Is Right</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Paranoia</div>
+                <div class="list-group-element entry-topic">Paranoia</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Wed, 13 Jul, 2011 18.17 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       We are herded like cattle within a small space. The space leaves us nothing but the feeling of being caged. There is no place to plug the laptop nor the phone in. Nothing. It has been planned this way. The **herd** is what is expected once you enter **America**. The difference is extreme.
 
 Why is this?
@@ -355,38 +342,35 @@ We shall see.
 I am a claustrophobic per...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Wed, 13 Jul, 2011 18.17 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1310515200.html">The Lower Fee, Us</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Blegvad</div>
+                <div class="list-group-element entry-topic">Blegvad</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Wed, 13 Jul, 2011 15.42 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       *He might burn out the divinity generator, and then, where would they be?* I have not really **got** the brilliance of this album until just now. Yeah, I know that Blegvad is a wordsmith and Partridge a (as well as a wordsmith) soundscapesmith.
 
 The foothills of **Hell**.
@@ -394,181 +378,161 @@ The foothills of **Hell**.
 I recall when I was listening to this in Zabehlice when Justin was around, visiting, or whatever he called it (yes, I am bitter). He listened for a moment (or perhaps I only regarded it as a moment - I don't know), and declared - "Some gu...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Wed, 13 Jul, 2011 15.42 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1310515200.html">Damage (not the Album)</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Paranoia</div>
+                <div class="list-group-element entry-topic">Paranoia</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Wed, 13 Jul, 2011 13.12 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I find it disturbing and a bit sad that in every relationship I have, I feel like I must take only what is of utmost importance. This is a historical artifact, for sure. When Marcie first destroyed all of my possessions still in her presence, something broke inside of me. Of course, she may have had just cause for this, but, again, this is something in my mind, a paranoia which springs from deep within the fertile peat of childhood when I was taught that I was to blame for everything.
 
 * Simply
 * Everything...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Wed, 13 Jul, 2011 13.12 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1310515200.html">The Gaarden of Hearthly Delights</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Music</div>
+                <div class="list-group-element entry-topic">Music</div>
               
-                <div class="list-group-item entry-topic">Displacement</div>
+                <div class="list-group-element entry-topic">Displacement</div>
               
-                <div class="list-group-item entry-topic">Cycle</div>
+                <div class="list-group-element entry-topic">Cycle</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Wed, 13 Jul, 2011 11.46 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I do not think I have ever listened to this album before, though it has come up often in forums I have read, and even perhaps in one or two conversations. The title is to the point: **I Advance Masked**. It is, as some may know, by *Robert Fripp and Andy Summers*, and I am not sure why it is on the hard drive at the moment. It was staring at me from the top part of the Amarok artist listing, sandwiched between *Alvin Curran* and *Bearded Seals*. I stared back, so it is now the soundtrack of these words.
 
 I ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Wed, 13 Jul, 2011 11.46 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1309046400.html">Illicit Andel</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Praha</div>
+                <div class="list-group-element entry-topic">Praha</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Sun, 26 Jun, 2011 04.06 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I don't know what I felt. I wanted to destroy everything around me. I remembered when Zuzana and I were sitting at the park near the Divadlo and she said to me 'what if someone rapes me?' i could not answer that question because I really did not care.
 
 Does Prague consume me or berate me?...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Sun, 26 Jun, 2011 04.06 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1305849600.html">Elaborating the Bender</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Change</div>
+                <div class="list-group-element entry-topic">Change</div>
               
-                <div class="list-group-item entry-topic">Death</div>
+                <div class="list-group-element entry-topic">Death</div>
               
-                <div class="list-group-item entry-topic">Location</div>
+                <div class="list-group-element entry-topic">Location</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 20 May, 2011 08.55 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       > **Christopher**: There are lots of intangible benefits to being in one
 > place over others.
 
 Christopher is perhaps stating the obvious, but his statement is nevertheless very poignant to me. The peace I feel in Prague as opposed to anywhere in Texas is tangible. I felt the weight lift when I entered the country (and completely, of course, when I was let through passport control *heh*). The bulky black shawl which covered me and collected soot over two years and a month has been tossed aside and the crust...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 20 May, 2011 08.55 UTC</em>
-  </div>
 </div>
 
       </div>
     </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -585,10 +549,9 @@ Christopher is perhaps stating the obvious, but his statement is nevertheless ve
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>

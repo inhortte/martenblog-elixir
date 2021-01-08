@@ -8,11 +8,15 @@
 .btn-group-lg,
 .btn-group-sm,
 .pagination > ul > li,
-.pagination > ul > li > a {
+.pagination > ul > li > a, 
+.pagination > ul > li > span {
   float: left;
   display: inline-block;
   position: relative;
   vertical-align: middle;
+  background-color: @base-off-grey;
+  background: @base-off-grey;
+  border: none;
   .border-radius(0);
 }
 
@@ -20,25 +24,30 @@
   padding-left: 0;
 }
 
-.pagination > ul > li > a {
+/*
+.pagination > ul > li > a, 
+.pagination > ul > li > span {
   .box-shadow(none);
-  border: 1px solid @base-color-ccc;
+  border: 0px solid @base-color-ccc;
 }
+*/
 
 .pagination-gradient > ul > li {
   .gradient(@base-color-eee, @base-color-eee, @base-white);
 }
 
     .pagination > ul > li > a,
+    .pagination > ul > li > span,
     .pagination > ul > li > button {
-      background-color: transparent;
-      background: transparent;
+      background-color: @base-off-grey;
+      background: @base-off-grey;
     }	
 
 .btn-group > .btn,
 .btn-group-lg > .btn,
 .btn-group-sm > .btn,
-.pagination > ul > li > a {
+.pagination > ul > li > a, 
+.pagination > ul > li > span {
   .left-float;
   .border-radius(0);
 } 
@@ -46,6 +55,7 @@
   .btn-group-lg > .btn + .btn,
   .btn-group-sm > .btn + .btn,
   .pagination > ul > li > a,
+  .pagination > ul > li > span,
   .pagination > ul > li > .btn  {
     margin-left: -1px;
   }
@@ -64,14 +74,17 @@
     .btn-group > .btn.active,
     .pagination > ul > li.active,
     .pagination > ul > li > .active {
+      border-bottom: 1px solid @base-darker-grey;
+      /*
       background-color: @info-color;
       color: @base-white;
       border-color: @info-color;
+      */
     }
 
 /* Pagination Large Size */
 .btn-group-lg > .btn,
-.pagination-lg > ul > li > a.btn {
+.pagination-lg > ul > li > a.btn, .pagination-lg > ul > li > span.btn {
   padding: @base-padding-lg-vertical @base-padding-lg-horizontal;
   .border-radius(0);
   float: left;
@@ -79,7 +92,7 @@
 }
 /* Pagination Small Size */
 .btn-group-sm > .btn,
-.pagination-sm > ul > li > a.btn {
+.pagination-sm > ul > li > a.btn, .pagination-lg > ul > li > span.btn  {
   padding: @base-padding-sm-vertical @base-padding-sm-horizontal;
   .border-radius(0);
   float: left;
@@ -91,6 +104,7 @@
 .btn-group-lg.no-b > .btn,
 .btn-group-sm.no-b > .btn,
 .pagination.no-b > ul > li > .btn,
+.pagination-no-b > ul > li > span,
 .list-group.no-b > li,
 .list-group.no-b > li > a,
 .list-group.no-b > a.list-group-element {

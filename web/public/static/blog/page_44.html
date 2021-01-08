@@ -1,152 +1,158 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/music/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <!---->
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="margin-top: 20px;">
-      <div class="col">
-        <nav aria-hidden="false" aria-label="Pagination">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid">
+      <div class="col6 margin-bottom">
+        <div class="pagination" aria-hidden="false" aria-label="Pagination">
           <ul aria-disabled="false" class="pagination b-pagination">
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_1.html" class="page-link" aria-label="Go to first page" target="_self" aria-current="page">«</a>
+                  <li>
+                    <a href="/static/blog/page_1.html" class="btn btn-default" aria-label="Go to first page" target="_self" aria-current="page">«</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_43.html" class="page-link" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
+                  <li>
+                    <a href="/static/blog/page_43.html" class="btn btn-default" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_41.html" class="page-link" aria-label="Go to page 44" target="_self" aria-current="page">41</a>
+                  <li>
+                    <a href="/static/blog/page_41.html" class="btn btn-default" aria-label="Go to page 44" target="_self" aria-current="page">41</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_42.html" class="page-link" aria-label="Go to page 44" target="_self" aria-current="page">42</a>
+                  <li>
+                    <a href="/static/blog/page_42.html" class="btn btn-default" aria-label="Go to page 44" target="_self" aria-current="page">42</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_43.html" class="page-link" aria-label="Go to page 44" target="_self" aria-current="page">43</a>
+                  <li>
+                    <a href="/static/blog/page_43.html" class="btn btn-default" aria-label="Go to page 44" target="_self" aria-current="page">43</a>
                   </li>
                 
               
             
               
                 
-                  <li aria-hidden="true" class="page-item disabled">
-                    <span aria-label="Go to page 44" aria-disabled="true" class="page-link">44</span>
+                  <li aria-hidden="true">
+                    
+                      <span aria-label="Go to page 44" class="btn btn-default active" aria-disabled="true">44</span>
+                    
                   </li>
                 
               
             
               
                 
-                  <li aria-hidden="true" class="page-item disabled">
-                    <span aria-label="Go to next page" aria-disabled="true" class="page-link">›</span>
+                  <li aria-hidden="true">
+                    
+                      <span aria-label="Go to next page" class="btn btn-default" aria-disabled="true">›</span>
+                    
                   </li>
                 
               
             
               
                 
-                  <li aria-hidden="true" class="page-item disabled">
-                    <span aria-label="Go to last page" aria-disabled="true" class="page-link">»</span>
+                  <li aria-hidden="true">
+                    
+                      <span aria-label="Go to last page" class="btn btn-default" aria-disabled="true">»</span>
+                    
                   </li>
                 
               
             
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        <div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/925430400.html">I'll give you fifty bucks if you snort this</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Nostalgia</div>
+                <div class="list-group-element entry-topic">Nostalgia</div>
               
-                <div class="list-group-item entry-topic">Kerby lane</div>
+                <div class="list-group-element entry-topic">Kerby lane</div>
               
-                <div class="list-group-item entry-topic">Austin</div>
+                <div class="list-group-element entry-topic">Austin</div>
               
-                <div class="list-group-item entry-topic">Friendship</div>
+                <div class="list-group-element entry-topic">Friendship</div>
               
-                <div class="list-group-item entry-topic">Relationships</div>
+                <div class="list-group-element entry-topic">Relationships</div>
               
-                <div class="list-group-item entry-topic">Oberon</div>
+                <div class="list-group-element entry-topic">Oberon</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 30 Apr, 1999 04.00 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Scott's gaze to me is exceedingly curious, as if he is expecting me at any
 moment to be pummelled. I wonder what Melanie's words were preceeding the
 snapping of this photograph. I look very much as if it was not expected. That
@@ -157,40 +163,37 @@ with me begins to aim the camera (and I am noticing their actions, of course).
 The drink I quaff (not in the photograph, but surel...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 30 Apr, 1999 04.00 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/925171200.html">Treading in bootsteps to places one should never again visit</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Oberon</div>
+                <div class="list-group-element entry-topic">Oberon</div>
               
-                <div class="list-group-item entry-topic">Relationships</div>
+                <div class="list-group-element entry-topic">Relationships</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Tue, 27 Apr, 1999 04.00 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       *Black* is in my head, annoying my restless neurons with how it relates to my
 situation. The craziness of last night haunts me like a receeding dream at
 which I try to clutch but recall only snatches that blur even further into grew
@@ -202,23 +205,15 @@ Two weeks ago today I told her *goodbye* and two days prior to now she said she
 cannot return t...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Tue, 27 Apr, 1999 04.00 UTC</em>
-  </div>
 </div>
 
       </div>
     </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -235,10 +230,9 @@ cannot return t...
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>

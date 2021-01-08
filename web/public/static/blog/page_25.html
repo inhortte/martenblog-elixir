@@ -1,142 +1,144 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/music/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <!---->
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="margin-top: 20px;">
-      <div class="col">
-        <nav aria-hidden="false" aria-label="Pagination">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid">
+      <div class="col6 margin-bottom">
+        <div class="pagination" aria-hidden="false" aria-label="Pagination">
           <ul aria-disabled="false" class="pagination b-pagination">
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_1.html" class="page-link" aria-label="Go to first page" target="_self" aria-current="page">«</a>
+                  <li>
+                    <a href="/static/blog/page_1.html" class="btn btn-default" aria-label="Go to first page" target="_self" aria-current="page">«</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_24.html" class="page-link" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
+                  <li>
+                    <a href="/static/blog/page_24.html" class="btn btn-default" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_24.html" class="page-link" aria-label="Go to page 25" target="_self" aria-current="page">24</a>
+                  <li>
+                    <a href="/static/blog/page_24.html" class="btn btn-default" aria-label="Go to page 25" target="_self" aria-current="page">24</a>
                   </li>
                 
               
             
               
                 
-                  <li aria-hidden="true" class="page-item disabled">
-                    <span aria-label="Go to page 25" aria-disabled="true" class="page-link">25</span>
+                  <li aria-hidden="true">
+                    
+                      <span aria-label="Go to page 25" class="btn btn-default active" aria-disabled="true">25</span>
+                    
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_26.html" class="page-link" aria-label="Go to page 25" target="_self" aria-current="page">26</a>
+                  <li>
+                    <a href="/static/blog/page_26.html" class="btn btn-default" aria-label="Go to page 25" target="_self" aria-current="page">26</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_27.html" class="page-link" aria-label="Go to page 25" target="_self" aria-current="page">27</a>
+                  <li>
+                    <a href="/static/blog/page_27.html" class="btn btn-default" aria-label="Go to page 25" target="_self" aria-current="page">27</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_26.html" class="page-link" aria-label="Go to next page" target="_self" aria-current="page">›</a>
+                  <li>
+                    <a href="/static/blog/page_26.html" class="btn btn-default" aria-label="Go to next page" target="_self" aria-current="page">›</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_44.html" class="page-link" aria-label="Go to last page" target="_self" aria-current="page">»</a>
+                  <li>
+                    <a href="/static/blog/page_44.html" class="btn btn-default" aria-label="Go to last page" target="_self" aria-current="page">»</a>
                   </li>
                 
               
             
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        <div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1321833600.html">Jacob and Esau</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Jacob</div>
+                <div class="list-group-element entry-topic">Jacob</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Mon, 21 Nov, 2011 11.23 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       The point is to find a middle point ... faith and rationality. Yeah. I wanted to say, at the first, 'faith' and 'belief', though I know it is absurd.
 
 Disbelief in rationality scares me. Let's take, for, example, the world in the music 'The Matrix'. It is the end game of disbelief in rationality, because our species will not comprehend that anything else could actually be correct about 'life'.
@@ -148,87 +150,81 @@ What do I mean by that?
 When we let politicians who have no scientific background rule our lives, then we...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Mon, 21 Nov, 2011 11.23 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1319068800.html">That pesky subconscious</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Psychology</div>
+                <div class="list-group-element entry-topic">Psychology</div>
               
-                <div class="list-group-item entry-topic">Beliefs</div>
+                <div class="list-group-element entry-topic">Beliefs</div>
               
-                <div class="list-group-item entry-topic">Fundamentalism</div>
+                <div class="list-group-element entry-topic">Fundamentalism</div>
               
-                <div class="list-group-item entry-topic">Cormac mccarthy</div>
+                <div class="list-group-element entry-topic">Cormac mccarthy</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Thu, 20 Oct, 2011 10.14 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       The subconscious may well be formed by belief systems buried and fertilized starting with youth and reinforced repeatedly by parents, peers and culture in general. This buried, fecund structure in our minds is the fundamentalism within all of us. All of our rational thoughts are filtered through it and mostly distorted. They are not rational anymore after this process, of course. It is the source of our emotional tides. Some may say that it is the manifestation of **us** and our moral compass.
 
 Cormac McCar...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Thu, 20 Oct, 2011 10.14 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1318550400.html">Plucked until no feather is left</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Nostalgia</div>
+                <div class="list-group-element entry-topic">Nostalgia</div>
               
-                <div class="list-group-item entry-topic">Blame</div>
+                <div class="list-group-element entry-topic">Blame</div>
               
-                <div class="list-group-item entry-topic">Guilt</div>
+                <div class="list-group-element entry-topic">Guilt</div>
               
-                <div class="list-group-item entry-topic">Wayne</div>
+                <div class="list-group-element entry-topic">Wayne</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 14 Oct, 2011 02.40 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Oh, Dresden. The middle of the night cradles me. It arms me. It placates me. What shall I do?
 
 I am at *Mc Donalds* at the moment and waiting.
@@ -240,80 +236,74 @@ Waiting for the train which will roll me far away to the place I would like to b
 I met a couple of dudes tonight. I forget their names, which is unfortunate. One was a music lover, as am I. We traded songs for a simple amount of time. Heh. That m...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 14 Oct, 2011 02.40 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1318291200.html">The Altruist in Me</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Clojure</div>
+                <div class="list-group-element entry-topic">Clojure</div>
               
-                <div class="list-group-item entry-topic">Clj-record</div>
+                <div class="list-group-element entry-topic">Clj-record</div>
               
-                <div class="list-group-item entry-topic">Open source software</div>
+                <div class="list-group-element entry-topic">Open source software</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Tue, 11 Oct, 2011 14.51 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I just finished my contribution to [clj-record](https://github.com/inhortte/clj-record), an open souhttps://github.com/inhortte/clj-recordrce *wrapper* around *clojure.java.jdbc* which imitates (rather meekly at the moment) Ruby's *Active Record*. I added the *has-and-belongs-to-many* association. The code is [here](https://github.com/inhortte/clj-record/blob/master/src/clj_record/associations.clj). Now I can truthfully add *open source contributions* to my CV. Heh
 ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Tue, 11 Oct, 2011 14.51 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1318118400.html">The vector is indexable, eh?</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Clojure</div>
+                <div class="list-group-element entry-topic">Clojure</div>
               
-                <div class="list-group-item entry-topic">Martenblog</div>
+                <div class="list-group-element entry-topic">Martenblog</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Sun, 09 Oct, 2011 22.24 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       **Now** a certain error is being an irritant. It looks like this:
 
 **java.lang.IllegalArgumentException: Key must be integer**
@@ -328,42 +318,39 @@ Here is the code spouting the error:
 As any observant mustelid can see, there is nothing wrong with that code according to the [Noir documentation](http://www.webnoir.org/tutorials/routes). I shall pull out pieces of my pancreas for a f...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Sun, 09 Oct, 2011 22.24 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1318118400.html">Ruby has found a Clojure.</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Clojure</div>
+                <div class="list-group-element entry-topic">Clojure</div>
               
-                <div class="list-group-item entry-topic">Martenblog</div>
+                <div class="list-group-element entry-topic">Martenblog</div>
               
-                <div class="list-group-item entry-topic">Sheepblog</div>
+                <div class="list-group-element entry-topic">Sheepblog</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Sun, 09 Oct, 2011 17.37 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I've begun porting **Sheepblog** (IE, this thing you are looking at right now) from *Ruby/Sinatra* to *Clojure/Noir*. I am in the beginning phases, but I believe that the database schema will stay the same for now.
 
 #### New features
@@ -373,40 +360,37 @@ As any observant mustelid can see, there is nothing wrong with that code accordi
 * Comments, by user or ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Sun, 09 Oct, 2011 17.37 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1317686400.html">The IT Crowd</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Psychology</div>
+                <div class="list-group-element entry-topic">Psychology</div>
               
-                <div class="list-group-item entry-topic">Programming</div>
+                <div class="list-group-element entry-topic">Programming</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Tue, 04 Oct, 2011 17.51 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I postulate that **IT** humans who are more interested in hardware and low-level programming (such as machine and assembly code and possibly C) are more likely to be interested in repetitive, logical tasks. They are also the ones who listen to *Techno* whilst working (and whilst doing other repetitive activities).
 
 Others, who enjoy the elegance of high level languages are more creative, more holistic, and overall better people.
@@ -414,118 +398,109 @@ Others, who enjoy the elegance of high level languages are more creative, more h
 Heh....
     </p>
   </div>
-  <div class="card-footer">
-    <em>Tue, 04 Oct, 2011 17.51 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1317340800.html">Justin says....</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Cognitive bias</div>
+                <div class="list-group-element entry-topic">Cognitive bias</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 30 Sep, 2011 20.49 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I thought it'd be beneficial to some future thoughts to record something Justin just wrote to me:
 
 > It's a weakness in my character to favour accuracy over some other more meaningful and human parameters....
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 30 Sep, 2011 20.49 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1317340800.html">How untrue, how untrue your feelings that guide you are</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Music</div>
+                <div class="list-group-element entry-topic">Music</div>
               
-                <div class="list-group-item entry-topic">Future</div>
+                <div class="list-group-element entry-topic">Future</div>
               
-                <div class="list-group-item entry-topic">Emotion</div>
+                <div class="list-group-element entry-topic">Emotion</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 30 Sep, 2011 09.54 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I went to lunch yesterday with Hynek. We had sparse contact for years and are just recently becoming *close* again. *Close* is a rather extreme word in this matter, but I use it because I don't really think that anyone is actually *close* to Hynek in the normal sense of the word. What I mean is this: Becoming emotionally close to Hynek is simply like becoming close to my shittypie. Hynek is an emotionless machine who responds similarly as I'd imagine one with a high level of artificial intelligence might.
 
 ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 30 Sep, 2011 09.54 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1316390400.html">I'm Having A Mid-Life Crisis</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Rootlessness</div>
+                <div class="list-group-element entry-topic">Rootlessness</div>
               
-                <div class="list-group-item entry-topic">Death</div>
+                <div class="list-group-element entry-topic">Death</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Mon, 19 Sep, 2011 07.02 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Why does sparsity of creativity come with age?
 
 * Commitments such as work? Family?
@@ -537,40 +512,37 @@ Heh....
 I have no family, or so I like to tell myself. Perhaps I'd count Victor as *family* if I had to name people. Maybe *Tony*. Certainly *Christopher*. Why are they all from Texas? I left that place wanting to rid myself of anchors and the energy sucking apparati of familiarity. I have gone on to be less than fastidious to any new anchor which happened along. Did lack...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Mon, 19 Sep, 2011 07.02 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1316390400.html">Similar feelings - different age</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Displacement</div>
+                <div class="list-group-element entry-topic">Displacement</div>
               
-                <div class="list-group-item entry-topic">Usti</div>
+                <div class="list-group-element entry-topic">Usti</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Mon, 19 Sep, 2011 06.45 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       **I am reminded of**. Those are the words I began many a journal entry with. **I am reminded of** the journal entries which I began with **I am reminded of**, especially in April of 1999. You see, I am on a train now, much as I was then. My direction is the same as it was then. My destination is different, however.
 
 I shall pass through **Usti Nad Labem**, but not stop. Dresden will occupy a few hours later in the day.
@@ -578,23 +550,15 @@ I shall pass through **Usti Nad Labem**, but not stop. Dresden will occupy a few
 The resurgence of communication with Hela has awakened a wash of memories from that age....
     </p>
   </div>
-  <div class="card-footer">
-    <em>Mon, 19 Sep, 2011 06.45 UTC</em>
-  </div>
 </div>
 
       </div>
     </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -611,10 +575,9 @@ The resurgence of communication with Hela has awakened a wash of memories from t
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>

@@ -1,144 +1,146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/music/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <!---->
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="margin-top: 20px;">
-      <div class="col">
-        <nav aria-hidden="false" aria-label="Pagination">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid">
+      <div class="col6 margin-bottom">
+        <div class="pagination" aria-hidden="false" aria-label="Pagination">
           <ul aria-disabled="false" class="pagination b-pagination">
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_1.html" class="page-link" aria-label="Go to first page" target="_self" aria-current="page">«</a>
+                  <li>
+                    <a href="/static/blog/page_1.html" class="btn btn-default" aria-label="Go to first page" target="_self" aria-current="page">«</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_19.html" class="page-link" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
+                  <li>
+                    <a href="/static/blog/page_19.html" class="btn btn-default" aria-label="Go to previous page" target="_self" aria-current="page">‹</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_19.html" class="page-link" aria-label="Go to page 20" target="_self" aria-current="page">19</a>
+                  <li>
+                    <a href="/static/blog/page_19.html" class="btn btn-default" aria-label="Go to page 20" target="_self" aria-current="page">19</a>
                   </li>
                 
               
             
               
                 
-                  <li aria-hidden="true" class="page-item disabled">
-                    <span aria-label="Go to page 20" aria-disabled="true" class="page-link">20</span>
+                  <li aria-hidden="true">
+                    
+                      <span aria-label="Go to page 20" class="btn btn-default active" aria-disabled="true">20</span>
+                    
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_21.html" class="page-link" aria-label="Go to page 20" target="_self" aria-current="page">21</a>
+                  <li>
+                    <a href="/static/blog/page_21.html" class="btn btn-default" aria-label="Go to page 20" target="_self" aria-current="page">21</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_22.html" class="page-link" aria-label="Go to page 20" target="_self" aria-current="page">22</a>
+                  <li>
+                    <a href="/static/blog/page_22.html" class="btn btn-default" aria-label="Go to page 20" target="_self" aria-current="page">22</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_21.html" class="page-link" aria-label="Go to next page" target="_self" aria-current="page">›</a>
+                  <li>
+                    <a href="/static/blog/page_21.html" class="btn btn-default" aria-label="Go to next page" target="_self" aria-current="page">›</a>
                   </li>
                 
               
             
               
                 
-                  <li class="page-item">
-                    <a href="/static/blog/page_44.html" class="page-link" aria-label="Go to last page" target="_self" aria-current="page">»</a>
+                  <li>
+                    <a href="/static/blog/page_44.html" class="btn btn-default" aria-label="Go to last page" target="_self" aria-current="page">»</a>
                   </li>
                 
               
             
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        <div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1383004800.html">Italian Zeuhl oozes up the wall</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Blog</div>
+                <div class="list-group-element entry-topic">Blog</div>
               
-                <div class="list-group-item entry-topic">Food</div>
+                <div class="list-group-element entry-topic">Food</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Tue, 29 Oct, 2013 22.24 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       My mother often created apple/tuna/mayo sandwiches for me (on white bread,
 desafortunadamente) when I was young. Accordingly, I created one recently and
 consumed it. Supplanting mayo was jalepeno mustard. Additions were cilantro and
@@ -147,40 +149,37 @@ horseradish. It was yummy.
 ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Tue, 29 Oct, 2013 22.24 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1383004800.html">Fireworks coming out of my head</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Transformation</div>
+                <div class="list-group-element entry-topic">Transformation</div>
               
-                <div class="list-group-item entry-topic">Blog</div>
+                <div class="list-group-element entry-topic">Blog</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Tue, 29 Oct, 2013 14.15 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Justin gave Hope Roberts an 87 on her exam. He seems quite proud of his
 student. He mentioned that she had been lost at the beginning. I imagined
 a furry, brown mouse that had been kept for all of its darling life
@@ -192,42 +191,39 @@ Actually, I am just testing testing testing the new martenblog entry
 uploading device. Once I ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Tue, 29 Oct, 2013 14.15 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1366243200.html">Unmentioned</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Allegory</div>
+                <div class="list-group-element entry-topic">Allegory</div>
               
-                <div class="list-group-item entry-topic">Symbolism</div>
+                <div class="list-group-element entry-topic">Symbolism</div>
               
-                <div class="list-group-item entry-topic">Seminole</div>
+                <div class="list-group-element entry-topic">Seminole</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Thu, 18 Apr, 2013 04.00 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       The giant hammer stands, or rather squats, over the dry, patchy
 landscape. The scant blades of grass in its ever-moving shadow reach
 up almost reverently. Their capabilities of growth are limited,
@@ -240,312 +236,288 @@ ever-moving summit.
 So the three levels of existence perp...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Thu, 18 Apr, 2013 04.00 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1358899200.html">Ill nightly pliflerings</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Wed, 23 Jan, 2013 01.17 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I pain myself at the moment, as people beg my pleasure. I am immaculate. I stand proud to be loved. Or at least wanted. Or at least questioned. Well, what is the difference, really?
 
 I encouraged Christián to create a blog. He will not because he craves immediate satisfaction. Oh... I know that I do, as well, but he is more adept at it and that is why it is easier for him to fail....
     </p>
   </div>
-  <div class="card-footer">
-    <em>Wed, 23 Jan, 2013 01.17 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1350691200.html">Another black/white</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Black/white</div>
+                <div class="list-group-element entry-topic">Black/white</div>
               
-                <div class="list-group-item entry-topic">Knowledge</div>
+                <div class="list-group-element entry-topic">Knowledge</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Sat, 20 Oct, 2012 00.21 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Let's make another dichotomy. *There* are ones who spend their lives delving deep into a subject. Then *there* are ones who stay the drug of knowledge and instead go broadly into many subjects. The former are the celebrated. The latter are the ones who can communicate with all, but are easily forgotten.
 
 Then there are those who attempt to do both at once. They die in a mire of quicksand which envelops like a predator.
 ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Sat, 20 Oct, 2012 00.21 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1350604800.html">Childhood values as the basis of the future</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Childhood</div>
+                <div class="list-group-element entry-topic">Childhood</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 19 Oct, 2012 15.33 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Discussion now centres around how the Uralic culture always wants their children to grow up around reindeer. *You cannot be a human without reindeer around you*. And the transfer of values to children because of this let them grow up in a ethically rich way and pass the same values on to their own culture.
 
 If this were me, the world would be a desert. Desolation. Nothing. My childhood should not be passed on....
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 19 Oct, 2012 15.33 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1350604800.html">I am beating myself about my ears instead of using my brain</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Compromise</div>
+                <div class="list-group-element entry-topic">Compromise</div>
               
-                <div class="list-group-item entry-topic">Black/white</div>
+                <div class="list-group-element entry-topic">Black/white</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 19 Oct, 2012 15.25 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Is *quality of life* the freedom to be your own boss and to have freedom from the chains of country and culture? Or is *quality of life* accumulating material things?
 
 This is another black and white question. Think about it as on axis, or a plane.
 ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 19 Oct, 2012 15.25 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1350604800.html">Let's define ourselves by the things we hate</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Conflict</div>
+                <div class="list-group-element entry-topic">Conflict</div>
               
-                <div class="list-group-item entry-topic">Christianity</div>
+                <div class="list-group-element entry-topic">Christianity</div>
               
-                <div class="list-group-item entry-topic">Black/white</div>
+                <div class="list-group-element entry-topic">Black/white</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 19 Oct, 2012 15.19 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       The dichotomy of black and white as opposed to living without any kind of conflict because no conflict actually exists. *Western Culture* creates a sense of good and evil in everyone. Without something to fight against, there is nothing to define ourselves by.
 
 Indigenous people who live in harmony with their own ecosystem accept all around them as it is - they are *harmonic*, if you will, to use a cliché'd phrase. The mentality of black and white simply doesn't exist. There is no reason to define oneself b...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 19 Oct, 2012 15.19 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1350604800.html">Giving == Parasite Education</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Communism</div>
+                <div class="list-group-element entry-topic">Communism</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 19 Oct, 2012 15.18 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       Discuss....
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 19 Oct, 2012 15.18 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1350604800.html">The God of Perpetual Change</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Death</div>
+                <div class="list-group-element entry-topic">Death</div>
               
-                <div class="list-group-item entry-topic">Change</div>
+                <div class="list-group-element entry-topic">Change</div>
               
-                <div class="list-group-item entry-topic">Tradition</div>
+                <div class="list-group-element entry-topic">Tradition</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 19 Oct, 2012 13.51 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       The indigenous people who live in the *Yamalo-Nenets Autonomous Okrug* have a tradition where they name a place after the person who is buried there. This means that as generations go by, the names of places change. They are as fluid as the people themselves, overreigned by a immutable tradition.
 ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 19 Oct, 2012 13.51 UTC</em>
-  </div>
 </div>
-<div class="card entry-card">
-  <!----> 
-  <div class="card-header">
+<div class="panel panel-info">
+  <div class="panel-title">
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row-fluid">
+          <div class="col12">
             <em>
               <a class="" href="/static/blog/1350604800.html">Pastoralism</a>
             </em>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="list-group list-group-horizontal-md">
+        <div class="row-fluid margin-bottom">
+          <div class="col8">
+            <div class="list-group list-group-small horizontal">
               
-                <div class="list-group-item entry-topic">Death</div>
+                <div class="list-group-element entry-topic">Death</div>
               
-                <div class="list-group-item entry-topic">Progress</div>
+                <div class="list-group-element entry-topic">Progress</div>
               
-                <div class="list-group-item entry-topic">Conservation</div>
+                <div class="list-group-element entry-topic">Conservation</div>
               
-                <div class="list-group-item entry-topic">Communities</div>
+                <div class="list-group-element entry-topic">Communities</div>
               
             </div>
           </div>
         </div>
-      </div>
+        <div class="row-fluid">
+          <div class="col8">
+            <em>Fri, 19 Oct, 2012 13.13 UTC</em>
+          </div>
+        </div>
     </div>
   </div>
-  <div class="card-body">
-    <!---->
-    <!---->
-    <p class="card-text entry">
+  <div class="panel-body">
+    <p class="entry">
       I am split between the idea of saving a race or group of a species (including humans) who have been overtaken and passed by the remainder of the world and left far behind and letting them die out as most non-adaptive creatures have in the past.
 
 Technology is the main culprit for this rushing onward. Being left behind means inevitable death.
@@ -553,23 +525,15 @@ Technology is the main culprit for this rushing onward. Being left behind means 
 Being a sort of conservation *biologist* (I should really put that word in quotes), I veer towards the former path. I clearly see that the latter road is the one that ...
     </p>
   </div>
-  <div class="card-footer">
-    <em>Fri, 19 Oct, 2012 13.13 UTC</em>
-  </div>
 </div>
 
       </div>
     </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -586,10 +550,9 @@ Being a sort of conservation *biologist* (I should really put that word in quote
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>
