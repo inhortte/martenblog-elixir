@@ -1,85 +1,88 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/page_1.html" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/flavigula/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="font-size: smaller; font-weight: bold;">
-      <div class="col-sm-12 col-md-3" style="text-align: left;">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid font-xs" style="font-weight: bold;">
+      <div class="col6" style="text-align: left;">
         
-          <a href="/static/blog/1478995200.html" class="">« Sun, 13 Nov, 2016</a>
+          <a href="/static/blog/1478995200.html">« Sun, 13 Nov, 2016</a>
         
       </div> 
-      <div class="col-sm-12 col-md-6" style="text-align: center;">
-        <a href="/static/blog/page_1.html" class="">jenju</a>
-      </div> 
-      <div class="col-sm-12 col-md-3" style="text-align: right;">
+      <div class="col6" style="text-align: right;">
         
-          <a href="/static/blog/1480377600.html" class="">Tue, 29 Nov, 2016 »</a>
+          <a href="/static/blog/1480377600.html">Tue, 29 Nov, 2016 »</a>
         
       </div>
     </div>
-    
-      <div class="row">
-        <div class="col">
-          <div class="card" style="margin-bottom: 20px;">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-9">
-                  <div slot="header">
-                    <div><em>Remember that a melody slides over a shifting rhythm leaving only a thin residue</em></div>
-                    <div><em>Wed, 16 Nov, 2016 12:08</em></div>
-                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
-                      
-                        <div class="list-group-item entry-topic">Music</div>
-                      
-                        <div class="list-group-item entry-topic">Sentiment</div>
-                      
-                        <div class="list-group-item entry-topic">Bureaucracy</div>
-                      
-                        <div class="list-group-item entry-topic">Materialism</div>
-                      
-                        <div class="list-group-item entry-topic">Art</div>
-                      
-                        <div class="list-group-item entry-topic">Creativity</div>
-                      
-                    </div>
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        
+          <div class="panel panel-info margin-bottom">
+            <div class="panel-title">
+              <div class="row-fluid">
+                <div class="col12">
+                  <div><em>Remember that a melody slides over a shifting rhythm leaving only a thin residue</em></div>
+                </div>
+              </div>
+              <div class="row-fluid margin-bottom">
+                <div class="col8">
+                  <div class="list-group list-group-small horizontal">
+                    
+                      <div class="list-group-element entry-topic">Music</div>
+                    
+                      <div class="list-group-element entry-topic">Sentiment</div>
+                    
+                      <div class="list-group-element entry-topic">Bureaucracy</div>
+                    
+                      <div class="list-group-element entry-topic">Materialism</div>
+                    
+                      <div class="list-group-element entry-topic">Art</div>
+                    
+                      <div class="list-group-element entry-topic">Creativity</div>
+                    
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-text entry">
-                    <p>
+              <div class="row-fluid">
+                <div class="col8">
+                  <em>Wed, 16 Nov, 2016 12:08</em>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body entry">
+              <p>
 I told Miki earlier via <em>Facebook Chat</em> (a bane, itself, to existence). And we have just now decided to instead use either Whatsapp or Viber or, confusingly, both simultaneously since <em>Facebook Chat</em> is a bane to anyone’s existence. In fact, the existence of one who uses <em>Facebook Chat</em> is mottled with decay. These fraught souls wither before others. I, too, am afflicted, obviously, but am stronger in <em>hara</em> and <em>spirit</em> than social wallowing ilk.</p>
 <p>
 Anyone reading even slightly closely has noticed that I used <em>told</em> intransitively in the previous paragraph. The shitstain pedants of the English tongue’d like to spike me to the wall of my grammatic insensitivity. Fuck um. I envision all pedants together as a family, twisted together in a pit, entwined. Their wails rise in unison. It is a perfect fourth between the sexes. My compatriots and I begin to pour the petrol. Michal is laughing as he sparks up a reefer.</p>
@@ -127,24 +130,16 @@ You pick up threads and clues, searching for a pattern that explains the whole, 
 <p>
 I just purchased <em>Music for Silenced Voices</em> and perused the first few pages. Thus, the quote. My first thought regarding it is that <em>resultant art</em> is not necessarily dependent on chance events, but its impetus is. I sit down and deliberately work out a piece of music, or write in this blog, or strangle Chritián’s infant spawn. These acts are just the resolution of ideas sparked in my day-to-day consciousness by exterior forces. Inspiration <em>always</em> comes from the outside. Flotsam from the possibly imaginary world’s ocean around me washes up in a rocky inlet. Most is washed back out. I inspect others. I keep fewer. Sometimes I take those few, sit around with a guitar, keyboard, pen or garrotte and fashion them into tangibilities.</p>
 
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
+        
       </div>
-    
+    </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -161,10 +156,9 @@ I just purchased <em>Music for Silenced Voices</em> and perused the first few pa
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>

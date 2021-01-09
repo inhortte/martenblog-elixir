@@ -1,81 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/page_1.html" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/flavigula/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="font-size: smaller; font-weight: bold;">
-      <div class="col-sm-12 col-md-3" style="text-align: left;">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid font-xs" style="font-weight: bold;">
+      <div class="col6" style="text-align: left;">
         
-          <a href="/static/blog/1607558400.html" class="">« Thu, 10 Dec, 2020</a>
+          <a href="/static/blog/1607558400.html">« Thu, 10 Dec, 2020</a>
         
       </div> 
-      <div class="col-sm-12 col-md-6" style="text-align: center;">
-        <a href="/static/blog/page_1.html" class="">jenju</a>
-      </div> 
-      <div class="col-sm-12 col-md-3" style="text-align: right;">
+      <div class="col6" style="text-align: right;">
         
-          <a href="/static/blog/1608163200.html" class="">Thu, 17 Dec, 2020 »</a>
+          <a href="/static/blog/1608163200.html">Thu, 17 Dec, 2020 »</a>
         
       </div>
     </div>
-    
-      <div class="row">
-        <div class="col">
-          <div class="card" style="margin-bottom: 20px;">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-9">
-                  <div slot="header">
-                    <div><em>The Translucent Backdroop of the Age</em></div>
-                    <div><em>Mon, 14 Dec, 2020 09:43</em></div>
-                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
-                      
-                        <div class="list-group-item entry-topic">Music</div>
-                      
-                        <div class="list-group-item entry-topic">Nostalgia</div>
-                      
-                        <div class="list-group-item entry-topic">Composition</div>
-                      
-                        <div class="list-group-item entry-topic">_</div>
-                      
-                    </div>
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        
+          <div class="panel panel-info margin-bottom">
+            <div class="panel-title">
+              <div class="row-fluid">
+                <div class="col12">
+                  <div><em>The Translucent Backdroop of the Age</em></div>
+                </div>
+              </div>
+              <div class="row-fluid margin-bottom">
+                <div class="col8">
+                  <div class="list-group list-group-small horizontal">
+                    
+                      <div class="list-group-element entry-topic">Music</div>
+                    
+                      <div class="list-group-element entry-topic">Nostalgia</div>
+                    
+                      <div class="list-group-element entry-topic">Composition</div>
+                    
+                      <div class="list-group-element entry-topic">_</div>
+                    
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-text entry">
-                    <p>
+              <div class="row-fluid">
+                <div class="col8">
+                  <em>Mon, 14 Dec, 2020 09:43</em>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body entry">
+              <p>
 I recently realised that I didn’t have a copy of Peter Hammill’s <em>X My Heart</em>. I quickly remedied the atrocity and then listened to said album. I find it glorious. It was released around 1998, around a time of great change for me. The song <em>A Better Time</em> was on some compilation or other that I was listening to in those days. Such compilations were one way to discover new music, just as hanging out on Mastodon is today, though slightly less dynamic. The “gap” in my psyche that not having this album produced brought about a sentimentality I didn’t know I had for those days. That’d be the “pre-leaving-Brynn” period, of course, not the “I escaped from a hellish marriage then spent a month doing insane things with Mr Bender then found myself in a huge, empty flat in Praha” period. In any case, the “gap” in my cerebral draining pit that not having this album produced spawned a sentimentality I didn’t know I had for those days. That sentimentality was short lived, though, as the last time I clearly remembered listening to the actual CD was either in the Petra Rezka flat, most of the furniture gone, one of my last days there. Or, alternatively, a few months later in Jeníček’s flat during my visit over Xmas 2000. That CD might have ended up with Aleksandra and is therefore lost forever. Bastard me.</p>
 <p>
 In the notes I am revising for this blog entry, I wrote:</p>
@@ -92,24 +95,16 @@ I think during my epoch of daily improvisation, I did not realise that parts tha
 <p>
 Returning to the nostalgia of 1998, or, in this case, 1997, the music I chose for today’s writing adventure was the first album by Lard Free. Its first track, <em>Warinobaril</em>, was also on a compilation I was listening to during the initial months of the failed, hellish marriage. That compilation, titled <em>Supernatural Fairy Tales</em>, provided impetus to explore quite a bit of music unknown to me at the time. With Lard Free, I’m sitting on the floor of our basement apartment on Dexter Avenue (I believe that was the name of the street) in Capitol Hill in Seattle, drinking in this music. I didn’t hear the entire album that contains <em>Warinobaril</em> until years later, living in Praha, lost in my decade of personal haze.</p>
 
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
+        
       </div>
-    
+    </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -126,10 +121,9 @@ Returning to the nostalgia of 1998, or, in this case, 1997, the music I chose fo
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>

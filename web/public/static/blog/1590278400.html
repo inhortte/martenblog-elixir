@@ -1,81 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/page_1.html" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/flavigula/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="font-size: smaller; font-weight: bold;">
-      <div class="col-sm-12 col-md-3" style="text-align: left;">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid font-xs" style="font-weight: bold;">
+      <div class="col6" style="text-align: left;">
         
-          <a href="/static/blog/1590192000.html" class="">« Sat, 23 May, 2020</a>
+          <a href="/static/blog/1590192000.html">« Sat, 23 May, 2020</a>
         
       </div> 
-      <div class="col-sm-12 col-md-6" style="text-align: center;">
-        <a href="/static/blog/page_1.html" class="">jenju</a>
-      </div> 
-      <div class="col-sm-12 col-md-3" style="text-align: right;">
+      <div class="col6" style="text-align: right;">
         
-          <a href="/static/blog/1590364800.html" class="">Mon, 25 May, 2020 »</a>
+          <a href="/static/blog/1590364800.html">Mon, 25 May, 2020 »</a>
         
       </div>
     </div>
-    
-      <div class="row">
-        <div class="col">
-          <div class="card" style="margin-bottom: 20px;">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-9">
-                  <div slot="header">
-                    <div><em>A Dim Room, Cracked Ceiling</em></div>
-                    <div><em>Sun, 24 May, 2020 17:56</em></div>
-                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
-                      
-                        <div class="list-group-item entry-topic">Absurdity</div>
-                      
-                        <div class="list-group-item entry-topic">Displacement</div>
-                      
-                        <div class="list-group-item entry-topic">Change</div>
-                      
-                        <div class="list-group-item entry-topic">Personality</div>
-                      
-                    </div>
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        
+          <div class="panel panel-info margin-bottom">
+            <div class="panel-title">
+              <div class="row-fluid">
+                <div class="col12">
+                  <div><em>A Dim Room, Cracked Ceiling</em></div>
+                </div>
+              </div>
+              <div class="row-fluid margin-bottom">
+                <div class="col8">
+                  <div class="list-group list-group-small horizontal">
+                    
+                      <div class="list-group-element entry-topic">Absurdity</div>
+                    
+                      <div class="list-group-element entry-topic">Displacement</div>
+                    
+                      <div class="list-group-element entry-topic">Change</div>
+                    
+                      <div class="list-group-element entry-topic">Personality</div>
+                    
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-text entry">
-                    <blockquote>
+              <div class="row-fluid">
+                <div class="col8">
+                  <em>Sun, 24 May, 2020 17:56</em>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body entry">
+              <blockquote>
   <p>
 You can’t live your life in a pine box, mister. The kitchen yawned as I walked into its midst this morning, then settled back into some sort of dumb, droning daftness that kitchens are known for. I opened the refrigerator to obtain my morning meal. The garbage can stood like a dungheap in defiance of anyone who dared move it, try to sink clean hands into its murky recesses, grasping for, perhaps, some sort of handle to use for easy carrying.  </p>
 </blockquote>
@@ -110,24 +113,16 @@ The types of boxes that people live in are what I call <em>bubbles</em>. It’s 
 <p>
 Decades later, I don’t think about Lee’s demise as much, naturally. The quoted parts of this blog entry are from a spiral notebook written during the spring of 1995. That part of my tramp through the pasture was one of imminent transition, and the feeling coincides with my current position in the pasture. Time slithers alongside differently as age subsumes me, showing me the gelling decades being absorbed into the passage itself.</p>
 
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
+        
       </div>
-    
+    </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -144,10 +139,9 @@ Decades later, I don’t think about Lee’s demise as much, naturally. The quot
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>

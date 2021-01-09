@@ -1,4 +1,5 @@
 defmodule Martenblog.Http do
+  import Martenblog.Transform
   require Logger
   alias Martenblog.Topic
   alias Martenblog.Entry
@@ -7,7 +8,7 @@ defmodule Martenblog.Http do
   @eex "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/static/"
   @dest "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/public/static/"
   @gemini_base "/usr/share/molly/"
-  @reference_re ~r/\[([a-z])\]/g
+  @reference_re ~r/\[([a-z])\]/
   @footnote_re ~r/^=>\s+([^\s]+)\s+([a-z])\.\s+(.+)$/
 
   def pagination(page) do
@@ -138,21 +139,66 @@ defmodule Martenblog.Http do
     end)
   end
 
+  def link_from_footnote(%{line: line, links: links} = line_with_links, letter, link, text) do
+    protocol = case Fuzzyurl.from_string(link) do
+      %{protocol: protocol} -> if is_nil(protocol), do: "https", else: protocol
+      _ -> "https"
+    end
+    Regex.split(~r/\[#{letter}\]/, line) |> case do
+      [anterior, posterior] -> 
+        %{
+          line: "#{String.trim(anterior)} #{String.trim(posterior)}",
+          links: links ++ [~s[<a href="#{link}">#{text}</a> (#{protocol})]]
+        }
+      _ -> line_with_links
+    end
+  end
+
+  def format_footnoted(%{line: line, links: links}) do
+    line <> ~s(<div class="text-right" style="font-size: smaller;">) <> Enum.join(links, "<br />") <> "</div>"
+  end
+
   def footnotify(lines_map, footnotes_map) do
     footnotify(lines_map, footnotes_map, 0)
   end
-  def footnotify(lines_map, _, pointer) when pointer == length(lines_map) do
-    Map.keys(lines_map) |> Enum.sort |> Enum.map(fn key -> Map.get(lines_map, key) end)
-  end
   def footnotify(lines_map, footnotes_map, pointer) do
-    new_footnotes_map = Map.merge(footnotes_map,
-      Regex.scan(@reference_re, head) |> Enum.reduce(%{}, fn [_, letter], acc ->
-        Map.merge(acc, %{letter => %{line: Map.get(lines_map, pointer), pointer: pointer}})       
+    if pointer >= length(Map.keys(lines_map)) do
+      Map.keys(lines_map) |> 
+      Enum.sort(fn a, b -> b < a end) |>
+      Enum.reduce([], fn key, res -> 
+        case Map.get(lines_map, key) do
+          nil -> res
+          line -> [format_footnoted(line)|res]
+        end
       end)
+    else
+      # Logger.info "investigando #{Map.get(lines_map, pointer, "--- nothing here ---")}"
+      new_footnotes_map = Map.merge(footnotes_map,
+        Regex.scan(@reference_re, Map.get(Map.get(lines_map, pointer), :line)) |> 
+        Enum.reduce(%{}, fn [_, letter], acc ->
+          Map.merge(acc, %{letter => pointer})       
+        end))
+      new_lines_map = Regex.run(@footnote_re, Map.get(Map.get(lines_map, pointer), :line)) |> case do
+        [_, link, letter, text] ->
+          case Map.get(footnotes_map, letter, :nulu) do
+            :nulu -> lines_map
+            idx -> 
+              line = Map.get(lines_map, idx)
+              Logger.info "reference to this line: #{line.line}"
+              lines_map |> 
+              Map.merge(%{idx => link_from_footnote(line, letter, link, text)}) |>
+              Map.merge(%{pointer => nil})
+          end
+        _ -> lines_map
+      end
+      footnotify(new_lines_map, new_footnotes_map, pointer+1)
+    end
   end
 
   def footnotes_to_links(lines_of_gemini) do
-    Enum.zip(0..length(lines_of_gemini), lines_of_gemini) |> Enum.into(%{}) |>
+    Enum.zip(0..length(lines_of_gemini) |> Enum.to_list, lines_of_gemini |> Enum.map(fn line ->
+      %{line: line, links: []}
+    end)) |> Enum.into(%{}) |>
     footnotify(%{})
   end
 
@@ -176,6 +222,7 @@ defmodule Martenblog.Http do
   def ulli(incoming, append), do: tag("div").(incoming, "") <> tag("ul").("", "") <> tag("li").("", append) <> "</li>\n"
   def li(append), do: tag("li").("", append) <> "</li>\n"
   def hr(incoming), do: "#{incoming}<hr />"
+  def br(incoming), do: "#{incoming}<br />"
   def ulend do
     fn -> tag("/div").("", "") <> tag("/ul").("", "") end
   end
@@ -187,9 +234,12 @@ defmodule Martenblog.Http do
   end
 
   def no_spaces(text, endfn) do
+    Logger.info "no spaces; #{text}"
     cond do
       Regex.match?(~r/^--+$/, text) -> 
         {:ok, endfn.() |> hr(), :nulu}
+      # Regex.match?(~r/^\s*$/, String.trim(text)) ->
+        # {:ok, endfn.() |> br(), :nulu}
       Regex.match?(~r/^\s*$/, text) -> 
           {:ok, endfn.(), :nulu}
       true -> 
@@ -202,17 +252,17 @@ defmodule Martenblog.Http do
     case Regex.run(re, line) do
       [_, uri, text] ->
         if Regex.match?(~r/^(http|gemi|ftp)/, uri) do
-          {:ok, ~s(<a href="#{uri}">#{text}</a><br />\n)}
+          {:ok, ~s(<a href="#{uri}">#{text}</a>\n)}
         else
-          {:ok, ~s(<a href="#{uri}">#{text}</a><br />\n)}
+          {:ok, ~s(<a href="#{String.replace(uri, ~r/gmi/, "html")}">#{text}</a>\n)}
         end
       _ -> {:error, :invalid}
     end
   end
 
   def nulu_line(line) do
-    case String.split(line, ~r/\s+/) do
-      [text] -> text |> no_spaces(nuluend())
+    case String.split(String.trim(line), ~r/\s+/) do
+      arr when length(arr) == 1 -> List.first(arr) |> no_spaces(nuluend())
       [head|tail] ->
         text = Enum.join(tail, " ")
         case head do
@@ -232,8 +282,8 @@ defmodule Martenblog.Http do
   end
 
   def ul_line(line) do
-    case String.split(line, ~r/\s+/) do
-      [text] -> text |> no_spaces(ulend())
+    case String.split(String.trim(line), ~r/\s+/) do
+      arr when length(arr) == 1 -> List.first(arr) |> no_spaces(ulend())
       [head|tail] ->
         text = Enum.join(tail, " ")
         case head do
@@ -253,8 +303,8 @@ defmodule Martenblog.Http do
   end
 
   def bq_line(line) do
-    case String.split(line, ~r/\s+/) do
-      [text] -> text |> no_spaces(bqend())
+    case String.split(String.trim(line), ~r/\s+/) do
+      arr when length(arr) == 1 -> List.first(arr) |> no_spaces(bqend())
       [head|tail] ->
         text = Enum.join(tail, " ")
         case head do
@@ -326,7 +376,7 @@ defmodule Martenblog.Http do
         pre_optioner |> 
         process_gemini([], :nulu) |> 
         post_optioner |> 
-        (fn res ->
+        (fn {res, _options} ->
           {:ok, Enum.join(res, "\n")}
         end).()
       {:error, error} -> {:error, error}
@@ -343,6 +393,21 @@ defmodule Martenblog.Http do
         html = EEx.eval_file(Path.join([@eex, "#{template}.eex"]), [content: content]) 
         File.write!(html_path, html)
       {:error, error} -> {:error, error}
+    end
+  end
+
+  def process_gemini_dir(dirname) do
+    List.last(gemini()) |> IO.inspect
+    gemini() |>
+    Enum.find(fn t -> t.dir == dirname end) |>
+    case do
+      %{template: template, geminis: geminis} ->
+        geminis |> Enum.each(fn g ->
+          Logger.info "processing #{Path.join(dirname, g.file)} with template #{template}"
+          process_gemini_file(Path.join(dirname, g.file), template, g.options)
+        end)
+        :ok
+      _ -> {:error, :notfound}
     end
   end
 end

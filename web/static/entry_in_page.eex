@@ -1,27 +1,25 @@
 <div class="panel panel-info">
   <div class="panel-title">
-    <div>
-        <div class="row-fluid">
-          <div class="col12">
-            <em>
-              <a class="" href="<%= link %>"><%= subject %></a>
-            </em>
-          </div>
+    <div class="row-fluid">
+      <div class="col12">
+        <em>
+          <a class="" href="<%= link %>"><%= subject %></a>
+        </em>
+      </div>
+    </div>
+    <div class="row-fluid margin-bottom">
+      <div class="col8">
+        <div class="list-group list-group-small horizontal">
+          <%= for topic <- topics do %>
+            <div class="list-group-element entry-topic"><%= String.capitalize(topic, :default) %></div>
+          <% end %>
         </div>
-        <div class="row-fluid margin-bottom">
-          <div class="col8">
-            <div class="list-group list-group-small horizontal">
-              <%= for topic <- topics do %>
-                <div class="list-group-element entry-topic"><%= String.capitalize(topic, :default) %></div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="col8">
-            <em><%= ostensible_date %></em>
-          </div>
-        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="col8">
+        <em><%= ostensible_date %></em>
+      </div>
     </div>
   </div>
   <div class="panel-body">

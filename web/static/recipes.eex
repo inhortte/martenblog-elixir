@@ -1,0 +1,18 @@
+<%= EEx.eval_file("./web/static/head-schema.eex", []) %>
+<div class="panel panel-primary">
+  <div class="panel-title margin-bottom">
+    <h4>Recipes -</h4>
+  </div> 
+  <div class="panel-body">
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col10 offset1">
+          <div class="margin-top margin-bottom">
+            <%= content %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= EEx.eval_file("./web/static/foot-schema.eex", []) %>

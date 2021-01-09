@@ -57,10 +57,10 @@
 }
 
 .panel-info {
-  border-color: @info-border-bottom-color;
+  border-color: @base-darker-grey;
   
   > .panel-title {
-    .panel-title(@info-color-bg, @info-text, @info-border-bottom-color);
+    .panel-title(lighten(@base-off-grey, 3%), @info-text, @base-darker-grey);
   }
 }
 

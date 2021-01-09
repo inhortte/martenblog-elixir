@@ -1,81 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/page_1.html" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/flavigula/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="font-size: smaller; font-weight: bold;">
-      <div class="col-sm-12 col-md-3" style="text-align: left;">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid font-xs" style="font-weight: bold;">
+      <div class="col6" style="text-align: left;">
         
-          <a href="/static/blog/1438214400.html" class="">« Thu, 30 Jul, 2015</a>
+          <a href="/static/blog/1438214400.html">« Thu, 30 Jul, 2015</a>
         
       </div> 
-      <div class="col-sm-12 col-md-6" style="text-align: center;">
-        <a href="/static/blog/page_1.html" class="">jenju</a>
-      </div> 
-      <div class="col-sm-12 col-md-3" style="text-align: right;">
+      <div class="col6" style="text-align: right;">
         
-          <a href="/static/blog/1439856000.html" class="">Tue, 18 Aug, 2015 »</a>
+          <a href="/static/blog/1439856000.html">Tue, 18 Aug, 2015 »</a>
         
       </div>
     </div>
-    
-      <div class="row">
-        <div class="col">
-          <div class="card" style="margin-bottom: 20px;">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-9">
-                  <div slot="header">
-                    <div><em>Abject alienation in a village from which are is no escape</em></div>
-                    <div><em>Sun, 16 Aug, 2015 15:45</em></div>
-                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
-                      
-                        <div class="list-group-item entry-topic">Alienation</div>
-                      
-                        <div class="list-group-item entry-topic">Displacement</div>
-                      
-                        <div class="list-group-item entry-topic">Fresneda</div>
-                      
-                        <div class="list-group-item entry-topic">Food</div>
-                      
-                    </div>
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        
+          <div class="panel panel-info margin-bottom">
+            <div class="panel-title">
+              <div class="row-fluid">
+                <div class="col12">
+                  <div><em>Abject alienation in a village from which are is no escape</em></div>
+                </div>
+              </div>
+              <div class="row-fluid margin-bottom">
+                <div class="col8">
+                  <div class="list-group list-group-small horizontal">
+                    
+                      <div class="list-group-element entry-topic">Alienation</div>
+                    
+                      <div class="list-group-element entry-topic">Displacement</div>
+                    
+                      <div class="list-group-element entry-topic">Fresneda</div>
+                    
+                      <div class="list-group-element entry-topic">Food</div>
+                    
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-text entry">
-                    <p>
+              <div class="row-fluid">
+                <div class="col8">
+                  <em>Sun, 16 Aug, 2015 15:45</em>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body entry">
+              <p>
 They sit on the couches before me yelling at each other. Or so it seems they are yelling. Their voices are naturally very piercing to me. I have bearly entered the room less than 10 minutes prior and already feel like fleeing. At least the television is not blearing. It surely will be a bit later, however. The hated instrument of stupidity is perpetually in the background in this house. How anyone can have a free thought is beyond my comprehension.</p>
 <p>
 I discussed my alienation with Marisa yesterday during our two times in bed. She seems to understand my plight. I understand little of the conversations between her <em>family</em>, and especially when we are all at the <em>table of endless amounts of food</em>. I sit silently. I try to eat slowly so I’ll have something to occupy my time, and therefore my thoughts.</p>
@@ -99,35 +102,33 @@ My conclusion is that I don’t know how much longer I can be here and resist de
 <p>
 I am an introvert. Absolutely no one here is similar in this regard.</p>
 
+            </div>
+          </div>
+        
+          <div class="panel panel-info margin-bottom">
+            <div class="panel-title">
+              <div class="row-fluid">
+                <div class="col12">
+                  <div><em>Un monton de agua</em></div>
+                </div>
+              </div>
+              <div class="row-fluid margin-bottom">
+                <div class="col8">
+                  <div class="list-group list-group-small horizontal">
+                    
+                      <div class="list-group-element entry-topic">Fresneda</div>
+                    
                   </div>
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="col8">
+                  <em>Sun, 16 Aug, 2015 23:28</em>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="row">
-        <div class="col">
-          <div class="card" style="margin-bottom: 20px;">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-9">
-                  <div slot="header">
-                    <div><em>Un monton de agua</em></div>
-                    <div><em>Sun, 16 Aug, 2015 23:28</em></div>
-                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
-                      
-                        <div class="list-group-item entry-topic">Fresneda</div>
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-text entry">
-                    <p>
+            <div class="panel-body entry">
+              <p>
 Marisa is mopping up <em>un monton de agua</em> whilst talking to herself. Her father and a number of other locals were standing near the door to the building and since she is technically not supposed to be in my room with me - or rather, her father may <em>flip</em> (her opinion - not proven to me). My room in fresneda is as such:</p>
 <p>
 Note: I don’t have the patience to get bluetooth working on galictis-vittata, so the photo will be added later.</p>
@@ -154,24 +155,16 @@ Unrelated note: The band <em>Her Name Is Calla</em> is very enjoyable and I have
 <p>
 Another unrelated note: <strong>DIE!</strong></p>
 
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
+        
       </div>
-    
+    </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -188,10 +181,9 @@ Another unrelated note: <strong>DIE!</strong></p>
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>

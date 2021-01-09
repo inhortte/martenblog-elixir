@@ -1,83 +1,86 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta http-equiv="Content-language" content="en">
-	<meta name="author" content="Bob Murry Shelton">
-    <title>Martenblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/bootstrap-vue.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/site.css" />
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    <title>A mustelid</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/schema.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
   </head>
-  <body style="background: #a8a8a8;">
-    <div class="hlavni container">
-      <div class="jumbotron">
-        <!----><!---->
-        <h1>Flavigula</h1> 
-        <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
-        <hr class="my-4"> 
-        <p>
-          <a href="#/blog/1" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
-          <a href="#/music" class="">music</a> |
-          <a href="#/poems" class="">poems</a> |
-          <a href="#/lakife" class="">lakife</a> |
-          <a href="#/login" class="" style="display: none;">log in</a> <a href="#" target="_self" class="">log out</a>
-        </p> 
-        <p text-muted="" class="sd text-muted" style="display: none;">
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col12">
+          <div class="panel panel-large panel-default">
+            <div class="panel-body">
+              <h1>Flavigula</h1>
+              <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+              <hr />
+              <p>
+                <a href="/static/blog/page_1.html" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+                <a href="/static/flavigula/index.html" class="">music</a> |
+                <a href="/static/poems/index.html" class="">poems</a> |
+                <a href="/static/lakife/index.html" class="">lakife</a>
+              </p> 
+            </div>
+          </div>
 
-        </p>
-      </div>
-
-<div class="card">
-  <div class="card-header"><h4>Blog -</h4></div>
-  <div class="container">
-    <div class="row" style="font-size: smaller; font-weight: bold;">
-      <div class="col-sm-12 col-md-3" style="text-align: left;">
+<div class="panel panel-primary">
+  <div class="panel-title"><h4>Blog -</h4></div>
+  <div class="panel-body">
+    <div class="row-fluid font-xs" style="font-weight: bold;">
+      <div class="col6" style="text-align: left;">
         
-          <a href="/static/blog/1607040000.html" class="">« Fri, 04 Dec, 2020</a>
+          <a href="/static/blog/1607040000.html">« Fri, 04 Dec, 2020</a>
         
       </div> 
-      <div class="col-sm-12 col-md-6" style="text-align: center;">
-        <a href="/static/blog/page_1.html" class="">jenju</a>
-      </div> 
-      <div class="col-sm-12 col-md-3" style="text-align: right;">
+      <div class="col6" style="text-align: right;">
         
-          <a href="/static/blog/1607904000.html" class="">Mon, 14 Dec, 2020 »</a>
+          <a href="/static/blog/1607904000.html">Mon, 14 Dec, 2020 »</a>
         
       </div>
     </div>
-    
-      <div class="row">
-        <div class="col">
-          <div class="card" style="margin-bottom: 20px;">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-9">
-                  <div slot="header">
-                    <div><em>Connectives Are for the Weak</em></div>
-                    <div><em>Thu, 10 Dec, 2020 09:30</em></div>
-                    <div class="list-group list-group-horizontal-sm" style="padding: 10px 0px;">
-                      
-                        <div class="list-group-item entry-topic">Lakife</div>
-                      
-                        <div class="list-group-item entry-topic">Language</div>
-                      
-                        <div class="list-group-item entry-topic">Writing</div>
-                      
-                        <div class="list-group-item entry-topic">Sloppy thinking</div>
-                      
-                        <div class="list-group-item entry-topic">Composition</div>
-                      
-                    </div>
+    <div class="row-fluid">
+      <div class="col10 offset1">
+        
+          <div class="panel panel-info margin-bottom">
+            <div class="panel-title">
+              <div class="row-fluid">
+                <div class="col12">
+                  <div><em>Connectives Are for the Weak</em></div>
+                </div>
+              </div>
+              <div class="row-fluid margin-bottom">
+                <div class="col8">
+                  <div class="list-group list-group-small horizontal">
+                    
+                      <div class="list-group-element entry-topic">Lakife</div>
+                    
+                      <div class="list-group-element entry-topic">Language</div>
+                    
+                      <div class="list-group-element entry-topic">Writing</div>
+                    
+                      <div class="list-group-element entry-topic">Sloppy thinking</div>
+                    
+                      <div class="list-group-element entry-topic">Composition</div>
+                    
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-text entry">
-                    <p>
+              <div class="row-fluid">
+                <div class="col8">
+                  <em>Thu, 10 Dec, 2020 09:30</em>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body entry">
+              <p>
 I have lost the thread. I am certainly out of practise, writing-wise. This is true even if I’ve been more or less consistent over the last month and a half. Or so I tell myself! I sit down and I find myself in a state of pause more than in any other state. The flying fingers of yesteryear are but nostalgia! Oh, woe! Fuck um. Similarly, my fingers stumble after being away in Praha for a week and I begin fumbling at the guitar again. Most past routines, once abandoned, reassemble themselves, perhaps not in the “ideal” form, but in some form or another. One moment, connectives do not exist. Sentences plod shambling one after another. Then, glue arrives from linguistic wonderland.</p>
 <p>
 Connectives is a topic that “frightens” me in every language. They are the easiest to use clunkily. They are the easiest to use ephemerally. Or, rather, it’s easy to fall back on them when searching for a “proper” construction in which to place one’s thoughts. I see this phenomenon especially with people who only study a language up to a certain point, then proceed to “wing it” during the rest of their shambling, disconnected lives. I’ve been in those shoes from time to time. Certainly, it’s better to be cognizant of one’s linguistic constructions even if you are a native speaker. It allows one to avoid to falling into the “empty words” pit. It’s like… I mean… yeah… you know. Pravě. Peasants.</p>
@@ -92,24 +95,16 @@ Voy a retroceder un poco.</p>
 <p>
 Connectives is a topic that “frightens” me in every language. It’s one that I have mastered in no language - not even in my native language. I purposely leave out connectives. My sentences rest on their own. The flow is implied. Chords connecting phrases are only in the mind of the reader. The style reminds me of Vonnegut, vaguely. It also reminds me of how I sometimes write music, and of some music that I immensely enjoy. I create a patchwork of modal colours, sewn together. The thread binding them place them side by side, and the thread’s colour is itself vague, an unclear indigo grey. Traditional harmonic movement is usually not part of my agenda. Like traditional harmonic movement, it’s important for me that the thread, no matter how vaguely hued, <strong>does</strong> exist. The connective tissue can be a single phrase, even a single note, or lack of phrase, or even lack of a single note - something implied. However, I do find myself pondering vi bII i cadences frequently. Ah ha! My assholery has been revealed. I used a connective two sentences ago! I should be tortured for my lack of consistency. The weed that is my core neural binding should be ripped from its metaphorical earth. That reminds me that I wanted to explore tertiary dominants, or a similar concept not using necessarily dominants.</p>
 
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
+        
       </div>
-    
+    </div>
   </div>
 </div>
-      <div class="abdomen card-group">
-        <div class="card">
-          <!---->
-          <!---->
-          <div class="card-body">
-            <!---->
-            <!---->
-            <p class="card-text">
+          <div class="abdomen card-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
                 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
                   Along with martens, goulish goats and the rippling fen - <br />
                   <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
@@ -126,10 +121,9 @@ Connectives is a topic that “frightens” me in every language. It’s one tha
                 <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
                 <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
                 <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
-            </p>
+              </p>
+            </div>
           </div>
-          <!---->
-          <!---->
         </div>
       </div>
     </div>
