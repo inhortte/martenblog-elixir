@@ -1,0 +1,11 @@
+<%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
+<div class="card">
+  <header>
+    <h4>Poems -</h4>
+  </header> 
+  <div class="row">
+    <strong>There are no poems</strong><br />
+    <strong>The world is bereft</strong>
+  </div>
+</div>
+<%= EEx.eval_file("./web/static/foot-chota.eex", []) %>

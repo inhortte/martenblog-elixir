@@ -1,51 +1,43 @@
-<%= EEx.eval_file("./web/static/head-schema.eex", []) %>
-<div class="panel panel-primary">
-  <div class="panel-title"><h4>Blog -</h4></div>
-  <div class="panel-body">
-    <div class="row-fluid font-xs" style="font-weight: bold;">
-      <div class="col6" style="text-align: left;">
-        <%= if Map.has_key?(meta, :previous) && !is_nil(meta.previous) do %>
-          <a href="<%= meta.previous_link %>">« <%= meta.previous %></a>
-        <% end %>
-      </div> 
-      <div class="col6" style="text-align: right;">
-        <%= if Map.has_key?(meta, :next) && !is_nil(meta.next) do %>
-          <a href="<%= meta.next_link %>"><%= meta.next %> »</a>
-        <% end %>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col10 offset1">
-        <%= for entry <- entries do %>
-          <div class="panel panel-info margin-bottom">
-            <div class="panel-title">
-              <div class="row-fluid">
-                <div class="col12">
-                  <div><em><%= entry.subject %></em></div>
-                </div>
-              </div>
-              <div class="row-fluid margin-bottom">
-                <div class="col8">
-                  <div class="list-group list-group-small horizontal">
-                    <%= for topic <- entry.topics do %>
-                      <div class="list-group-element entry-topic"><%= String.capitalize(topic, :default) %></div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-              <div class="row-fluid">
-                <div class="col8">
-                  <em><%= entry.date %></em>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body entry">
-              <%= entry.entry %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+<%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
+<div class="card">
+  <header><h4>Blog -</h4></header>
+  <div class="row" style="font-size: smaller; font-weight: bold;">
+    <div class="col-6-md text-left">
+      <%= if Map.has_key?(meta, :previous) && !is_nil(meta.previous) do %>
+        <a href="<%= meta.previous_link %>">« <%= meta.previous %></a>
+      <% end %>
+    </div> 
+    <div class="col-6-md text-right">
+      <%= if Map.has_key?(meta, :next) && !is_nil(meta.next) do %>
+        <a href="<%= meta.next_link %>"><%= meta.next %> »</a>
+      <% end %>
     </div>
   </div>
 </div>
-<%= EEx.eval_file("./web/static/foot-schema.eex", []) %>
+<%= for entry <- entries do %>
+  <div class="card">
+    <header>
+      <div class="row">
+        <div class="col">
+          <div><em><strong><%= entry.subject %></strong></em></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8-md">
+          <%= for topic <- entry.topics do %>
+            <div class="tag is-small entry-topic"><%= String.capitalize(topic, :default) %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8-md">
+          <em><%= entry.date %></em>
+        </div>
+      </div>
+    </header>
+    <p class="entry">
+      <%= entry.entry %>
+    </p>
+  </div>
+<% end %>
+<%= EEx.eval_file("./web/static/foot-chota.eex", []) %>

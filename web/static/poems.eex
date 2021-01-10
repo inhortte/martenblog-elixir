@@ -1,0 +1,18 @@
+<%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
+<div class="card">
+  <header>
+    <h4>Poems -</h4>
+  </header> 
+  <div class="row">
+    <div class="col-3-md text-center is-vertical-align">
+      <div class="">
+        <%= title %><br />
+        <%= date %>
+      </div>
+    </div>
+    <div class="col-9-md text-right pull-right">
+      <%= content %>
+    </div>
+  </div>
+</div>
+<%= EEx.eval_file("./web/static/foot-chota.eex", []) %>

@@ -4,10 +4,12 @@ defmodule Martenblog.Http do
   alias Martenblog.Topic
   alias Martenblog.Entry
   alias Martenblog.Utils
+  alias Martenblog.PoemResolver
   @releases_dir "/home/polaris/Elements/flavigula/release/"
   @eex "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/static/"
   @dest "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/public/static/"
   @gemini_base "/usr/share/molly/"
+  @poems_dest "#{@dest}poems"
   @reference_re ~r/\[([a-z])\]/
   @footnote_re ~r/^=>\s+([^\s]+)\s+([a-z])\.\s+(.+)$/
 
@@ -134,9 +136,42 @@ defmodule Martenblog.Http do
           topics: topics
         }
       end)
-      html = EEx.eval_file(Path.join([@eex, "date-entry.eex"]), [meta: meta, entries: entries])
+      page_title = case entries do
+        [e|_] -> e.subject
+        [] -> "A Mustelid"
+      end
+      html = EEx.eval_file(Path.join([@eex, "date-entry.eex"]), [meta: meta, entries: entries, title: page_title])
       File.write!(Path.join(@dest, "blog/#{Map.get(date_array, idx)}.html"), html)
     end)
+  end
+
+  def poem_index(poems) do
+    titles_and_dates = poems |> 
+    Enum.sort(fn a, b -> b.fecha < a.fecha end) |> 
+    Enum.map(fn p -> p |> Map.take([:title, :normalised_title, :fecha]) end)
+    html = EEx.eval_file(Path.join([@eex, "poems-index.eex"]), [poems: titles_and_dates, title: "Mustelidish Poetry"])
+    File.write!(Path.join(@poems_dest, "index.html"), html)
+  end
+
+  def poem_index_blank do
+    html = EEx.eval_file(Path.join([@eex, "poems-index-blank.eex"]), [title: "A bereft universe"])
+    File.write!(Path.join(@poems_dest, "index.html"), html)
+  end
+  
+  def poem(p) do
+    content = String.split(p.poem, ~r/\n/) |> Enum.join("<br />")
+    html = EEx.eval_file(Path.join([@eex, "poems.eex"]), [title: p.title, content: content, date: p.fecha])
+    File.write!(Path.join(@poems_dest, "#{p.normalised_title}.html"), html)
+  end
+
+
+  def poems do
+    case PoemResolver.all_poems do
+      {:ok, poems} ->
+        poems |> poem_index
+        poems |> Enum.each(&poem/1) 
+      _ -> poem_index_blank
+    end
   end
 
   def link_from_footnote(%{line: line, links: links} = line_with_links, letter, link, text) do

@@ -1,0 +1,14 @@
+:root {
+  --bg-color: #CEC9B0;
+  --bg-secondary-color: #e5e0c4;
+  --color-primary: #3498db; /* brand color */
+  --grid-maxWidth: 90rem; /* max container width 1080px */
+  --font-family-sans: "Atkinson-Hyperlegible", Avenir, "Avenir Next",
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  /* background: var(--body-color); */
+}
+

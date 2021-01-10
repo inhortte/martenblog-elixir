@@ -89,6 +89,7 @@ const fontAwesome = () => {
 
 const buildDev = gulp.series(clean, gulp.parallel(vueifyDev, cssDev, fontAwesome));
 const buildProd = gulp.series(clean, gulp.parallel(vueifyProd, cssDev, fontAwesome));
+const css = cssDev;
 
 const watchVue = () => {
   gulp.watch([paths.jsSrc, paths.vueSrc, paths.cssSrc], buildDev);
@@ -98,4 +99,5 @@ gulp.task('clean', clean);
 gulp.task('buildDev', buildDev);
 gulp.task('buildProd', buildProd);
 gulp.task('watch', watchVue);
+gulp.task('css', css);
 gulp.task('default', watchVue);
