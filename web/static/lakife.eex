@@ -1,4 +1,4 @@
-<%= EEx.eval_file("./web/static/head-chota.eex", []) %>
+<%= EEx.eval_file("./web/static/head-chota.eex", [title: "Xaif Mifala"]) %>
 <div class="card">
   <header>
     <h4>Lakife -</h4>

@@ -125,27 +125,13 @@ defmodule Martenblog.Entry do
   end
 
   def parse_mb_timestamp(mbts) do
-    {:ok, dt} = case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, mbts) do
-      [_, year_string, month_string, day_string, hour_string, minute_string] -> 
-        { year, _ } = Integer.parse(year_string)
-        { month, _ } = Integer.parse(month_string)
-        { day, _ } = Integer.parse(day_string)
-        { hour, _ } = Integer.parse(hour_string)
-        { minute, _ } = Integer.parse(minute_string)
-        Logger.info("year: #{year}, month: #{month}, day: #{day}, hour: #{hour}, minute: #{minute}")
-        NaiveDateTime.new(year, month, day, hour, minute, 0) |> 
-        case do
-          {:ok, ndt} -> DateTime.from_naive(ndt, "Etc/UTC")
-          {:error, _} -> {:ok, DateTime.utc_now }
-        end
-      [_, year, month, day] -> NaiveDateTime.new(year, month, day, 0, 0, 0) |> 
-	      case do
-	        {:ok, ndt} -> DateTime.from_naive(ndt, "Etc/UTC")
-	        {:error, _} -> {:ok, DateTime.utc_now }
-	      end
-      _ -> DateTime.utc_now
-    end
-    dt |> DateTime.to_unix |> (fn i -> i * 1000 end).()
+    timex_date = case Timex.parse(mbts, "%Y%m%d", :strftime) do
+      {:error, _} -> case Timex.parse(mbts, "%Y%m%d%H%M", :strftime) do
+        {:error, _} -> Timex.now
+        {:ok, timex_time} -> timex_time
+      end
+      {:ok, timex_time} -> timex_time
+    end |> Timex.to_unix |> (fn unix_time -> unix_time * 1000 end).()
   end
 
   def to_mongoable(entry) do
@@ -256,7 +242,8 @@ defmodule Martenblog.Entry do
       [_, path, buttock, extension] ->
         Logger.info "path: #{path}, buttock: #{buttock}, extension: #{extension}"
         processed_filename = "#{path}/#{buttock}_processed.#{extension}"
-        contents = "_id: #{entry.id}\nDate: #{entry.created_at}\nSubject: #{entry.subject}\nTopic: #{Topic.topic_ids_to_topics_string(entry.topic_ids)}\n\n#{entry.entry}"
+        topics = Topic.topic_ids_to_topics_string(entry.topic_ids) |> Enum.join(",")
+        contents = "_id: #{entry.id}\nDate: #{entry.created_at}\nSubject: #{entry.subject}\nTopic: #{topics}\n\n#{entry.entry}"
         File.write(processed_filename, contents)
     end
   end

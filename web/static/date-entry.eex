@@ -1,6 +1,9 @@
 <%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
 <div class="card">
-  <header><h4>Blog -</h4></header>
+  <header>
+    <h4>Blog -</h4>
+    <%= EEx.eval_file("./web/static/search-form.eex", []) %>
+  </header>
   <div class="row" style="font-size: smaller; font-weight: bold;">
     <div class="col-6-md text-left">
       <%= if Map.has_key?(meta, :previous) && !is_nil(meta.previous) do %>

@@ -8,6 +8,14 @@
     "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+::placeholder {
+  color: var(--color-grey);
+}
+
+details > summary {
+  cursor: pointer;
+}
+
 body {
   /* background: var(--body-color); */
 }

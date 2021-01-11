@@ -1,0 +1,13 @@
+<details class="margin-bottom">
+  <summary>Search</summary>
+  <form action="/blog_search" method="post">
+    <div class="row">
+      <div class="col-8-md col">
+        <input class="bg-light" type="text" placeholder="A search term, vole" name="term" />
+      </div>
+      <div class="col-4-md col">
+        <button type="submit" class="button primary">Oouh!</button>
+      </div>
+    </div>
+  </form>
+</details>

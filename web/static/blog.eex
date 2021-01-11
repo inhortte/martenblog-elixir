@@ -1,8 +1,11 @@
-<%= EEx.eval_file("./web/static/head-chota.eex", []) %>
+<%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
 <div class="row">
   <div class="col">
     <div class="card">
-      <header><h4>Blog -</h4></header>
+      <header>
+        <h4>Blog -</h4>
+        <%= EEx.eval_file("./web/static/search-form.eex", []) %>
+      </header>
       <div class="row">
         <div class="col-6-md col margin-bottom">
           <nav class="tabs" aria-hidden="false" aria-label="Pagination">

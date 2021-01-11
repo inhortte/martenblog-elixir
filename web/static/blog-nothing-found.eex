@@ -1,0 +1,18 @@
+<%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
+<div class="card">
+  <header>
+    <h4>Blog Search -</h4>
+    <%= EEx.eval_file("./web/static/search-form.eex", []) %>
+  </header> 
+  <div class="row">
+    <div class="col">
+      Victim: <strong>Yourself</strong>
+    </div>
+    <div class="card">
+      <p class="entry">
+        Something has gone awry, volečku.
+      </p>
+    </div>
+  </div>
+</div>
+<%= EEx.eval_file("./web/static/foot-chota.eex", []) %>

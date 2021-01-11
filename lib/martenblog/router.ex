@@ -3,6 +3,7 @@ defmodule Martenblog.Router do
   alias Martenblog.Utils
   alias Martenblog.Entry
   alias Martenblog.Topic
+  alias Martenblog.Http
   alias Martenblog.BlogResolver
   alias Martenblog.PoemResolver
   alias Martenblog.Activitypub
@@ -23,8 +24,8 @@ defmodule Martenblog.Router do
 
   plug :match
   plug Plug.Parsers,
-    parsers: [:json],
-    pass: ["application/json"],
+    parsers: [:json, :multipart, :urlencoded],
+    pass: ["application/json", "multipart/form-data", "text/*", "application/x-www-form-urlencoded"],
     json_decoder: Poison
   plug :dispatch
 
@@ -99,6 +100,14 @@ defmodule Martenblog.Router do
     conn |> put_resp_content_type("application/json") |>
       send_resp(200, %{:pcount => BlogResolver.p_count(conn.body_params["topic_ids"], conn.body_params["search"])} |>
 			Utils.to_json)
+  end
+
+  post "/blog_search" do
+    html = case conn.params do
+      %{"term" => term} -> Http.blog_search(term)
+      _ -> Http.blog_nothing_found
+    end
+    conn |> put_resp_content_type("text/html") |> send_resp(200, html)
   end
 
   get "/poems" do

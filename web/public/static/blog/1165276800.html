@@ -7,7 +7,7 @@
     <meta name="author" content="Bob Murry Shelton">
     <title>Tuesday morning with the shades drawn</title>
     <link rel="stylesheet" href="../../css/fonts.css" />
-    <link rel="stylesheet" href="../../css/chota.css" />
+    <link rel="stylesheet" href="../../css/chota.min.css" />
     <link rel="stylesheet" href="../../css/main.css" />
     <!-- <script src="dist/js/yourfile.js"></script> -->
     <!--[if lt IE 9]>
@@ -34,7 +34,23 @@
       </div>
 
 <div class="card">
-  <header><h4>Blog -</h4></header>
+  <header>
+    <h4>Blog -</h4>
+    <details class="margin-bottom">
+  <summary>Search</summary>
+  <form action="/blog_search" method="post">
+    <div class="row">
+      <div class="col-8-md col">
+        <input class="bg-light" type="text" placeholder="A search term, vole" name="term" />
+      </div>
+      <div class="col-4-md col">
+        <button type="submit" class="button primary">Oouh!</button>
+      </div>
+    </div>
+  </form>
+</details>
+
+  </header>
   <div class="row" style="font-size: smaller; font-weight: bold;">
     <div class="col-6-md text-left">
       

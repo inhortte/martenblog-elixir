@@ -94,7 +94,7 @@ defmodule Martenblog.Http do
     (fn es ->
       pagination_hovno = pagination(page)
       content = Enum.join(es)
-      html = EEx.eval_file(Path.join([@eex, "blog.eex"]), [content: content, pages: pagination_hovno])
+      html = EEx.eval_file(Path.join([@eex, "blog.eex"]), [content: content, pages: pagination_hovno, title: "Mustelid Musings"])
       File.write!(Path.join(@dest, "blog/page_#{page}.html"), html)
     end).()
   end
@@ -143,6 +143,60 @@ defmodule Martenblog.Http do
       html = EEx.eval_file(Path.join([@eex, "date-entry.eex"]), [meta: meta, entries: entries, title: page_title])
       File.write!(Path.join(@dest, "blog/#{Map.get(date_array, idx)}.html"), html)
     end)
+  end
+
+  def blog_nothing_found do
+    EEx.eval_file(Path.join([@eex, "blog-nothing-found.eex"]), [title: "You were reduced to a singularity"])
+  end
+
+  def blog_search(term) do
+    Mongo.find(:mongo, "entry", 
+      %{"$or" => 
+        [
+          %{"entry" => %{"$regex" => term, "$options" => "$i"}}, 
+          %{"subject" => %{"$regex" => term, "$options" => "$i"}}
+        ]
+      },
+      sort: %{"created_at" => -1}) |> 
+    Enum.to_list |>
+    Enum.map(fn entry ->
+      entry |> Utils.normalise_keys |>
+      (fn entry ->
+        Logger.info "blog_search for #{term} - found: #{entry.subject}"
+        matching_lines = entry.entry |> String.split(~r/\n/) |>
+        Enum.filter(fn line -> Regex.match?(~r/#{term}/i, line) end) |> Enum.map(fn line ->
+          line |> String.split(~r/\s+/) |>
+          (fn line_list ->
+            if length(line_list) > 20 do
+              line_list |> Enum.split_while(fn chunk -> !Regex.match?(~r/#{term}/i, chunk) end) |>
+              case do
+                {head, tail} ->
+                  ["..."] ++
+                    Enum.drop(head, (if length(head) < 10, do: 0, else: length(head) - 10)) ++
+                      ["<strong>#{List.first(tail)}</strong>"] ++
+                        Enum.take(Enum.drop(tail, 1), 10) ++
+                          ["..."] |> Enum.join(" ")
+                _ -> line_list |> Enum.join(" ")
+              end
+            else
+              line_list |> Enum.map(fn chunk ->
+                if Regex.match?(~r/#{term}/i, chunk) do
+                  "<strong>#{chunk}</strong>"
+                else
+                  chunk
+                end
+              end) |> Enum.join(" ")
+            end
+          end).()
+        end)
+        date = pd_from_ut(floor(entry.created_at / 1000), "%a, %d %b, %Y %H:%M", true)
+        link = Timex.from_unix(floor(entry.created_at / 1000)) |> Timex.beginning_of_day |> Timex.to_unix
+        entry |> Map.merge(%{date: date, matching_lines: matching_lines, link: "/static/blog/#{link}.html"}) |> Map.drop([:entry])
+      end).()
+    end) |> (fn entries ->
+      html = EEx.eval_file(Path.join([@eex, "blog-search.eex"]), [term: term, entries: entries, title: "Searching for #{term}"])
+      html
+    end).()
   end
 
   def poem_index(poems) do

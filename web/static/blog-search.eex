@@ -1,0 +1,36 @@
+<%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
+<div class="card">
+  <header>
+    <h4>Blog Search -</h4>
+    <%= EEx.eval_file("./web/static/search-form.eex", []) %>
+  </header> 
+  <div class="row">
+    <div class="col">
+      Victim: <strong><%= term %></strong>
+    </div>
+    <%= for entry <- entries do %>
+      <div class="card">
+        <header>
+          <div class="row">
+            <div class="col">
+              <em>
+                <a href="<%= entry.link %>"><%= entry.subject %></a>
+              </em>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8-md col">
+              <em><%= entry.date %></em>
+            </div>
+          </div>
+        </header>
+        <p class="entry">
+          <%= for line <- entry.matching_lines do %>
+            <%= line %><br />
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= EEx.eval_file("./web/static/foot-chota.eex", []) %>
