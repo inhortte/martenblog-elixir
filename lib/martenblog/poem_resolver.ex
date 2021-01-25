@@ -10,20 +10,20 @@ defmodule Martenblog.PoemResolver do
     Logger.info "filename: #{filename}"
     case File.read(path) do
       {:ok, conglomerate} ->
-	conglomerate_re = ~r<^(.+)\n([-\d]+)\n-+\n(.+)$>s
-	# IO.puts "conglomerate: #{conglomerate}"
-	match = Regex.run(conglomerate_re, conglomerate)
-	# IO.puts "match:"
-	# IO.inspect match
-	if is_nil(match) do
-	  nil
-	else
-	  {_, title, fecha, poem} = List.to_tuple(match)
-	  %{:_id => path, filename: path, title: title, fecha: fecha, poem: poem, normalised_title: normalise_title(title)}
-	end
+        conglomerate_re = ~r<^(.+)\n([-\d]+)\n-+\n(.+)$>s
+        # IO.puts "conglomerate: #{conglomerate}"
+        match = Regex.run(conglomerate_re, conglomerate)
+        # IO.puts "match:"
+        # IO.inspect match
+        if is_nil(match) do
+          nil
+        else
+          {_, title, fecha, poem} = List.to_tuple(match)
+          %{:_id => path, filename: path, title: title, fecha: fecha, poem: poem, normalised_title: normalise_title(title)}
+        end
       {:error, e} ->
-	Logger.info "Error: #{e}"
-	nil
+        Logger.info "Error: #{e}"
+        nil
     end
   end
 

@@ -27,7 +27,8 @@ defmodule Martenblog.Gemini do
         end) |> 
         Enum.join(", ")
         receive do
-          {^thurk, {:data, result}} ->
+          {^thurk, {:data, result_temp}} ->
+            result = String.replace(result_temp, ~r/(\w)\^\w/, "\\1")
             """
             # #{Map.get(entry, :subject)}
             ## Topics: #{topics}

@@ -194,8 +194,18 @@ defmodule Martenblog.Entry do
 
   def parse_entry_file(file_as_string) do
     [header | entry] = String.split(file_as_string, ~r/\n{2,}/)
+    # IO.inspect header
     header_map = String.split(header, ~r/\n/) |> Enum.reduce(%Martenblog.Entry{}, fn(line, acc) ->
-      arr_of_tuples = Enum.map(Keyword.keys(@header_res), fn(key) -> {key, Regex.run(@header_res[key], line)} end) |> Enum.reject(fn({_, capture}) -> is_nil(capture) end)
+      arr_of_tuples = Enum.map(Keyword.keys(@header_res), 
+        fn(key) -> 
+          # IO.puts "key -> #{key} line -> #{line}"
+            # IO.inspect @header_res[key]
+            # IO.inspect(Regex.run(@header_res[key], line))
+          {key, Regex.run(@header_res[key], line)} 
+        end) |> Enum.reject(fn({_, capture}) -> 
+          is_nil(capture) 
+        end)
+        # IO.inspect arr_of_tuples
       case arr_of_tuples do
         [{key, [_, capture]}] ->
           cap = cond do
