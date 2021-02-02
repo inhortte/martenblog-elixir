@@ -21,6 +21,8 @@ const paths = {
   serverSrc: 'src/server/**/*.js',
   serverDest: 'dist',
   jsSrc: 'src/js/**/*.js',
+  staticJsSrc: 'src/static-js/*.js',
+  staticJsDest: 'public/js',
   vueSrc: 'src/js/**/*.vue',
   cssSrc: 'src/css/**/*.css',
   jsDest: 'dist',
@@ -82,6 +84,10 @@ const cssDev = () => {
   return gulp.src(paths.cssSrc)
     .pipe(gulp.dest(paths.cssDest));
 };
+const staticJsDev = () => {
+  return gulp.src(paths.staticJsSrc)
+    .pipe(gulp.dest(paths.staticJsDest));
+}
 const fontAwesome = () => {
   return gulp.src(paths.fontAwesomeSrc)
     .pipe(gulp.dest(paths.fontAwesomeDest));
@@ -90,6 +96,8 @@ const fontAwesome = () => {
 const buildDev = gulp.series(clean, gulp.parallel(vueifyDev, cssDev, fontAwesome));
 const buildProd = gulp.series(clean, gulp.parallel(vueifyProd, cssDev, fontAwesome));
 const css = cssDev;
+const staticJs = staticJsDev;
+const staticLeper = gulp.parallel(staticJs, css);
 
 const watchVue = () => {
   gulp.watch([paths.jsSrc, paths.vueSrc, paths.cssSrc], buildDev);
@@ -98,6 +106,7 @@ const watchVue = () => {
 gulp.task('clean', clean);
 gulp.task('buildDev', buildDev);
 gulp.task('buildProd', buildProd);
+gulp.task('buildStatic', staticLeper);
 gulp.task('watch', watchVue);
 gulp.task('css', css);
 gulp.task('default', watchVue);

@@ -53,6 +53,14 @@ defmodule Martenblog.Transform do
               options: %{footnote_links: true}
             },
             %{
+              file: "mango-salsa",
+              options: %{footnote_links: true}
+            },
+            %{
+              file: "yucatan-chicken",
+              options: %{footnote_links: true}
+            },
+            %{
               file: "index",
               options: %{head_lop: 1, footnote_links: true}
             }
@@ -66,10 +74,10 @@ defmodule Martenblog.Transform do
               file: "babel-text",
               options: %{footnote_links: true}
             },
-            %{
-              file: "english-lakife",
-              options: %{footnote_links: true}
-            },
+            # %{
+            #  file: "english-lakife",
+            #  options: %{footnote_links: true}
+            # },
             %{
               file: "grammar",
               options: %{footnote_links: true}
@@ -89,11 +97,11 @@ defmodule Martenblog.Transform do
             %{
               file: "phrases",
               options: %{footnote_links: true}
-            },
-            %{
-              file: "vocabulary",
-              options: %{footnote_links: true}
             }
+            #%{
+            #file: "vocabulary",
+            #options: %{footnote_links: true}
+            #}
           ]
         }
       ]
