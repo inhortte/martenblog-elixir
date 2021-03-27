@@ -1,4 +1,4 @@
-<%= EEx.eval_file("./web/static/head-chota.eex", [title: "A Musical Mustelid"]) %>
+<%= EEx.eval_file("./web/static/head-chota.eex", [meta_tags: meta_tags, title: "A Musical Mustelid"]) %>
 <div class="card">
   <header>
     <h4>Music -</h4>

@@ -5,6 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="Content-language" content="en">
     <meta name="author" content="Bob Murry Shelton">
+    <%= if Map.has_key?(meta_tags, :keywords) do %>
+      <meta name="keywords" content="<%= meta_tags.keywords %>">
+    <% end %>
+    <%= if Map.has_key?(meta_tags, :description) do %>
+      <meta name="description" content="<%= meta_tags.description %>">
+    <% end %>
     <title><%= title %></title>
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/chota.min.css" />

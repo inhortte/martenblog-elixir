@@ -1,4 +1,4 @@
-<%= EEx.eval_file("./web/static/head-chota.eex", [title: title]) %>
+<%= EEx.eval_file("./web/static/head-chota.eex", [meta_tags: meta_tags, title: title]) %>
 <div class="card">
   <header>
     <h4>Blog -</h4>
