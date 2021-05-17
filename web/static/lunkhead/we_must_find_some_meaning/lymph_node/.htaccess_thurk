@@ -1,0 +1,7 @@
+Options Indexes FollowSymLinks Includes
+AuthName SirAlfredIV
+AuthType Basic
+AuthUserFile /home/guest/polaris/.inkspot/conf/alfred_auth
+<limit get post>
+require valid-user
+</limit>

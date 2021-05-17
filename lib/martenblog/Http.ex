@@ -7,11 +7,50 @@ defmodule Martenblog.Http do
   alias Martenblog.PoemResolver
   @releases_dir "/home/polaris/Elements/flavigula/release/"
   @eex "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/static/"
+  @eex_marmota "/home/polaris/elixir/martenblog-elixir/web/static/"
   @dest "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/public/static/"
+  @dest_marmota "/home/polaris/elixir/martenblog-elixir/web/public/static/"
   @gemini_base "/usr/share/molly/"
   @poems_dest "#{@dest}poems"
+  @poems_marmota_dest "#{@dest_marmota}poems"
   @reference_re ~r/\[([a-z])\]/
   @footnote_re ~r/^=>\s+([^\s]+)\s+([a-z])\.\s+(.+)$/
+
+  def eex_base do
+    case :inet.gethostname do
+      {:ok, hostname} -> :thurk
+        if Regex.match?(~r/marmota/, List.to_string(hostname)) do
+          @eex_marmota
+        else
+          @eex
+        end
+      _ -> @eex
+    end
+  end
+
+  def dest_base do
+    case :inet.gethostname do
+      {:ok, hostname} -> :thurk
+        if Regex.match?(~r/marmota/, List.to_string(hostname)) do
+          @dest_marmota
+        else
+          @dest
+        end
+      _ -> @dest
+    end
+  end
+
+  def poems_dest do
+    case :inet.gethostname do
+      {:ok, hostname} ->
+        if Regex.match?(~r/marmota/, List.to_string(hostname)) do
+          @poems_marmota_dest
+        else
+          @poems_dest
+        end
+      _ -> @poems_dest
+    end
+  end
 
   def pagination(page) do
     page_count = div(Entry.count, 11) + (if rem(Entry.count, 11) > 0, do: 1, else: 0)
@@ -89,13 +128,13 @@ defmodule Martenblog.Http do
       link = Timex.from_unix(unix_time) |> Timex.beginning_of_day |> Timex.to_unix
       ostensible_date = presentable_date(timex_time, "%a, %d %b, %Y %H.%M", true)
       entry_truncated = "#{String.slice(e.entry, 0, 512)}..."
-      EEx.eval_file(Path.join([@eex, "entry_in_page.eex"]), [meta_tags: %{}, topics: topics, ostensible_date: ostensible_date, subject: e.subject, link: "/static/blog/#{link}.html", entry_trunctated: entry_truncated])
+      EEx.eval_file(Path.join([eex_base(), "entry_in_page.eex"]), [meta_tags: %{}, topics: topics, ostensible_date: ostensible_date, subject: e.subject, link: "/static/blog/#{link}.html", entry_trunctated: entry_truncated])
     end) |>
     (fn es ->
       pagination_hovno = pagination(page)
       content = Enum.join(es)
-      html = EEx.eval_file(Path.join([@eex, "blog.eex"]), [meta_tags: %{}, content: content, pages: pagination_hovno, title: "Mustelid Musings"])
-      File.write!(Path.join(@dest, "blog/page_#{page}.html"), html)
+      html = EEx.eval_file(Path.join([eex_base(), "blog.eex"]), [meta_tags: %{}, content: content, pages: pagination_hovno, title: "Mustelid Musings"])
+      File.write!(Path.join(dest_base, "blog/page_#{page}.html"), html)
     end).()
   end
 
@@ -143,13 +182,13 @@ defmodule Martenblog.Http do
       end
       description = (keywords |> String.split(",") |> Enum.join(" ")) <> " " <> page_title
       meta_tags = %{description: description, keywords: keywords}
-      html = EEx.eval_file(Path.join([@eex, "date-entry.eex"]), [meta_tags: meta_tags, meta: meta, entries: entries, title: page_title])
-      File.write!(Path.join(@dest, "blog/#{Map.get(date_array, idx)}.html"), html)
+      html = EEx.eval_file(Path.join([eex_base(), "date-entry.eex"]), [meta_tags: meta_tags, meta: meta, entries: entries, title: page_title])
+      File.write!(Path.join(dest_base, "blog/#{Map.get(date_array, idx)}.html"), html)
     end)
   end
 
   def blog_nothing_found do
-    EEx.eval_file(Path.join([@eex, "blog-nothing-found.eex"]), [meta_tags: %{},title: "You were reduced to a singularity"])
+    EEx.eval_file(Path.join([eex_base(), "blog-nothing-found.eex"]), [meta_tags: %{},title: "You were reduced to a singularity"])
   end
 
   def blog_search(term) do
@@ -197,7 +236,7 @@ defmodule Martenblog.Http do
         entry |> Map.merge(%{date: date, matching_lines: matching_lines, link: "/static/blog/#{link}.html"}) |> Map.drop([:entry])
       end).()
     end) |> (fn entries ->
-      html = EEx.eval_file(Path.join([@eex, "blog-search.eex"]), [meta_tags: %{}, term: term, entries: entries, title: "Searching for #{term}"])
+      html = EEx.eval_file(Path.join([eex_base(), "blog-search.eex"]), [meta_tags: %{}, term: term, entries: entries, title: "Searching for #{term}"])
       html
     end).()
   end
@@ -206,19 +245,19 @@ defmodule Martenblog.Http do
     titles_and_dates = poems |> 
     Enum.sort(fn a, b -> b.fecha < a.fecha end) |> 
     Enum.map(fn p -> p |> Map.take([:title, :normalised_title, :fecha]) end)
-    html = EEx.eval_file(Path.join([@eex, "poems-index.eex"]), [meta_tags: %{}, poems: titles_and_dates, title: "Mustelidish Poetry"])
-    File.write!(Path.join(@poems_dest, "index.html"), html)
+    html = EEx.eval_file(Path.join([eex_base(), "poems-index.eex"]), [meta_tags: %{}, poems: titles_and_dates, title: "Mustelidish Poetry"])
+    File.write!(Path.join(poems_dest, "index.html"), html)
   end
 
   def poem_index_blank do
-    html = EEx.eval_file(Path.join([@eex, "poems-index-blank.eex"]), [meta_tags: %{}, title: "A bereft universe"])
-    File.write!(Path.join(@poems_dest, "index.html"), html)
+    html = EEx.eval_file(Path.join([eex_base(), "poems-index-blank.eex"]), [meta_tags: %{}, title: "A bereft universe"])
+    File.write!(Path.join(poems_dest, "index.html"), html)
   end
   
   def poem(p) do
     content = String.split(p.poem, ~r/\n/) |> Enum.join("<br />")
-    html = EEx.eval_file(Path.join([@eex, "poems.eex"]), [meta_tags: %{}, title: p.title, content: content, date: p.fecha])
-    File.write!(Path.join(@poems_dest, "#{p.normalised_title}.html"), html)
+    html = EEx.eval_file(Path.join([eex_base(), "poems.eex"]), [meta_tags: %{}, title: p.title, content: content, date: p.fecha])
+    File.write!(Path.join(poems_dest, "#{p.normalised_title}.html"), html)
   end
 
 
@@ -478,11 +517,11 @@ defmodule Martenblog.Http do
   def process_gemini_file(relative_path, template, options \\ %{}) do
     gemini_path = Path.join([@gemini_base, relative_path]) <> ".gmi"
     Logger.info "gemini path -> " <> gemini_path
-    html_path = Path.join([@dest, relative_path]) <> ".html"
+    html_path = Path.join([dest_base, relative_path]) <> ".html"
     Logger.info "html path -> " <> html_path
     case gemini_to_html(gemini_path, options) do
       {:ok, content} ->
-        html = EEx.eval_file(Path.join([@eex, "#{template}.eex"]), [meta_tags: %{}, content: content]) 
+        html = EEx.eval_file(Path.join([eex_base(), "#{template}.eex"]), [meta_tags: %{}, content: content]) 
         File.write!(html_path, html)
       {:error, error} -> {:error, error}
     end

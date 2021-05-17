@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    
+      <meta name="keywords" content="programming,haskell,math,project euler">
+    
+    
+      <meta name="description" content="programming haskell math project euler Project fucking Euler #254">
+    
+    <title>Project fucking Euler #254</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/chota.min.css" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="background-color: #00003e;">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <h1>Flavigula</h1>
+            <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+            <hr />
+            <p>
+              <a href="/static/blog/page_1.html" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+              <a href="/static/flavigula/index.html" class="">music</a> |
+              <a href="/static/poems/index.html" class="">poems</a> |
+              <a href="/static/lakife/index.html" class="">lakife</a> |
+              <a href="/static/recipes/index.html">recipes</a>
+            </p> 
+          </div>
+        </div>
+      </div>
+
+<div class="card">
+  <header>
+    <h4>Blog -</h4>
+    <details class="margin-bottom">
+  <summary>Search</summary>
+  <form action="/blog_search" method="post">
+    <div class="row">
+      <div class="col-8-md col">
+        <input class="bg-light" type="text" placeholder="A search term, vole" name="term" />
+      </div>
+      <div class="col-4-md col">
+        <button type="submit" class="button primary">Oouh!</button>
+      </div>
+    </div>
+  </form>
+</details>
+
+  </header>
+  <div class="row" style="font-size: smaller; font-weight: bold;">
+    <div class="col-6-md text-left">
+      
+        <a href="/static/blog/1292716800.html">« Sun, 19 Dec, 2010</a>
+      
+    </div> 
+    <div class="col-6-md text-right">
+      
+        <a href="/static/blog/1292889600.html">Tue, 21 Dec, 2010 »</a>
+      
+    </div>
+  </div>
+</div>
+
+  <div class="card">
+    <header>
+      <div class="row">
+        <div class="col">
+          <div><em><strong>Project fucking Euler #254</strong></em></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8-md">
+          
+            <div class="tag is-small entry-topic">Programming</div>
+          
+            <div class="tag is-small entry-topic">Haskell</div>
+          
+            <div class="tag is-small entry-topic">Math</div>
+          
+            <div class="tag is-small entry-topic">Project euler</div>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8-md">
+          <em>Mon, 20 Dec, 2010 14:14</em>
+        </div>
+      </div>
+    </header>
+    <p class="entry">
+      <p>
+I have spent a few hours working on this and have come up with a solution but would most likely need an infinitely more speedy computer for the computation to finish. I let the compiled version run for over an hour with no result. Great, eh? Here’s my code so far:</p>
+<pre><code>-- Define f(n) as the sum of the factorials of the digits of n.                 
+-- For example, f(342) = 3! + 4! + 2! = 32.                                     
+-- Define sf(n) as the sum of the digits of f(n). So sf(342) = 3 + 2 = 5.       
+-- Define g(i) to be the smallest positive integer n such that                  
+-- sf(n) = i.                                                                   
+-- Though sf(342) is 5, sf(25) is also 5, and it can be                         
+-- verified that g(5) is 25.                                                    
+-- Define sg(i) as the sum of the digits of g(i). So sg(5) = 2 + 5 = 7.         
+-- Further, it can be verified that g(20) is 267 and                            
+-- sg(i) for 1 &lt;= i &lt;= 20 is 156.                                               
+-- What is sg(i) for 1 &lt;= i &lt;= 150?                                            
+
+-- This does not finish! I need a better way to compute g.                      
+
+module Main
+    where
+
+import Data.Char
+import Data.Maybe (fromJust)
+
+factorial :: Integer-&gt; Integer
+factorial n | n &lt; 0 = factorial (-n)
+            | n &lt; 2 = 1
+            | otherwise = n * factorial (n-1)
+
+intToDigitArray :: Integer-&gt; [Integer]
+intToDigitArray = map (\x -&gt; toInteger $ ord x - 48) . show
+
+sumFactorialOfDigitArray :: [Integer] -&gt; Integer
+sumFactorialOfDigitArray = sum . map factorial
+
+-- f(n)                                                                         
+f :: Integer-&gt; Integer
+f = sumFactorialOfDigitArray . intToDigitArray
+
+-- sf(n)                                                                        
+sf :: Integer-&gt; Integer
+sf = sum . intToDigitArray . f
+
+g :: Integer-&gt; Integer
+g 1 = 1
+g i = (+1) . snd . last . takeWhile (\p -&gt; fst p /= i) . map (\n -&gt; (sf n, n)) $ [1..]
+
+sg :: Integer-&gt; Integer
+sg = sum . intToDigitArray . g
+
+ans = sum . map sg $ [1..150]
+
+main = putStrLn $ show $ ans</code></pre>
+<h4>
+<em>SO!</em></h4>
+<p>
+As you can see, the computation of g runs through everything from 1 up to <em>i</em>, computing each <em>sf(i)</em> along the way. This is the source of the never ending computation, methinks.</p>
+<p>
+Something that occurred to me is that I could find every number which could could result in <em>i</em> if I added up their digits. The problem with extraneous zeros is daunting, however.</p>
+<p>
+Hm.</p>
+
+    </p>
+  </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
+                Along with martens, goulish goats and the rippling fen - <br />
+                <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
+                  these writings 1993-2021
+                </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://flavigula.net">Bob Murry Shelton</a> are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">
+                CC BY-NC-SA 4.0
+                <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                </a>
+              </p> 
+              <small><a rel="me" href="https://sonomu.club/@flavigula">Mastodon</a></small> 
+              <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
+              <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
+              <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script data-goatcounter="https://goatcounter.zivter.net/count" async src="//goatcounter.zivter.net/count.js"></script>
+  </body>
+</html>
+

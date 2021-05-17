@@ -1,0 +1,819 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.5
+-- Dumped by pg_dump version 11.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: phrases; Type: TABLE; Schema: public; Owner: polaris
+--
+
+CREATE TABLE public.phrases (
+    id integer NOT NULL,
+    lakife character varying NOT NULL,
+    english character varying NOT NULL
+);
+
+
+ALTER TABLE public.phrases OWNER TO polaris;
+
+--
+-- Name: phrases_id_seq; Type: SEQUENCE; Schema: public; Owner: polaris
+--
+
+CREATE SEQUENCE public.phrases_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.phrases_id_seq OWNER TO polaris;
+
+--
+-- Name: phrases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: polaris
+--
+
+ALTER SEQUENCE public.phrases_id_seq OWNED BY public.phrases.id;
+
+
+--
+-- Name: vocabulary; Type: TABLE; Schema: public; Owner: polaris
+--
+
+CREATE TABLE public.vocabulary (
+    id integer NOT NULL,
+    lakife character varying NOT NULL,
+    english character varying NOT NULL
+);
+
+
+ALTER TABLE public.vocabulary OWNER TO polaris;
+
+--
+-- Name: vocabulary_id_seq; Type: SEQUENCE; Schema: public; Owner: polaris
+--
+
+CREATE SEQUENCE public.vocabulary_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.vocabulary_id_seq OWNER TO polaris;
+
+--
+-- Name: vocabulary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: polaris
+--
+
+ALTER SEQUENCE public.vocabulary_id_seq OWNED BY public.vocabulary.id;
+
+
+--
+-- Name: phrases id; Type: DEFAULT; Schema: public; Owner: polaris
+--
+
+ALTER TABLE ONLY public.phrases ALTER COLUMN id SET DEFAULT nextval('public.phrases_id_seq'::regclass);
+
+
+--
+-- Name: vocabulary id; Type: DEFAULT; Schema: public; Owner: polaris
+--
+
+ALTER TABLE ONLY public.vocabulary ALTER COLUMN id SET DEFAULT nextval('public.vocabulary_id_seq'::regclass);
+
+
+--
+-- Data for Name: phrases; Type: TABLE DATA; Schema: public; Owner: polaris
+--
+
+COPY public.phrases (id, lakife, english) FROM stdin;
+1	Fal sopene pot, kotjo jena qoqihara miqir tzemi.	In the beginning God created the heaven and the earth.
+2	Tzeme qomipes soxel jetz, qominuluqi: Nozu qominuz fix nulu liz nis. Ses kot liz jena qoqimolja nuz fix teliz topen.	And the earth was without form, and void: and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.
+3	Kotjo jena qotzilak, «Jax miten». Qomiten.	And (the one) god said, Let there be light: and there was light.
+4	Kotjo jena qotzilok tene. An qomitetz. Kotjo jena qotzitaf ten pes nozu topen.	And God saw the light, that it was good: and God divided the light from the darkness.
+5	Kotjo jena tenu petz Ten qotzilamu. Nozu petz anjo Noz qotxilamu. Ten pinu teni sopen qoqiten jeniz.	And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.
+6	Kez jo kop ariz qotzirox role naham etiz.	Goat ERG head its PAST-PERF-rupture this-way foot GEN my. The goat broke his head on my foot.
+7	Etjo qotzija naham (ariz) li (an)jo kop kez liz qotzirox.	I used my foot to break the goat's head.
+8	Et mija.	I exist.
+9	Pa is tziloku tzuf rox nuz lok etiz nis (topen).	You can see through the crack in my eye.
+10	Anja jo is peletz rukam qetzija.	She will transform her hand to you. Ie, she will hit you.
+11	Anja jo rukam qetzija lej jo kar isiz tziroxax.	She ERG hand FUT-PERF-transform SUBORD-ABS ERG face your PERF-rupture-derogatory. She will transact her hand so it ruptures your face.
+12	Anja jo miretena plax.	She ERG IMP-radiant evil. She radiates evil.
+13	Anja jo miretina plax lej jo kez txisohiqu.	She ERG IMP-radiant evil SUBORD-ABS ERG goat PERF-out-of-life. She radiates the evil that kills goats.
+14	Tetyk yziz qiretena.	Star our INCOH-radiant. The sun begins to shine.
+15	Tetyk soletiz qotxiretena.	Star our PAST-PERF-radiant. The sun shone.
+16	Tetyk soletiz qetziretena.	Star our FUT-PERF-radiant. The sun will shine.
+17	Tetyk yziz qomiretina.	Star our PAST-IMP-radiant. The sun was shining.
+18	Pes funole tetyk soletiz miretena.	Since then-past star our IMP-radiant. Since an undetermined time in the past, the sun shines. The sun has been shining.
+19	Nolja sylet tetyk soletiz miretena.	The sun is shining again.
+20	Tetyk soletiz txiretena ten sylet.	The sun will shine tomorrow. (_Qe-_ is not required since _ten sylet_ implies future.)
+21	Peten tetyk soletiz miretena.	Radiance star our IMP-radiant. The sun shines brightly.
+22	Fek xil pinu tilok (liz), tetyk soletiz qilokja.	At line end sight (GEN), star our INCOH-visible. At the horizon (at the sight's end edge), the sun becomes visible.
+23	Lanasek qotzihupoluk sonulen.	All the people shouted (yelled sudden-like)
+24	Lanasap qotzihupoluk sonulen.	Some of the people shouted.
+25	Tanolja lanas mut qotzihupoluk sonulen.	Many people shouted twice.
+26	Nolja mut lanas fela tzihupoluk sonulen.	Time-tangible many person joy PERF-mouth-exaggerated sudden. Often, happy people shout.
+27	Kotzotz tzihalja tzuf sipas.	The kitten moved upwards through the air. The kitten jumped up.
+28	Kotzotz fek fix sofor (topen) tzihalja tzuf sipas.	Kitten to surface work (direction) PERF-rise throught atmosphere. Onto the table, the kitten lept.
+29	Pemole kotzotz etiz mal qotzija.	From here my little cat moved. My little cat walked away.
+30	Mimiqitela.	It's raining.
+31	Tel mija pes miqir.	Water IMP-transform from sky. Water falls from the sky. It's raining.
+32	Miqitel qomipelis tul.	Rain PAST-IMP-towards lowThe rain was coming down.
+33	Qimiqitela.	It's beginning to rain.
+34	Jel tzuf mole tomija liz	Milk in the place of dreams.
+35	Jel hal tomija jetz.	Milk in place of dreams (instead of dreams)
+36	Tin miqitel nis, kotzotz tzisyta.	The kitten is playing in the rain.
+37	Qimiqitelum.	It stopped raining.
+38	Miqitel qija um.	The rain ceased activity.
+39	Fal nolja (sol) sylet (pot), qeqimiqitelum.	During the next moments (soon), the rain will stop.
+40	Fal nolja sylet, miqitel qeqija um.	Soon, the rain will cease.
+41	Tin soxel riz soliz nis, solet mihiqu.	We live (exist) in a grid (shape of intersections).
+42	Tou etiz li miqitel qija um.	It is my wish that the rain ceases.
+43	Et kon tou (jetz) li miqitel qija um.	I have hope that the rain ceases.
+44	Qeqimiqitelum tou.	There is hope that the rain ceases.
+45	Funola jeniz mole hijuqa pepeit tzipeita.	Once here wild animals lived.
+46	Anja jo qotziloka letzek.	She looked in all directions.
+47	Anja jo qotziloka topenek.	She looked to all vectors.
+48	Fepom, anja jo qotziloka letzek.	Slowly, she looked around (in all directions).
+49	Anja jo letzek qotziloka pom.	She looked around slowly.
+50	Joz ar peletz fek femole jetz.	Go (yourself) away.
+51	Joz ar petz femole tzija.	Transform yourself away (from here).
+52	Solet tzija jax.	Let's go.
+53	Is fekuqa femole (topen).	You should go (from here).
+54	Femole is tzija uqa.	You should transform yourself from here. You should go.
+55	Et qifela li tzija.	I am happy to go. I become happy that I go.
+56	Pelin anju pes femole fek mole.	Soon, he arrives. Soon he from there to here.
+57	Pelin, kes qeqifek peituje (topen).	Soon, the goat will come home. Soon, the goat will to this home (implying "to come").
+58	Qotzifek an topen sefu texotz liz.	From him the child's ball. The child's ball rolled away. "Rolling" is the implied movement.
+59	Qoqifek an topen sefu aniz.	His ball began rolling away.
+60	Qotzikekoletz sefu.	The ball rolled away. (Rolling is the implied movement)
+61	Kon ar jetz texju taf tzisofor.	With each other (together), the two boys work.
+62	Et peletz hunotz aniz tzirejx.	To me, his dog transacts anger. His puppy angers me.
+63	Etjo hunotz anju liz qotzirejxa.	I filled his puppy with rage.
+64	Peritel etiz petz et qoqirejx.	I became angry at my friend.
+65	Etjo peritel ariz qoqirejx.	I angered my friend.
+66	Hut tele haquiz hais qeqiseifa.	Probably the mist will diffuse (clear).
+67	Molek folor fetosin tzipefosa.	Everywhere colourful flowers grow.
+68	Foluit ten isiz?	Quality-interrogative day your? How is the quality of your day?
+69	Rolit ten isiz folu?	How day your quality? How is the quality of your day?
+70	Rolit is ar petz posu?	How you to yourself sensation? How are you feeling?
+71	Rolit is miposa ariz?	How you sense of yourself? How are you feeling?
+72	Uqa pom hal solet tzijet.	Should slow more we eat. We should eat more slowly.
+73	Funolu mik pihal is qotzifek mole.	Early excessively you past-to here. You came here too soon.
+74	Mou fejupoj hal is tzikaren.	Obligation tidiness more you write. You must write more neatly.
+75	Letze xaifim soxfolu lofez hal kekon (mole).	In this direction structure-pleasing surface-quality sheep high opposite (here). Directly opposite is a wonderful palace.
+76	Mole huniz lanasax liz mizanum.	Place dog-GEN asshole GEN known-NEG. The whereabouts of the asshole's dog is not known. The asshole's dog is lost.
+77	Kotz etiz nozu.	My cat is black.
+78	Not-able-to person-small fake child-fem GEN young become-functional. The little girl's doll is broken.	Rolit qija?
+79	Sou et mitomir kon tix haraiz.	Usually I am sleeping beside the silence of creation. I usually sleep soundly.
+80	Fal tomija pot etjo is qitekut.	During dreams, I liquefy you.
+81	(Fetou) rix tex sol qoqija potom kez.	(Try) rapid child plural transformed behind goat. The children chased the goat.
+82	Pa et qikon syt (jetz) potom li tin xaif zan.	Can I begin to be with fun after that in building knowledge. I can have fun after school.
+83	Li mikon solan (jetz) nuzol solet qotxifek peit mal.	That be with them because, we went (to) settlement small. We went to the village for a visit.
+84	Solet qoqifek xil teliz nis.	We past-inhocate-at line water-of place. We arrived at the river.
+85	Jenize qirezu turos, potonole qizana.	First become-logic disorder, then become-wisdom. First comes mental disorder. Then comes widsom.
+86	Pelinole is nuzol et mole mijaum.	Until-now you because I here state-of-transformation-not. I've been waiting here for you.
+87	Pelinole is nuzol et mijaum rez liz.	Until-now you because I state-of-transformation-not mind of. I've been waiting for you (a state of mind).
+88	Lanpeit sol nol liz lil qomiriz tul rok hapa.	Resident plural time of few past-position cross down around fire. The campers sat around the fire.
+89	Kon etiz topen kon kotzotz jetz texja mal qomiriz tul.	Beside me direction with kitten-diminuative association female-child small past-position cross down. The little girl with the kitten sat beside me.
+90	Tetju ariz nuzole texja qomijaum fek pol xaif.	Father her because female-child past-state-of-transformation-not at opening building. The girl waited at the door for her father
+91	Ten fure texja nomute tin peitotz nis mole kotzotz liz ariz qoqizanum.	Day before-the child-female time-most-the in village position whereabouts kitten poss self-poss became-extant-in-thought-not.Yesterday, the oldest girl in the village lost her cat.
+92	It is qoquitihiqu tin peitotze?	Question you past-passive-birth in village-the? Were you born in this village?
+93	Pait texju tetiz jezor isiz txisulex pefoja par?	Can-question child-male parent-gen same your exert rhythm adroit? Can your brother dance well?
+94	It lanasju qoqisot mole topen?	Question man past-out-of here direction? Did the man leave?
+95	Holek kon folu haru.	Everything with quality resonant. It's cool.
+96	It texja tetiz jezor (isiz) fek mole li solis txisomole?	Question child-FEM parent-GEN same (your) to here that PL-you leave. Is your sister coming to pick you up?
+97	Pait ten sylet is fek mole?	Can-QUE day next you to here? Can you come tomorrow?
+98	Et qifek af peitu kes.	I become-at IRR residence goat. I want to be at the goat residence. Were I at the goat residence.
+99	Et txija af peitu kes.	I transform IRR residence goat. I want to go to the goat residence. Were I going to the goat residence.
+100	It fal kekar sim (pot) lanas pelimol misot mole?	QUE during fourth cold (duration) person proximity be-out-of here? Have the neighbours left for winter?
+101	It fal tel miqir liz (pot) hiju letiz tzihupa felak?	QUE during water sky GEN (duration) creature flight-GEN TRS-music ADV-tongue. Does the bird sing in the rain?
+102	It is fek soharju hupa topen kon solet?	QUE you to elaboration music direction with us? Are you going to the concert with us?
+103	It tin moles hais hap nis is qomisozen?	QUE in forest dense heat position you PAST-state-of-journey? Have you ever travelled in the jungle?
+104	Moxilu mut nuz neimolja pif solet qotxinuz xil tel.	Unit many by boat instrumentality we PAST-PERF-along thread water. We sailed by boat along the river for many kilometres.
+105	Lanasek fal las jetz tzizanu.	Person-ALL about hunt association PFC-knowledge. Everyone knows about hunting.
+106	Fal ten sopen tenuk potom ten faluiz hale pot fesopen solet qoqifek tzem hal.	During day begin light-BIG after day duration-GEN great-THE duration ADV-begin we PST-INCOH-to earth high. On a bright morning after the solstice, we started for the mountains.
+107	Texju kez qotxiposa fela hupol nuz syt qulan liz tul.	Boy goat PAST-PRF-expression joy mouth because-of diversion primate GEN small. Goat boy laughed because of the monkey's tricks.
+108	Kon pejer lan jetz kon xilitaf tzem nis lanas muzar qotximiriz hal.	With support human association beside partition earth place person old PAST-PRF-perpendicular up. The old man with the cane stood beside the fence.
+109	Etjo kez petz hiqaum qotxija.	I-ERG goat DAT lifeless PAST-PRF-transform. I killed the goat.
+110	Etjo kez petz anja liz qoqihiqaum.	I-ERG goat DAT she GEN PAST-INCHO-life-not. I made the goat become lifeless. i killed the goat.
+111	Peitu holat liz les miupelokja nuz tafju pejer tul.	Home rodent GEN tree IMP-invisible because-of branch support low. The squirrel's nest was hidden by drooping boughs.
+112	Pes myx fek nol jetz nat miqisimu nis fosju  mal jo hap tetyk liz qomijaum.	Without thought- concerning time association under snow position seed small ERG heat star GEN heat PAST-IMP-transform-not. Patiently, the little seeds were waiting beneath the snow for the sun's warmth.
+113	Kon lip folor nuz kop ariz nis texotzja mut qotzisulex pefoja rok hap hal.	With circle flower on head their position child-DIM-FEM many PAST-PERF-exertion rhythm around fire great. Many young girls with wreaths on their heads danced around the bonfire.
+114	Sykju neit liz qotxifek tunaham fetul.	Cover container GEN PAST-PERF-to floor ADV-down. The cover of the basket fell to the floor.
+115	Anju lizar jeniz tin xil lanas qoqimoljaum potom pol xaif.	He young first in line person PAST-INCOH-movement-not in-front-of orifice building. The first boy in the queue stopped at the entrance.
+116	Fek hale tzem liz hal tin peim mal nis lanasja muzar zana qomipeit.	At top earth GEN high in house small position woman old wisdom PAST-IMP-residence. At the top of the hill in a hut lived a wise old woman.
+117	Fal peit soletiz tin tzem falun famupot solet qotxinak tin tzem zir xilja naj fen.	During residence our in land farse often we PAST-PERF-leg in land wide extending-thing LOC green. During our residence in the country we often walked in the pastures.
+118	Molit pes peit ful topen lanas txuipax qeqimole?	When from residence large direction person invited FUT-INCOH-here. When will your guests from the city arrive?
+119	Pelis natol xiliz tel nis letza ariz mihel kotzom pelitet.	Near anus line-GEN water position vector its IMP-twist abrupt east. Near the river's mouth, the its course turns sharply towards the east.
+120	Tzuf tzem haluk taf nis tzem tul fosiz.	Between earth high-AUGMENTATIVE two position earth low seed-GEN. Between two lofty mountains lies a fertile valley.
+121	Fal sur pez nis folor opjo hal qotxipefosa.	Among grain light-brown position flower opium high PAST-PERF-from-seed. Among the wheat, tall poppies grew.
+122	Fal sur pez nis folor opjo qomihalja.	Among grain light-brown flower opium PAST-IMP-high. Among the wheat, poppies were growing (rising).
+\.
+
+
+--
+-- Data for Name: vocabulary; Type: TABLE DATA; Schema: public; Owner: polaris
+--
+
+COPY public.vocabulary (id, lakife, english) FROM stdin;
+1	anja	female
+2	anju	male
+3	ar	himself / herself / itself / yourself / myself
+4	ariz	of him / her / your / my / itself
+5	fal	during / about / among
+6	falipot	during little time (rarely)
+7	falu	duration
+8	falun	granfalloon / farse
+9	famupot	during much time (often)
+10	fatip	joke
+11	feha(ra)	made / created from particle
+12	fehut	probably
+13	fejs	cosmos / universe
+14	fek	at / concerning / as a means of / to
+15	fel	peace
+16	fela	joy
+17	felu	contentment
+18	femole	to here
+19	fen	greenness?
+20	fenatz	of width / wide
+21	fenoz	concerning night / darkly
+22	fenozu	blackness
+23	fenu	green
+24	fenut	venus (green planet)
+25	fepa	possibly
+26	fepar	adroitly
+27	fepom	slowly
+28	ferix	rapidly
+29	fespal	at the back
+30	fetosin	colourful
+31	fetou	try (aspect)
+32	fezoru	falsely
+33	fiak	taste
+34	fihel	roll
+35	filin	violin
+36	fison	vision
+37	fix	skin
+38	fix	skin / surface
+39	fohiqa	quality of life
+40	folor	flower
+41	folu (fe)lofez	general public quality opinion
+42	folu	quality
+43	folu hal	high quality
+44	folu haru	middle quality / resonant quality / just right
+45	folu lil	little quality
+46	folu mut	much (many) quality
+47	folu soxel	superficial aesthetic quality
+48	folu tul	low quality
+49	fos	origin
+50	fosja	sprout / bud / embryo
+51	fosju	origin thing / seed / egg
+52	ful	large
+53	funol	past
+54	funole	specific time in the past (then)
+55	funolu	before (adv. in time)
+56	funolu mik	early / just before
+57	funolu mikuk	very early
+58	fur	before
+59	hais	dense
+60	hal	up / above / high / great / more
+61	hale	top / apex
+62	halen	upwards
+63	halja	augmentation / rise
+64	hanol	great time / long time
+65	hap	heat
+66	hapa	fire
+67	haqu	air
+68	har	creation
+69	hara	expanding place / creation
+70	harja	functionality
+71	harju	(discrete) operation
+72	haru	middle / nucleus / center / self / stable place
+73	hel	turn / twist
+74	helja	wind / snake
+75	helju	loop
+76	helu	angle
+77	hepel	dull / torpid / lethargic / obtuse
+78	hija	living thing / creature
+79	hiju	life / evidence of life
+80	hiju jeliz	mammal
+81	hiju letiz	bird
+82	hijuqa	animal
+83	hijuqa tel	fish
+84	hijuqu	plant
+85	hiq	being
+86	hiqa	life
+87	hiqases	breath
+88	hiqaum	dead / lifeless
+89	hiqu	existence
+90	hol sylet	next thing
+91	holap	something
+92	holat	rodent
+93	holat les	squirrel
+94	hole	this thing
+95	holek	everything
+96	holit	what thing?
+97	holum	nothing
+98	hun	dog
+99	hup	sound
+100	hupa	music
+101	hupol	mouth
+102	hupu	noise / static
+103	hut	probability
+104	i	yes
+105	ja	action / movement / transformation
+106	jatul	apple
+107	jehiju	mammal
+108	jel	milk
+109	jen ketafi	one and a half
+110	jen taf tir kar pet sis sequm hoz tef seqen	one to ten
+111	jena	singular / unique
+112	jenju	principal / main
+113	jenol	one continuous time?
+114	jenolja	once
+115	jenu	alone / only
+116	jet	food
+117	jet fosju	egg
+118	jet kofosju	food with seed (fruit) (jet kon fosu jetz)
+119	jetz	association / interaction
+120	jezor	same(ness) / similarity
+121	jiz	gullet / throat
+122	jo	actor / impetus / ergative particle
+123	ju	thing / apparatus
+124	jupoj(u)	tidiness / order / organization
+125	kapez	head
+126	karen	pencil
+127	kekar (lipiz tetyk) halja	spring (fourth of rise)
+128	kekar (lipiz tetyk) hap	summer (fourth of heat)
+129	kekar (lipiz tetyk) sim	winter (fourth of cold)
+130	kekar (lipiz tetyk) tulja	autumn (fourth of decline)
+131	kekar	fourth
+132	kekar lipiz tetyk	season (fourth of a year)
+133	kekoletz	opposite direction / away
+134	kekon	opposite / across / against
+135	kekotet	north / south / across the sun
+136	keris	rat
+137	ketaf	half
+138	ketir	third
+139	kez	goat
+140	kezip	difference
+141	kif	alcohol
+142	kifja	quenching of alcoholic thirst
+143	kitab	book
+144	kitar	guitar
+145	kofela	joyful
+146	kofelu	content
+147	kon	besides / towards / in the company of
+148	kon ar jetz	together
+149	kop	head
+150	kopeit	domestic
+151	kot	deity
+152	kotix	silent
+153	kotz	cat
+154	kotzom	abrupt
+155	lak	tongue
+156	lakif	language
+157	lam	designation?
+158	lamu	label / name / tag
+159	lanas	person
+160	lanas peit liz	countryman / fellow townsman / person in the same region
+161	lanas pelimol	close people / neighbours / roommates / flatmates
+162	lanas pelimol peitu liz	flatmate / roommate
+163	lanas tzuipax	invited person / guest
+164	lankaren	writer
+165	lanlofez	peasant
+166	lapis	pen
+167	laret	art
+168	las	the act of killing for food / hunt
+169	lasja	hunter
+170	lasju	prey
+171	lem	word
+172	les	tree
+173	let	fly / hover / levitate
+174	letz	direction
+175	letza	vector / course
+176	lil	few / infrequent
+177	linol	little / short time
+178	lip	ellipse / circle / orbit
+179	lip tetyk	year
+180	lix	difference / distinction
+181	lizar	young (little age)
+182	lofez	sheep
+183	lok	eye
+184	lokja	visibility
+185	luz	ear
+186	luzu	hearing
+187	mal	small
+188	map	covering
+189	mapu	shelter
+190	maret	mars (red planet)
+191	maru	red
+192	met	fresh
+193	mez	mouse
+194	mifel	in peace / peaceful (state)
+195	mifelu	content (state)
+196	miharja	functioning / on
+197	miharjaum	not- functional / off
+198	miharjaum pa / miharja paum	inert (cannot be functional)
+199	mik	just (modifyer)
+200	mikifu	to be drunk
+201	miqir	sky
+202	miqisimu	snow
+203	miqitel	rain (sky water)
+204	miref tul	lying (position)
+205	miriz	crossed / perpendicular
+206	miriz hal	standing
+207	miriz tul	sitting
+208	miusyk	hidden
+209	mofek	at the place
+210	mohal	big (size)
+211	mohalja	inflation (in space)
+212	mokolep	park
+213	mokot	church
+214	molap	somewhere
+215	mole	here (this place)
+216	molek	everywhere
+217	moles	forest
+218	moles hais hap	jungle
+219	molit	where?
+220	molja	movement
+221	molju	place
+222	molum	nowhere
+223	motomir	place of sleep / bed
+224	motyk	position
+225	motz	urine
+226	mou	obligation
+227	moxilu	unit in space
+228	muihar	made (of)
+229	muizar	aged
+230	mut	frequent
+231	muta	repeated
+232	mutu	sporadic
+233	muzar	old (many age)
+234	myx	thought
+235	myxa	idea
+236	myxu	idle thought / daydream
+237	naham	foot
+238	naj	containment case (locative?)
+239	nak	leg
+240	nat / tul	below / under
+241	natol	anus
+242	natz	width / breadth / x coordinate space
+243	neimolja	vehicle
+244	neimolja tel	boat
+245	neit	receptacle / container
+246	nohalja	augmmentation (in time)
+247	nol	time / duration
+248	nol plax	bad time
+249	nol tetz	good time
+250	nolap	sometime
+251	nole	now
+252	nole	now (this time)
+253	nolek	always
+254	nolit	when?
+255	nolja - occasion (nolja sylet - next time. nolja mut	many times)
+256	nolju	instant
+257	nolum	never
+258	nomut	much time / frequent
+259	nos	nose
+260	nosu	smell
+261	noxilu	unit in time
+262	noz	night / dark / black
+263	nozol(e)	because / for that reason
+264	nozu	darkness
+265	nufix	touch
+266	nul	nothing / zero
+267	nulu	void / limbo
+268	nutet	west / along the sun
+269	nutzen	along the ground
+270	nutzen tzija	move along the ground / creep / crawl
+271	nutzenja	creeping / crawling / moving along the ground
+272	nuz	on / along / because of / by using
+273	pa	possibility
+274	paharja	has utility / has the ability to be functional / "util"
+275	par	adroit / dexterous
+276	pasiz	leprosy
+277	pax	request / query
+278	pax mimole	be here query / invitation
+279	paxom	be present query / invitation
+280	pefoja	rhythm
+281	pefoju	momentum / energy
+282	pefosa - from seed (growth	of plants)
+283	pehiqa	without life / lifeless / dead
+284	peimu / peimapu	house / domicile
+285	peit	area of residence
+286	peitu	home / permanent area of residence
+287	pejer	strut / support
+288	pejer lan	cane (for walking)
+289	pelimol	nearness / proximity
+290	pelin(ol)	soon
+291	pelinole	up until now
+292	pelis	hence / until / toward / on behalf of
+293	pelja	almost
+294	peloketz	blind
+295	pelokja	invisibility
+296	peltet	east / towards the sun
+297	pemole	from here
+298	pepeit	wild
+299	perik	danger
+300	perital	friend
+301	perpet	circle
+302	pes	since / far from / from / without
+303	pes myx fek nol jetz	patiently
+304	peten	brightness / radiance
+305	petetar	bastard
+306	petju	acquisition
+307	petopa	acquiring / taking
+308	petopu	acquisition
+309	pez	light brown
+310	pihal	excessive(ly)
+311	pilos	side
+312	pilos	side
+313	piluf	bloom
+314	pin	finalization
+315	pinu	end
+316	pir	above / over / in place of
+317	plax	bad
+318	plez	kiss
+319	plimyx	aspiration
+320	plimyxu	objective (intellectual)
+321	plizan	aspiration (metaphysical)
+322	plizanja	yearning
+323	plizanu	objective (metaphysical)
+324	pol	opening / orifice
+325	pom	slow
+326	posa	expression
+327	posa fela	expression of joy
+328	posa fela ret	smile
+329	posu	sensation (not touch) / emotion
+330	potom	after / behind / beyond
+331	potonol	future
+332	potonol	undetermined time in the past
+333	potonole	specific time in the future (then)
+334	potonolu	after (adv. in time)
+335	potonolu mik	late / just after
+336	potonolu mikuk	very late
+337	pozon	poison
+338	pus	bus
+339	qifen	to turn green
+340	qiharja paum	broken / cannot become functional
+341	qihupol	to yammer
+342	qipefoju	energize
+343	qisas	attain velocity
+344	qouf	smell
+345	qulan	primate
+346	qulan tul	monkey
+347	rajs	foundation / base / basis (abstract)
+348	ref	straight / along / parallel
+349	rejx	anger
+350	rejxa	rage
+351	rejxu	scorn / idle anger
+352	rek	around / in the immediate vicinity of / circling
+353	ret	lip
+354	retena	radiant
+355	rez	consciousness
+356	rezu	rationality
+357	rix	rapid
+358	riz	intersection / perpendicular-ness / cross
+359	rok	around / in spite of
+360	rolap	in some manner / way
+361	role	in this manner
+362	role	in this manner / way
+363	role	this way / how / such (that)
+364	rolek	in every manner / way
+365	rolit	how?
+366	rolum	in no manner / way
+367	rosonulen	suddenly
+368	rox	break / crack / fracture / rupture
+369	rox	crack / fracture
+370	ruk	arm
+371	rukam	hand
+372	rut	root / source (tangible)
+373	sak	bag
+374	sas	velocity
+375	sefu	sphere / ball / round
+376	seif	diffuse
+377	ses	spirit / ghost
+378	sesa	wind / air
+379	sikul	sign / banner / flag
+380	sil	strong
+381	sim	cold
+382	sima	ice
+383	sipas	cytoplasm / atmosphere / inner air / inner fluid
+384	smet	death
+385	smut	sadness
+386	sofor	work
+387	sofora	active, laborious work
+388	soforu	meditative work
+389	sohalja	inflation (in amount)
+390	soharju	elaboration / performance
+391	soharju hup	concert
+392	sohiqu	death / afterlife / outside of life
+393	solap	some quantity
+394	sole	this much
+395	solek	all quantities (greatest quantity?)
+396	solit	how much?
+397	soloz	tear
+398	solum	no amount / quantity
+399	somut	many / much amount
+400	sonulen	sudden
+401	sopen	beginning
+402	sopen	beginning / start
+403	soq	tooth
+404	soqofur	front tooth
+405	sot	outside / out of
+406	soxel	body / form / shape
+407	soxfolu (fe)lofez	general public superficial aesthetic quality opinion
+408	soxfolu	superficial aesthetic quality
+409	sozen	journey / sojourn
+410	spal	back
+411	suk	train
+412	sulex	exertion
+413	sulex pefoja	dance / drumming
+414	sur	grain
+415	sur pez	wheat
+416	sur ten	rice
+417	syk	hidden thing / hidden part
+418	sykju	cover / top
+419	sylet	next
+420	syt	fun / diversion / distraction
+421	syt hutiz	gamble / gambling
+422	taf	two
+423	tafju	division / branch
+424	tafju pejer	bough
+425	tam	blood
+426	tanolja	twice
+427	tar	coffee
+428	taxil	plane
+429	tekut	liquid
+430	tel	water
+431	tel haquiz	water vapor
+432	tel haquiz hais	mist / fog
+433	telja	quenching of thirst
+434	ten	light / white / day
+435	ten fure (jeniz)	yesterday
+436	ten fure tafiz	two days ago
+437	ten potome (jeniz)	tomorrow
+438	ten potome tafiz	two days from now
+439	ten sylet	tomorrow (next day)
+440	tena	glow
+441	tenu	lightness / whiteness
+442	tepol	vagina (spawn-hole)
+443	tet	parent
+444	tetyk	photon / star
+445	tetyk yziz  / tetyk soletiz	our star (the sun)
+446	tetz	good
+447	tex	offspring
+448	tex lizar	child
+449	tex lizarotz	baby
+450	tex tetiz jezor	child of same parent / sibling
+451	texotz	small child / offspring / cub
+452	tihiqu	birth
+453	tilok	sight
+454	tin	in / into / according to
+455	tipol	vagina (copulatory hole)
+456	tix	silence
+457	tixil	3d space
+458	tomija	life-like sleep / dream
+459	tomir	sleep
+460	topen	vector
+461	tosin	colour
+462	tou	wish / hope
+463	tul	down / below / low / little / less
+464	tulen	downwards
+465	tulja	decline
+466	tunaham	floor
+467	turam	prison
+468	turos	disorder / disarray / shambles
+469	txihara	to create
+470	txija	transact / give / transform / change / exchange
+471	txinaj	to contain
+472	txinul	make into nothing
+473	txipefoja	move forward
+474	txisyk	to hide / to cover
+475	txitelju	to water
+476	txizanu	to know
+477	tyk	point / atom / dot / singularity
+478	tzaj	tea
+479	tzem	earth / ground / soil
+480	tzem falun	country / state
+481	tzem zir	plain
+482	tzem zir muihar xilja fen	meadow / pasture
+483	tzem zir xilja naj fen	meadow / pasture
+484	tzemju	piece of land / plot
+485	tzexaif	natural structure
+486	tzifala	to prolong
+487	tzifalu	to cut short (in time)
+488	tzihal	increase
+489	tzihupol	to talk aimlessly
+490	tzihupolax	to rant
+491	tzihupoluk	to yell
+492	tzijiz	to swallow
+493	tzilak	to say (something)
+494	tzilofez	to follow mindlessly
+495	tziluza	to listen to
+496	tziluzu	to hear (bivalence)
+497	tzineit	to be inside something
+498	tzinos	to smell
+499	tzipefosa	to grow (of plants)
+500	tzipeit	to reside/ to dwell
+501	tziposa	to senseschoolboy
+502	tzisas	accelerate
+503	tzisyta	have fun
+504	tzitela	to drink
+505	tzitul	diminish
+506	tzuf	between / through
+507	tzuf	through / between
+508	tzuf tzemju nis xil li tzitaf	dividing line between land / fence
+509	um	no
+510	xaif	structure / edifice
+511	xap	weak
+512	xep	bread
+513	xer	tool
+514	xihelja	spindle
+515	xil	thread / line / long thing / y coordinate space
+516	xil lanas	line / queue (of people)
+517	xil li tzitaf	dividing line / partition
+518	xilitaf	partition
+519	xilitaf tzemju	plot partition / fence
+520	xilja fen	grass
+521	xilu	measure
+522	xir	revolution / revolve
+523	xira	to turn
+524	xof	feces
+525	xutz	violence (physical)
+526	xyt	sharp / acute
+527	zan	knowledge
+528	zana	wisdom
+529	zanu	historical / cultural knowledge
+530	zar	age
+531	zipik	part / chunk / portion / piece
+532	zipik hup	piece of music
+533	zir	wide / broad
+534	zolap	for some reason
+535	zole	for this reason
+536	zolek	for all reasons
+537	zolit	why? (for what reason?)
+538	zolum	for no reason
+539	zor	model / representation
+540	zora	clone / duplicate
+541	zoru	fake / false
+\.
+
+
+--
+-- Name: phrases_id_seq; Type: SEQUENCE SET; Schema: public; Owner: polaris
+--
+
+SELECT pg_catalog.setval('public.phrases_id_seq', 122, true);
+
+
+--
+-- Name: vocabulary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: polaris
+--
+
+SELECT pg_catalog.setval('public.vocabulary_id_seq', 541, true);
+
+
+--
+-- Name: phrases phrases_pkey; Type: CONSTRAINT; Schema: public; Owner: polaris
+--
+
+ALTER TABLE ONLY public.phrases
+    ADD CONSTRAINT phrases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: vocabulary vocabulary_pkey; Type: CONSTRAINT; Schema: public; Owner: polaris
+--
+
+ALTER TABLE ONLY public.vocabulary
+    ADD CONSTRAINT vocabulary_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

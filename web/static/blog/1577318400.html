@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-language" content="en">
+    <meta name="author" content="Bob Murry Shelton">
+    
+      <meta name="keywords" content="programming,blog,elixir,ruby,pleroma,activitypub,mastodon">
+    
+    
+      <meta name="description" content="programming blog elixir ruby pleroma activitypub mastodon How I Ruptured my Cerebrum Implementing Activity Pub">
+    
+    <title>How I Ruptured my Cerebrum Implementing Activity Pub</title>
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/chota.min.css" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <!-- <script src="dist/js/yourfile.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="background-color: #00003e;">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <h1>Flavigula</h1>
+            <p>Here lies Martes Flavigula, eternally beneath the splintered earth.</p> 
+            <hr />
+            <p>
+              <a href="/static/blog/page_1.html" class="router-link-exact-active router-link-active" aria-current="page">blog</a> |
+              <a href="/static/flavigula/index.html" class="">music</a> |
+              <a href="/static/poems/index.html" class="">poems</a> |
+              <a href="/static/lakife/index.html" class="">lakife</a> |
+              <a href="/static/recipes/index.html">recipes</a>
+            </p> 
+          </div>
+        </div>
+      </div>
+
+<div class="card">
+  <header>
+    <h4>Blog -</h4>
+    <details class="margin-bottom">
+  <summary>Search</summary>
+  <form action="/blog_search" method="post">
+    <div class="row">
+      <div class="col-8-md col">
+        <input class="bg-light" type="text" placeholder="A search term, vole" name="term" />
+      </div>
+      <div class="col-4-md col">
+        <button type="submit" class="button primary">Oouh!</button>
+      </div>
+    </div>
+  </form>
+</details>
+
+  </header>
+  <div class="row" style="font-size: smaller; font-weight: bold;">
+    <div class="col-6-md text-left">
+      
+        <a href="/static/blog/1566691200.html">« Sun, 25 Aug, 2019</a>
+      
+    </div> 
+    <div class="col-6-md text-right">
+      
+        <a href="/static/blog/1577491200.html">Sat, 28 Dec, 2019 »</a>
+      
+    </div>
+  </div>
+</div>
+
+  <div class="card">
+    <header>
+      <div class="row">
+        <div class="col">
+          <div><em><strong>How I Ruptured my Cerebrum Implementing Activity Pub</strong></em></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8-md">
+          
+            <div class="tag is-small entry-topic">Programming</div>
+          
+            <div class="tag is-small entry-topic">Blog</div>
+          
+            <div class="tag is-small entry-topic">Elixir</div>
+          
+            <div class="tag is-small entry-topic">Ruby</div>
+          
+            <div class="tag is-small entry-topic">Pleroma</div>
+          
+            <div class="tag is-small entry-topic">Activitypub</div>
+          
+            <div class="tag is-small entry-topic">Mastodon</div>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8-md">
+          <em>Thu, 26 Dec, 2019 16:18</em>
+        </div>
+      </div>
+    </header>
+    <p class="entry">
+      <p>
+I spent a few months on and off, that is to say, not very consistently, attempting to get this blog <strong>Activity Pub Sensitive</strong>. There were many false starts, many moments where I gave up, many spilled comestibles and one or two plagues of sentient lice. In the end, my implementation is far from <em>perfect</em> or <em>finished</em>, but it does what I need it to do for now.</p>
+<p>
+I’m in metaphysical debt to the following:</p>
+<ul>
+  <li>
+<a href="https://flak.tedunangst.com/post/ActivityPub-as-it-has-been-understood">Activity Pub as it has Been Understood</a>  </li>
+  <li>
+<a href="https://tinysubversions.com/notes/reading-activitypub/">How to Read the Activity Pub Specification</a>  </li>
+  <li>
+<a href="https://www.w3.org/TR/activitystreams-vocabulary">Activty Streams Vocabulary</a>  </li>
+  <li>
+<a href="https://www.w3.org/TR/activitypub/#followers">Activity Pub Specification</a>  </li>
+</ul>
+<p>
+My code is here: <a href="https://github.com/inhortte/martenblog-elixir">https://github.com/inhortte/martenblog-elixir</a></p>
+<p>
+Martenblog is a single user federated app, so, unlike #mastodon or Pleroma. This <em>single user</em> is the manifestation of the blog, perhaps, were it sentient. Perhaps it is. I’m not sure. Whereas <strong>Actors</strong> on Mastodon are indicated by <code class="inline">https://instance/users/username</code> (I’m <a href="https://sonomu.club/users/flavigula">https://sonomu.club/users/flavigula</a> on Mastodon), my singular actor is <code class="inline">https://flavigula.net/ap/actor</code>. I didn’t come up with this genericism myself, but by stealing the idea from … well, it seems I cannot find the repository any longer. I am also in metaphysical debt to this <em>human</em> who did a Node.js implementation for his own blog.</p>
+<p>
+<code class="inline">curl -k https://flavigula.net/ap/actor</code> will show you my actor.</p>
+<p>
+Backtracking slightly, I found it necessary to implement <a href="https://tools.ietf.org/html/rfc7033">webfinger</a> so that other servers could see me. My initial testing goal was to be able to type @martenblog@flavigula.net into the search field on Mastodon and find the manifestation of Martenblog.</p>
+<pre><code>  def webfinger do
+    json = %{
+      aliases: [
+        &quot;https://#{@domain}/ap/actor&quot;
+      ],
+      links: [
+        %{
+          href: &quot;https://#{@domain}/ap/actor&quot;,
+          rel: &quot;self&quot;,
+          type: &quot;application/activity+json&quot;
+        }
+      ],
+      subject: &quot;acct:martenblog@#{@domain}&quot;
+    }
+    json
+  end</code></pre>
+<p>
+I suppose that’s pretty self explanatory. You can see the result at <a href="https://flavigula.net/.well-known/webfinger">https://flavigula.net/.well-known/webfinger</a></p>
+<p>
+While I was at it, I added the <a href="https://flavigula.net/.well-known/host-meta">https://flavigula.net/.well-known/host-meta</a> endpoint:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;XRD xmlns=&quot;http://docs.oasis-open.org/ns/xri/xrd-1.0&quot;&gt;
+  &lt;Link rel=&quot;lrdd&quot; template=&quot;https://flavigula.net/.well-known/webfinger?resource={uri}&quot; type=&quot;application/xrd+xml&quot;/&gt;
+&lt;/XRD&gt;</code></pre>
+<p>
+Also, the <a href="https://flavigula.net/.well-known/nodeinfo">https://flavigula.net/.well-known/nodeinfo</a> endpoint:</p>
+<pre><code>{
+  &quot;links&quot;: [
+    {
+      &quot;rel&quot;: &quot;https://nodeinfo.diaspora.software/ns/schema/2.0&quot;,
+      &quot;href&quot;: &quot;https://flavigula.net/.well-known/nodeinfo/2.0.json&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;https://nodeinfo.diaspora.software/ns/schema/2.1&quot;,
+      &quot;href&quot;: &quot;https://flavigula.net/.well-known/nodeinfo/2.1.json&quot;
+    }
+  ]
+}</code></pre>
+<p>
+And the two endpoints referenced within nodeinfo:</p>
+<pre><code>{
+  &quot;version&quot;: &quot;2.0&quot;,
+  &quot;usage&quot;: {
+    &quot;users&quot;: {
+      &quot;total&quot;: 1,
+      &quot;activeMonth&quot;: 1,
+      &quot;activeHalfyear&quot;: 1
+    },
+    &quot;localPosts&quot;: 419
+  },
+  &quot;software&quot;: {
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;name&quot;: &quot;Martenblog&quot;
+  },
+  &quot;services&quot;: {
+    &quot;outbound&quot;: [],
+    &quot;inbound&quot;: []
+  },
+  &quot;protocols&quot;: [
+    &quot;activitypub&quot;
+  ],
+  &quot;openRegistrations&quot;: false
+}</code></pre>
+<pre><code>{
+  &quot;version&quot;: &quot;2.1&quot;,
+  &quot;usage&quot;: {
+    &quot;users&quot;: {
+      &quot;total&quot;: 1,
+      &quot;activeMonth&quot;: 1,
+      &quot;activeHalfyear&quot;: 1
+    },
+    &quot;localPosts&quot;: 419
+  },
+  &quot;software&quot;: {
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;repository&quot;: &quot;https://github.com/inhortte/martenblog-elixir.git&quot;,
+    &quot;name&quot;: &quot;Martenblog&quot;
+  },
+  &quot;services&quot;: {
+    &quot;outbound&quot;: [],
+    &quot;inbound&quot;: []
+  },
+  &quot;protocols&quot;: [
+    &quot;activitypub&quot;
+  ],
+  &quot;openRegistrations&quot;: false
+}</code></pre>
+<p>
+The code for those are in <a href="https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/router.ex">https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/router.ex</a> along with every endpoint of my website.</p>
+<p>
+I only want to <em>federate</em> blog entries to people who follow me from other regions of the Fediverse. An api endpoint exists for this, appropriately named <em>followers</em>. (<a href="https://flavigula.net/ap/actor/followers">https://flavigula.net/ap/actor/followers</a>) Though I implemented the endpoint and find it likely that it is required to do so to have a functioning server, the resulting <em>collection</em> didn’t serve as I thought it should according to my interpretation of the specifications. I’ll come back to that later, however.</p>
+<p>
+One must accrue followers. That is, I’m not going to send blog entries arbitrarily out to fediverse entities. So, when someone follows Martenblog, it receives something along these lines to the <em>inbox</em> (that’s <a href="https://flavigula.net/ap/actor/inbox):">https://flavigula.net/ap/actor/inbox):</a></p>
+<pre><code>{
+  &quot;type&quot;: &quot;Follow&quot;,
+  &quot;object&quot;: &quot;https://flavigula.net/ap/actor&quot;,
+  &quot;id&quot;: &quot;https://sonomu.club/94904728-1d32-4a51-b422-0373323ec61c&quot;,
+  &quot;actor&quot;: &quot;https://sonomu.club/users/flavigula&quot;,
+  &quot;@context&quot;: &quot;https://www.w3.org/ns/activitystreams&quot;
+  }</code></pre>
+<p>
+The code takes this json and wraps it in an <em>accept</em> activity:</p>
+<pre><code>{
+  &quot;type&quot;: &quot;Accept&quot;,
+  &quot;object&quot;: {
+    &quot;type&quot;: &quot;Follow&quot;,
+    &quot;object&quot;: &quot;https://flavigula.net/ap/actor&quot;,
+    &quot;id&quot;: &quot;https://sonomu.club/94904728-1d32-4a51-b422-0373323ec61c&quot;,
+    &quot;actor&quot;: &quot;https://sonomu.club/users/flavigula&quot;,
+    &quot;@context&quot;: &quot;https://www.w3.org/ns/activitystreams&quot;
+  },
+  &quot;id&quot;: &quot;https://flavigula.net/ap/48394fc9-114a-4849-86e4-3b78226915d9&quot;,
+  &quot;actor&quot;: &quot;https://flavigula.net/ap/actor&quot;,
+  &quot;@context&quot;: &quot;https://www.w3.org/ns/activitystreams&quot;
+}</code></pre>
+<p>
+and sends it on its way, which will be explained next, as it is the most complex bit. The <em>inbox</em> endpoint in <a href="https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/router.ex">https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/router.ex</a> sends the <em>follow</em> activity to the <em>inbox</em> function in <a href="https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/activitypub.ex,">https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/activitypub.ex,</a> which calls the <code class="inline">accept</code> function in the same file.</p>
+<p>
+Implementing the <em>sending an activity to another Fediverse server</em> part was like excoriating myself with a rusty spanner, mainly because I couldn’t find a clear way to <strong>test</strong> during development, so I was, as it were, programming blind, deaf, motionless and possibly without appendages whatsoever.</p>
+<pre><code>def sign_and_send(activity, inbox) do
+  target_domain = Fuzzyurl.from_string(inbox).hostname
+  inbox_fragment = String.replace(inbox, &quot;https://#{target_domain}&quot;, &quot;&quot;)
+  date_str = Utils.rfc2616_now 
+  Logger.info &quot;Reading private key...&quot;
+  {:ok, priv_key} = File.read(&quot;/home/polaris/keys/martenblog.pem&quot;)
+  Logger.info &quot;priv_key: #{priv_key}&quot;
+  string_to_sign = &quot;(request-target): post #{inbox_fragment}\nhost: #{target_domain}\ndate: #{date_str}&quot;
+  [ rsa_entry | _ ] = :public_key.pem_decode(priv_key)
+  decoded_key = :public_key.pem_entry_decode(rsa_entry)
+  sign_me = :public_key.sign(string_to_sign, :sha256, decoded_key)
+  signature = :base64.encode(sign_me)
+  sig_header = &quot;keyId=\&quot;https://#{@domain}/ap/actor#main-key\&quot;,headers=\&quot;(request-target) host date\&quot;,algorithm=\&quot;rsa-sha256\&quot;,signature=\&quot;#{signature}\&quot;&quot;
+  case Poison.encode activity do
+    {:ok, json_activity} -&gt; 
+      Logger.info &quot;sign_and_send -&gt; activity: #{json_activity}&quot;
+      Logger.info &quot;string_to_sign: #{string_to_sign}&quot;
+      Logger.info &quot;signature header: #{sig_header}&quot;
+      Logger.info &quot;date_str: #{date_str}&quot;
+      case :hackney.post(inbox, [
+          Host: target_domain, 
+          Date: date_str, 
+          Signature: sig_header, 
+          &quot;Content-Type&quot;: &quot;application/ld+json; profile=\&quot;https://www.w3.org/ns/activitystreams\&quot;&quot;,
+          Accept: &quot;application/activity+json, application/ld+json&quot; 
+        ], json_activity) do
+        {:ok, res} -&gt; res
+        error -&gt; error
+      end
+    error -&gt; error
+  end 
+end</code></pre>
+<p>
+This function is invoked with the activity to be sent and the inbox of its recipient. In this case, said recipient would be the <em>actor</em> from another federated site that sent me a <em>follow</em> activity. I extract the <em>inbox</em> of the actor who wants to follow me by grabbing the actor and extracting its <em>inbox</em> field. The <code class="inline">remote_actor</code> and <code class="inline">fetch_actor</code> functions do this. You may want to take a look at <a href="https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/ap_resolver.ex,">https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/ap_resolver.ex,</a> also, which handles actors cached in the database.</p>
+<p>
+I diverged from the main point a bit. <code class="inline">sign_and_send</code> receives the <em>activity</em> to send and the <em>inbox</em> of the remote actor to send it to. First, it calculates the <code class="inline">inbox_fragment</code> from the remote <em>inbox</em>. That’d be, say <code class="inline">/users/flavigula/inbox</code>. Next, the date, which <strong>HAS</strong> to be in this format: <code class="inline">Thu, 26 Dec 2019 15:25:21 GMT</code> - the <a href="https://tools.ietf.org/html/rfc2616#page-124">rfc2616</a> format. If you do not use that format, you will instantly be beheaded. </p>
+<p>
+It seems that Pleroma is more flexible concerning the format of the date it receives. Mastodon is not. It <strong>must</strong> be RFC2616. Take a look at the function <code class="inline">rfc2616_now</code> at <a href="https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/utils.ex.">https://github.com/inhortte/martenblog-elixir/blob/master/lib/martenblog/utils.ex.</a> Notice that I manually append GMT at the end. Since I use <code class="inline">DateTime.utc_now</code>, the time zone is not relevant, but be warned that if you use a conversion tool that gives you <code class="inline">UTC</code> as the time zone, your signature <strong>will be rejected by Mastodon servers</strong>. Tacking on <code class="inline">GMT</code> is my solution.</p>
+<p>
+Mastodon uses this bit of Ruby to verify the date:</p>
+<pre><code>def matches_time_window?
+  begin
+    time_sent = Time.httpdate(request.headers[&#39;Date&#39;])
+  rescue ArgumentError
+    return false
+  end
+  (Time.now.utc - time_sent).abs &lt;= 12.hours
+end</code></pre>
+<p>
+I recall reading that the <em>window</em> for submitting a response is +/- 30 seconds. Obviously, Mastodon thinks otherwise.</p>
+<p>
+Sometime before you get to this point, you need to have generated a public / private key pair. If you don’t know how to perform these duties, check out the following url: <a href="https://blog.joinmastodon.org/2018/06/how-to-implement-a-basic-activitypub-server/.">https://blog.joinmastodon.org/2018/06/how-to-implement-a-basic-activitypub-server/.</a> It also complements several processes I’ve already described, so is generally helpful.</p>
+<p>
+So, Herr <code class="inline">sign_and_send</code> fetches my private key and constructs the so called <code class="inline">string_to_sign</code>, which his this aspect:</p>
+<pre><code>(request-target): post /users/flavigula/inbox
+host: sonomu.club
+date: Thu, 26 Dec 2019 15:25:21 GMT</code></pre>
+<p>
+The function continues by decoding my private key, signing the key via <em>sha256</em>, and encoding the result via <em>base64</em>. Of course, the tools you use to perform these three steps will vary depending on your language. I’m hanging out with Elixir at the moment and the procedure is carried out by functions from the underlying Erlang system (note they all start with <code class="inline">:</code>). The aforementioned <em>blog.joinmastodon.org</em> url details the same steps in Ruby.</p>
+<p>
+The <code class="inline">sig_header</code>, an amalgam of the preceeding steps, comes out similar to this:</p>
+<p>
+<code class="inline">keyId=&quot;https://flavigula.net/ap/actor#main-key&quot;,headers=&quot;(request-target) host date&quot;,algorithm=&quot;rsa-sha256&quot;,signature=&quot;VHYpjLbjhxwsVwOQTPzsbzzSkqCHXRtnhUp3CYYJsXRcdosKAeSHKShm3OuwCLlyx7iLvsU7y+jN2i4zrf2nLfAi6ujXqUBxsfrtHXBaLkjMyypRZ6eYwprZvZsDgWQ0v+M1E2KsWowlLINpAWGG9Nydh4wCa37RB7sAhqv/Ccdp57FACT5O9DQFUccgko93Yns4Amo7ZWtKth0QAR4H5bILe8lLGa0E6IfgyX1SSuitXRMqVsd8RDPY9ARKUl7arge6mPNl9WFtxPjNzhfXIiEYn7VHIt1WA82ungMnNUy6+aOOrBwJWu8BDYOlZT+Sl5/qN91ggjjtgq7vT+qjrA==</code></p>
+<p>
+Now, you can <em>POST</em> the activity to the foreign inbox. Again, I’m using Erlang - <em>hackney</em> to be exact. Set the <code class="inline">Content-Type</code> to be <code class="inline">application/ld+json; profile=\&quot;https://www.w3.org/ns/activitystreams\&quot;</code> or be beheaded once again.</p>
+<p>
+On to sending actual blog entries.</p>
+<p>
+Wrapping an entry into an <a href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-article">article</a>, I get the following:</p>
+<pre><code>%{
+  &quot;@context&quot;: [&quot;https://www.w3.org/ns/activitystreams&quot;],
+  attributedTo: &quot;https://flavigula.net/ap/actor&quot;,
+  cc: [],
+  content: &quot;&lt;p&gt;Strange how these days remind me...&lt;/p&gt;\n&quot;,
+  id: &quot;https://flavigula.net/entry/by-id/4&quot;,
+  name: &quot;Winter eve&quot;,
+  published: &quot;Thu, 26 Dec 2019 15:25:21 GMT&quot;,
+  to: [&quot;https://sonomu.club/users/flavigula&quot;],
+  type: &quot;Article&quot;,
+  url: &quot;https://flavigula.net/#/blog/2006/12/8&quot;
+}</code></pre>
+<p>
+… constructed by the <code class="inline">article</code> function in <code class="inline">activitypub.ex</code>. Though I didn’t find reference to it in documentation anywhere (but I honestly didn’t look for more than twenty six seconds), the <code class="inline">url</code> field provides a nice link using the <code class="inline">name</code> at the beginning of an article federated to Pleroma. Mastodon ends up with the contents of the <code class="inline">name</code> field followed by the url. </p>
+<p>
+The Elixir <em>map</em> (that’s the construction you see above that begins with <code class="inline">%{</code> and ends with <code class="inline">}</code> which is certaily not json yet) is piped through the <code class="inline">create_activity</code> function and another <em>map</em> emerges:</p>
+<pre><code>%{
+  &quot;@context&quot;: &quot;https://www.w3.org/ns/activitystreams&quot;,
+  actor: &quot;https://flavigula.net/ap/actor&quot;,
+  cc: [],
+  id: &quot;https://flavigula.net/ap/20a8f2d0-8f14-42bf-ab4f-c4d5a98c7c5a&quot;,
+  object: %{
+    # The article above
+  },
+  published: &quot;Thu, 26 Dec 2019 15:25:21 GMT&quot;,
+  to: [&quot;https://sonomu.club/users/flavigula&quot;],
+  type: &quot;Create&quot;
+}</code></pre>
+<p>
+As I noted earlier, and also to prevent yourself from being beheaded a third time, make sure the <code class="inline">published</code> field in the <em>article</em> (represented in the <code class="inline">object</code> field in the <em>create activity</em>), the <code class="inline">published</code> field in the <em>create activity</em> itself and the <em>date</em> that goes into the <code class="inline">sign_and_send</code> apparatus are <strong>all</strong> within thirty seconds of each other. Edit: The Ruby code I quoted above and which comes straight from the Mastodon source seems to think 12 hours is good enough. Regardless, playing it safe is better.</p>
+<p>
+Identical to sending the <em>accept</em> activity previously, this <em>create activity</em>, along with <strong>every</strong> follower’s inbox goes to <code class="inline">sign_and_send</code>. I loop through each inbox, calling <code class="inline">sign_and_send</code> repeatedly, and certainly realize this is not particularly efficient. I’ll get around to improving this and other laxnesses soon. </p>
+<p>
+As I mentioned near the beginning of this spiel, though, I could not get the <em>send to followers</em> functionality of Activitypub to work. Therefore, instead of having <code class="inline">https://flavigula.net/ap/actor/followers</code> in the <code class="inline">to</code> or <code class="inline">cc</code> fields, I directly add an array of the followers’ inboxes. The issue needs more investigation.</p>
+<p>
+So, there you have it. I possibly missed a few steps and / or parts are misaligned and inexact. Having stated that caveat, I hope what I’ve written is of help to some of those <em>humans</em> I keep hearing about who are ostensibly wandering around on the face of the planet. If so, said <em>humans</em> should relax, celebrate, take some ketamine or whatever suits their fancy. I know I would were I a <em>human</em> instead of a mere <em>mustelid</em>.</p>
+
+    </p>
+  </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text">
+                Along with martens, goulish goats and the rippling fen - <br />
+                <a rel="cc:attributionURL" property="dct:title" href="https://flavigula.net/#/blog/1">
+                  these writings 1993-2021
+                </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://flavigula.net">Bob Murry Shelton</a> are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">
+                CC BY-NC-SA 4.0
+                <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom;" />
+                </a>
+              </p> 
+              <small><a rel="me" href="https://sonomu.club/@flavigula">Mastodon</a></small> 
+              <small><a href="https://proxy.vulpes.one/gemini/thurk.org/index.gemini">Gemini</a></small> 
+              <small><a href="https://funkwhale.thurk.org">Funkwhale</a></small> 
+              <small><a href="https://flavigula.bandcamp.com">Bandcamp</a></small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script data-goatcounter="https://goatcounter.zivter.net/count" async src="//goatcounter.zivter.net/count.js"></script>
+  </body>
+</html>
+
