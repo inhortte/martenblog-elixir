@@ -28,7 +28,9 @@ defmodule Martenblog.Gemini do
         Enum.join(", ")
         receive do
           {^thurk, {:data, result_temp}} ->
-            result = String.replace(result_temp, ~r/(\w)\^\w/, "\\1")
+            result = 
+              String.replace(result_temp, ~r/(\w)\^\w/, "\\1") |>
+              String.replace(~r</images/blog>, "https://flavigula.net/images/blog")
             """
             # #{Map.get(entry, :subject)}
             ## Topics: #{topics}

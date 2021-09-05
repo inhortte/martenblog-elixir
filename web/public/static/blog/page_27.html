@@ -105,7 +105,7 @@
             
               
                 
-                  <a href="/static/blog/page_46.html" aria-label="Go to last page" target="_self" aria-current="page">»</a>
+                  <a href="/static/blog/page_47.html" aria-label="Go to last page" target="_self" aria-current="page">»</a>
                 
               
             
@@ -115,6 +115,241 @@
     <div class="row">
       <div class="col">
         <div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1318118400.html">The vector is indexable, eh?</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Clojure</div>
+        
+          <div class="tag is-small entry-topic">Martenblog</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Sun, 09 Oct, 2011 22.24 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    **Now** a certain error is being an irritant. It looks like this:
+
+**java.lang.IllegalArgumentException: Key must be integer**
+
+Here is the code spouting the error:
+
+    (defpage "/expand/:id" {:keys [id]}
+      (let [e (entry/get-record id)]
+       (normal-entry e)
+       (expand-contract-link "contract" e)))
+
+As any observant mustelid can see, there is nothing wrong with that code according to the [Noir documentation](http://www.webnoir.org/tutorials/routes). I shall pull out pieces of my pancreas for a f...
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1318118400.html">Ruby has found a Clojure.</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Clojure</div>
+        
+          <div class="tag is-small entry-topic">Martenblog</div>
+        
+          <div class="tag is-small entry-topic">Sheepblog</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Sun, 09 Oct, 2011 17.37 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    I've begun porting **Sheepblog** (IE, this thing you are looking at right now) from *Ruby/Sinatra* to *Clojure/Noir*. I am in the beginning phases, but I believe that the database schema will stay the same for now.
+
+#### New features
+
+* When not creating or editing a post, topics will set the session key :topic to the topic's id. Any look at /rutabaga will show only posts which pertain to the set topic.
+* Multiple user capability. Hopefully Christopher will eventually post something.
+* Comments, by user or ...
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1317686400.html">The IT Crowd</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Psychology</div>
+        
+          <div class="tag is-small entry-topic">Programming</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Tue, 04 Oct, 2011 17.51 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    I postulate that **IT** humans who are more interested in hardware and low-level programming (such as machine and assembly code and possibly C) are more likely to be interested in repetitive, logical tasks. They are also the ones who listen to *Techno* whilst working (and whilst doing other repetitive activities).
+
+Others, who enjoy the elegance of high level languages are more creative, more holistic, and overall better people.
+
+Heh....
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1317340800.html">Justin says....</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Cognitive bias</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Fri, 30 Sep, 2011 20.49 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    I thought it'd be beneficial to some future thoughts to record something Justin just wrote to me:
+
+> It's a weakness in my character to favour accuracy over some other more meaningful and human parameters....
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1317340800.html">How untrue, how untrue your feelings that guide you are</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Music</div>
+        
+          <div class="tag is-small entry-topic">Future</div>
+        
+          <div class="tag is-small entry-topic">Emotion</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Fri, 30 Sep, 2011 09.54 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    I went to lunch yesterday with Hynek. We had sparse contact for years and are just recently becoming *close* again. *Close* is a rather extreme word in this matter, but I use it because I don't really think that anyone is actually *close* to Hynek in the normal sense of the word. What I mean is this: Becoming emotionally close to Hynek is simply like becoming close to my shittypie. Hynek is an emotionless machine who responds similarly as I'd imagine one with a high level of artificial intelligence might.
+
+...
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1316390400.html">I'm Having A Mid-Life Crisis</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Rootlessness</div>
+        
+          <div class="tag is-small entry-topic">Death</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Mon, 19 Sep, 2011 07.02 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    Why does sparsity of creativity come with age?
+
+* Commitments such as work? Family?
+* Alcoholism?
+* Lethargy?
+* Lack of inspiration?
+* Cynicism?
+
+I have no family, or so I like to tell myself. Perhaps I'd count Victor as *family* if I had to name people. Maybe *Tony*. Certainly *Christopher*. Why are they all from Texas? I left that place wanting to rid myself of anchors and the energy sucking apparati of familiarity. I have gone on to be less than fastidious to any new anchor which happened along. Did lack...
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1316390400.html">Similar feelings - different age</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Displacement</div>
+        
+          <div class="tag is-small entry-topic">Usti</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Mon, 19 Sep, 2011 06.45 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    **I am reminded of**. Those are the words I began many a journal entry with. **I am reminded of** the journal entries which I began with **I am reminded of**, especially in April of 1999. You see, I am on a train now, much as I was then. My direction is the same as it was then. My destination is different, however.
+
+I shall pass through **Usti Nad Labem**, but not stop. Dresden will occupy a few hours later in the day.
+
+The resurgence of communication with Hela has awakened a wash of memories from that age....
+  </p>
+</div>
+<div class="card">
   <header>
     <div class="row">
       <div class="col">
@@ -236,230 +471,6 @@ I was raised in an environment where I was guilty until proven innocent. Not jus
     I write to Christopher:
 
 > What was the impetus for wanting to return to Antarctica? Was it only the loss of the new job opportunity or something deeper? I know that both of us have and always have had inside a turbulence which ia never exactly quiet, but always fidgets at different intensities. I know that in my case it never allows me to be COMPLETELY happy when in a "stable" situation, though a high percentage of satisfaction or contentment in daily life quashes it to an extent. How is it for you? Of cou...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310860800.html">Horizontal horizon</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Time</div>
-        
-          <div class="tag is-small entry-topic">Health</div>
-        
-          <div class="tag is-small entry-topic">Hopeforwildlife</div>
-        
-          <div class="tag is-small entry-topic">Praha</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Sun, 17 Jul, 2011 17.22 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    I'm sitting on a couch in Seaforth, Nova Scotia. The back porch is divided from the house by sliding door and sliding screen. The mosquitos and wasps would otherwise invade and **bite**. Well, they would not bite *me*, but the *smaller one*.
-
-It is the third full day of the vacation. All is calm. All is tranquil. Yet, there seems little time to do the things I want to do, such as write. I feel hurried when I shouldn't at all. 
-
-The *jet lag*, a factor I never consider, has drug me down for days now. I suspe...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310515200.html">Perhaps Chris Is Right</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Paranoia</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Wed, 13 Jul, 2011 18.17 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    We are herded like cattle within a small space. The space leaves us nothing but the feeling of being caged. There is no place to plug the laptop nor the phone in. Nothing. It has been planned this way. The **herd** is what is expected once you enter **America**. The difference is extreme.
-
-Why is this?
-
-**Why is this?**
-
-My parents, the ever worms, are fed this day to day, though they secrete a bit of rebellion in their farm. And the oil. Where is the oil, actually?
-
-We shall see.
-
-I am a claustrophobic per...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310515200.html">The Lower Fee, Us</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Blegvad</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Wed, 13 Jul, 2011 15.42 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    *He might burn out the divinity generator, and then, where would they be?* I have not really **got** the brilliance of this album until just now. Yeah, I know that Blegvad is a wordsmith and Partridge a (as well as a wordsmith) soundscapesmith.
-
-The foothills of **Hell**.
-
-I recall when I was listening to this in Zabehlice when Justin was around, visiting, or whatever he called it (yes, I am bitter). He listened for a moment (or perhaps I only regarded it as a moment - I don't know), and declared - "Some gu...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310515200.html">Damage (not the Album)</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Paranoia</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Wed, 13 Jul, 2011 13.12 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    I find it disturbing and a bit sad that in every relationship I have, I feel like I must take only what is of utmost importance. This is a historical artifact, for sure. When Marcie first destroyed all of my possessions still in her presence, something broke inside of me. Of course, she may have had just cause for this, but, again, this is something in my mind, a paranoia which springs from deep within the fertile peat of childhood when I was taught that I was to blame for everything.
-
-* Simply
-* Everything...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310515200.html">The Gaarden of Hearthly Delights</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Music</div>
-        
-          <div class="tag is-small entry-topic">Displacement</div>
-        
-          <div class="tag is-small entry-topic">Cycle</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Wed, 13 Jul, 2011 11.46 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    I do not think I have ever listened to this album before, though it has come up often in forums I have read, and even perhaps in one or two conversations. The title is to the point: **I Advance Masked**. It is, as some may know, by *Robert Fripp and Andy Summers*, and I am not sure why it is on the hard drive at the moment. It was staring at me from the top part of the Amarok artist listing, sandwiched between *Alvin Curran* and *Bearded Seals*. I stared back, so it is now the soundtrack of these words.
-
-I ...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1309046400.html">Illicit Andel</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Praha</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Sun, 26 Jun, 2011 04.06 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    I don't know what I felt. I wanted to destroy everything around me. I remembered when Zuzana and I were sitting at the park near the Divadlo and she said to me 'what if someone rapes me?' i could not answer that question because I really did not care.
-
-Does Prague consume me or berate me?...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1305849600.html">Elaborating the Bender</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Change</div>
-        
-          <div class="tag is-small entry-topic">Death</div>
-        
-          <div class="tag is-small entry-topic">Location</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Fri, 20 May, 2011 08.55 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    > **Christopher**: There are lots of intangible benefits to being in one
-> place over others.
-
-Christopher is perhaps stating the obvious, but his statement is nevertheless very poignant to me. The peace I feel in Prague as opposed to anywhere in Texas is tangible. I felt the weight lift when I entered the country (and completely, of course, when I was let through passport control *heh*). The bulky black shawl which covered me and collected soot over two years and a month has been tossed aside and the crust...
   </p>
 </div>
 
