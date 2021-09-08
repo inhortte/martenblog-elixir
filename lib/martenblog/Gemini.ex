@@ -75,7 +75,7 @@ defmodule Martenblog.Gemini do
 
   def make_gemini_feed do
     Entry.subjects |> Enum.take(53) |> Enum.map(fn e ->
-      "=> #{Map.get(e, :id)}.gmi #{Utils.created_at_to_date(Map.get(e, :created_at))} - #{Map.get(e, :subject)}\n"
+      "=> #{Map.get(e, :id)}.gmi #{Utils.created_at_to_date(Map.get(e, :created_at))} #{Map.get(e, :subject)}\n"
     end) |> (fn subject_list ->
       affirmation = """
       # Martenblog - The musings of a mustelid
