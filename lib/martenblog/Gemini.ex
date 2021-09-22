@@ -38,8 +38,8 @@ defmodule Martenblog.Gemini do
 
             #{result}
 
-            => gemini://thurk.org/blog/index.gmi tzifur
-            => gemini://thurk.org/index.gmi jenju
+            => gemini://thurk.org/blog/index.gmi tzifur (Martenblog home)
+            => gemini://thurk.org/index.gmi jenju (Thurk.Org home)
 
             @flavigula@sonomu.club
             CC BY-NC-SA 4.0
@@ -62,7 +62,8 @@ defmodule Martenblog.Gemini do
 
       #{subject_list}
 
-      => gemini://thurk.org/index.gmi jenju
+      => gemini://thurk.org/blog/index.gmi tzifur (Martenblog home)
+      => gemini://thurk.org/index.gmi jenju (Thurk.Org home)
 
       @flavigula@sonomu.club
 
@@ -78,12 +79,14 @@ defmodule Martenblog.Gemini do
       "=> #{Map.get(e, :id)}.gmi #{Utils.created_at_to_date(Map.get(e, :created_at))} #{Map.get(e, :subject)}\n"
     end) |> (fn subject_list ->
       affirmation = """
-      # Martenblog - The musings of a mustelid
+      # Martenblog
+      ## The musings of a mustelid
       ## Or, here lies Martes Flavigula, eternally beneath the splintered earth
 
       #{subject_list}
 
-      => gemini://thurk.org/index.gmi jenju
+      => gemini://thurk.org/blog/index.gmi tzifur (Martenblog home)
+      => gemini://thurk.org/index.gmi jenju (Thurk.Org home)
 
       @flavigula@sonomu.club
 
@@ -180,8 +183,8 @@ defmodule Martenblog.Gemini do
       
       #{text}
       
-      => gemini://thurk.org/flavigula/index.gmi tzifur
-      => gemini://thurk.org/index.gmi jenju
+      => gemini://thurk.org/flavigula/index.gmi tzifur (Flavigula home)
+      => gemini://thurk.org/index.gmi jenju (Thurk.Org home)
 
       @flavigula@sonomu.club
       CC BY-NC-SA 4.0
@@ -236,8 +239,8 @@ defmodule Martenblog.Gemini do
 
       #{album_body}
 
-      => gemini://thurk.org/flavigula/releases.gmi tzifur
-      => gemini://thurk.org/index.gmi jenju
+      => gemini://thurk.org/flavigula/releases.gmi tzifur (Flavigula releases)
+      => gemini://thurk.org/index.gmi jenju (Thurk.Org home)
 
       @flavigula@sonomu.club
       CC BY-NC-SA 4.0
@@ -304,8 +307,8 @@ defmodule Martenblog.Gemini do
       
       #{text}
       
-      => gemini://thurk.org/flavigula/index.gmi tzifur
-      => gemini://thurk.org/index.gmi jenju"
+      => gemini://thurk.org/flavigula/index.gmi tzifur (Flavigula home)
+      => gemini://thurk.org/index.gmi jenju (Thurk.Org home)
 
       @flavigula@sonomu.club
       CC BY-NC-SA 4.0
