@@ -10,6 +10,8 @@ defmodule Martenblog.Router do
   alias Martenblog.AuthResolver
   require Logger
   @domain Application.get_env(:martenblog, :domain)
+  @twtxt_avatar "/home/polaris/arch-my-hive/twtxt/avatar.png"
+  @twtxt_file "/home/polaris/arch-my-hive/twtxt/twtxt.txt"
 
   plug Plug.Logger
   # plug Plug.SSL
@@ -186,6 +188,20 @@ defmodule Martenblog.Router do
     )
   end
 
+  get "/twtxt/avatar.png" do
+    case File.exists?(@twtxt_avatar) do
+      true -> conn |> put_resp_content_type("text/plain") |> send_resp(200, File.read!(@twtxt_avatar))
+      false -> conn |> send_resp(404, "Nulu qotziukon xaj, tipju.")
+    end
+  end
+  
+  get "/twtxt/twtxt.txt" do
+    case File.exists?(@twtxt_file) do
+      true -> conn |> put_resp_content_type("text/plain") |> send_resp(200, File.read!(@twtxt_file))
+      false -> conn |> send_resp(404, "Nulu qotziukon xaj, tipju.")
+    end
+  end
+
   # Activitypub leper
   get "/.well-known/webfinger" do
     conn |> put_resp_content_type("application/json") |>
@@ -287,7 +303,7 @@ defmodule Martenblog.Router do
   # end
 
   match _ do
-    send_resp(conn, 404, "Nothing found, vole.")
+    send_resp(conn, 404, "Nulu qotziukon xaj, tipju.")
   end
 end
 

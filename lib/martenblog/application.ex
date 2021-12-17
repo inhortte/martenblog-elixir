@@ -3,6 +3,12 @@ defmodule Martenblog.Application do
 
   def start(_type, _args) do
     import Supervisor.Spec
+
+    IO.inspect(:erlang.node)
+    IO.inspect(:erlang.get_cookie)
+    #:erlang.setnode(Node.self, :"martenblog@tahr.nebula")
+    #:erlang.set_cookie(Node.self, :thurk)
+
     children = [
       {Plug.Cowboy, scheme: :http, plug: Martenblog.Router, options: [port: 8777]},
       # Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: Martenblog.Router, options: [port: 4001]),

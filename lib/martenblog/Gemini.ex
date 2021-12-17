@@ -68,7 +68,7 @@ defmodule Martenblog.Gemini do
       @flavigula@sonomu.club
 
       ### Along with goulish goats and the rippling fen -
-      ### these writings 1999-2021 by Bob Murry Shelton are licensed under CC BY-NC-SA 4.0
+      ### these writings 1999-2022 by Bob Murry Shelton are licensed under CC BY-NC-SA 4.0
       """
       File.write!(Path.join(@gemini_public, "blog/index.gmi"), affirmation)
     end).()
@@ -91,7 +91,7 @@ defmodule Martenblog.Gemini do
       @flavigula@sonomu.club
 
       ### Along with goulish goats and the rippling fen -
-      ### these writings 1999-2021 by Bob Murry Shelton are licensed under CC BY-NC-SA 4.0
+      ### these writings 1999-2022 by Bob Murry Shelton are licensed under CC BY-NC-SA 4.0
       """
       File.write!(Path.join(@gemini_public, "blog/feed.gmi"), affirmation)
       File.write!(Path.join(@gemini_public, "blog/atom.xml"), Martenblog.Atom.atom)

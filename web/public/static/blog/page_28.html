@@ -105,7 +105,7 @@
             
               
                 
-                  <a href="/static/blog/page_47.html" aria-label="Go to last page" target="_self" aria-current="page">»</a>
+                  <a href="/static/blog/page_48.html" aria-label="Go to last page" target="_self" aria-current="page">»</a>
                 
               
             
@@ -115,6 +115,144 @@
     <div class="row">
       <div class="col">
         <div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1318291200.html">The Altruist in Me</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Clojure</div>
+        
+          <div class="tag is-small entry-topic">Clj-record</div>
+        
+          <div class="tag is-small entry-topic">Open source software</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Tue, 11 Oct, 2011 14.51 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    I just finished my contribution to [clj-record](https://github.com/inhortte/clj-record), an open souhttps://github.com/inhortte/clj-recordrce *wrapper* around *clojure.java.jdbc* which imitates (rather meekly at the moment) Ruby's *Active Record*. I added the *has-and-belongs-to-many* association. The code is [here](https://github.com/inhortte/clj-record/blob/master/src/clj_record/associations.clj). Now I can truthfully add *open source contributions* to my CV. Heh
+...
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1318118400.html">The vector is indexable, eh?</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Clojure</div>
+        
+          <div class="tag is-small entry-topic">Martenblog</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Sun, 09 Oct, 2011 22.24 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    **Now** a certain error is being an irritant. It looks like this:
+
+**java.lang.IllegalArgumentException: Key must be integer**
+
+Here is the code spouting the error:
+
+    (defpage "/expand/:id" {:keys [id]}
+      (let [e (entry/get-record id)]
+       (normal-entry e)
+       (expand-contract-link "contract" e)))
+
+As any observant mustelid can see, there is nothing wrong with that code according to the [Noir documentation](http://www.webnoir.org/tutorials/routes). I shall pull out pieces of my pancreas for a f...
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1318118400.html">Ruby has found a Clojure.</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Clojure</div>
+        
+          <div class="tag is-small entry-topic">Martenblog</div>
+        
+          <div class="tag is-small entry-topic">Sheepblog</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Sun, 09 Oct, 2011 17.37 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    I've begun porting **Sheepblog** (IE, this thing you are looking at right now) from *Ruby/Sinatra* to *Clojure/Noir*. I am in the beginning phases, but I believe that the database schema will stay the same for now.
+
+#### New features
+
+* When not creating or editing a post, topics will set the session key :topic to the topic's id. Any look at /rutabaga will show only posts which pertain to the set topic.
+* Multiple user capability. Hopefully Christopher will eventually post something.
+* Comments, by user or ...
+  </p>
+</div>
+<div class="card">
+  <header>
+    <div class="row">
+      <div class="col">
+        <em>
+          <a class="" href="/static/blog/1317686400.html">The IT Crowd</a>
+        </em>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        
+          <div class="tag is-small entry-topic">Psychology</div>
+        
+          <div class="tag is-small entry-topic">Programming</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8-md col">
+        <em>Tue, 04 Oct, 2011 17.51 UTC</em>
+      </div>
+    </div>
+  </header>
+  <p class="entry">
+    I postulate that **IT** humans who are more interested in hardware and low-level programming (such as machine and assembly code and possibly C) are more likely to be interested in repetitive, logical tasks. They are also the ones who listen to *Techno* whilst working (and whilst doing other repetitive activities).
+
+Others, who enjoy the elegance of high level languages are more creative, more holistic, and overall better people.
+
+Heh....
+  </p>
+</div>
+<div class="card">
   <header>
     <div class="row">
       <div class="col">
@@ -332,140 +470,6 @@ He's speaking of my time in Nova Scotia, of course. Had I been there alone, I su
 > I always hear talk and read words about accepting others for who they are, and I'm all for it, but how about also accepting yourself for who you are?
 
 I was raised in an environment where I was guilty until proven innocent. Not just my parents treated me this way, but every authority figure in the whole decrepit town. If any one of them spoke out against me, even in my minute youth, my parents took their word over mine. I learned to expect it to be this way and, instead, learned t...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1313280000.html">Correspondence with Christopher Part I</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Rootlessness</div>
-        
-          <div class="tag is-small entry-topic">Seaforth</div>
-        
-          <div class="tag is-small entry-topic">Stability</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Sun, 14 Aug, 2011 19.01 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    I write to Christopher:
-
-> What was the impetus for wanting to return to Antarctica? Was it only the loss of the new job opportunity or something deeper? I know that both of us have and always have had inside a turbulence which ia never exactly quiet, but always fidgets at different intensities. I know that in my case it never allows me to be COMPLETELY happy when in a "stable" situation, though a high percentage of satisfaction or contentment in daily life quashes it to an extent. How is it for you? Of cou...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310860800.html">Horizontal horizon</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Time</div>
-        
-          <div class="tag is-small entry-topic">Health</div>
-        
-          <div class="tag is-small entry-topic">Hopeforwildlife</div>
-        
-          <div class="tag is-small entry-topic">Praha</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Sun, 17 Jul, 2011 17.22 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    I'm sitting on a couch in Seaforth, Nova Scotia. The back porch is divided from the house by sliding door and sliding screen. The mosquitos and wasps would otherwise invade and **bite**. Well, they would not bite *me*, but the *smaller one*.
-
-It is the third full day of the vacation. All is calm. All is tranquil. Yet, there seems little time to do the things I want to do, such as write. I feel hurried when I shouldn't at all. 
-
-The *jet lag*, a factor I never consider, has drug me down for days now. I suspe...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310515200.html">Perhaps Chris Is Right</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Paranoia</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Wed, 13 Jul, 2011 18.17 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    We are herded like cattle within a small space. The space leaves us nothing but the feeling of being caged. There is no place to plug the laptop nor the phone in. Nothing. It has been planned this way. The **herd** is what is expected once you enter **America**. The difference is extreme.
-
-Why is this?
-
-**Why is this?**
-
-My parents, the ever worms, are fed this day to day, though they secrete a bit of rebellion in their farm. And the oil. Where is the oil, actually?
-
-We shall see.
-
-I am a claustrophobic per...
-  </p>
-</div>
-<div class="card">
-  <header>
-    <div class="row">
-      <div class="col">
-        <em>
-          <a class="" href="/static/blog/1310515200.html">The Lower Fee, Us</a>
-        </em>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        
-          <div class="tag is-small entry-topic">Blegvad</div>
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8-md col">
-        <em>Wed, 13 Jul, 2011 15.42 UTC</em>
-      </div>
-    </div>
-  </header>
-  <p class="entry">
-    *He might burn out the divinity generator, and then, where would they be?* I have not really **got** the brilliance of this album until just now. Yeah, I know that Blegvad is a wordsmith and Partridge a (as well as a wordsmith) soundscapesmith.
-
-The foothills of **Hell**.
-
-I recall when I was listening to this in Zabehlice when Justin was around, visiting, or whatever he called it (yes, I am bitter). He listened for a moment (or perhaps I only regarded it as a moment - I don't know), and declared - "Some gu...
   </p>
 </div>
 

@@ -7,7 +7,17 @@ defmodule Martenblog.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: [
+        prod: [
+          version: "0.0.1",
+          applications: [martenblog: :permanent],
+          cookie: "thurk",
+          include_executables_for: [:unix], # we'll be deploying to Linux only
+          steps: [:assemble, :tar] # have Mix automatically create a tarball after assembly
+        ]
+      ],
+      escript: [main_module: Martenblog, emu_args: ["-name martenblog@tahr.nebula -setcookie thurk"]]
     ]
   end
 
@@ -18,6 +28,7 @@ defmodule Martenblog.MixProject do
       mod: {Martenblog.Application, []}
     ]
   end
+
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
@@ -37,7 +48,8 @@ defmodule Martenblog.MixProject do
       { :timex, "~> 3.6.3" },
       {:html_sanitize_ex, "~> 1.3.0-rc3"},
       {:postgrex, "~> 0.14.3"},
-      { :earmark, "~> 1.4.13" }
+      { :earmark, "~> 1.4.13" },
+      {:mix_systemd, "~> 0.7"}
     ]
   end
 end

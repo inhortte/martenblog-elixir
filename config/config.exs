@@ -32,3 +32,11 @@ import Config
 config :martenblog, :db, name: "martenblog"
 config :martenblog, poem_dir: "~/arch-my-hive/poems"
 config :martenblog, domain: "flavigula.net"
+
+config :mix_systemd,
+  app_user: "polaris",
+  app_group: "mustelids",
+  base_dir: "/home/polaris/rummaging_round/elixir/martenblog-elixir",
+  env_vars: [
+    "PORT=8777",
+  ]
