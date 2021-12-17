@@ -42,4 +42,13 @@ defmodule Martenblog.Utils do
     end
   end
 
+  def format_datetime_for_twtxt(dt) do
+    year = Integer.to_string(dt.year) |> String.pad_leading(4, "0")
+    month = Integer.to_string(dt.month) |> String.pad_leading(2, "0")
+    day = Integer.to_string(dt.day) |> String.pad_leading(2, "0")
+    hour = Integer.to_string(dt.hour) |> String.pad_leading(2, "0")
+    minute = Integer.to_string(dt.minute) |> String.pad_leading(2, "0")
+    "#{year}-#{month}-#{day} #{hour}.#{minute} #{dt.zone_abbr}"
+  end
+
 end

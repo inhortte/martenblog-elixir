@@ -1,13 +1,6 @@
 defmodule Martenblog.Router do
   use Plug.Router
-  alias Martenblog.Utils
-  alias Martenblog.Entry
-  alias Martenblog.Topic
-  alias Martenblog.Http
-  alias Martenblog.BlogResolver
-  alias Martenblog.PoemResolver
-  alias Martenblog.Activitypub
-  alias Martenblog.AuthResolver
+  alias Martenblog.{Utils, Entry, Topic, Http, BlogResolver, PoemResolver, Activitypub, AuthResolver, Twtxt}
   require Logger
   @domain Application.get_env(:martenblog, :domain)
   @twtxt_avatar "/home/polaris/arch-my-hive/twtxt/avatar.png"
@@ -199,6 +192,15 @@ defmodule Martenblog.Router do
     case File.exists?(@twtxt_file) do
       true -> conn |> put_resp_content_type("text/plain") |> send_resp(200, File.read!(@twtxt_file))
       false -> conn |> send_resp(404, "Nulu qotziukon xaj, tipju.")
+    end
+  end
+
+  get "/twtxt" do
+    case Twtxt.read_twtxt_file do
+      {:ok, media_dormida} ->
+        conn |> send_resp(200, media_dormida)
+      {:error, reason} ->
+        conn |> send_resp(200, reason)
     end
   end
 
