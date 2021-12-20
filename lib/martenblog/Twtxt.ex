@@ -83,6 +83,7 @@ defmodule Martenblog.Twtxt do
       false -> 
         prefix = :crypto.hash(:sha256, :erlang.term_to_binary(s)) |> Base.encode16
         :ets.insert(:searches, {:hash, prefix})
+        prefix
     end
   end
 
@@ -128,6 +129,7 @@ defmodule Martenblog.Twtxt do
 
   def adjust_file(filename, idx, count) do
     [_, _page, hash] = Regex.run(~r{^(\d+)MBTWTXT(.*)\.gmi$}, filename)
+    Logger.info "adjust_file -> hash is #{hash} and filename is #{filename}"
     File.open!(Path.join(@twtxt_gemini_dir, filename), [:read]) |>
       adjust_line(idx, [], count) |>
       (fn lines ->
