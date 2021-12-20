@@ -4,38 +4,56 @@ defmodule Martenblog.Twtxt do
   @twtxt_file "/home/polaris/arch-my-hive/twtxt/twtxt.txt"
   @twtxt_gemini_dir "/usr/share/molly/twtxt"
 
-  def read_twtxt_file do
-    clean_dir()
+  def read_twtxt_file(filter) do
+    clean_dir(filter)
     case File.open(@twtxt_file) do
       {:ok, file} ->
-        process_line(file, [], 0, 1)
+        process_line(file, [], 0, 1, filter)
       {:error, _} ->
         Logger.error "#{@twtxt_file} not found"
         {:error, "file not found"}
     end
   end
 
-  def process_line(file, lines, count, page) when count >= 37 do 
-    make_page(lines, page)
-    process_line(file, [], 0, page+1)
+  def process_line(file, lines, count, page, filter) when count >= 37 do 
+    make_page(lines, page, filter)
+    process_line(file, [], 0, page+1, filter)
   end
-  def process_line(file, lines, count, page) do
-    case IO.read(file, :line) do
+  def process_line(file, lines, count, page, filter) do
+    case IO.binread(file, :line) do
       {:error, reason} ->
-        make_page(lines, page)
+        make_page(lines, page, filter)
         {:error, reason}
       :eof ->
-        make_page(lines, page)
-        organise_dir()
+        make_page(lines, page, filter)
+        organise_dir(filter)
       line ->
-        [dt_string, toot] = Regex.split(~r{\s+}, line, parts: 2)
-        {:ok, dt, _} = DateTime.from_iso8601(dt_string)
-        process_line(file, [{dt, toot}|lines], count+1, page)
+        line |> filter_line(filter) |> 
+          assimilate_line(file, lines, count, page, filter)
     end
   end
 
-  def make_page([], _), do: organise_dir()
-  def make_page(lines, page) do
+  def filter_line(line, filter) do
+    case is_nil(filter) do
+      true -> line
+      false -> 
+        if Regex.match?(~r/#{filter}/, line), do: line, else: nil
+    end
+  end
+
+  def assimilate_line(line, file, lines, count, page, filter) do
+    case is_nil(line) do
+      true -> process_line(file, lines, count, page, filter)
+      false -> 
+        [dt_string, toot] = Regex.split(~r{\s+}, line, parts: 2)
+        {:ok, dt, _} = DateTime.from_iso8601(dt_string)
+        process_line(file, [{dt, toot}|lines], count+1, page, filter)
+    end
+  end
+
+  def make_page([], _, filter), do: organise_dir(filter)
+  def make_page(lines, page, filter) do
+    prefix = filter |> make_prefix
     lines |> Enum.map(fn {dt, txt} ->
       """
       ### #{Utils.format_datetime_for_twtxt(dt)}
@@ -55,31 +73,42 @@ defmodule Martenblog.Twtxt do
       CC BY-NC-SA 4.0
       @flavigula@sonomu.club
       """
-      File.write!(Path.join(@twtxt_gemini_dir, "#{page}.gmi"), affirmation)
+      File.write!(Path.join(@twtxt_gemini_dir, "#{page}MBTWTXT#{prefix}.gmi"), affirmation)
     end).()
   end
 
-  def clean_dir do
+  def make_prefix(s) do
+    case is_nil(s) do
+      true -> ""
+      false -> 
+        prefix = :crypto.hash(:sha256, :erlang.term_to_binary(s)) |> Base.encode16
+        :ets.insert(:searches, {:hash, prefix})
+    end
+  end
+
+  def clean_dir(filter) do
+    prefix = make_prefix(filter)
     case File.ls(@twtxt_gemini_dir) do
       {:error, reason} ->
         Logger.error "Does #{@twtxt_gemini_dir} exist? #{reason}"
       {:ok, files} ->
         files |> Enum.each(fn filename ->
-          if Regex.match?(~r{^\d+\.gmi$}, filename) do
+          if Regex.match?(~r{^\d+#{prefix}\.gmi$}, filename) do
             File.rm(Path.join(@twtxt_gemini_dir, filename))
           end
         end)
     end
   end
 
-  def organise_dir do
+  def organise_dir(filter) do
     case File.ls(@twtxt_gemini_dir) do
       {:error, reason} ->
         Logger.error "Does #{@twtxt_gemini_dir} exist? #{reason}"
         {:error, reason}
       {:ok, files} ->
+        prefix = make_prefix(filter)
         files |> Enum.filter(fn filename ->
-          Regex.match?(~r{^\d+\.gmi$}, filename)
+          Regex.match?(~r{^\d+MBTWTXT#{prefix}\.gmi$}, filename)
         end) |>
           Enum.sort(fn f1, f2 ->
             {i1, _} = :string.to_integer(f1)
@@ -98,14 +127,16 @@ defmodule Martenblog.Twtxt do
   end
 
   def adjust_file(filename, idx, count) do
+    [_, _page, hash] = Regex.run(~r{^(\d+)MBTWTXT(.*)\.gmi$}, filename)
     File.open!(Path.join(@twtxt_gemini_dir, filename), [:read]) |>
       adjust_line(idx, [], count) |>
       (fn lines ->
         affirmation_of_my_faith_in_baal = """
         #{lines}
         """
+        hash_part = if String.length(hash) > 0, do: "-#{hash}", else: ""
         File.write!(
-          Path.join(@twtxt_gemini_dir, "tw#{idx}.gmi"),
+          Path.join(@twtxt_gemini_dir, "tw#{idx}#{hash_part}.gmi"),
           affirmation_of_my_faith_in_baal
         )
         File.rm(Path.join(@twtxt_gemini_dir, filename))
@@ -113,7 +144,7 @@ defmodule Martenblog.Twtxt do
   end
 
   def adjust_line(file, idx, lines, count) do
-    case IO.read(file, :line) do
+    case IO.binread(file, :line) do
       {:error, error} -> 
         Logger.error "adjust_line -> #{error}"
         adjust_line(file, idx, lines, count)

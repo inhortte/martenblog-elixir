@@ -6,8 +6,7 @@ defmodule Martenblog.Application do
 
     IO.inspect(:erlang.node)
     IO.inspect(:erlang.get_cookie)
-    #:erlang.setnode(Node.self, :"martenblog@tahr.nebula")
-    #:erlang.set_cookie(Node.self, :thurk)
+    :ets.new(:searches, [:bag, :protected, :named_table])
 
     children = [
       {Plug.Cowboy, scheme: :http, plug: Martenblog.Router, options: [port: 8777]},

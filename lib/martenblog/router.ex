@@ -196,7 +196,7 @@ defmodule Martenblog.Router do
   end
 
   get "/twtxt" do
-    case Twtxt.read_twtxt_file do
+    case Twtxt.read_twtxt_file(nil) do
       {:ok, media_dormida} ->
         conn |> send_resp(200, media_dormida)
       {:error, reason} ->
