@@ -1,5 +1,7 @@
 defmodule Martenblog.Utils do
   require Logger
+  alias Plug.Conn.Query
+  alias Martenblog.Twtxt
   @anomalous_keys %{"_id" => :id}
   
   def normalise_keys(map) do
@@ -51,4 +53,24 @@ defmodule Martenblog.Utils do
     "#{year}-#{month}-#{day} #{hour}.#{minute} #{dt.zone_abbr}"
   end
 
+  def twtxt_query(query_string, hashtag \\ false) do
+    query_string |> Query.decode |> Map.get("q") |>
+      case do
+        nil -> 
+          Logger.info "twtxt_query -> There was no query"
+          ""
+        query ->
+          if hashtag do
+            Twtxt.read_twtxt_file("##{query}")
+          else
+            Twtxt.read_twtxt_file(query)
+          end |>
+          case do
+            {:ok, prefix} -> prefix
+            {:error, reason} ->
+              Logger.error "twtxt_query -> #{reason}"
+             ""
+          end
+      end
+  end
 end

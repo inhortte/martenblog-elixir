@@ -61,13 +61,19 @@ defmodule Martenblog.Twtxt do
 
       """
     end) |> (fn meat ->
+      search_link = "=> gemini://thurk.org/cgi-bin/twtxt-search.py Search the twtxt\n" 
+      search_info = if is_nil(filter) do
+        ""
+      else
+        "### Search results for '#{filter}'\n=> tw1.gmi tzifur (back)\n"
+      end
       affirmation = """
       # Martenblog
       :::pagina:::
-
+      #{search_link}
+      #{search_info}
       #{meat}
 
-      => gemini://thurk.org/blog/index.gmi tzifur (Martenblog home)
       => gemini://thurk.org/index.gmi jenju (Thurk.Org home)
 
       CC BY-NC-SA 4.0
@@ -122,7 +128,7 @@ defmodule Martenblog.Twtxt do
             Enum.each(files, fn {filename, idx} ->
               adjust_file(filename, idx, length(files))
             end)
-            {:ok, "oogleboobie!"}
+            {:ok, prefix}
           end).()
     end
   end

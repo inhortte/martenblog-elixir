@@ -120,6 +120,10 @@ defmodule Martenblog.Router do
     conn |> put_resp_content_type("text/xml") |> send_resp(200, Martenblog.Atom.atom)
   end
 
+  get "/twtxt-atom" do
+    conn |> put_resp_content_type("text/xml") |> send_resp(200, Martenblog.Atom.twtxts)
+  end
+
   get "/piece-of-shit" do
     pieces_of_shit = File.read!('/home/polaris/various-leprosies/draining-the-pond/piece-of-shit.txt') 
                      |> String.split(~r{\n}) 
@@ -202,6 +206,13 @@ defmodule Martenblog.Router do
       {:error, reason} ->
         conn |> send_resp(200, reason)
     end
+  end
+
+  get "/twtxt-search" do
+    conn.query_string |> Utils.twtxt_query |>
+      (fn prefix ->
+        conn |> send_resp(200, prefix)
+      end).()
   end
 
   # Activitypub leper
