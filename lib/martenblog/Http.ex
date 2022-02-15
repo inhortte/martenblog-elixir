@@ -13,8 +13,8 @@ defmodule Martenblog.Http do
   @gemini_base "/usr/share/molly/"
   @poems_dest "#{@dest}poems"
   @poems_marmota_dest "#{@dest_marmota}poems"
-  @reference_re ~r/\[([a-z])\]/
-  @footnote_re ~r/^=>\s+([^\s]+)\s+([a-z])\.\s+(.+)$/
+  @reference_re ~r/\[([0-9a-z])\]/
+  @footnote_re ~r/^=>\s+([^\s]+)\s+([0-9a-z])\.\s+(.+)$/
 
   def eex_base do
     case :inet.gethostname do

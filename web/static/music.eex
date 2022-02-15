@@ -8,12 +8,12 @@
       <a href="https://flavigula.bandcamp.com" target="_blank">
         <img src="/images/flavigula-white-logo-square.png" style="border: 1px none rgb(153, 153, 153);" width="200" height="200">
       </a> 
+      <a href="https://flavigula.bandcamp.com/album/pod-l-sm-r" target="_blank">
+        <img src="/images/podel-smeru.jpg" style="border: 1px none rgb(153, 153, 153);" width="200" height="200">
+      </a> 
       <a href="https://submarinebroadcastingco.bandcamp.com/album/kredenc-kopc">
         <img src="/images/kredenc-kopcu.jpg" style="border: 1px none rgb(153, 153, 153);" width="200">
       </a>
-      <a href="https://flavigula.bandcamp.com/album/za-ru-en" target="_blank">
-        <img src="/images/za-ruzeni.png" style="border: 1px none rgb(153, 153, 153);" width="200" height="200">
-      </a> 
     </div> 
     <div class="col-9-md">
       <%= content %>
