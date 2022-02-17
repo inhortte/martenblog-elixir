@@ -36,6 +36,10 @@ defmodule Martenblog.Topic do
     end)
   end
 
+  def topic_by_id(id) do
+    Mongo.find_one(:mongo, "topic", %{_id: id}) |> Utils.normalise_keys
+  end
+
   def topics_by_ids(ids) do
     topics = Enum.map(ids, fn(id) -> Mongo.find_one(:mongo, "topic", %{_id: id}) end)
     topics
@@ -89,6 +93,16 @@ defmodule Martenblog.Entry do
 
   defstruct id: 0, created_at: 0, entry: "", subject: "", topic_ids: [], user_id: 1, federated_to: [], federated: false, federated_ts: nil
   @oddities %{:id => "_id"}
+
+  def to_entry_struct(map) do
+    Kernel.struct(%Martenblog.Entry{}, map)
+  end
+
+  def all() do
+    Mongo.find(:mongo, "entry", %{}, sort: %{"_id" => 1}) |> Enum.map(fn(entry) ->
+      Utils.normalise_keys(entry) |> to_entry_struct
+    end)
+  end
 
   def get_entry_by_id(id) do
     entry = Mongo.find_one(:mongo, "entry", %{"_id" => id}) |> case do

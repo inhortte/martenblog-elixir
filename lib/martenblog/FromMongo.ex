@@ -31,4 +31,32 @@ defmodule Martenblog.FromMongo do
     end) |> Poison.encode!(pretty: true) |> (fn json -> File.write!(@topics_file, json) end).()
     "finito"
   end
+
+  def entries_to_files do
+    Entry.all |> Enum.map(fn entry ->
+      topics = entry.topic_ids |> Enum.map(fn id -> 
+        Topic.topic_by_id(Kernel.trunc(id)) |> 
+          case do
+            nil -> nil
+            topic -> topic.topic
+          end
+      end) |> 
+        Enum.reject(&is_nil/1) |>
+        Enum.map(&String.trim/1) |>
+        Enum.join(",")
+      filename = timestamp_to_date(entry)
+      """
+      id: #{Kernel.trunc(entry.id)}
+      date: #{filename}
+      topic: #{topics}
+      subject: #{entry.subject}
+
+      #{entry.entry}
+      """ |> 
+        (fn agglutination ->
+          File.write!("#{@stasis_dir}/#{filename}_processed.md", agglutination)
+        end).()
+    end)
+    "finito"
+  end
 end

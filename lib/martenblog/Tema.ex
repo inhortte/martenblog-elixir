@@ -22,6 +22,10 @@ defmodule Martenblog.Tema do
     all() |> Enum.filter(fn topic -> ids |> Enum.any?(fn id -> topic.id == id end) end)
   end
 
+  def topic_ids_to_topics_string(ids) do
+    ids |> topics_by_ids |> Enum.map(fn topic -> topic.topic end)
+  end
+
   def next_topic_id(topics) do
     topics |> Enum.max(fn (a, b) -> a.id > b.id end) |> Map.get(:id) |> Kernel.+(1)
   end

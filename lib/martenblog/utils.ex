@@ -3,7 +3,8 @@ defmodule Martenblog.Utils do
   alias Plug.Conn.Query
   alias Martenblog.Twtxt
   @anomalous_keys %{"_id" => :id}
-  
+
+  def normalise_keys(nil), do: nil
   def normalise_keys(map) do
     map |> Map.keys |> Enum.reduce(%{}, fn(key, acc) -> cond do
       Enum.member?(Map.keys(@anomalous_keys), key) ->
