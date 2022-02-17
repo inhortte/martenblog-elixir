@@ -31,7 +31,7 @@ defmodule Martenblog.Topic do
   end
 
   def all() do
-    Mongo.find(:mongo, "topic", %{}) |> Enum.map(fn(topic) ->
+    Mongo.find(:mongo, "topic", %{}, sort: %{"_id" => 1}) |> Enum.map(fn(topic) ->
       Utils.normalise_keys(topic) |> ensure_created_at |> to_topic_struct
     end)
   end
@@ -91,8 +91,10 @@ defmodule Martenblog.Entry do
   @oddities %{:id => "_id"}
 
   def get_entry_by_id(id) do
-    entry = Mongo.find_one(:mongo, "entry", %{"_id" => id}) |> Utils.normalise_keys
-    Kernel.struct(%Martenblog.Entry{}, entry)
+    entry = Mongo.find_one(:mongo, "entry", %{"_id" => id}) |> case do
+      nil -> nil
+      entry -> entry |> Utils.normalise_keys |> (fn entry -> Kernel.struct(%Martenblog.Entry{}, entry) end).()
+    end
   end
 
   def get_entries_by_page(page) do
