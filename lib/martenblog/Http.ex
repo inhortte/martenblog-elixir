@@ -1,10 +1,9 @@
 defmodule Martenblog.Http do
   import Martenblog.Transform
   require Logger
+  alias Martenblog.{Tema,Anotacion,Utils,PoemResolver}
   alias Martenblog.Topic
   alias Martenblog.Entry
-  alias Martenblog.Utils
-  alias Martenblog.PoemResolver
   @releases_dir "/home/polaris/Elements/flavigula/release/"
   @eex "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/static/"
   @eex_marmota "/home/polaris/elixir/martenblog-elixir/web/static/"
@@ -53,7 +52,8 @@ defmodule Martenblog.Http do
   end
 
   def pagination(page) do
-    page_count = div(Entry.count, 11) + (if rem(Entry.count, 11) > 0, do: 1, else: 0)
+    e_count = Anotacion.count
+    page_count = div(e_count, 11) + (if rem(e_count, 11) > 0, do: 1, else: 0)
     first_page = %{
       label: "«",
       disabled: page == 1,
@@ -114,37 +114,62 @@ defmodule Martenblog.Http do
   def pd_from_ut(unix_time, format, with_tz \\ false) do
     presentable_date(Timex.from_unix(unix_time), format)
   end
+
+  def pd_from_md(md) do
+    Utils.from_mb_to_dt(md) |> 
+      presentable_date("%a, %d %b, %Y %H.%M", true)
+  end
+
+  def link_from_md(md) do
+    Utils.from_mb_to_dt(md) |>
+      Timex.beginning_of_day |> Timex.to_unix
+  end
   
   def page(page) do
-    Entry.subjects |> Enum.drop((page - 1) * 11) |> Enum.take(11) |>
-    Enum.map(fn e ->
-      topics = Topic.topics_by_ids(e.topic_ids) |> Enum.map(fn t -> 
-        if is_nil(t), do: "unknown", else: Map.get(t, "topic", "unknown") 
-      end)
-      # IO.inspect topics
-      IO.inspect e.created_at
-      unix_time = floor(e.created_at / 1000)
-      timex_time = Timex.from_unix(unix_time)
-      link = Timex.from_unix(unix_time) |> Timex.beginning_of_day |> Timex.to_unix
-      ostensible_date = presentable_date(timex_time, "%a, %d %b, %Y %H.%M", true)
-      entry_truncated = "#{String.slice(e.entry, 0, 512)}..."
-      EEx.eval_file(Path.join([eex_base(), "entry_in_page.eex"]), [meta_tags: %{}, topics: topics, ostensible_date: ostensible_date, subject: e.subject, link: "/static/blog/#{link}.html", entry_trunctated: entry_truncated])
-    end) |>
+    Anotacion.page(page) |>
+      Enum.map(fn e ->
+        topics = Tema.topics_by_names(e.topic) 
+        ostensible_date = pd_from_md(e.date)
+        entry_truncated = "#{String.slice(e.entry, 0, 512)}..."
+        link = link_from_md(e.date);
+        EEx.eval_file(Path.join([eex_base(), "entry_in_page.eex"]), [meta_tags: %{}, topics: topics, ostensible_date: ostensible_date, subject: e.subject, link: "/static/blog/#{link}.html", entry_trunctated: entry_truncated])
+      end) |>
     (fn es ->
       pagination_hovno = pagination(page)
       content = Enum.join(es)
       html = EEx.eval_file(Path.join([eex_base(), "blog.eex"]), [meta_tags: %{}, content: content, pages: pagination_hovno, title: "Mustelid Musings"])
       File.write!(Path.join(dest_base, "blog/page_#{page}.html"), html)
     end).()
+#    Entry.subjects |> Enum.drop((page - 1) * 11) |> Enum.take(11) |>
+#    Enum.map(fn e ->
+#      topics = Topic.topics_by_ids(e.topic_ids) |> Enum.map(fn t -> 
+#        if is_nil(t), do: "unknown", else: Map.get(t, "topic", "unknown") 
+#      end)
+#      # IO.inspect topics
+#      IO.inspect e.created_at
+#      unix_time = floor(e.created_at / 1000)
+#      timex_time = Timex.from_unix(unix_time)
+#      link = Timex.from_unix(unix_time) |> Timex.beginning_of_day |> Timex.to_unix
+#      ostensible_date = presentable_date(timex_time, "%a, %d %b, %Y %H.%M", true)
+#      entry_truncated = "#{String.slice(e.entry, 0, 512)}..."
+#      EEx.eval_file(Path.join([eex_base(), "entry_in_page.eex"]), [meta_tags: %{}, topics: topics, ostensible_date: ostensible_date, subject: e.subject, link: "/static/blog/#{link}.html", entry_trunctated: entry_truncated])
+#    end) |>
+#    (fn es ->
+#      pagination_hovno = pagination(page)
+#      content = Enum.join(es)
+#      html = EEx.eval_file(Path.join([eex_base(), "blog.eex"]), [meta_tags: %{}, content: content, pages: pagination_hovno, title: "Mustelid Musings"])
+#      File.write!(Path.join(dest_base, "blog/page_#{page}.html"), html)
+#    end).()
   end
 
   def pages do
-    page_count = div(Entry.count, 11) + (if rem(Entry.count, 11) > 0, do: 1, else: 0)
+    e_count = Anotacion.count
+    page_count = div(e_count, 11) + (if rem(e_count, 11) > 0, do: 1, else: 0)
     1..page_count |> Enum.each(&page/1)
   end
 
   def date_placement(entry, date_map) do
-    key = Timex.from_unix(floor(entry.created_at / 1000)) |> Timex.beginning_of_day |> Timex.to_unix
+    key = Utils.from_mb_to_dt(entry.date) |> Timex.beginning_of_day |> Timex.to_unix
     Map.merge(date_map, 
       if Map.has_key?(date_map, key) do
         %{key => [entry|Map.get(date_map, key)]}

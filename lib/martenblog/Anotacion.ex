@@ -91,4 +91,22 @@ defmodule Martenblog.Anotacion do
       _ -> Utils.now_for_mb()
     end
   end
+
+  def page(p) do
+    File.ls!(@stasis_dir) |>
+      Enum.filter(fn f -> Regex.match?(~r/_processed/, f) end) |>
+      Enum.sort(&(&1 > &2)) |>
+      Enum.drop((p - 1) * 11) |>
+      Enum.take(11) |>
+      Enum.map(fn filename ->
+        File.read!("#{@stasis_dir}/#{filename}") |>
+        md_to_entry()
+      end)
+  end
+
+  def count do
+    File.ls!(@stasis_dir) |>
+      Enum.filter(fn f -> Regex.match?(~r/_processed/, f) end) |>
+      Enum.count
+  end
 end

@@ -63,6 +63,14 @@ defmodule Martenblog.Utils do
       end
   end
 
+  def from_mb_to_dt(mb_date) do
+    case Timex.parse(md, "{YYYY}{M}{D}{h24}{m}") do
+      {:ok, naive} ->
+        naive |> DateTime.from_naive!("Etc/UTC")
+      _ -> DateTime.now("Etc/UTC")
+    end
+  end
+
   def format_datetime_for_twtxt(dt) do
     year = Integer.to_string(dt.year) |> String.pad_leading(4, "0")
     month = Integer.to_string(dt.month) |> String.pad_leading(2, "0")
