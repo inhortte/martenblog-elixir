@@ -45,6 +45,24 @@ defmodule Martenblog.Utils do
     end
   end
 
+  def dt_for_mb(dt) do
+    [dt.year, dt.month, dt.day, dt.hour, dt.minute] |>
+      Enum.map(&to_string/1) |>
+      Enum.map(&String.pad_leading(&1, 2, "0")) |>
+      Enum.join
+  end
+
+  def now_for_mb, do: DateTime.now!("Etc/UTC") |> dt_for_mb
+
+  def elixir_ts_to_date(e_ts), do: js_ts_to_date(e_ts * 1000)
+  def js_ts_to_date(ts) do
+    ts |> Kernel.trunc |> div(1000) |>
+      DateTime.from_unix |> case do
+        {:ok, dt} -> dt_for_mb(dt)
+        {:error, _} -> now_for_mb()
+      end
+  end
+
   def format_datetime_for_twtxt(dt) do
     year = Integer.to_string(dt.year) |> String.pad_leading(4, "0")
     month = Integer.to_string(dt.month) |> String.pad_leading(2, "0")

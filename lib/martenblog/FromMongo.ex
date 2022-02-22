@@ -1,23 +1,12 @@
 defmodule Martenblog.FromMongo do
   require Logger
-  alias Martenblog.{Topic, Entry}
+  alias Martenblog.{Topic, Entry, Utils}
   @stasis_dir "/home/polaris/arch-my-hive/martenblog/stasis"
   @topics_file "#{@stasis_dir}/topics"
 
   def timestamp_to_date(%{created_at: created_at}), do: ts_to_date(created_at)
   def timestamp_to_date(%{"created_at" => created_at}), do: ts_to_date(created_at)
-  defp ts_to_date(created_at) do
-    created_at |> Kernel.trunc |> div(1000) |>
-      DateTime.from_unix |> case do
-        {:ok, dt} -> dt
-        {:error, _} -> DateTime.now!("Etc/UTC")
-      end |> (fn dt ->
-      [dt.year, dt.month, dt.day, dt.hour, dt.minute] |>
-        Enum.map(&to_string/1) |>
-        Enum.map(&String.pad_leading(&1, 2, "0")) |>
-        Enum.join
-    end).()
-  end
+  defp ts_to_date(created_at), do: Utils.js_ts_to_date(created_at)
 
   def topics_to_file do
     Topic.all |> Enum.map(fn topic ->
