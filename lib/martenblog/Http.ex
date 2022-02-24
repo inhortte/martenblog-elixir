@@ -179,7 +179,7 @@ defmodule Martenblog.Http do
   end
 
   def date_entries do
-    date_map = Entry.subjects |> Enum.reduce(%{}, &date_placement/2)
+    date_map = Anotacion.all |> Enum.reduce(%{}, &date_placement/2)
     high_point = length(Map.keys(date_map))-1
     date_array = Enum.zip(0..high_point, Map.keys(date_map) |> Enum.sort(fn a, b -> b < a end)) |> Enum.into(%{})
     0..high_point |> Enum.to_list |> Enum.each(fn idx ->
@@ -190,14 +190,14 @@ defmodule Martenblog.Http do
         next_link: (if idx > 0, do: "/static/blog/#{Map.get(date_array, idx-1)}.html", else: nil)
       }
       entries = Map.get(date_map, Map.get(date_array, idx)) |> Enum.map(fn entry ->
-        topics = Topic.topics_by_ids(entry.topic_ids) |> Enum.map(fn t -> 
-          if is_nil(t), do: "unknown", else: Map.get(t, "topic", "unknown") 
-        end)
+        #topics = Tema.topics_by_names(entry.topic) |> Enum.map(fn t -> 
+          #if is_nil(t), do: "unknown", else: Map.get(t, "topic", "unknown") 
+        #end)
         %{
           entry: Earmark.as_html!(entry.entry),
           subject: entry.subject,
-          date: pd_from_ut(floor(entry.created_at / 1000),"%a, %d %b, %Y %H:%M", true),
-          topics: topics
+          date: pd_from_md(entry.date),
+          topics: entry.topic
         }
       end)
       keywords = entries |> Enum.reduce([], fn entry, acc -> acc ++ entry.topics end) |> Enum.join(",")

@@ -7,6 +7,7 @@ defmodule Martenblog.Anotacion do
   @topic_re ~r/^[Tt]opics?:\s+(.+)$/
   @header_res [id: @id_re, subject: @subject_re, date: @date_re, topic: @topic_re]
   @stasis_dir "/home/polaris/arch-my-hive/martenblog/stasis"
+  @martenblog_dir "/home/polaris/arch-my-hive/martenblog"
 
   def get_entry_by_date(d) do
     if File.regular?("#{@stasis_dir}/#{d}_processed.md") do
@@ -23,7 +24,7 @@ defmodule Martenblog.Anotacion do
         {key, Regex.run(@header_res[key], line)}
       end) |> 
         Enum.reject(fn({_, capture}) -> is_nil(capture) end) |>
-        Enum.reduce(%{}, fn({key, [_, capture]}, entry) ->
+        Enum.reduce(%{}, fn({key, [_, capture]}, _entry) ->
           cap = cond do
             key == :id ->
               with {int, _} <- Integer.parse(capture) do
@@ -45,6 +46,52 @@ defmodule Martenblog.Anotacion do
     entry
   end
 
+  def well_formed_date?(%{date: date}) do
+    trimmed = String.trim(date)
+    if Regex.match?(~r/^(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?$/, trimmed) do 
+      {
+        :ok,
+        trimmed |> String.pad_trailing(12, "0")
+      }
+    else
+      :error
+    end
+  end
+  def well_formed_date?(_), do: :error
+
+  def topicify(%{topic: topics}), do: Enum.join(topics, ", ")
+  def topicify(_), do: "the heat death of the universe"
+
+  def save(%{topic: topics}=entry) do
+    case well_formed_date?(entry) do
+      {:ok, date} ->
+        """
+        id: #{entry.id}
+        date: #{entry.date}
+        topic: #{topicify(entry)}
+        subject: #{entry.subject}
+
+        #{entry.entry}
+        """ |>
+          (fn bilge ->
+            File.write!(Path.join(@stasis_dir, "#{entry.date}_processed.md"), bilge)
+            topics |> Enum.each(fn topic -> Tema.add_entry_to_topic(topic, date) end) 
+          end).()
+          "hecho"
+      :error ->
+        "The date is an abomination"
+    end
+  end
+  def save(entry), do: save(entry |> Map.merge(%{topic: ["the heat death of the universe"]}))
+
+  def new_entry(filename_sin_md) do
+    case File.read(Path.join(@martenblog_dir, "#{filename_sin_md}.md")) do
+      {:ok, s} -> md_to_entry(s) |> save
+      {:error, reason} ->
+        Logger.error "You fucked it up: #{inspect reason}"
+    end
+  end
+
   def hashtag_topics(entry, bulk) do
     bulk |> Enum.flat_map(fn line ->
       Regex.scan(~r/#(\w+)\b/, line) |> Enum.map(fn m -> m |> Enum.drop(1) |> List.first |> String.downcase end)
@@ -61,9 +108,10 @@ defmodule Martenblog.Anotacion do
     if (not Map.has_key?(entry, :date)), do: Map.merge(entry, %{date: Utils.now_for_mb()}), else: entry
   end
 
+  defp processed_filenames, do: File.ls!(@stasis_dir) |> Enum.filter(fn f -> Regex.match?(~r/_processed/, f) end)
+
   def next_entry_id do
-    File.ls!(@stasis_dir) |>
-      Enum.filter(fn f -> Regex.match?(~r/_processed/, f) end) |>
+    processed_filenames() |>
       Enum.map(fn filename ->
         File.stream!("#{@stasis_dir}/#{filename}", [], :line) |>
           Enum.take(1) |>
@@ -93,8 +141,7 @@ defmodule Martenblog.Anotacion do
   end
 
   def page(p) do
-    File.ls!(@stasis_dir) |>
-      Enum.filter(fn f -> Regex.match?(~r/_processed/, f) end) |>
+    processed_filenames() |>
       Enum.sort(&(&1 > &2)) |>
       Enum.drop((p - 1) * 11) |>
       Enum.take(11) |>
@@ -104,9 +151,16 @@ defmodule Martenblog.Anotacion do
       end)
   end
 
+  def all do
+    processed_filenames() |>
+      Enum.sort(&(&1 > &2)) |>
+      Enum.map(fn filename ->
+        File.read!("#{@stasis_dir}/#{filename}") |>
+        md_to_entry()
+      end)
+  end
+
   def count do
-    File.ls!(@stasis_dir) |>
-      Enum.filter(fn f -> Regex.match?(~r/_processed/, f) end) |>
-      Enum.count
+    processed_filenames() |> Enum.count
   end
 end
