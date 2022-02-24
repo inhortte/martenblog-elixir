@@ -11,8 +11,8 @@ defmodule Martenblog.Application do
     children = [
       {Plug.Cowboy, scheme: :http, plug: Martenblog.Router, options: [port: 8777]},
       # Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: Martenblog.Router, options: [port: 4001]),
-      worker(Mongo, [[database:
-		      Application.get_env(:martenblog, :db)[:name], name: :mongo]])
+      #worker(Mongo, [[database:
+		  #    Application.get_env(:martenblog, :db)[:name], name: :mongo]])
       # worker(Postgrex, [[database: "lakife", username: "polaris"]]) # doesn't work
     ]
 
