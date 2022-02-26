@@ -132,6 +132,18 @@ defmodule Martenblog.Anotacion do
       Kernel.+(1)
   end
 
+  def latest_mb_date do
+    processed_filenames() |> 
+      Enum.sort(&(&1 > &2)) |>
+      hd |> 
+      (fn filename ->
+        case Regex.run(~r/^(\d+)_processed/, filename) do
+          [_, date] -> date
+          _ -> "000000000000"
+        end
+      end).()
+  end
+
   def parse_mb_timestamp(ts) do
     case Regex.run(~r/(\d\d\d\d)(\d\d)(\d\d)(\d\d)?(\d\d)?/, ts) do
       [_, _, _, _, _, _] -> ts
@@ -154,6 +166,16 @@ defmodule Martenblog.Anotacion do
   def all do
     processed_filenames() |>
       Enum.sort(&(&1 > &2)) |>
+      Enum.map(fn filename ->
+        File.read!("#{@stasis_dir}/#{filename}") |>
+        md_to_entry()
+      end)
+  end
+
+  def some(limit) do
+    processed_filenames() |>
+      Enum.sort(&(&1 > &2)) |>
+      Enum.take(limit) |>
       Enum.map(fn filename ->
         File.read!("#{@stasis_dir}/#{filename}") |>
         md_to_entry()

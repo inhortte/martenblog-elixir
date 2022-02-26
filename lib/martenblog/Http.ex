@@ -2,9 +2,7 @@ defmodule Martenblog.Http do
   import Martenblog.Transform
   require Logger
   alias Martenblog.{Tema,Anotacion,Utils,PoemResolver}
-  alias Martenblog.Topic
-  alias Martenblog.Entry
-  @releases_dir "/home/polaris/Elements/flavigula/release/"
+# @releases_dir "/home/polaris/Elements/flavigula/release/"
   @eex "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/static/"
   @eex_marmota "/home/polaris/elixir/martenblog-elixir/web/static/"
   @dest "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/public/static/"
@@ -111,7 +109,7 @@ defmodule Martenblog.Http do
     end
   end
 
-  def pd_from_ut(unix_time, format, with_tz \\ false) do
+  def pd_from_ut(unix_time, format) do
     presentable_date(Timex.from_unix(unix_time), format)
   end
 
@@ -128,7 +126,8 @@ defmodule Martenblog.Http do
   def page(page) do
     Anotacion.page(page) |>
       Enum.map(fn e ->
-        topics = Tema.topics_by_names(e.topic) 
+        topics = Tema.topics_by_names(e.topic) |> Enum.map(fn t -> t.topic end)
+        Logger.info "Topics for #{e.id} are #{inspect topics}"
         ostensible_date = pd_from_md(e.date)
         entry_truncated = "#{String.slice(e.entry, 0, 512)}..."
         link = link_from_md(e.date);
@@ -138,7 +137,7 @@ defmodule Martenblog.Http do
       pagination_hovno = pagination(page)
       content = Enum.join(es)
       html = EEx.eval_file(Path.join([eex_base(), "blog.eex"]), [meta_tags: %{}, content: content, pages: pagination_hovno, title: "Mustelid Musings"])
-      File.write!(Path.join(dest_base, "blog/page_#{page}.html"), html)
+      File.write!(Path.join(dest_base(), "blog/page_#{page}.html"), html)
     end).()
 #    Entry.subjects |> Enum.drop((page - 1) * 11) |> Enum.take(11) |>
 #    Enum.map(fn e ->
@@ -169,7 +168,7 @@ defmodule Martenblog.Http do
   end
 
   def date_placement(entry, date_map) do
-    key = Utils.from_mb_to_dt(entry.date) |> Timex.beginning_of_day |> Timex.to_unix
+    key = entry.date |> Utils.from_mb_to_date_link
     Map.merge(date_map, 
       if Map.has_key?(date_map, key) do
         %{key => [entry|Map.get(date_map, key)]}
@@ -184,9 +183,9 @@ defmodule Martenblog.Http do
     date_array = Enum.zip(0..high_point, Map.keys(date_map) |> Enum.sort(fn a, b -> b < a end)) |> Enum.into(%{})
     0..high_point |> Enum.to_list |> Enum.each(fn idx ->
       meta = %{
-        previous: (if idx < high_point, do: pd_from_ut(Map.get(date_array, idx+1), "%a, %d %b, %Y", false), else: nil),
+        previous: (if idx < high_point, do: pd_from_ut(Map.get(date_array, idx+1), "%a, %d %b, %Y"), else: nil),
         previous_link: (if idx < high_point, do: "/static/blog/#{Map.get(date_array, idx+1)}.html", else: nil),
-        next: (if idx > 0, do: pd_from_ut(Map.get(date_array, idx-1), "%a, %d %b, %Y", false), else: nil),
+        next: (if idx > 0, do: pd_from_ut(Map.get(date_array, idx-1), "%a, %d %b, %Y"), else: nil),
         next_link: (if idx > 0, do: "/static/blog/#{Map.get(date_array, idx-1)}.html", else: nil)
       }
       entries = Map.get(date_map, Map.get(date_array, idx)) |> Enum.map(fn entry ->
@@ -208,7 +207,7 @@ defmodule Martenblog.Http do
       description = (keywords |> String.split(",") |> Enum.join(" ")) <> " " <> page_title
       meta_tags = %{description: description, keywords: keywords}
       html = EEx.eval_file(Path.join([eex_base(), "date-entry.eex"]), [meta_tags: meta_tags, meta: meta, entries: entries, title: page_title])
-      File.write!(Path.join(dest_base, "blog/#{Map.get(date_array, idx)}.html"), html)
+      File.write!(Path.join(dest_base(), "blog/#{Map.get(date_array, idx)}.html"), html)
     end)
   end
 
@@ -256,7 +255,7 @@ defmodule Martenblog.Http do
             end
           end).()
         end)
-        date = pd_from_ut(floor(entry.created_at / 1000), "%a, %d %b, %Y %H:%M", true)
+        date = pd_from_ut(floor(entry.created_at / 1000), "%a, %d %b, %Y %H:%M")
         link = Timex.from_unix(floor(entry.created_at / 1000)) |> Timex.beginning_of_day |> Timex.to_unix
         entry |> Map.merge(%{date: date, matching_lines: matching_lines, link: "/static/blog/#{link}.html"}) |> Map.drop([:entry])
       end).()
@@ -271,18 +270,18 @@ defmodule Martenblog.Http do
     Enum.sort(fn a, b -> b.fecha < a.fecha end) |> 
     Enum.map(fn p -> p |> Map.take([:title, :normalised_title, :fecha]) end)
     html = EEx.eval_file(Path.join([eex_base(), "poems-index.eex"]), [meta_tags: %{}, poems: titles_and_dates, title: "Mustelidish Poetry"])
-    File.write!(Path.join(poems_dest, "index.html"), html)
+    File.write!(Path.join(poems_dest(), "index.html"), html)
   end
 
   def poem_index_blank do
     html = EEx.eval_file(Path.join([eex_base(), "poems-index-blank.eex"]), [meta_tags: %{}, title: "A bereft universe"])
-    File.write!(Path.join(poems_dest, "index.html"), html)
+    File.write!(Path.join(poems_dest(), "index.html"), html)
   end
   
   def poem(p) do
     content = String.split(p.poem, ~r/\n/) |> Enum.join("<br />")
     html = EEx.eval_file(Path.join([eex_base(), "poems.eex"]), [meta_tags: %{}, title: p.title, content: content, date: p.fecha])
-    File.write!(Path.join(poems_dest, "#{p.normalised_title}.html"), html)
+    File.write!(Path.join(poems_dest(), "#{p.normalised_title}.html"), html)
   end
 
 
@@ -291,7 +290,7 @@ defmodule Martenblog.Http do
       {:ok, poems} ->
         poems |> poem_index
         poems |> Enum.each(&poem/1) 
-      _ -> poem_index_blank
+      _ -> poem_index_blank()
     end
   end
 
@@ -542,7 +541,7 @@ defmodule Martenblog.Http do
   def process_gemini_file(relative_path, template, options \\ %{}) do
     gemini_path = Path.join([@gemini_base, relative_path]) <> ".gmi"
     Logger.info "gemini path -> " <> gemini_path
-    html_path = Path.join([dest_base, relative_path]) <> ".html"
+    html_path = Path.join([dest_base(), relative_path]) <> ".html"
     Logger.info "html path -> " <> html_path
     case gemini_to_html(gemini_path, options) do
       {:ok, content} ->

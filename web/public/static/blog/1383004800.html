@@ -6,10 +6,10 @@
     <meta http-equiv="Content-language" content="en">
     <meta name="author" content="Bob Murry Shelton">
     
-      <meta name="keywords" content="transformation,blog,blog,food,music,blog">
+      <meta name="keywords" content="transformation,blog,blog,food">
     
     
-      <meta name="description" content="transformation blog blog food music blog Fireworks coming out of my head">
+      <meta name="description" content="transformation blog blog food Fireworks coming out of my head">
     
     <title>Fireworks coming out of my head</title>
     <link rel="stylesheet" href="../../css/fonts.css" />
@@ -89,7 +89,7 @@
       </div>
       <div class="row">
         <div class="col-8-md">
-          <em>Tue, 29 Oct, 2013 14:15</em>
+          <em>Tue, 29 Oct, 2013 14.15 UTC</em>
         </div>
       </div>
     </header>
@@ -129,7 +129,7 @@ Yeah.</p>
       </div>
       <div class="row">
         <div class="col-8-md">
-          <em>Tue, 29 Oct, 2013 22:24</em>
+          <em>Tue, 29 Oct, 2013 22.24 UTC</em>
         </div>
       </div>
     </header>
@@ -139,48 +139,6 @@ My mother often created apple/tuna/mayo sandwiches for me (on white bread,
 desafortunadamente) when I was young. Accordingly, I created one recently and
 consumed it. Supplanting mayo was jalepeno mustard. Additions were cilantro and
 horseradish. It was yummy.</p>
-
-    </p>
-  </div>
-
-  <div class="card">
-    <header>
-      <div class="row">
-        <div class="col">
-          <div><em><strong>Angelic voices needling my uvula</strong></em></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-8-md">
-          
-            <div class="tag is-small entry-topic">Music</div>
-          
-            <div class="tag is-small entry-topic">Blog</div>
-          
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-8-md">
-          <em>Tue, 29 Oct, 2013 22:24</em>
-        </div>
-      </div>
-    </header>
-    <p class="entry">
-      <p>
-I found a very annoying bug in the input ‘script’ for martenblog last night. I
-was too tired, however, to fuck with it. The fault of the mistake is mine. My
-lack of Node understanding caused it. The Entry module has a line like so:</p>
-<pre><code>module.exports = Entry;</code></pre>
-<p>
-It recently was like this:</p>
-<pre><code>module.exports = new Entry();</code></pre>
-<p>
-My suspicion is that the new Entry object is created <strong>ONCE</strong> at program
-initialization. So, when multiple files like this one are published, the _id of
-the first is preserved. Therefore, each subsequent file overwrites the
-original. Entiendes?</p>
-<p>
-This is a seemingly useless addition to this post.</p>
 
     </p>
   </div>

@@ -45,6 +45,13 @@ defmodule Martenblog.Utils do
     end
   end
 
+  def format_mb_date(date) do
+    case Regex.run(~r/^(\d\d\d\d)(\d\d)(\d\d)$/, String.slice(date, 0, 8)) do
+      [_, y, m, d] -> "#{y}-#{m}-#{d}"
+      _ -> "the zero"
+    end
+  end
+
   def dt_for_mb(dt) do
     [dt.year, dt.month, dt.day, dt.hour, dt.minute] |>
       Enum.map(&to_string/1) |>
@@ -69,6 +76,10 @@ defmodule Martenblog.Utils do
         naive |> DateTime.from_naive!("Etc/UTC")
       _ -> DateTime.now("Etc/UTC")
     end
+  end
+
+  def from_mb_to_date_link(mb_date) do
+    mb_date |> from_mb_to_dt |> Timex.beginning_of_day |> Timex.to_unix
   end
 
   def format_datetime_for_twtxt(dt) do

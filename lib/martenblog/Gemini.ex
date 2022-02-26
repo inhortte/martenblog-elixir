@@ -1,40 +1,38 @@
 defmodule Martenblog.Gemini do
   require Logger
-  alias Martenblog.Topic
-  alias Martenblog.Entry
-  alias Martenblog.Utils
+  alias Martenblog.{Utils, Tema, Anotacion}
   @releases_dir "/home/polaris/Elements/flavigula/release/"
   @gemini_public "/usr/share/molly/"
-  @gemini_cgi "/usr/share/molly/cgi-bin/"
+  # @gemini_cgi "/usr/share/molly/cgi-bin/"
 
-  def blog_entry_to_gemini(id) do
-    Entry.get_entry_by_id(id) |>
+  def blog_entry_to_gemini(entry) do
+    entry |>
     (fn(entry) ->
       if !is_nil(entry) do
         filename = "/tmp/#{Utils.randomFilename}"
-        File.write!(filename, Map.get(entry, :entry))
+        File.write!(filename, entry.entry)
         thurk = Port.open(
           {:spawn, "md2gemini -l at-end #{filename}"},
           [:binary]
         )
-        topics = Topic.topics_by_ids(Map.get(entry, :topic_ids)) |> 
-        Enum.map(fn t -> 
-          if !is_nil(t) do
-            Map.get(t, "topic", "nulu") 
-          else
-            "nulu"
-          end
-        end) |> 
-        Enum.join(", ")
+        topics = Tema.topics_by_names(entry.topic) |> 
+          Enum.map(fn t -> 
+            if !is_nil(t) do
+              Map.get(t, :topic, "nulu") 
+            else
+              "nulu"
+            end
+          end) |> 
+          Enum.join(", ")
         receive do
           {^thurk, {:data, result_temp}} ->
             result = 
               String.replace(result_temp, ~r/(\w)\^\w/, "\\1") |>
               String.replace(~r</images/blog>, "https://flavigula.net/images/blog")
             """
-            # #{Map.get(entry, :subject)}
+            # #{entry.subject}
             ## Topics: #{topics}
-            ## #{Utils.created_at_to_date(Map.get(entry, :created_at))}
+            ## #{Utils.format_mb_date(entry.date)}
 
             #{result}
 
@@ -44,14 +42,14 @@ defmodule Martenblog.Gemini do
             @flavigula@sonomu.club
             CC BY-NC-SA 4.0
             """
-        end |> (fn text -> File.write!(Path.join(@gemini_public, "blog/#{floor(id)}.gmi"), text) end).()
+        end |> (fn text -> File.write!(Path.join(@gemini_public, "blog/#{floor(entry.id)}.gmi"), text) end).()
       end
     end).()
   end
 
-  def make_index(limit) do
-    Entry.subjects() |> Enum.take(limit) |> Enum.map(fn e ->
-      "=> #{Map.get(e, :id)}.gmi #{Utils.created_at_to_date(Map.get(e, :created_at))} - #{Map.get(e, :subject)}\n"
+  def make_index(entries) do
+    entries |> Enum.map(fn e ->
+      "=> #{e.id}.gmi #{Utils.format_mb_date(e.date)} - #{e.subject}\n"
     end) |> (fn subject_list ->
       affirmation = """
       # Here lies Martes Flavigula, eternally beneath the splintered earth
@@ -75,8 +73,8 @@ defmodule Martenblog.Gemini do
   end
 
   def make_gemini_feed do
-    Entry.subjects |> Enum.take(53) |> Enum.map(fn e ->
-      "=> #{Map.get(e, :id)}.gmi #{Utils.created_at_to_date(Map.get(e, :created_at))} #{Map.get(e, :subject)}\n"
+    Anotacion.some(53) |> Enum.map(fn e ->
+      "=> #{e.id}.gmi #{Utils.format_mb_date(e.date)} #{e.subject}\n"
     end) |> (fn subject_list ->
       affirmation = """
       # Martenblog
@@ -98,9 +96,15 @@ defmodule Martenblog.Gemini do
     end).()
   end
 
+  def slap_um_in do
+    entries = Anotacion.all
+    make_index(entries)
+    entries |> Enum.each(fn e -> blog_entry_to_gemini(e) end)
+  end
   def slap_um_in(limit) do
-    make_index(limit)
-    Entry.subjects() |> Enum.take(limit) |> Enum.each(fn e -> blog_entry_to_gemini(Map.get(e, :id)) end)
+    entries = Anotacion.some(limit)
+    make_index(entries)
+    entries |> Enum.each(fn e -> blog_entry_to_gemini(e) end)
   end
 
   defp join_to_release_dir(thurk) do

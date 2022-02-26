@@ -1,27 +1,27 @@
 defmodule Martenblog.Rss do
   require Logger
   import XmlBuilder
-  alias Martenblog.BlogResolver
+  alias Martenblog.{Anotacion, Utils}
 
   def entry_xml(entry) do
-    description = case Earmark.as_html(Map.get(entry, "entry")) do
+    description = case Earmark.as_html(entry.entry) do
       {:ok, html, _} -> html |> HtmlSanitizeEx.basic_html
-      _ -> Map.get(entry, "entry")
+      _ -> entry.entry
     end
     entry |> (fn entry ->  
-      id = Map.get(entry, "_id")
-      link = BlogResolver.yearMonthDay(entry) |> (fn ymd -> "https://flavigula.net/#/blog/#{ymd.year}/#{ymd.month}/#{ymd.day}" end).()
+      link = entry.date |> Utils.from_mb_to_date_link() |>
+        (fn link -> "https://flavigula.net/static/blog/#{link}.html" end).()
       element(:item, [
-        element(:title, Map.get(entry, "subject")),
+        element(:title, entry.subject),
         element(:link, link),
         element(:description, description),
-        element(:guid, "https://flavigula.net/#/blog/entry/#{Kernel.trunc(id)}")
+        element(:guid, "https://flavigula.net/static/blog/#{link}")
       ])
     end).()
   end 
 
   def all_entries_xml do
-    Mongo.find(:mongo, "entry", %{}, [sort: [created_at: -1], limit: 29] ) |> Enum.to_list |> Enum.map(&Martenblog.Rss.entry_xml/1)
+    Anotacion.some(53) |> Enum.to_list |> Enum.map(&Martenblog.Rss.entry_xml/1)
   end 
 
   def rss do
