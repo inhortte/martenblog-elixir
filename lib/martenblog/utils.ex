@@ -78,8 +78,20 @@ defmodule Martenblog.Utils do
     end
   end
 
+  def from_full_path_to_dt(path) do
+    Regex.run(~r{^[\/\w-]+\/(\d+)_processed.md$}, path) |>
+    case do
+      [_, mb] -> from_mb_to_dt(mb)
+      _ -> DateTime.now("Etc/UTC")
+    end
+  end
+
   def from_mb_to_date_link(mb_date) do
     mb_date |> from_mb_to_dt |> Timex.beginning_of_day |> Timex.to_unix
+  end
+
+  def subject_from_path(path) do
+    File.read!(path) |> String.split("\n", trim: true) |> Enum.find(fn line -> Regex.match?(~r/^[Ss]ubject/, line) end) |> String.split(~r/:/) |> List.last |> String.trim
   end
 
   def format_datetime_for_twtxt(dt) do

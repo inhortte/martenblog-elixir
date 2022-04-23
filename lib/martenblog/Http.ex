@@ -7,6 +7,7 @@ defmodule Martenblog.Http do
   @eex_marmota "/home/polaris/elixir/martenblog-elixir/web/static/"
   @dest "/home/polaris/rummaging_round/elixir/martenblog-elixir/web/public/static/"
   @dest_marmota "/home/polaris/elixir/martenblog-elixir/web/public/static/"
+  @stasis_dir "/home/polaris/arch-my-hive/martenblog/stasis"
   @gemini_base "/usr/share/molly/"
   @poems_dest "#{@dest}poems"
   @poems_marmota_dest "#{@dest_marmota}poems"
@@ -118,8 +119,18 @@ defmodule Martenblog.Http do
       presentable_date("%a, %d %b, %Y %H.%M", true)
   end
 
+  def pd_from_path(path) do
+    Utils.from_full_path_to_dt(path) |>
+      presentable_date("%a, %d %b, %Y %H.%M", true)
+  end
+
   def link_from_md(md) do
     Utils.from_mb_to_dt(md) |>
+      Timex.beginning_of_day |> Timex.to_unix
+  end
+
+  def link_from_path(path) do
+    Utils.from_full_path_to_dt(path) |>
       Timex.beginning_of_day |> Timex.to_unix
   end
   
@@ -139,26 +150,6 @@ defmodule Martenblog.Http do
       html = EEx.eval_file(Path.join([eex_base(), "blog.eex"]), [meta_tags: %{}, content: content, pages: pagination_hovno, title: "Mustelid Musings"])
       File.write!(Path.join(dest_base(), "blog/page_#{page}.html"), html)
     end).()
-#    Entry.subjects |> Enum.drop((page - 1) * 11) |> Enum.take(11) |>
-#    Enum.map(fn e ->
-#      topics = Topic.topics_by_ids(e.topic_ids) |> Enum.map(fn t -> 
-#        if is_nil(t), do: "unknown", else: Map.get(t, "topic", "unknown") 
-#      end)
-#      # IO.inspect topics
-#      IO.inspect e.created_at
-#      unix_time = floor(e.created_at / 1000)
-#      timex_time = Timex.from_unix(unix_time)
-#      link = Timex.from_unix(unix_time) |> Timex.beginning_of_day |> Timex.to_unix
-#      ostensible_date = presentable_date(timex_time, "%a, %d %b, %Y %H.%M", true)
-#      entry_truncated = "#{String.slice(e.entry, 0, 512)}..."
-#      EEx.eval_file(Path.join([eex_base(), "entry_in_page.eex"]), [meta_tags: %{}, topics: topics, ostensible_date: ostensible_date, subject: e.subject, link: "/static/blog/#{link}.html", entry_trunctated: entry_truncated])
-#    end) |>
-#    (fn es ->
-#      pagination_hovno = pagination(page)
-#      content = Enum.join(es)
-#      html = EEx.eval_file(Path.join([eex_base(), "blog.eex"]), [meta_tags: %{}, content: content, pages: pagination_hovno, title: "Mustelid Musings"])
-#      File.write!(Path.join(dest_base, "blog/page_#{page}.html"), html)
-#    end).()
   end
 
   def pages do
@@ -216,51 +207,55 @@ defmodule Martenblog.Http do
   end
 
   def blog_search(term) do
-    Mongo.find(:mongo, "entry", 
-      %{"$or" => 
-        [
-          %{"entry" => %{"$regex" => term, "$options" => "$i"}}, 
-          %{"subject" => %{"$regex" => term, "$options" => "$i"}}
-        ]
-      },
-      sort: %{"created_at" => -1}) |> 
-    Enum.to_list |>
-    Enum.map(fn entry ->
-      entry |> Utils.normalise_keys |>
-      (fn entry ->
-        Logger.info "blog_search for #{term} - found: #{entry.subject}"
-        matching_lines = entry.entry |> String.split(~r/\n/) |>
-        Enum.filter(fn line -> Regex.match?(~r/#{term}/i, line) end) |> Enum.map(fn line ->
-          line |> String.split(~r/\s+/) |>
-          (fn line_list ->
-            if length(line_list) > 20 do
-              line_list |> Enum.split_while(fn chunk -> !Regex.match?(~r/#{term}/i, chunk) end) |>
-              case do
-                {head, tail} ->
-                  ["..."] ++
-                    Enum.drop(head, (if length(head) < 10, do: 0, else: length(head) - 10)) ++
-                      ["<strong>#{List.first(tail)}</strong>"] ++
-                        Enum.take(Enum.drop(tail, 1), 10) ++
-                          ["..."] |> Enum.join(" ")
-                _ -> line_list |> Enum.join(" ")
-              end
-            else
-              line_list |> Enum.map(fn chunk ->
-                if Regex.match?(~r/#{term}/i, chunk) do
-                  "<strong>#{chunk}</strong>"
-                else
-                  chunk
-                end
-              end) |> Enum.join(" ")
+    Logger.info "Http.ex > blog_search > term: #{term}"
+    args = Enum.concat(["-i", term], Path.wildcard(Path.join(@stasis_dir, "*_processed.md")))
+    {bastard, _} = System.cmd("grep", args)
+    # Logger.info "Bastard attained: #{inspect bastard, pretty: true}"
+    spillage = bastard |> String.split("\n", trim: true) |> Enum.map(fn findings ->
+      findings |> String.split(~r/:/, parts: 2)
+    end) |> Enum.reject(fn ([_, text]) ->
+      # Logger.info("text within reject is #{text}")
+      borderline = Regex.match?(~r/^([Ss]ubject|[Tt]opic|[Dd]ate|[Ii]d)/, text)
+      # Logger.info "reject match -> #{inspect borderline, pretty: true}"
+      borderline
+    end)
+    # Logger.info "spillage: #{inspect spillage}"
+    spillage |> Enum.map(fn (buttock) ->
+      #Logger.info("findings -> #{inspect buttock}")
+      [path, findings] = buttock
+      findings |> String.split(~r/\s+/) |>
+        (fn split_line ->
+          # Logger.info "split_line is #{inspect split_line, pretty: true}"
+          if length(split_line) > 20 do
+            split_line |> Enum.split_while(fn chunk -> !Regex.match?(~r/#{term}/i, chunk) end) |>
+            case do
+              {head, tail} ->
+                ["..."] ++ 
+                  Enum.drop(head, (if length(head) < 10, do: 0, else: length(head) - 10)) ++
+                    ["<strong>#{List.first(tail)}</strong>"] ++
+                      Enum.take(Enum.drop(tail, 1), 10) ++
+                        ["..."] |> Enum.join(" ")
+              _ -> split_line |> Enum.join(" ")
             end
-          end).()
-        end)
-        date = pd_from_ut(floor(entry.created_at / 1000), "%a, %d %b, %Y %H:%M")
-        link = Timex.from_unix(floor(entry.created_at / 1000)) |> Timex.beginning_of_day |> Timex.to_unix
-        entry |> Map.merge(%{date: date, matching_lines: matching_lines, link: "/static/blog/#{link}.html"}) |> Map.drop([:entry])
+          else
+            split_line |> Enum.map(fn chunk ->
+              if Regex.match?(~r/#{term}/i, chunk) do
+                "<strong>#{chunk}</strong>"
+              else
+                chunk
+              end
+            end) |> Enum.join(" ")
+          end
+        end).() |>
+      (fn res -> 
+        date = pd_from_path(path)
+        link = link_from_path(path)
+        subject = Utils.subject_from_path(path)
+        %{date: date, subject: subject, matching_line: res, link: "/static/blog/#{link}.html"}
       end).()
     end) |> (fn entries ->
-      html = EEx.eval_file(Path.join([eex_base(), "blog-search.eex"]), [meta_tags: %{}, term: term, entries: entries, title: "Searching for #{term}"])
+      # Logger.info "our entries are: #{inspect entries, pretty: true}"
+      html = EEx.eval_file(Path.join([eex_base(), "blog-search.eex"]), [meta_tags: %{}, term: term, entries: entries |> Enum.reverse, title: "Searching for #{term}"])
       html
     end).()
   end

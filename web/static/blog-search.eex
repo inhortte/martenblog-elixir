@@ -28,9 +28,7 @@
             </div>
           </header>
           <p class="entry">
-            <%= for line <- entry.matching_lines do %>
-              <%= line %><br />
-            <% end %>
+            <%= entry.matching_line %>
           </p>
         </div>
       <% end %>
